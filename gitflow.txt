@@ -1,0 +1,105 @@
+# REGLAS
+
+Reglas para manejarse con Git durante el proyecto:
+
+
+### Al iniciar el dia: 8AM/MEX - 10AM/COL-ECU-PER - 12PM/ARG-CHL
+
+- Ir a Trello y elegir una tarea (si aun no se ha completado la actual)
+
+
+- Asegurarse de estar sobre la rama main en el repo clonado
+
+
+- Traer todos los cambios mergeados el dia anterior a esta rama:
+
+    `git pull origin main` 
+
+
+- Crear nueva rama con nombre en el siguiente formato: `<tipoDeTareaARealizar>/<descripciónDeLaTarea>`
+
+	bug --> rama creada para solucionar un bug específico ej: "bug/book-image-cropping-issue", "bug/admin-login-issue"
+
+	wip --> Work in Progress, en esta rama se trabaja sobre algún feature o tarea que no será terminada en un futuro inmediato ej: "wip/database-deployment", "wip/user authentication"
+
+	feature --> rama creada para añadir una nueva característica al proyecto ej: "feature/navbar-user", "feature/admin-getAllBooks-route"
+
+    `git checkout -b <nombreDeRama>` o `git switch -c <nombreDeRama>`
+
+
+- Trabajar sobre esa rama
+
+
+- Usar buenas practicas en el codigo
+
+
+-Crear un commit cada que crea o modifica un archivo y cuando se termina una tarea.
+  
+
+- Agregar los cambios a commitear:
+
+    `git add .` o `git add <nombreDeArchivo>` 
+
+- Crear el commit:
+
+    `git commit -m "<Nombre descriptivo del commit>"`
+
+
+- Hacer el push de la rama enla que se esta trabajando al repositorio remoto:
+
+	> Si es la primera vez que se pushea la rama al repositorio remoto(GitHub), ejecutar la siguiente línea:
+
+		`git push --set-upstream origin <nombreDeRama>`
+
+	>Caso contrario utilizar el siguiente comando:
+
+		`git push`
+
+
+- Abrir el repo en Github, revisar los cambios que hiciste sobre la rama que trabajaste y solicitar un nuevo Pull Request
+
+
+
+### Al finalizar el dia: 4PM/MEX - 6PM/COL-ECU-PER - 8PM/ARG-CHL
+
+- Leer código del compañero y autorizar merge (pasar los cambios de su rama de trabajo a la rama main)
+
+
+- Actualizar el trello si se completo la tarea
+
+
+
+##Comandos
+
+
+git branch  -------------------// muestra la branch en la que estamos con un *
+
+git branch -a  ----------------// nos muestra todas las branches 
+
+git branch -d  ----------------// borrar la rama
+
+git branch -D  ----------------// forzar borrado rama
+
+git checkout NombreRama / git switch NombreRama ------// utilizado para movernos a la rama especificada
+
+git checkout -b / git switch -c --------------// crea rama y te cambia a la rama
+
+git pull  ---------------------// baja todos los cambios a nuestro equipo. Crucial para antes de trabajar
+
+git status  -------------------// ver el estado de nuestros cambios
+
+git push origin NombreRama  ---// especifica la rama a la que subiremos los cambios, usado luego del commit
+
+git merge Nombrerama  ---------// Pullea lo de la rama especificada, hacer con el master antes de pushear para 
+                      ---------// ver posibles conflictos y solucionarlos 
+
+
+Lineamientos del repositorio:  
+-----------------------------
+
+*   Al crear una nueva rama especificar:  (taskType)/(taskName) ej: feature/shopping-cart
+
+*   Solucionar conflictos antes de hacer un push request
+
+*  links sobre el tema: -https://vimeo.com/447008698/b02212e908  Git Branches Demo
+                        -https://vimeo.com/567639276/e365c11ede  Best Practices + Git Flow
