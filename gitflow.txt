@@ -60,7 +60,7 @@ Reglas para manejarse con Git durante el proyecto:
 
 
 
-### Al finalizar el dia: 4PM/MEX - 6PM/COL-ECU-PER - 8PM/ARG-CHL
+### Al finalizar el dia: 5PM/MEX - 7PM/COL-ECU-PER - 9PM/ARG-CHL
 
 - Leer código del compañero y autorizar merge (pasar los cambios de su rama de trabajo a la rama main)
 
