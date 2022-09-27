@@ -9,8 +9,8 @@ const logger = require("morgan");
 
 const app = express();
 
-const adminRoutes = require("./src/routes");
-const shopRoutes = require("./src/routes");
+const adminRoutes = require("./src/routes/shopRoutes.js");
+const shopRoutes = require("./src/routes/shopRoutes.js");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
