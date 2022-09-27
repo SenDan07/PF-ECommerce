@@ -1,11 +1,23 @@
+import NavBar from "./components/NavBar";
+//import { BrowserRouter, Switch as Switch} from "react-router-dom"
+import { Route, BrowserRouter, Switch, Routes } from "react-router-dom"
+
+
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>E Commerce App</h1>
-      </header>
-    </div>
+
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+
+        </Routes>
+      </BrowserRouter>
+
+    </div >
   );
 }
 
 export default App;
+
+
