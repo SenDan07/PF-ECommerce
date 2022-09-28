@@ -12,7 +12,7 @@ const errorHandler = require("../server/src/util/middleware/errorHandler");
 
 const app = express();
 
-const adminRoutes = require("./src/routes/");
+const adminRoutes = require("./src/routes/adminRoutes");
 const shopRoutes = require("./src/routes/shopRoutes");
 
 app.use(bodyParser.urlencoded({ extended: false }));
