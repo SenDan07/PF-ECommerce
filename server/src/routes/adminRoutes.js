@@ -1,0 +1,1 @@
+//aquí van las rutas de controladores del administrador
