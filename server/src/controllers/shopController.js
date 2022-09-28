@@ -1,6 +1,4 @@
-
 const libros = require('../../data/dataBook.json');
-develop
 
 const shopController = {
   filterBooksByAuthor: (req, res) => {
@@ -29,11 +27,7 @@ const shopController = {
     const { idBook } = req.params;
     try {
       if (!idBook) throw "Debe enviar el id";
-
-
       const book = libros.items?.find(({id}) => id === Number(idBook));
-
-develop
       if (!book) throw "El libro no existe";
       res.send(book);
     } catch (error) {
