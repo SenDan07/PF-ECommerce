@@ -7,10 +7,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-
-
         <Routes>
-
           <Route
             exact path="/"
             element={<Home />} />
@@ -18,8 +15,6 @@ function App() {
           <Route
             exact path="/createbook"
             element={<FormBook />} />
-
-
 
         </Routes>
       </BrowserRouter>
