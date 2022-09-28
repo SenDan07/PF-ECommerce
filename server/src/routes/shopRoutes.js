@@ -1,10 +1,10 @@
 const { Router } = require('express');
-const shopController = require('../controllers/shopController.js');
+const shopControllers = require('../controllers/shopControllers');
 
 const router = Router();
 
-router.get('/books', shopController.filterBooksByAuthor);
-router.get('/books/order', shopController.orderBooksByAlphabetically);
-router.get('/book/:idBook', shopController.getBookById);
+router.get('/books', shopControllers.filterBooksByAuthor);
+router.get('/books/order', shopControllers.orderBooksByAlphabetically);
+router.get('/book/:idBook', shopControllers.getBookById);
 
 module.exports=router;
