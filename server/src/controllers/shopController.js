@@ -21,6 +21,17 @@ const shopController = {
       return res.status(400).send(error);
     }
   },
+  getBookById: (req, res) => {
+    const { idBook } = req.params;
+    try {
+      if (!idBook) throw "Debe enviar el id";
+      const book = libros.find(({id}) => id === idBook);
+      if (!book) throw "El libro no existe";
+      res.send(book);
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  },
 }
 
 
