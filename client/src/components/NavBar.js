@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import SearchBar from "./SearchBar";
 
 export default function NavBar() {
     return (
@@ -8,26 +9,29 @@ export default function NavBar() {
             </div>
 
             <div className="">
-                <Link to="/" className="mx-7 cursor-pointer">
+                <Link to="/" className="mx-3 cursor-pointer hover:text-hoverMenu">
                     INICIO
                 </Link>
 
-                <Link to="/categories" className="mx-7 cursor-pointer">
+                <Link to="/categories" className="mx-3 cursor-pointer hover:text-hoverMenu">
                     CATEGORIAS
                 </Link>
 
-                <Link to="/favorites" className="mx-7 cursor-pointer">
+                <Link to="/favorites" className="mx-3 cursor-pointer hover:text-hoverMenu">
                     FAVORITOS
                 </Link>
+            </div>
 
+            <div>
+                <SearchBar />
             </div>
 
             <div >
-                <Link to="/auth" className="mx-7 cursor-pointer">
+                <Link to="/auth" className="mx-3 cursor-pointer hover:text-hoverMenu">
                     INICIAR SESIÓN
                 </Link>
 
-                <Link to="/basket" className="mx-7 cursor-pointer">
+                <Link to="/basket" className="mx-3 cursor-pointer hover:text-hoverMenu">
                     COMPRAS
                 </Link>
             </div>
