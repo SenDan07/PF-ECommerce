@@ -2,743 +2,203 @@
     "items": [
         {
             "id": 1,
-            "volumeInfo": {
-                "title": "Las aventuras de Roderick Random",
-                "authors": [
-                    "Tobias Smollett"
-                ],
-                "publisher": "Editorial Montesinos",
-                "publishedDate": "2007",
-                "industryIdentifiers": [
-                    {
-                        "type": "ISBN_10",
-                        "identifier": "8496831477"
-                    },
-                    {
-                        "type": "ISBN_13",
-                        "identifier": "9788496831476"
-                    }
-                ],
-                "pageCount": 480,
-                "categories": [
-                    "Literary Criticism ",
-                    " Ancient & Classical"
-                ],
-                "imageLinks": {
-                    "smallThumbnail": "http://books.google.com/books/content?id=yHmGhaz7GNsC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-                    "thumbnail": "http://books.google.com/books/content?id=yHmGhaz7GNsC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-                },
-                "description": "Tanto que , cuando se hallaba dividido por una diferencia de intereses , uno de los bandos normalmente solicitaba la ayuda de Roderick ( nombre por el cual era yo conocido ) para inclinar la balanza y mantener el bando opuesto...",
-                "price": 25.23
-            }
+            "title": "Las aventuras de Roderick Random",
+            "publisher": "Editorial Montesinos",
+            "ISBN": 8496831477,
+            "categories": "Narrativa",
+            "imageLinks": "http://books.google.com/books/content?id=yHmGhaz7GNsC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+            "description": "Tanto que , cuando se hallaba dividido por una diferencia de intereses , uno de los bandos normalmente solicitaba la ayuda de Roderick ( nombre por el cual era yo conocido ) para inclinar la balanza y mantener el bando opuesto...",
+            "price": 25.23
         },
         {
             "id": 2,
-            "volumeInfo": {
-                "title": "Random Lengths",
-                "authors": [
-                    "Tobias Smollett"
-                ],
-                "publisher": "Random Lengths Publications",
-                "publishedDate": "1999",
-                "industryIdentifiers": [
-                    {
-                        "type": "ISBN_10",
-                        "identifier": "1884311091"
-                    },
-                    {
-                        "type": "ISBN_13",
-                        "identifier": "9781884311093"
-                    }
-                ],
-                "pageCount": 262,
-                "categories": [
-                    "Literary Criticism ",
-                    " Ancient & Classical"
-                ],
-                "imageLinks": {
-                    "smallThumbnail": "http://books.google.com/books/content?id=TnUqAQAAMAAJ&printsec=frontcover&img=1&zoom=5&imgtk=AFLRE721hWzO62cGKn_Y-hFBOesuIhy9MYITFWsKxRKST7itjY4ufysldSkDedWsfDY2hrT65Posps6KkvAKuOeCQBvPFmi7XUYkKuRadJtWpTJMjKid7yxe0bS9660Lk3D8UumPXP5V&source=gbs_api",
-                    "thumbnail": "http://books.google.com/books/content?id=TnUqAQAAMAAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE71I7QCpXmT-EsJy8jm_DXpQ9K2Q23oTowJrdPlAbCJNNTIeMk7Z-L8QgnK8x9F8WtZfHN9ID-kCYNv1fj6TiLmtEshEecToP33k6EIFibstseMLll2dzqGSTag6yjgJABCWcMFH&source=gbs_api",
-                    "small": "http://books.google.com/books/content?id=TnUqAQAAMAAJ&printsec=frontcover&img=1&zoom=2&imgtk=AFLRE70d6Sf7G2nCr7Lth4kaGw4tg5OA_EOSOsKI9JTKloD2EWTrk3knXhVGNBv0Ub62shUI4Ha-ei8p8nLH1Ha1hVQc91W0VyolFgTgmwA0hYjBpDS2D6joWt3-VCjx2RuxzcDrio9I&source=gbs_api",
-                    "medium": "http://books.google.com/books/content?id=TnUqAQAAMAAJ&printsec=frontcover&img=1&zoom=3&imgtk=AFLRE72l8A3QEVIxE7aNzFRMy82hGE41SwRRvo8gKKEPBtNCI8KY3aAqMrMK02MZk31_NCOn2KmCErI31WARBPiJqZzI4TpQnNuWECxe9LkyEp6vN2vhcDSM1Dua0Iys0cSbRMSsOUGp&source=gbs_api",
-                    "large": "http://books.google.com/books/content?id=TnUqAQAAMAAJ&printsec=frontcover&img=1&zoom=4&imgtk=AFLRE70k0Ga2ql0QAJV73Xgeo7VB2X7_OHdaeTXxfRPcE99W7CavtNPbdIqGcKnatK3OBvC9tQ5gkeBlG-icQFkPmSJp3Cb7gPdx5_5fg54XHLBU_x7vTuck0_0kIxr9fTyJNobkV24P&source=gbs_api",
-                    "extraLarge": "http://books.google.com/books/content?id=TnUqAQAAMAAJ&printsec=frontcover&img=1&zoom=6&imgtk=AFLRE71NkWen40gnB0KUOrL2sMq0RSoto2h8e27hYK2OPO29Ph8FmQegtRTmt5EBb_eO0gjuSsliwT_If9WFCiertPIWoFN-_Z5GnjsmzMj00LnSkcz5wSLU8ZdFsKMxPa_IQ1dquF34&source=gbs_api"
-                },
-                "description": "Tanto que , cuando se hallaba dividido por una diferencia de intereses , uno de los bandos normalmente solicitaba la ayuda de Roderick <b>Random</b> ( nombre por el cual era yo conocido ) para inclinar la balanza y mantener el bando opuesto&nbsp;...",
-                "price": 30.50
-            }
+            "title": "Random Lengths",
+            "publisher": "Random Lengths Publications",
+            "ISBN": "1884311091",
+            "categories": " Literatura y Estudios Literarios",
+            "imageLinks": "http://books.google.com/books/content?id=TnUqAQAAMAAJ&printsec=frontcover&img=1&zoom=5&imgtk=AFLRE721hWzO62cGKn_Y-hFBOesuIhy9MYITFWsKxRKST7itjY4ufysldSkDedWsfDY2hrT65Posps6KkvAKuOeCQBvPFmi7XUYkKuRadJtWpTJMjKid7yxe0bS9660Lk3D8UumPXP5V&source=gbs_api",
+            "description": "Tanto que , cuando se hallaba dividido por una diferencia de intereses , uno de los bandos normalmente solicitaba la ayuda de Roderick <b>Random</b> ( nombre por el cual era yo conocido ) para inclinar la balanza y mantener el bando opuesto&nbsp;...",
+            "price": 30.50
         },
         {
             "id": 3,
-            "volumeInfo": {
-                "title": "Random",
-                "authors": [
-                    "Daniel Rojas Pachas"
-                ],
-                "publisher": "Daniel Rojas Pachas",
-                "publishedDate": "2019-01-01",
-                "industryIdentifiers": [
-                    {
-                        "type": "ISBN_10",
-                        "identifier": "6124750481"
-                    },
-                    {
-                        "type": "ISBN_13",
-                        "identifier": "9786124750489"
-                    }
-                ],
-                "pageCount": 262,
-                "categories": [
-                    "Fiction ",
-                    " Literary"
-                ],
-                "imageLinks": {
-                    "smallThumbnail": "http://books.google.com/books/publisher/content?id=HUmfDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE7054vmYcfTcVIfdMskk1SQ7uXlBVi9SrK4QAD4uDKuzIutqF4dJeFYQ4PSsFa7wIuShfMdZyMvzIYhqRxLxIn1eB8sqBvJJoBih_ILbHmaRFiE6JauT00UDHAuQKhejh2Kc6ZlV&source=gbs_api",
-                    "thumbnail": "http://books.google.com/books/publisher/content?id=HUmfDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE71kTO7d1i-muP-Q74djiF2gxXU8mkIeXJAsPrUVjgi-vQjLzoL3KdBUf8zB30xjFNXJlbFmQS6yJExqVBbh5-5eR_jSypydRwnXspCkn3JIZL5OnqRkJCj_Vw0Nicq4HB1tVM4m&source=gbs_api",
-                    "small": "http://books.google.com/books/publisher/content?id=HUmfDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE72eWXp3_gwFwZa4LU3ajq1QR8S0dFlq5jDwDogoP6Vt8PCNhRscK8_Zwi1Q5EtptPxlyIX9F8f3Jj6K3Ve89zuCHsS6Hamn0VfaTu7dU4cGl_KytBhl8aFH44QL-QzbHrSWtken&source=gbs_api",
-                    "medium": "http://books.google.com/books/publisher/content?id=HUmfDwAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE72Byrh1LJ78CNtPpTe9yVCepzMs0djloNW7-GNw9InCF8MjYqcVog1VYuHj2SE1fW-WvnBcYllw-dyCv9OC4pFeL-AesJCZC_zwojMcSEIXIzl5A_IDnaeW1xPxtf1zymgRLphv&source=gbs_api",
-                    "large": "http://books.google.com/books/publisher/content?id=HUmfDwAAQBAJ&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE731krhTll-oHswwDd1FzGz1XcXmoxU0zIgepOVQICexvJHGFuDDYD8Ln6lFwb6xQRRIxboZywhL9-7tSip4F_reZYIlluCWeXAc8JbstcJheHVTlpBe83uljp970gY_fYeTw97z&source=gbs_api",
-                    "extraLarge": "http://books.google.com/books/publisher/content?id=HUmfDwAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&imgtk=AFLRE72DZOv3E7Db7jG5RVz3jqgW2RiWzvJwKsDX1DXLqedVFPa3i6er0P9IvJ8paXxoOPZjCcGXj4L3rFWQf6RBFZC60AQg2KR5FCmzn2naEfFTx8mwJWkDjS0nbGh5zqG4xHPuglNo&source=gbs_api"
-                },
-                "description": "El fracaso, como constante de destino, da la medida de las acciones en Random. Los personajes centrales, parte de una familia marcada por la separación paterna, son presentados a brochazos por sus acciones inconclusas y sus proyectos imposibles o delirantes. El cumplimiento de lo que podría ser un destino pasa siempre por el quiebre violento de las leyes de sociabilidad más fundamentales, como si buscasen una definición de sí mismos desde el más allá de un entorno marcado por la falta total de sentido y la indiferencia ética absoluta. Este más allá, marcado por el incesto y el crimen, encuentra su lugar en una cultura de masas en que la duplicación espectral -como personaje de comic, avatar de juego de videos o nick de chat- da una sombra de sentido, sin alcanzar a proponer un destino trascendente. La perpetuación de la fragmentariedad queda con esto asegurada.</p><p>Cabe señalar que en la estructura de Random, más allá del natural dibujo rizomático que se produce por la multiplicidad, existe un narrador testigo, que parece forzado a dar cuenta de la posibilidad (frustrada) de presentar la historia de los personajes como totalidad. Estos fragmentos me parecen ejemplares como la conciencia histórica vital -de piel- sobre una serie de procesos psicológicos y sociales que las generaciones nacidas post-golpe hemos tenido que experimentar de forma cada vez más amarga. La carencia de una fundamentación efectiva -que se logre enlazar con un destino claro, una épica, si es que no una tragedia- rompe sin tregua cualquier posibilidad conclusiva de comprensión, y cierra la posibilidad de juicio ético ante la descontrolada deriva de los personajes, que llega hasta el crimen y la autoeliminación real o simbólica.</p><p>Random es, más que nada, un testimonio de época: el despliegue de la sociedad del espectáculo en el seno del liberalismo más desatado sólo puede ser padecido por sus personajes, pasmados por el achatamiento completo bajo la inercia histórica total. Dar la nota del ahogo, de la clausura ética, es una efectiva virtud, y la estructura elegida, profundamente subversiva, sabe darnos una sensación de inorganicidad que, paradójicamente, hace más vívidos sus referentes. Rojas Pachas, ya reconocido como editor y crítico, ofrece con este libro un inquietante signo de pregunta sobre el campo narrativo de nuestro país.",
-                "price": 19.99
-            }
+            "title": "Random",
+            "publisher": "Daniel Rojas Pachas",
+            "ISBN": "6124750481",
+            "categories": "Ficción",
+            "imageLinks": "http://books.google.com/books/publisher/content?id=HUmfDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE7054vmYcfTcVIfdMskk1SQ7uXlBVi9SrK4QAD4uDKuzIutqF4dJeFYQ4PSsFa7wIuShfMdZyMvzIYhqRxLxIn1eB8sqBvJJoBih_ILbHmaRFiE6JauT00UDHAuQKhejh2Kc6ZlV&source=gbs_api",
+            "description": "El fracaso, como constante de destino, da la medida de las acciones en Random. Los personajes centrales, parte de una familia marcada por la separación paterna, son presentados a brochazos por sus acciones inconclusas y sus proyectos imposibles o delirantes. El cumplimiento de lo que podría ser un destino pasa siempre por el quiebre violento de las leyes de sociabilidad más fundamentales, como si buscasen una definición de sí mismos desde el más allá de un entorno marcado por la falta total de sentido y la indiferencia ética absoluta. Este más allá, marcado por el incesto y el crimen, encuentra su lugar en una cultura de masas en que la duplicación espectral -como personaje de comic, avatar de juego de videos o nick de chat- da una sombra de sentido, sin alcanzar a proponer un destino trascendente. La perpetuación de la fragmentariedad queda con esto asegurada.</p><p>Cabe señalar que en la estructura de Random, más allá del natural dibujo rizomático que se produce por la multiplicidad, existe un narrador testigo, que parece forzado a dar cuenta de la posibilidad (frustrada) de presentar la historia de los personajes como totalidad. Estos fragmentos me parecen ejemplares como la conciencia histórica vital -de piel- sobre una serie de procesos psicológicos y sociales que las generaciones nacidas post-golpe hemos tenido que experimentar de forma cada vez más amarga. La carencia de una fundamentación efectiva -que se logre enlazar con un destino claro, una épica, si es que no una tragedia- rompe sin tregua cualquier posibilidad conclusiva de comprensión, y cierra la posibilidad de juicio ético ante la descontrolada deriva de los personajes, que llega hasta el crimen y la autoeliminación real o simbólica.</p><p>Random es, más que nada, un testimonio de época: el despliegue de la sociedad del espectáculo en el seno del liberalismo más desatado sólo puede ser padecido por sus personajes, pasmados por el achatamiento completo bajo la inercia histórica total. Dar la nota del ahogo, de la clausura ética, es una efectiva virtud, y la estructura elegida, profundamente subversiva, sabe darnos una sensación de inorganicidad que, paradójicamente, hace más vívidos sus referentes. Rojas Pachas, ya reconocido como editor y crítico, ofrece con este libro un inquietante signo de pregunta sobre el campo narrativo de nuestro país.",
+            "price": 19.99
         },
         {
             "id": 4,
-            "volumeInfo": {
-                "title": "Random",
-                "authors": [
-                    "Estanislao Bachrach"
-                ],
-                "publisher": "SUDAMERICANA",
-                "publishedDate": "2016-09-01",
-                "industryIdentifiers": [
-                    {
-                        "type": "ISBN_13",
-                        "identifier": "9789500756914"
-                    },
-                    {
-                        "type": "ISBN_10",
-                        "identifier": "9500756919"
-                    }
-                ],
-                "pageCount": 262,
-                "categories": [
-                    "Literary Criticism ",
-                    " Ancient & Classical"
-                ],
-                "imageLinks": {
-                    "smallThumbnail": "http://books.google.com/books/publisher/content?id=YCPaDAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE70uHroXuFEdgvLYNxjhqaRGUgbMCJZhm5HFZHiYNZWv_V81UIU5nMP8iIS9a96r9lD62d6fgr0yjeW1WSRcQEiML9oMBt42D5VPzaacwGtuDK6lirFjx47O_ostZyxZ7-EleoVd&source=gbs_api",
-                    "thumbnail": "http://books.google.com/books/publisher/content?id=YCPaDAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE71vLig7QOt1PidYaT7xWU1dzUgnW_bWq3eAAgSsbc66EK9QSkvfF_ImVCIebCidhh54uD7rNhT1n0LDxF6DgnSp7pVp4TtMqfoqXWwOqDEiJDZyrxGRGp3MSolALw9XWw5roA98&source=gbs_api",
-                    "small": "http://books.google.com/books/publisher/content?id=YCPaDAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE71tgkLn77N57d9qpJgS5FnbDUH3A6yA9vviOmZJ_twrx5DRjkYgPhBTzmZijrcZkV91bVvxZJDi0rjws9DPBHzeSjavLm0fAUfb8vs3lwBZ-n71tNZtHSe0jbEYNJ5ShF95OCiw&source=gbs_api",
-                    "medium": "http://books.google.com/books/publisher/content?id=YCPaDAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE71NLoHIr2ARJqdblSf8wpvEWjM2apPby1V-bdW2VY7FbJJ1CwDqfF90ANo3UNfe3uDE7ZPxult9RcF_isbFw-nbfQoreMhBmwT6p7N2D-7ZKcgk_soZFILhXGbINVhE92hVJ7Dk&source=gbs_api",
-                    "large": "http://books.google.com/books/publisher/content?id=YCPaDAAAQBAJ&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE70NiUZmmmmvK8b7ZP_4BZ-TUNzhfWjF3Ehyak6d_HdXYPfdT8VyYGoiureraWnMXA1qRRVjj9US7RrtBYjOvMr-L9tuwVYtpEflTTmESFjtb-5L2LXES-SFF5z3hOSBxt4wbWEA&source=gbs_api",
-                    "extraLarge": "http://books.google.com/books/publisher/content?id=YCPaDAAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&imgtk=AFLRE73PW0ZyaotteLbzwbuDhXaWarK49elaWhfaiDV_GI06QzJa3Gt-jB7XVyVmtqYkqff0Lhmr0SBbRUmspFBWrvInJXxNeWUVTCm-e63kwbjo5DfwWWnswoz8FcE3DrOl48vdk-cK&source=gbs_api"
-                },
-                "description": "¿Qué pasaría si te dieras cuenta de que le estás dedicando tu vida a una mentira? ¿Te animarías a dejarlo todo y cambiar? Luego del sensacional éxito de \"ÁgilMente\" y \"EnCambio\", Estanislao Bachrach nos presenta un libro en el que nos cuenta cómo la ciencia le cambió la vida.",
-                "price": 26.00
-            }
+            "title": "Random",
+            "publisher": "SUDAMERICANA",
+            "ISBN": "9500756919",
+            "categories": "Narrativa",
+            "imageLinks": "http://books.google.com/books/publisher/content?id=YCPaDAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE70uHroXuFEdgvLYNxjhqaRGUgbMCJZhm5HFZHiYNZWv_V81UIU5nMP8iIS9a96r9lD62d6fgr0yjeW1WSRcQEiML9oMBt42D5VPzaacwGtuDK6lirFjx47O_ostZyxZ7-EleoVd&source=gbs_api",
+            "description": "¿Qué pasaría si te dieras cuenta de que le estás dedicando tu vida a una mentira? ¿Te animarías a dejarlo todo y cambiar? Luego del sensacional éxito de \"ÁgilMente\" y \"EnCambio\", Estanislao Bachrach nos presenta un libro en el que nos cuenta cómo la ciencia le cambió la vida.",
+            "price": 26.00
         },
         {
             "id": 5,
-            "volumeInfo": {
-                "title": "Mi mundo random",
-                "authors": [
-                    "Angie Corine"
-                ],
-                "publisher": "MONTENA",
-                "publishedDate": "2020-10-22",
-                "industryIdentifiers": [
-                    {
-                        "type": "ISBN_13",
-                        "identifier": "9788418038464"
-                    },
-                    {
-                        "type": "ISBN_10",
-                        "identifier": "8418038462"
-                    }
-                ],
-                "pageCount": 262,
-                "categories": [
-                    "Literary Criticism ",
-                    " Ancient & Classical"
-                ],
-                "imageLinks": {
-                    "smallThumbnail": "http://books.google.com/books/publisher/content?id=TJvzDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE733x7kfSih6Zq2hAzbMOUqxGjeqVLBq04LA2vNdoiK9bFB84Pk_cN3z_jNW5OMbdqUc1igIXRgvoCwvhMztt6Wq8xtBAhs8SdhdDk0-WRLMvws_hkwgMTGuBDmCa2GOW2bxuJBP&source=gbs_api",
-                    "thumbnail": "http://books.google.com/books/publisher/content?id=TJvzDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE72Hko0X4tT1LPtZk3617KfuuYCBfoHuSKa-3DFwXngD6sAedl-tjqOw9U6EyJWxbBhyj64VTtErISOUzm-G6i18e_mbyivAxFGnG-dZyKqzxlRI39Kh0ObnAn8el1i1EDjxmcLa&source=gbs_api",
-                    "small": "http://books.google.com/books/publisher/content?id=TJvzDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE72oqk_uNOkkBybasDYdBquWgaGQudMTjK9nEQoogye0TLEE57Vhi6nD6sHTYOxZTACx8dC8J_qNd93mbcBx_HH0VyrNuLx9HoxwZ3-_qDLjXXo4Uzh18EsTGfUlLl-frRGjUve_&source=gbs_api",
-                    "medium": "http://books.google.com/books/publisher/content?id=TJvzDwAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE735eBhTwusKP3Oef8XWbjXPa7fzBJTfHJ2bVJ-B5fxKc8z-MGtORHNRAjyKZErouP6iHsNVvp1VDXCG2siNC4QTCWAo-vjY-wU6Z06jW67jPvErEGzKgKqHX70xVW3n4pRZzxcQ&source=gbs_api",
-                    "large": "http://books.google.com/books/publisher/content?id=TJvzDwAAQBAJ&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE7152Y_UoogC-dkHMbjOvAiDiSeEVymWXdfd7jBo8cErbr2ynKZZSfYnqEpsavsmkhi1yB3N-j4oytqWD3NA9K0iz8_yV2t9h1Dxos-AY66nNcg9ZsAt5on012iQwtOOaKYTU2fq&source=gbs_api",
-                    "extraLarge": "http://books.google.com/books/publisher/content?id=TJvzDwAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&imgtk=AFLRE735whz5i1rKnvim1oYMUVwUWo-HlhH8ikdWaxDd65rX38-zeEvAXgQANP9FtDS0rfhjjQ3Ud-I025gf8-61pEFHrURes8MLjcr2EHS9BxBqibyJ1smFsefXf_GehOK1TdOr29m_&source=gbs_api"
-                },
-                "description": "¿QUIÉN SOY Y CÓMO HE LLEGADO HASTA AQUÍ? Soy Angie Corine y solo hay una cosa que tengo clara: vosotros sois mi familia.¡Ha llegado el momento de compartir con vosotros TODOS MIS SECRETOS! ¿ESTÁIS PREPARADOS PARA ENTRAR EN MI MUNDO RANDOM? Mis sueños, mis miedos, los mejores y peores recuerdos, fotos, dibujos, tests... ¡y muchas risas! ¡Atrévete a descubrirlo todo!",
-                "price": 42.00
-            }
+            "title": "Mi mundo random",
+            "publisher": "MONTENA",
+            "ISBN": "9788418038464",
+            "categories": "Narrativa",
+            "imageLinks": "http://books.google.com/books/publisher/content?id=TJvzDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE733x7kfSih6Zq2hAzbMOUqxGjeqVLBq04LA2vNdoiK9bFB84Pk_cN3z_jNW5OMbdqUc1igIXRgvoCwvhMztt6Wq8xtBAhs8SdhdDk0-WRLMvws_hkwgMTGuBDmCa2GOW2bxuJBP&source=gbs_api",
+            "description": "¿QUIÉN SOY Y CÓMO HE LLEGADO HASTA AQUÍ? Soy Angie Corine y solo hay una cosa que tengo clara: vosotros sois mi familia.¡Ha llegado el momento de compartir con vosotros TODOS MIS SECRETOS! ¿ESTÁIS PREPARADOS PARA ENTRAR EN MI MUNDO RANDOM? Mis sueños, mis miedos, los mejores y peores recuerdos, fotos, dibujos, tests... ¡y muchas risas! ¡Atrévete a descubrirlo todo!",
+            "price": 42.00
         },
         {
             "id": 6,
-            "volumeInfo": {
-                "title": "Los pilares de la ciencia",
-                "authors": [
-                    "Miguel Artola",
-                    "José Manuel Sánchez Ron"
-                ],
-                "publisher": "Grupo Planeta (GBS)",
-                "publishedDate": "2012",
-                "industryIdentifiers": [
-                    {
-                        "type": "ISBN_13",
-                        "identifier": "9788467035636"
-                    },
-                    {
-                        "type": "ISBN_10",
-                        "identifier": "8467035633"
-                    }
-                ],
-                "pageCount": 262,
-                "categories": [
-                    "Literary Criticism ",
-                    " Ancient & Classical"
-                ],
-                "imageLinks": {
-                    "smallThumbnail": "http://books.google.com/books/publisher/content?id=qDiWAgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE71k1X7K-tenw14-SR5cpNHksr782haSsz7a-Qxs1-fphSD_gmQCK89W0640Qu6NvjpqErwied6NNBMA9EaBuSHltkEfZRITfbFHS-I3nCviZ04zeYxHcLIHDN0HcqSqnDC-xi6U&source=gbs_api",
-                    "thumbnail": "http://books.google.com/books/publisher/content?id=qDiWAgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE73btGT4DmGFltouZmkBt2tMSfCul1KXUjyAtGSZeiBasZGFlRgHj0I2Q6V8XDppSLf5JWzB3ORldtoaMwATBBT5lD3DusMW6SfrQRpwpr4QoX0f9uPSrriHCDcF2eot7ygQ-AqG&source=gbs_api",
-                    "small": "http://books.google.com/books/publisher/content?id=qDiWAgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE70Q0q6ldxm14_QwMH9cTBpXZ47bSukwXdAwfQk0b_8tAuh9hPioIdLnb-YKoUmU5zJKztjSk_FU72zAE-wcDO--KN3fu-i7w0qYhXgJTYPxM0CUd5U7Z-3oVK1GhF-CjjhbrBDI&source=gbs_api",
-                    "medium": "http://books.google.com/books/publisher/content?id=qDiWAgAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE71NbeZgBewr8khvW4Nz03jrXAb0GcutvGE-6glTeI5BDCnFeWWWED9bGKZ2KdLaW2cIB0l41DFfIhRLKHoE1_gNSvpPUIRPoT66D-0XbWKp3rXlX4e8pocTEF4xgx9EFyurH3IV&source=gbs_api",
-                    "large": "http://books.google.com/books/publisher/content?id=qDiWAgAAQBAJ&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE72tCRl-a_ZBur764rkJsYDBkTGhqWxmASu5EZAWon_dA8zUO8e9IQT3illYwAW920h46ixuIeNkFiXGrVu580TkI-RaFCxEILIaUCKWD672pSH9HmzjNfFvATl20grcgWIFCCGA&source=gbs_api",
-                    "extraLarge": "http://books.google.com/books/publisher/content?id=qDiWAgAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&imgtk=AFLRE71LPXzdW90XAXbyJfGX-BvzjiWAfWokv7X_4UjhRK3zbvnYtRM_aiz40ZzEBsdVZlxAphAhADcoiw1Q0UbRa3JnuM6EEIAWgoqaT4ftHoHSB0ddxh4HehWhbRZIyVNj8RFu3y8Z&source=gbs_api"
-                },
-                "description": "Un historiador y un científico se unen por vez primera para ofrecernos un exhaustivo recorrido a través de los hitos fundamentales de la Ciencia a lo largo de los siglos. Los pilares de la Ciencia es un ambicioso proyecto que aborda la explicación de los métodos de investigación y los principales experimentos en este campo, y nos informa sobre los protagonistas y las circunstancias históricas que acompañan el proceso de elaboración de los conceptos científicos. Asimismo, la obra da cuenta de los avances más notables que, desde el principio de los tiempos, han contribuido al desarrollo intelectual del ser humano.",
-                "price": 23.00
-            }
+            "title": "Los pilares de la ciencia",
+            "publisher": "Grupo Planeta (GBS)",
+            "ISBN": "9788467035636",
+            "categories": " Literatura y Estudios Literarios",
+            "imageLinks": "http://books.google.com/books/publisher/content?id=qDiWAgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE71k1X7K-tenw14-SR5cpNHksr782haSsz7a-Qxs1-fphSD_gmQCK89W0640Qu6NvjpqErwied6NNBMA9EaBuSHltkEfZRITfbFHS-I3nCviZ04zeYxHcLIHDN0HcqSqnDC-xi6U&source=gbs_api",
+            "description": "Un historiador y un científico se unen por vez primera para ofrecernos un exhaustivo recorrido a través de los hitos fundamentales de la Ciencia a lo largo de los siglos. Los pilares de la Ciencia es un ambicioso proyecto que aborda la explicación de los métodos de investigación y los principales experimentos en este campo, y nos informa sobre los protagonistas y las circunstancias históricas que acompañan el proceso de elaboración de los conceptos científicos. Asimismo, la obra da cuenta de los avances más notables que, desde el principio de los tiempos, han contribuido al desarrollo intelectual del ser humano.",
+            "price": 23.00
         },
         {
             "id": 7,
-            "volumeInfo": {
-                "title": "¿Qué es la ciencia?",
-                "authors": [
-                    "John Ziman"
-                ],
-                "publisher": "Ediciones AKAL",
-                "publishedDate": "2003-02-05",
-                "industryIdentifiers": [
-                    {
-                        "type": "ISBN_10",
-                        "identifier": "8483232987"
-                    },
-                    {
-                        "type": "ISBN_13",
-                        "identifier": "9788483232989"
-                    }
-                ],
-                "pageCount": 384,
-                "categories": [
-                    "Social Science ",
-                    " Sociology ",
-                    " General",
-                    "Science ",
-                    " Philosophy ",
-                    " Social Aspects",
-                    "Science ",
-                    " Research ",
-                    " Methodology",
-                    "Technology ",
-                    " Engineering ",
-                    " General",
-                    "Science ",
-                    " General"
-                ],
-                "imageLinks": {
-                    "smallThumbnail": "http://books.google.com/books/publisher/content?id=TJvzDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE733x7kfSih6Zq2hAzbMOUqxGjeqVLBq04LA2vNdoiK9bFB84Pk_cN3z_jNW5OMbdqUc1igIXRgvoCwvhMztt6Wq8xtBAhs8SdhdDk0-WRLMvws_hkwgMTGuBDmCa2GOW2bxuJBP&source=gbs_api",
-                    "thumbnail": "http://books.google.com/books/publisher/content?id=TJvzDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE72Hko0X4tT1LPtZk3617KfuuYCBfoHuSKa-3DFwXngD6sAedl-tjqOw9U6EyJWxbBhyj64VTtErISOUzm-G6i18e_mbyivAxFGnG-dZyKqzxlRI39Kh0ObnAn8el1i1EDjxmcLa&source=gbs_api",
-                    "small": "http://books.google.com/books/publisher/content?id=TJvzDwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE72oqk_uNOkkBybasDYdBquWgaGQudMTjK9nEQoogye0TLEE57Vhi6nD6sHTYOxZTACx8dC8J_qNd93mbcBx_HH0VyrNuLx9HoxwZ3-_qDLjXXo4Uzh18EsTGfUlLl-frRGjUve_&source=gbs_api",
-                    "medium": "http://books.google.com/books/publisher/content?id=TJvzDwAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE735eBhTwusKP3Oef8XWbjXPa7fzBJTfHJ2bVJ-B5fxKc8z-MGtORHNRAjyKZErouP6iHsNVvp1VDXCG2siNC4QTCWAo-vjY-wU6Z06jW67jPvErEGzKgKqHX70xVW3n4pRZzxcQ&source=gbs_api",
-                    "large": "http://books.google.com/books/publisher/content?id=TJvzDwAAQBAJ&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE7152Y_UoogC-dkHMbjOvAiDiSeEVymWXdfd7jBo8cErbr2ynKZZSfYnqEpsavsmkhi1yB3N-j4oytqWD3NA9K0iz8_yV2t9h1Dxos-AY66nNcg9ZsAt5on012iQwtOOaKYTU2fq&source=gbs_api",
-                    "extraLarge": "http://books.google.com/books/publisher/content?id=TJvzDwAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&imgtk=AFLRE735whz5i1rKnvim1oYMUVwUWo-HlhH8ikdWaxDd65rX38-zeEvAXgQANP9FtDS0rfhjjQ3Ud-I025gf8-61pEFHrURes8MLjcr2EHS9BxBqibyJ1smFsefXf_GehOK1TdOr29m_&source=gbs_api"
-                },
-                "description": "Muy distinto a otros libros de carácter similar, cuidadosamente razonado, pero sin realizar un análisis técnico de la naturaleza y significado del conocimiento científico, ¿Qué es la ciencia? abre el camino a la reconciliación en la llamada “guerra de las ciencias”. A través de la descripción de cómo los científicos abordan realmente la investigación y transmiten sus resultados, muestra que la filosofía, la psicología y la sociología de la ciencia están inextricablemente relacionadas, y que el “realismo” y el “relativismo” son sólo dos caras de la misma moneda. Estudia, además, cómo, para bien y para mal, la nueva cultura de la investigación “postacadémica”, basada en el trabajo en equipo y la responsabilidad, está cambiando las características filosóficas, supuestamente eternas, de la ciencia.",
-                "price": 52.00
-            }
+            "title": "¿Qué es la ciencia?",
+            "publisher": "Ediciones AKAL",
+            "ISBN": "8483232987",
+            "categories": "Filosofía",
+            "imageLinks": "http://books.google.com/books/publisher/content?id=TJvzDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE733x7kfSih6Zq2hAzbMOUqxGjeqVLBq04LA2vNdoiK9bFB84Pk_cN3z_jNW5OMbdqUc1igIXRgvoCwvhMztt6Wq8xtBAhs8SdhdDk0-WRLMvws_hkwgMTGuBDmCa2GOW2bxuJBP&source=gbs_api",
+            "description": "Muy distinto a otros libros de carácter similar, cuidadosamente razonado, pero sin realizar un análisis técnico de la naturaleza y significado del conocimiento científico, ¿Qué es la ciencia? abre el camino a la reconciliación en la llamada “guerra de las ciencias”. A través de la descripción de cómo los científicos abordan realmente la investigación y transmiten sus resultados, muestra que la filosofía, la psicología y la sociología de la ciencia están inextricablemente relacionadas, y que el “realismo” y el “relativismo” son sólo dos caras de la misma moneda. Estudia, además, cómo, para bien y para mal, la nueva cultura de la investigación “postacadémica”, basada en el trabajo en equipo y la responsabilidad, está cambiando las características filosóficas, supuestamente eternas, de la ciencia.",
+            "price": 52.00
         },
         {
             "id": 8,
-            "volumeInfo": {
-                "title": "La ciencia, su método y su filosofía",
-                "authors": [
-                    "Mario Bunge"
-                ],
-                "publisher": "SUDAMERICANA",
-                "publishedDate": "2014-01-01",
-                "industryIdentifiers": [
-                    {
-                        "type": "ISBN_13",
-                        "identifier": "9789875669659"
-                    },
-                    {
-                        "type": "ISBN_10",
-                        "identifier": "9875669652"
-                    }
-                ],
-                "pageCount": 262,
-                "categories": [
-                    "Philosophy ",
-                    " Epistemology",
-                    "Philosophy ",
-                    " General",
-                    "Philosophy ",
-                    " History ",
-                    " Surveys ",
-                    " Modern",
-                    "Science ",
-                    " General",
-                    "Science ",
-                    " Philosophy ",
-                    " Social Aspects",
-                    "Science ",
-                    " History"
-                ],
-                "imageLinks": {
-                    "smallThumbnail": "http://books.google.com/books/publisher/content?id=ypthAgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE726m0BKa16ULp9nWyP6w4_AWqms3Z_YvCBVzDM-GNOuu_OgR92qReHcb2w8eubt7lioSBK5w9fGc-jrrNsAJm_50rFuulPWUngXdaEoxXOWbjXZeWJhdVS1zSWZDLPrVKiDwXC4&source=gbs_api",
-                    "thumbnail": "http://books.google.com/books/publisher/content?id=ypthAgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE713Gc-vWUqi4aXovH3ZXzxolBz6ztzAXhSkRTFf_ZtD8DNl6etfoB9FYJIve8lyVzD5jMMGF6xQDAdU1SjOv7JWT5D7PwzgauP2UQrzkbljh1zR2hE4CcQuWJx0w3K2wMMalAdf&source=gbs_api",
-                    "small": "http://books.google.com/books/publisher/content?id=ypthAgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE71KcKAowLe39UkRuSSvXx2OVc2MeVy5dRP_ZtV53oCVTfKUfUie0Tswlr-tTwwYvIwUd61AxxQx4A_ctBhwqLQwah2EVhKbEiTsX6ki4zrVIBpIFE6geFIyaSY7E7itruuQsR3P&source=gbs_api",
-                    "medium": "http://books.google.com/books/publisher/content?id=ypthAgAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE71U0wEuBc-Z_WbgxVJGrzjYGYfRiNVdOjb0FFipefNEK7sf-KJbVPDnadU8ei4WIbv0RXFaovhFHFUhR48CZtVM_xfB6fNXWZI4UAiWnPKzkYsCnC21pCYC5pS79WO43dQj8YP2&source=gbs_api",
-                    "large": "http://books.google.com/books/publisher/content?id=ypthAgAAQBAJ&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE70G4Vo71sToMoKTTVO-dPMSvktXXRJrkqnpDVcLk48LxcntZ6q3snD7ocmalUi9C5E4Vbl9N7TwsNs1_DOtlnY7Vo-lkEwFUsYoKJtYGU91qeS6WfOuf9Qe23jys_X0aPLQgeJH&source=gbs_api",
-                    "extraLarge": "http://books.google.com/books/publisher/content?id=ypthAgAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&imgtk=AFLRE72MMgZtn6-XVir0C8MQr8kANUECB6XTHijp752rbGXWiNG8Z8lV2Am7MuzJJCTvBDK46XQbicaHBhAoSA7q-6Ob4HoxPvp3kNBfJhGQu63dR4KalyzKAFoC1Ew2QA5Phh19AJIQ&source=gbs_api"
-                },
-                "description": "Introducción a la metodología científica y la filosofía de la ciencia o epistemología, esta obra de Mario Bunge es el libro de texto en toda Hispanoamérica.",
-                "price": 82.00
-            }
+            "title": "La ciencia, su método y su filosofía",
+            "publisher": "SUDAMERICANA",
+            "ISBN": "9789875669659",
+            "categories": "Filosofía",
+            "imageLinks": "http://books.google.com/books/publisher/content?id=ypthAgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE726m0BKa16ULp9nWyP6w4_AWqms3Z_YvCBVzDM-GNOuu_OgR92qReHcb2w8eubt7lioSBK5w9fGc-jrrNsAJm_50rFuulPWUngXdaEoxXOWbjXZeWJhdVS1zSWZDLPrVKiDwXC4&source=gbs_api",
+            "description": "Introducción a la metodología científica y la filosofía de la ciencia o epistemología, esta obra de Mario Bunge es el libro de texto en toda Hispanoamérica.",
+            "price": 82.00
         },
         {
             "id": 9,
-            "volumeInfo": {
-                "title": "Decir la ciencia. Divulgación y periodismo científico de Galileo a Twitter",
-                "authors": [
-                    "Vladimir de Semir"
-                ],
-                "publisher": "Edicions Universitat Barcelona",
-                "publishedDate": "2015-02-13",
-                "industryIdentifiers": [
-                    {
-                        "type": "ISBN_13",
-                        "identifier": "9788447539079"
-                    },
-                    {
-                        "type": "ISBN_10",
-                        "identifier": "8447539075"
-                    }
-                ],
-                "pageCount": 324,
-                "categories": [
-                    "Science"
-                ],
-                "imageLinks": {
-                    "smallThumbnail": "http://books.google.com/books/publisher/content?id=DDosCgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE712qYKK4eCfrscOtN5H8TG1FdXp4FKOj4jwMM7NoafswYp4wGTj6UsFtyX-TGELMiuI3ZXqvnkupi1jX_HiGoe1dVzGhK2_EVs3w1ETUXxoTjrSKKjEsJoL5s5RJys3WXkzyslD&source=gbs_api",
-                    "thumbnail": "http://books.google.com/books/publisher/content?id=DDosCgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE72eQmKROnF3aRJUSLXOHvBVikzQo8Q9bysiGZzZVVsLikDEO5fC97V0DtpH1N_QygO_aYjOdqDayTGVADhkTLarOhLau6RgX5qfPBXI_NXYx3Wm3pIrGg5M1nQGNEqXpKDg3yF6&source=gbs_api",
-                    "small": "http://books.google.com/books/publisher/content?id=DDosCgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE70FIbQs6gEqPHqtDcLHehtFn3o8LakwLyNEaD64qVoavIjmt-Q8IJisQnHTFz-IEZRXo-4VdhRJBlCZooPFDwf8ELssc9l_1vc5p93Rjs7JD01vejCQgbvNU62iojGgzWAGzbe2&source=gbs_api",
-                    "medium": "http://books.google.com/books/publisher/content?id=DDosCgAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE72h5lhlSqW5GKXZ6SutqRFEpfSO9YNNp4DDkJwix-sbNyAOvknTuNdPYWCFvLnn8GndZdurh53Wn-nlHflYrYQ77SVSiJm222MYXVl2pMvEPcp4UcPSxOuSXgY4JO2u-UC1rar5&source=gbs_api",
-                    "large": "http://books.google.com/books/publisher/content?id=DDosCgAAQBAJ&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE71chDt6f3DigPN2m45mcNy9aYZMPBhm21nekU9ziKj1y8AJKmpKGaJvIGgbmfVYc2sfkHiYr470Xk05rc17Dh9Xk8JflSBoOPFTY-lm86Jl7y7pS8qk4O1ql9WDBiGnbGzRbHoW&source=gbs_api",
-                    "extraLarge": "http://books.google.com/books/publisher/content?id=DDosCgAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&imgtk=AFLRE723YPzb4DADbNZb2y0mhGGuZzJqbNGcJG1052_ovSF5pV-L_dv0-eiZEqpvdARMimw0-WY0Wz_sBDSnCjCanSLfkMh6OTy4iLfWAiSEBkxkIZxNZuqeTEurHRjg4nBdU4DWEGiA&source=gbs_api"
-                },
-                "description": "En la época de internet y las redes sociales, cuando acceder a la información es tan sencillo, existe el peligro de que el conocimiento acabe banalizándose en aras de la inmediatez y el impacto mediático. En este contexto social y cultural, polarizado entre la globalización y la excesiva especialización, la labor del periodismo divulgativo resulta imprescindible. Este libro es un incisivo ensayo sobre el papel del periodismo en la difusión del saber y el progreso de las ciencias. Con la experiencia y la autoridad que le confieren sus casi cuarenta años de ejercicio profesional, Vladimir de Semir ofrece una lúcida reflexión sobre el periodismo científico y el influjo que ejerce en la sociedad. Una sociedad fragmentada y culturalmente atomizada, en la que solo los buenos profesionales serán capaces de orientar a la opinión pública y de velar por la veracidad de la información que se difunde en los medios. Hoy más que nunca, necesitamos fomentar el rigor de una cultura científica, algo a todas luces esencial para la construcción de una auténtica sociedad del conocimiento.",
-                "price": 62.00
-            }
+            "title": "Decir la ciencia. Divulgación y periodismo científico de Galileo a Twitter",
+            "publisher": "Edicions Universitat Barcelona",
+            "ISBN": "9788447539079",
+            "categories": "Ciencias",
+            "imageLinks": "http://books.google.com/books/publisher/content?id=DDosCgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE712qYKK4eCfrscOtN5H8TG1FdXp4FKOj4jwMM7NoafswYp4wGTj6UsFtyX-TGELMiuI3ZXqvnkupi1jX_HiGoe1dVzGhK2_EVs3w1ETUXxoTjrSKKjEsJoL5s5RJys3WXkzyslD&source=gbs_api",
+            "description": "En la época de internet y las redes sociales, cuando acceder a la información es tan sencillo, existe el peligro de que el conocimiento acabe banalizándose en aras de la inmediatez y el impacto mediático. En este contexto social y cultural, polarizado entre la globalización y la excesiva especialización, la labor del periodismo divulgativo resulta imprescindible. Este libro es un incisivo ensayo sobre el papel del periodismo en la difusión del saber y el progreso de las ciencias. Con la experiencia y la autoridad que le confieren sus casi cuarenta años de ejercicio profesional, Vladimir de Semir ofrece una lúcida reflexión sobre el periodismo científico y el influjo que ejerce en la sociedad. Una sociedad fragmentada y culturalmente atomizada, en la que solo los buenos profesionales serán capaces de orientar a la opinión pública y de velar por la veracidad de la información que se difunde en los medios. Hoy más que nunca, necesitamos fomentar el rigor de una cultura científica, algo a todas luces esencial para la construcción de una auténtica sociedad del conocimiento.",
+            "price": 62.00
         },
         {
             "id": 10,
-            "volumeInfo": {
-                "title": "Cien preguntas básicas sobre la ciencia",
-                "authors": [
-                    "Isaac Asimov"
-                ],
-                "publisher": "Alianza Editorial Sa",
-                "publishedDate": "2010-06-30",
-                "industryIdentifiers": [
-                    {
-                        "type": "ISBN_10",
-                        "identifier": "8420664227"
-                    },
-                    {
-                        "type": "ISBN_13",
-                        "identifier": "9788420664224"
-                    }
-                ],
-                "pageCount": 256,
-                "categories": [
-                    "Science ",
-                    " History"
-                ],
-                "imageLinks": {
-                    "thumbnail": "http://books.google.com/books/content?id=hqRFYgEACAAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE70AmrFpcl7gIqS2Xn-wlUnAXI548PkcX4gxx70eTjS98CGugKjTG7utU6vMhRi2qYr1yeZLLsBbgVD1f0w24Niz_rxtuHKdGyuICHYwGdhlSdRgO7TSHXSroNfCRFqm6aJyX7aa&source=gbs_api"
-                },
-                "description": "Este volumen recoge las respuestas dadas por Isaac Asimov a las preguntas formuladas por los lectores de la revista norteamericana Science Digest. ¿Qué hay más allá del universo?, ¿qué es un agujero negro?, ¿por qué la Luna nos muestra siempre la misma cara?, ¿en qué consiste la teoría de la relatividad de Einstein?, ¿se puede convertir la energía en materia?, ¿cómo empezó la vida?; tales son algunas de las cuestiones planteadas en Cien preguntas básicas sobre la ciencia, que Asimov responde con su habitual precisión, en su afán por divulgar el conocimiento científico entre el gran público. La presente edición, cuidadosamente revisada, actualiza a pie de página algunas respuestas a partir de los más recientes descubrimientos científicos.",
-                "price": 43.00
-            }
+            "title": "Cien preguntas básicas sobre la ciencia",
+            "publisher": "Alianza Editorial Sa",
+            "ISBN": "8420664227",
+            "categories": "Ciencias",
+            "imageLinks": "http://books.google.com/books/content?id=hqRFYgEACAAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE70AmrFpcl7gIqS2Xn-wlUnAXI548PkcX4gxx70eTjS98CGugKjTG7utU6vMhRi2qYr1yeZLLsBbgVD1f0w24Niz_rxtuHKdGyuICHYwGdhlSdRgO7TSHXSroNfCRFqm6aJyX7aa&source=gbs_api",
+            "description": "Este volumen recoge las respuestas dadas por Isaac Asimov a las preguntas formuladas por los lectores de la revista norteamericana Science Digest. ¿Qué hay más allá del universo?, ¿qué es un agujero negro?, ¿por qué la Luna nos muestra siempre la misma cara?, ¿en qué consiste la teoría de la relatividad de Einstein?, ¿se puede convertir la energía en materia?, ¿cómo empezó la vida?; tales son algunas de las cuestiones planteadas en Cien preguntas básicas sobre la ciencia, que Asimov responde con su habitual precisión, en su afán por divulgar el conocimiento científico entre el gran público. La presente edición, cuidadosamente revisada, actualiza a pie de página algunas respuestas a partir de los más recientes descubrimientos científicos.",
+            "price": 43.00
         },
         {
             "id": 11,
-            "volumeInfo": {
-                "title": "Conflicto y diálogo entre ciencia y religión",
-                "authors": [
-                    "Agustín Udías Vallina"
-                ],
-                "publisher": "Editorial SAL TERRAE",
-                "publishedDate": "1993-09-14",
-                "industryIdentifiers": [
-                    {
-                        "type": "ISBN_10",
-                        "identifier": "8429311017"
-                    },
-                    {
-                        "type": "ISBN_13",
-                        "identifier": "9788429311013"
-                    }
-                ],
-                "pageCount": 40,
-                "categories": [
-                    "Education"
-                ],
-                "imageLinks": {
-                    "smallThumbnail": "http://books.google.com/books/content?id=f-RpcbzSGisC&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE710cCBSj6B3RV0HwNJjK-SfYFH5ALBkZNj9ZAXA8ubMDrizPmCX1Svr9USS7s8HkNK5kkVJvo6v4zs8LbfcQTuz7saIfrvo_WcU4PQJse2THoGaZEEDs4JmsrWJ_fqTq4yFVhhU&source=gbs_api",
-                    "thumbnail": "http://books.google.com/books/content?id=f-RpcbzSGisC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE72jb3tNnspzjjix2HndDTmEFx2j54nVbyfVzuGGAwQG-exccpsXH-8YO58r2_IoUSBL_Az5Yb1WLsitgP0S9XvdH2DimAWUvH2wwNPfYsR0V_RMe8yuG-08BeUYUGWzpCksMtZz&source=gbs_api",
-                    "small": "http://books.google.com/books/content?id=f-RpcbzSGisC&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE736091QpK9Z7Hn7QQNiZfRLzHjnjezMQg5ikdSL4Jrc_q6M-A8COEBP1xk-MihJEn1xvmG6hcw6o5ytHJV9pCbsO0V_pKqOwpxy3P7xN7Exd2YN2crQS5jhj880gDa_UQFw5BVc&source=gbs_api",
-                    "medium": "http://books.google.com/books/content?id=f-RpcbzSGisC&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE72YmaUSZYUvAfUtk4SBtUFEfKjg5lJR88dgViUyycKdF8WbF4nskkJSKwZKNIrGEII00xNpTJltsvdbK-Fm-fo8yCi68cC1wQalhk1sehdWx0jmDqUoQyJYOYZjQOeAP_HIvxho&source=gbs_api",
-                    "large": "http://books.google.com/books/content?id=f-RpcbzSGisC&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE72JDMCUMPn2wvsaU6suwT9pd82gOiiFWHsnIWjO_B7mE5rQoJVZsN4nj8A-LuZvKdRAcuKrILS38FyArsETCvWeJxFmuc6IQVJtiUolH5oi01sB833mj7nXEz4rgrsuK_5qBIiQ&source=gbs_api",
-                    "extraLarge": "http://books.google.com/books/content?id=f-RpcbzSGisC&printsec=frontcover&img=1&zoom=6&edge=curl&imgtk=AFLRE73Zimutt0Pxdqs9dFoLVNnCFfepl93vLVosDhnYVKKV1a-pIgb0Do67ZN4S2OTREKiYSptycX0r5tJW6yOCcy_gEELybHsiscs8iN5QUvKnRU_Ripc9z8efFCHramYa7NQcABuK&source=gbs_api"
-                },
-                "description": "Ciencia y tecnología ejercen hoy una tremenda influencia tanto en la vida del hombre como en su visión del universo y de sí mismo. El hombre se dirige a las ciencias siempre que busca una respuesta a los enigmas del universo o trata de resolver los problemas que se le plantean. Sin darnos cuenta, acabamos creyendo que la ciencia tiene en sí todas las respuestas. ¿Le queda todavía algún papel a la religión? Algunos piensan que, ante el avance de la ciencia, ya no queda lugar para la fe religiosa. Sin embargo, hay muchas preguntas -las que se refieren al sentido de la existencia del universo y del propio hombre- a las que las ciencias no pueden dar respuesta y a las que sí trata de responder la fe cristiana.¿Qué relación hay entre ciencia y religión? Hay quienes piensan que entre ambas sólo ha habido un continuo conflicto en el que la ciencia siempre ha salido ganando. Una gran parte de dicho conflicto se debe a una mala comprensión de la mutua independencia y autonomía de ambas esferas. Ni la ciencia puede entrometerse en el ámbito de lo religioso, ni la religión en el de lo científico. Sin embargo, una pura neutralidad entre ciencia y fe ya no es hoy aceptable. Hay que buscar nuevas formas de relación que, yendo más allá del reconocimiento de su mutua independencia, establezca entre ellas un verdadero diálogo constructivo. La religión tiene que escuchar lo que las ciencias aportan sobre la naturaleza de la realidad material, y éstas deben dejar que la inspiración religiosa impregne de sentido la actividad científica, porque el progreso científico-tecnológico no es un fin en sí mismo, sino que debe orientarse al bien del ser humano.Agustín Udías Vallina, S.J. es catedrático de Geofísica en la Universidad Complutense de Madrid y profesor de Filosofía e Historia de la Ciencia en la Universidad Pontificia de Comillas. Ha ejercido la investigación y la docencia en las Universidades de California (Berkeley), Frankfurt y Barcelona y es autor de varios libros y artículos sobre temas de Geofísica y Sismología.",
-                "price": 15.00
-            }
+            "title": "Conflicto y diálogo entre ciencia y religión",
+            "publisher": "Editorial SAL TERRAE",
+            "ISBN": "8429311017",
+            "categories": "Educación",
+            "imageLinks": "http://books.google.com/books/content?id=f-RpcbzSGisC&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE710cCBSj6B3RV0HwNJjK-SfYFH5ALBkZNj9ZAXA8ubMDrizPmCX1Svr9USS7s8HkNK5kkVJvo6v4zs8LbfcQTuz7saIfrvo_WcU4PQJse2THoGaZEEDs4JmsrWJ_fqTq4yFVhhU&source=gbs_api",
+            "description": "Ciencia y tecnología ejercen hoy una tremenda influencia tanto en la vida del hombre como en su visión del universo y de sí mismo. El hombre se dirige a las ciencias siempre que busca una respuesta a los enigmas del universo o trata de resolver los problemas que se le plantean. Sin darnos cuenta, acabamos creyendo que la ciencia tiene en sí todas las respuestas. ¿Le queda todavía algún papel a la religión? Algunos piensan que, ante el avance de la ciencia, ya no queda lugar para la fe religiosa. Sin embargo, hay muchas preguntas -las que se refieren al sentido de la existencia del universo y del propio hombre- a las que las ciencias no pueden dar respuesta y a las que sí trata de responder la fe cristiana.¿Qué relación hay entre ciencia y religión? Hay quienes piensan que entre ambas sólo ha habido un continuo conflicto en el que la ciencia siempre ha salido ganando. Una gran parte de dicho conflicto se debe a una mala comprensión de la mutua independencia y autonomía de ambas esferas. Ni la ciencia puede entrometerse en el ámbito de lo religioso, ni la religión en el de lo científico. Sin embargo, una pura neutralidad entre ciencia y fe ya no es hoy aceptable. Hay que buscar nuevas formas de relación que, yendo más allá del reconocimiento de su mutua independencia, establezca entre ellas un verdadero diálogo constructivo. La religión tiene que escuchar lo que las ciencias aportan sobre la naturaleza de la realidad material, y éstas deben dejar que la inspiración religiosa impregne de sentido la actividad científica, porque el progreso científico-tecnológico no es un fin en sí mismo, sino que debe orientarse al bien del ser humano.Agustín Udías Vallina, S.J. es catedrático de Geofísica en la Universidad Complutense de Madrid y profesor de Filosofía e Historia de la Ciencia en la Universidad Pontificia de Comillas. Ha ejercido la investigación y la docencia en las Universidades de California (Berkeley), Frankfurt y Barcelona y es autor de varios libros y artículos sobre temas de Geofísica y Sismología.",
+            "price": 15.00
         },
         {
             "id": 12,
-            "volumeInfo": {
-                "title": "Historia de la ciencia",
-                "authors": [
-                    "Patricia Daniels",
-                    "Tom Hackson",
-                    "Cristina Wilsdon"
-                ],
-                "publisher": "Ediciones AKAL",
-                "publishedDate": "1996",
-                "industryIdentifiers": [
-                    {
-                        "type": "ISBN_10",
-                        "identifier": "8476007345"
-                    },
-                    {
-                        "type": "ISBN_13",
-                        "identifier": "9788476007341"
-                    }
-                ],
-                "pageCount": 47,
-                "categories": [
-                    "Education"
-                ],
-                "imageLinks": {
-                    "smallThumbnail": "http://books.google.com/books/content?id=b9hlvMO06sQC&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE71W5SFEJO6YzRc6ztAOjqS_Ydb69S6IrLBdTiM054u7cvUkaFAfwID2mw-rJpliF28HxlwTHSX3Hb1Egrue2DPElX_0Qux9Kvr_q_YlU_q0whVs8jO8EBRNmU9zkl1Om1SHtigo&source=gbs_api",
-                    "thumbnail": "http://books.google.com/books/content?id=b9hlvMO06sQC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE70ZQDjceL41mFjHkjDu45xQyJhcjm9hQ7R1Iw5m09yelLZngp8pWnQw2fYHB4L7DwlAauUMzuyR0ZVOJbEdDd6hLNRnHtv99kCFchYSP_5DeMtntgSWPOS1qqLx_4LutGOXotvq&source=gbs_api",
-                    "small": "http://books.google.com/books/content?id=b9hlvMO06sQC&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE73DwU7WncMLolP6HL71IgsHHuxHAlzRds7rrwK_JIgZgcPO_Jy-g3CI8-2vwFrjKX0yXh3dvsah-NjJQ2MBmw-NYcHFZMwC5L8aP1Zsq_Oza0SVgOKimwkAcVAieK5Fg8k6De7Y&source=gbs_api",
-                    "medium": "http://books.google.com/books/content?id=b9hlvMO06sQC&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE731uSyB7BBSoZQGIK-UKDhl0HWb5m7YcOKlEyvCjma9U0bp0o0qqUnla8RprUymwZKippIE7v2AKsy6oIxau0vK0Dg2gZvjRXkdJtrvchzSe3vg2Eux8hgjPdUwAZC0N1lMGUka&source=gbs_api",
-                    "large": "http://books.google.com/books/content?id=b9hlvMO06sQC&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE72AKKVIxS2XL9ON0DSBQNl_sUAkVIOe5ffeKwF13hhy4v7ndd6TKBX4sYwtIBXQodzTnNJbWL-b1JEMJhDhxAP1vLoCBwTnv4FDkGEfyjajrASaUGzF2Siw6V4FyGZOCeyWUJWq&source=gbs_api",
-                    "extraLarge": "http://books.google.com/books/content?id=b9hlvMO06sQC&printsec=frontcover&img=1&zoom=6&edge=curl&imgtk=AFLRE71zk7pqTXRXu5eBx5GN8gtRWil02LLcvvj21fN0UhwwbhtLhzc9qKY1dXTkV6AY17yFWuk4CDhpmHi-lgMXgoqYZM1jzIofVOWu0d2Oqx4l9PXJCr_HkS9bCgbRqZfsahgx_5SX&source=gbs_api"
-                },
-                "description": "EXPLORA TODO LO QUE TIENE QUE VER CON LA CIENCIA; DESDE LOS ÁTOMOS MÁS PEQUEÑOS HASTA LA INMENSIDAD DEL ESPACIO, PASANDO POR LAS PROFUNDIDADES MARINAS Y LOS LÍMITES DE LA MATERIA.Descubre datos sorprendentes sobre los terremotos, la electricidad, los elementos y todo lo que siempre quisiste saber sobre la ciencia.Déjate cautivar por científicos geniales y sus asombrosos descubrimientos.Pon a prueba tus conocimientos con experimentos divertidos.Disfruta de las fotografías a todo color que muestran los secretos del cuerpo humano, la biodiversidad de nuestro planeta y los misterios del universo.",
-                "price": 105.00
-            }
+            "title": "Historia de la ciencia",
+            "publisher": "Ediciones AKAL",
+            "ISBN": "8476007345",
+            "categories": "Educación",
+            "imageLinks": "http://books.google.com/books/content?id=b9hlvMO06sQC&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE71W5SFEJO6YzRc6ztAOjqS_Ydb69S6IrLBdTiM054u7cvUkaFAfwID2mw-rJpliF28HxlwTHSX3Hb1Egrue2DPElX_0Qux9Kvr_q_YlU_q0whVs8jO8EBRNmU9zkl1Om1SHtigo&source=gbs_api",
+            "description": "EXPLORA TODO LO QUE TIENE QUE VER CON LA CIENCIA; DESDE LOS ÁTOMOS MÁS PEQUEÑOS HASTA LA INMENSIDAD DEL ESPACIO, PASANDO POR LAS PROFUNDIDADES MARINAS Y LOS LÍMITES DE LA MATERIA.Descubre datos sorprendentes sobre los terremotos, la electricidad, los elementos y todo lo que siempre quisiste saber sobre la ciencia.Déjate cautivar por científicos geniales y sus asombrosos descubrimientos.Pon a prueba tus conocimientos con experimentos divertidos.Disfruta de las fotografías a todo color que muestran los secretos del cuerpo humano, la biodiversidad de nuestro planeta y los misterios del universo.",
+            "price": 105.00
         },
         {
             "id": 13,
-            "volumeInfo": {
-                "title": "Tratado de estética: Creaciones humanas. Pt. 1. Poesia. Pt. 2. Drama",
-                "authors": [
-                    "Raimundo Kupareo"
-                ],
-                "publisher": "Centro de Investigaciones Estéticas",
-                "publishedDate": "1965",
-                "industryIdentifiers": [
-                    {
-                        "type": "OTHER",
-                        "identifier": "UCAL:B2836566"
-                    }
-                ],
-                "pageCount": 508,
-                "categories": [
-                    "Drama"
-                ],
-                "imageLinks": {
-                    "smallThumbnail": "http://books.google.com/books/content?id=OlAQAQAAIAAJ&printsec=frontcover&img=1&zoom=5&imgtk=AFLRE73KmGFs6OIjwF8EescgbXy9r16rbjsVtRNqg5GWmxHV92hDr8cxrS9iGYWXEapBulBRtg5V-qdb9Q_4ezcHkb518sZPuhbBaqZVoI0lCO1pipmidY0c2cONPCtoBnVjG8IUE8ai&source=gbs_api",
-                    "thumbnail": "http://books.google.com/books/content?id=OlAQAQAAIAAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73Sd4Z8InusU7mLudcROY9oYpoJubOjXRBwvAI1shnUtRYvt8ZSnDCrN2cyVhDffI-js96_foGBXcEqUTU9oeV-7lauk3s5wDEHkhxbsAvihwe1onzLkY8wCGSzw2kqHw7THKFl&source=gbs_api",
-                    "small": "http://books.google.com/books/content?id=OlAQAQAAIAAJ&printsec=frontcover&img=1&zoom=2&imgtk=AFLRE71RgK-Y_NE0Tw29FwTxwDJ2CmKXl1yyeK-p8QC5CgzKhFTmEw00_hq4k5H8Qj2ynT0d0wZVtZGOI-dhKjqjlV4TPf-urUYLYF7fy6FUEzQSADCr683DehM1iF1OH8dcAFi3839z&source=gbs_api",
-                    "medium": "http://books.google.com/books/content?id=OlAQAQAAIAAJ&printsec=frontcover&img=1&zoom=3&imgtk=AFLRE73knEWvqUvh6-_VmNb7RJJstIqsR338SM3n56lW-7TT_f3fx_RBmk6hGxJg90kJkoym58VhP1y7MNaTdrsWZkFd4C0AgkSlS1n9tP0D8tPj1ZgPCrV62PPefQThlhczxoDHgPCA&source=gbs_api",
-                    "large": "http://books.google.com/books/content?id=OlAQAQAAIAAJ&printsec=frontcover&img=1&zoom=4&imgtk=AFLRE7213DuigVH-CLYzo95OsgoZGlOyioyDrLDuySPFdrMlFv8fmrRVnb-UjUZzwGtaans9Tr_TnHa8G7uBJax2NNn2-2nriTYBtJeiU_1EXiR76QjnbX4PPTMpCYaQnCy85D7SbfZI&source=gbs_api",
-                    "extraLarge": "http://books.google.com/books/content?id=OlAQAQAAIAAJ&printsec=frontcover&img=1&zoom=6&imgtk=AFLRE73bVkOohgjXuCeCb450QgS2VReROM8GDvmLR0dskomDVJe44bxTYb6K89EpNzxUKEWxcbmjzaEeMCmvTkzhTnDsa98v0PFk4tqZmnBILivI2u-OKdnoBsuf4vEnSF5Ybxlyq8EZ&source=gbs_api"
-                },
-                "description": "Pero no pensemos que el drama de pasión estuvo reservado sólo al tiempo del Barroco. Reaparece, siempre que el amor no es sólo un medio ... García Lorca lo hace en una progresión dramática, nunca tan bien lograda en otros dramas suyos.",
-                "price": 35.00
-            }
+            "title": "Tratado de estética: Creaciones humanas. Pt. 1. Poesia. Pt. 2. Drama",
+            "publisher": "Centro de Investigaciones Estéticas",
+            "ISBN": "2836566",
+            "categories": "Drama",
+            "imageLinks": "http://books.google.com/books/content?id=OlAQAQAAIAAJ&printsec=frontcover&img=1&zoom=5&imgtk=AFLRE73KmGFs6OIjwF8EescgbXy9r16rbjsVtRNqg5GWmxHV92hDr8cxrS9iGYWXEapBulBRtg5V-qdb9Q_4ezcHkb518sZPuhbBaqZVoI0lCO1pipmidY0c2cONPCtoBnVjG8IUE8ai&source=gbs_api",
+            "description": "Pero no pensemos que el drama de pasión estuvo reservado sólo al tiempo del Barroco. Reaparece, siempre que el amor no es sólo un medio ... García Lorca lo hace en una progresión dramática, nunca tan bien lograda en otros dramas suyos.",
+            "price": 35.00
         },
         {
             "id": 14,
-            "volumeInfo": {
-                "title": "Ópera y drama",
-                "authors": [
-                    "Richard Wagner"
-                ],
-                "publisher": "Ediciones AKAL",
-                "publishedDate": "2013-03-21",
-                "industryIdentifiers": [
-                    {
-                        "type": "ISBN_13",
-                        "identifier": "9788446037989"
-                    },
-                    {
-                        "type": "ISBN_10",
-                        "identifier": "844603798X"
-                    }
-                ],
-                "pageCount": 304,
-                "categories": [
-                    " Genres ",
-                    " Styles ",
-                    " Opera",
-                    " History ",
-                    " Criticism",
-                    " Instruction & Study ",
-                    " Theory",
-                    "Philosophy ",
-                    " Aesthetics",
-                    "Literary Criticism ",
-                    " Semiotics ",
-                    " Theory",
-                    "Literary Criticism ",
-                    " Drama"
-                ],
-                "imageLinks": {
-                    "smallThumbnail": "http://books.google.com/books/publisher/content?id=tf2dAAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE71-S4qbkBimitHyzhBCZ2rUVy27vvqXim6VKXRp_GmRcfDd53sUUwmDYO_KXZsQ-szSG15DFQjG2dLOWxpt0Z2loz2wMywgR3fR0xwdsr6PV-HECpDXPMqIeT3PY8FKCxGjPbs9&source=gbs_api",
-                    "thumbnail": "http://books.google.com/books/publisher/content?id=tf2dAAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE70XOJ4gN1VEuBiJtVz9mV_SLmMtZTXyvyoS-3aXSWFITprED6tQWM4BZPAP5V3i7WXg9U9zd0sz3XTcrYx6qXKpXExff1l_TxhcwjEfwmaOAi0yYylBv9pMGU9slFQEaRZxKZYL&source=gbs_api",
-                    "small": "http://books.google.com/books/publisher/content?id=tf2dAAAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE72YxrXG_b589k0V1d5fR7ErgrbPMG6qVCNo7txzB-6eoM3IjHztfg7WpXIfDaOw2QowNtx_R0sMycN5prnv9pYWwSnGI5_brnD8RuEhy2Epuo2_9M6oRI5L6E7xB9MuKM_t3JRA&source=gbs_api",
-                    "medium": "http://books.google.com/books/publisher/content?id=tf2dAAAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE72IIUI7Lf1vL0DRqgvwgM8RAmX5rzXYmL6hWx-UNIL_mfz6S_74Olbyn2IFDZ-7lSTYwIwLLgZ6AzuUWvTIn7yxw98zu6K3rGiSCMtOFFg79bQ0gKi74ZgTYa2_5DP8uFfjHVsd&source=gbs_api",
-                    "large": "http://books.google.com/books/publisher/content?id=tf2dAAAAQBAJ&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE73K_waDsjP2LkleocmWiOscvmbj-5MHJuXcb4_1tAf6RuIkVl5v5AYroD5Eb06waZIKqdV7oK9STEwzQQwY6NvRWadD1CutPtxGejvqiufL4OB-t4HvARI2OPFz7d_dP5gu_g9Z&source=gbs_api",
-                    "extraLarge": "http://books.google.com/books/publisher/content?id=tf2dAAAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&imgtk=AFLRE71lqUDYqh9F58ar5-mZPAqUzGg1hxPfBlbXiomZuDy2eWYmyGB8q7Ldro8cksKSCHs-T5kHs5Ms3GVUqPtzxBlw7wceka3mag3RFrNNXwmKfd6sgtXzL2Zpw6wJ6z-zdfQVOHUq&source=gbs_api"
-                },
-                "description": "Tras los acontecimientos revolucionarios que tuvieron lugar en Dresde en la primavera de 1849, Wagner se vio forzado a exiliarse en Zurich. En esta ciudad suiza, entre los meses de octubre de 1850 y enero de 1851 , llevó a cabo la redacción de la que está considerada como la obra clave de su pensamiento teórico-musical: Ópera y drama. A lo largo de las tres partes en que se articula, el genial alemán lleva a cabo una sopesada exposición de las ideas que, a su juicio, debían sostener cualquier creación operística que realmente se considerase tal: la unión íntima de texto y melodía; el problema de las arias como elementos de distorsión de la unidad del discurso musical; la importancia de los motivos musicales a la hora de dotar de coherencia y sentido pleno a la obra... Testimonio de la importancia que concedía Wagner a este texto, en el que no escatima ataques a la producción contemporánea, encarnada especialmente en la figura de Meyerbeer, son las palabras con las que, tras concluirlo, se lo presentó a Theodor Uhlig: «Aquí tienes mi testamento, ahora puedo morir». Obra fundamental para entender en su justa medida el significado y la transcendencia del drama musical de Richard Wagner en la historia de la cultura universal, la presente edición recupera la excepcional traducción anotada que realizó en el año 1995 el eximio wagneriano Ángel Mayo, hito indiscutible e insuperado de los estudios sobre el compositor alemán en lengua castellana.",
-                "price": 25.99
-            }
+            "title": "Ópera y drama",
+            "publisher": "Ediciones AKAL",
+            "ISBN": "9788446037989",
+            "categories": " Drama",
+            "imageLinks": "http://books.google.com/books/publisher/content?id=tf2dAAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE71-S4qbkBimitHyzhBCZ2rUVy27vvqXim6VKXRp_GmRcfDd53sUUwmDYO_KXZsQ-szSG15DFQjG2dLOWxpt0Z2loz2wMywgR3fR0xwdsr6PV-HECpDXPMqIeT3PY8FKCxGjPbs9&source=gbs_api",
+            "description": "Tras los acontecimientos revolucionarios que tuvieron lugar en Dresde en la primavera de 1849, Wagner se vio forzado a exiliarse en Zurich. En esta ciudad suiza, entre los meses de octubre de 1850 y enero de 1851 , llevó a cabo la redacción de la que está considerada como la obra clave de su pensamiento teórico-musical: Ópera y drama. A lo largo de las tres partes en que se articula, el genial alemán lleva a cabo una sopesada exposición de las ideas que, a su juicio, debían sostener cualquier creación operística que realmente se considerase tal: la unión íntima de texto y melodía; el problema de las arias como elementos de distorsión de la unidad del discurso musical; la importancia de los motivos musicales a la hora de dotar de coherencia y sentido pleno a la obra... Testimonio de la importancia que concedía Wagner a este texto, en el que no escatima ataques a la producción contemporánea, encarnada especialmente en la figura de Meyerbeer, son las palabras con las que, tras concluirlo, se lo presentó a Theodor Uhlig: «Aquí tienes mi testamento, ahora puedo morir». Obra fundamental para entender en su justa medida el significado y la transcendencia del drama musical de Richard Wagner en la historia de la cultura universal, la presente edición recupera la excepcional traducción anotada que realizó en el año 1995 el eximio wagneriano Ángel Mayo, hito indiscutible e insuperado de los estudios sobre el compositor alemán en lengua castellana.",
+            "price": 25.99
         },
         {
             "id": 15,
-            "volumeInfo": {
-                "title": "Modelos aleatorios en Ingeniería",
-                "authors": [
-                    "BLASCO LORENZO, ÁNGEL",
-                    "PÉREZ DÍAZ, SONIA"
-                ],
-                "publisher": "Editorial Paraninfo",
-                "publishedDate": "2015-01-01",
-                "industryIdentifiers": [
-                    {
-                        "type": "ISBN_13",
-                        "identifier": "9788428337236"
-                    },
-                    {
-                        "type": "ISBN_10",
-                        "identifier": "8428337233"
-                    }
-                ],
-                "pageCount": 276,
-                "categories": [
-                    "Technology ",
-                    " Engineering"
-                ],
-                "imageLinks": {
-                    "smallThumbnail": "http://books.google.com/books/publisher/content?id=M7nmCgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE71VRV21NIJjzb80OnszbSgFhqecs0ha0-iA3KZyk8CEW6CR6ZMwSnilkVzih6Z6gENLRT9lK6GEexeWn0rVfovnt8ZZTzMvOTosmVUtfgSX0kwwNaQ8x7bUx43DFRHwvN6LSvpZ&source=gbs_api",
-                    "thumbnail": "http://books.google.com/books/publisher/content?id=M7nmCgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE72Ov1cYL1vA2GIUup_mfhkwxim1KOnLMVnOYqmBog3j2opfpB9Ml7h5F5FktTlfHl5iN14p5wGA7Yqg4IYQKuuunub4lDsySuuwKT9eXNJ7rGXYpPEaBjDNZmoINf7xFujhJWVg&source=gbs_api",
-                    "small": "http://books.google.com/books/publisher/content?id=M7nmCgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE70cbam8rY90Z0mTcRxa_DN6WykPxByp-E1BXPacLsp2AWLmSlEdele8nlC1BKYPhYhX4RiiU0HNE4tf7Hno6ty2aAiuQ9llGvpVTvxw5pO-N_ysJqRNLnm8YFZXx7MnxwkcMiKG&source=gbs_api",
-                    "medium": "http://books.google.com/books/publisher/content?id=M7nmCgAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE73fOB211muAg57yG1vg7DqM60FHc7GFkmaxmkycwUiWCWetK_PGfYASa_Vndltnw2NcJlEOpcrkuzp4pRi0CIR91241xcF4UGMe2kI5VkZ7iWst9g_NNkqL8fFHXQwzRrrmV30R&source=gbs_api",
-                    "large": "http://books.google.com/books/publisher/content?id=M7nmCgAAQBAJ&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE70qmTflN8kYFHyT88vPoaRoHMoG874SxZ_bpGt2Ff3SkiA5Vl1OTgOk1dV42DbLw4qp3m1w-hGm4xcSbB4j88BlomScISmQ8gD0qlqxwZTMjOUuJV1tkRyw2kMOik2NNIpvIly4&source=gbs_api",
-                    "extraLarge": "http://books.google.com/books/publisher/content?id=M7nmCgAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&imgtk=AFLRE70DnnwdcWJYSN2G0SzoA_AZ2oIPNAQV_lV0q6pFvEv9xLQhzRTKyb-S1dVobiUbUD8qTTIJWMzK3VHmeWsH6i4Ck4GAZqIIAv8aidUR1jDW2h8wLqNoDnwnvUfUoqRepM-MH_LV&source=gbs_api"
-                },
-                "description": "El azar está presente en buena parte de los problemas a que debe enfrentarse un ingeniero en su vida profesional. En el campo de las telecomunicaciones, por ejemplo, fenómenos como la aparición de ruido en un canal de transmisión o el acceso de usuarios a un determinado servicio de red a lo largo del tiempo no pueden ser modelizados de forma determinista, debido a la alta complejidad de los sistemas involucrados. Este libro proporciona una panorámica general de los principales problemas tratados por la Teoría de la Probabilidad y sus aplicaciones en la ingeniería. Se parte de los modelos más sencillos, las variables aleatorias, y se va profundizando hasta plantear otros de mayor complejidad, como los procesos aleatorios de Poisson y Wiener (movimiento browniano), las cadenas de Markov o los modelos exponenciales usados en Teoría de Colas. El libro está dirigido a estudiantes de los distintos grados de ingeniería, informática y ciencias en general.",
-                "price": 115.00
-            }
+            "title": "Modelos aleatorios en Ingeniería",
+            "publisher": "Editorial Paraninfo",
+            "ISBN": "9788428337236",
+            "categories": "Divulgación Cientifica",
+            "imageLinks": "http://books.google.com/books/publisher/content?id=M7nmCgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE71VRV21NIJjzb80OnszbSgFhqecs0ha0-iA3KZyk8CEW6CR6ZMwSnilkVzih6Z6gENLRT9lK6GEexeWn0rVfovnt8ZZTzMvOTosmVUtfgSX0kwwNaQ8x7bUx43DFRHwvN6LSvpZ&source=gbs_api",
+            "description": "El azar está presente en buena parte de los problemas a que debe enfrentarse un ingeniero en su vida profesional. En el campo de las telecomunicaciones, por ejemplo, fenómenos como la aparición de ruido en un canal de transmisión o el acceso de usuarios a un determinado servicio de red a lo largo del tiempo no pueden ser modelizados de forma determinista, debido a la alta complejidad de los sistemas involucrados. Este libro proporciona una panorámica general de los principales problemas tratados por la Teoría de la Probabilidad y sus aplicaciones en la ingeniería. Se parte de los modelos más sencillos, las variables aleatorias, y se va profundizando hasta plantear otros de mayor complejidad, como los procesos aleatorios de Poisson y Wiener (movimiento browniano), las cadenas de Markov o los modelos exponenciales usados en Teoría de Colas. El libro está dirigido a estudiantes de los distintos grados de ingeniería, informática y ciencias en general.",
+            "price": 115.00
         },
         {
             "id": 17,
-            "volumeInfo": {
-                "title": "Historia de la ciencia",
-                "authors": [
-                    "Patricia Daniels",
-                    "Tom Hackson",
-                    "Cristina Wilsdon"
-                ],
-                "publisher": "Ediciones AKAL",
-                "publishedDate": "1996",
-                "industryIdentifiers": [
-                    {
-                        "type": "ISBN_10",
-                        "identifier": "8476007345"
-                    },
-                    {
-                        "type": "ISBN_13",
-                        "identifier": "9788476007341"
-                    }
-                ],
-                "pageCount": 47,
-                "categories": [
-                    "Education"
-                ],
-                "imageLinks": {
-                    "smallThumbnail": "http://books.google.com/books/content?id=b9hlvMO06sQC&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE71W5SFEJO6YzRc6ztAOjqS_Ydb69S6IrLBdTiM054u7cvUkaFAfwID2mw-rJpliF28HxlwTHSX3Hb1Egrue2DPElX_0Qux9Kvr_q_YlU_q0whVs8jO8EBRNmU9zkl1Om1SHtigo&source=gbs_api",
-                    "thumbnail": "http://books.google.com/books/content?id=b9hlvMO06sQC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE70ZQDjceL41mFjHkjDu45xQyJhcjm9hQ7R1Iw5m09yelLZngp8pWnQw2fYHB4L7DwlAauUMzuyR0ZVOJbEdDd6hLNRnHtv99kCFchYSP_5DeMtntgSWPOS1qqLx_4LutGOXotvq&source=gbs_api",
-                    "small": "http://books.google.com/books/content?id=b9hlvMO06sQC&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE73DwU7WncMLolP6HL71IgsHHuxHAlzRds7rrwK_JIgZgcPO_Jy-g3CI8-2vwFrjKX0yXh3dvsah-NjJQ2MBmw-NYcHFZMwC5L8aP1Zsq_Oza0SVgOKimwkAcVAieK5Fg8k6De7Y&source=gbs_api",
-                    "medium": "http://books.google.com/books/content?id=b9hlvMO06sQC&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE731uSyB7BBSoZQGIK-UKDhl0HWb5m7YcOKlEyvCjma9U0bp0o0qqUnla8RprUymwZKippIE7v2AKsy6oIxau0vK0Dg2gZvjRXkdJtrvchzSe3vg2Eux8hgjPdUwAZC0N1lMGUka&source=gbs_api",
-                    "large": "http://books.google.com/books/content?id=b9hlvMO06sQC&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE72AKKVIxS2XL9ON0DSBQNl_sUAkVIOe5ffeKwF13hhy4v7ndd6TKBX4sYwtIBXQodzTnNJbWL-b1JEMJhDhxAP1vLoCBwTnv4FDkGEfyjajrASaUGzF2Siw6V4FyGZOCeyWUJWq&source=gbs_api",
-                    "extraLarge": "http://books.google.com/books/content?id=b9hlvMO06sQC&printsec=frontcover&img=1&zoom=6&edge=curl&imgtk=AFLRE71zk7pqTXRXu5eBx5GN8gtRWil02LLcvvj21fN0UhwwbhtLhzc9qKY1dXTkV6AY17yFWuk4CDhpmHi-lgMXgoqYZM1jzIofVOWu0d2Oqx4l9PXJCr_HkS9bCgbRqZfsahgx_5SX&source=gbs_api"
-                },
-                "description": "EXPLORA TODO LO QUE TIENE QUE VER CON LA CIENCIA; DESDE LOS ÁTOMOS MÁS PEQUEÑOS HASTA LA INMENSIDAD DEL ESPACIO, PASANDO POR LAS PROFUNDIDADES MARINAS Y LOS LÍMITES DE LA MATERIA.Descubre datos sorprendentes sobre los terremotos, la electricidad, los elementos y todo lo que siempre quisiste saber sobre la ciencia.Déjate cautivar por científicos geniales y sus asombrosos descubrimientos.Pon a prueba tus conocimientos con experimentos divertidos.Disfruta de las fotografías a todo color que muestran los secretos del cuerpo humano, la biodiversidad de nuestro planeta y los misterios del universo.",
-                "price": 105.00
-            }
+            "title": "Historia de la ciencia",
+            "publisher": "Ediciones AKAL",
+            "ISBN": "8476007345",
+            "categories": "Educación",
+            "imageLinks": "http://books.google.com/books/content?id=b9hlvMO06sQC&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE71W5SFEJO6YzRc6ztAOjqS_Ydb69S6IrLBdTiM054u7cvUkaFAfwID2mw-rJpliF28HxlwTHSX3Hb1Egrue2DPElX_0Qux9Kvr_q_YlU_q0whVs8jO8EBRNmU9zkl1Om1SHtigo&source=gbs_api",
+            "description": "EXPLORA TODO LO QUE TIENE QUE VER CON LA CIENCIA; DESDE LOS ÁTOMOS MÁS PEQUEÑOS HASTA LA INMENSIDAD DEL ESPACIO, PASANDO POR LAS PROFUNDIDADES MARINAS Y LOS LÍMITES DE LA MATERIA.Descubre datos sorprendentes sobre los terremotos, la electricidad, los elementos y todo lo que siempre quisiste saber sobre la ciencia.Déjate cautivar por científicos geniales y sus asombrosos descubrimientos.Pon a prueba tus conocimientos con experimentos divertidos.Disfruta de las fotografías a todo color que muestran los secretos del cuerpo humano, la biodiversidad de nuestro planeta y los misterios del universo.",
+            "price": 105.00
         },
         {
             "id": 17,
-            "volumeInfo": {
-                "title": "Ingenieria Térmica",
-                "authors": [
-                    "Martín Llorens Morraja",
-                    "Angel Luis Miranda Barreras"
-                ],
-                "publisher": "Marcombo",
-                "publishedDate": "2009-03",
-                "industryIdentifiers": [
-                    {
-                        "type": "ISBN_13",
-                        "identifier": "9788426715319"
-                    },
-                    {
-                        "type": "ISBN_10",
-                        "identifier": "8426715311"
-                    }
-                ],
-                "pageCount": 339,
-                "categories": [
-                    "Science"
-                ],
-                "imageLinks": {
-                    "smallThumbnail": "http://books.google.com/books/content?id=fi7d9tNCwY0C&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE73PMZrvz8ILEr2sgDQKAq2eyTwSQzg9ba9aIRRYemvMkxMyMWm6KIot5sn9zwbQ4ubdMotILGYpUbHzTlvfqjsHRCeXdzUXp3ilXSqbpDcOOaXCI1XKnTtqJjPPXGNtOujCYMe4&source=gbs_api",
-                    "thumbnail": "http://books.google.com/books/content?id=fi7d9tNCwY0C&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE71a3vypuT8inAMSjE7A976ab9joKr6iYKG9H0o929FNbix-oCuixMlZlI5qE4P1IzX3Ke1f4hx-73NlpqPHwtkX66xFK4IlUcMQT41Lxv97Q2Kdzbtd2gLTvj6nVFXabK1g9KWf&source=gbs_api",
-                    "small": "http://books.google.com/books/content?id=fi7d9tNCwY0C&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE71YG6VPdaxsORYaYDPpT9X8IsCgbt53qTM_6GXT7kclHgcY-gqTWuWowvYtYTyuLxEH6Mh73Wt2e0M1fhcp1AGfu87qFN5qlXswItKjIgFBLyy7SmOc10BzQLkMlrtiUpFwNWVX&source=gbs_api"
-                },
-                "description": "La Termodinámica es la parte de la Física, en sus dos vertientes, clásica y estadística,que estudia la energía y su transformación de una forma en otra. El estudio puede hacerse de forma macroscópica, es decir, sin tener en cuenta las peculiaridades de las partículas que integran el sistema (Termo. Clásica) o bien teniendo en cuenta las propiedades promedio de grandes grupos de partículas (Termo. Estadística). En general, se considera que su estudio ofrece algunas dificultades inherentes a ciertas peculiaridades en la formulación y desarrollo de sus leyes. Si nos limitásemos al estudio de los aspectos puramente aplicados perderíamos fácilmente la perspectiva general que todo técnico o ingeniero ha de poseer porque, aunque sea cierto en lo particular, se ha de tener un buen criterio general en los temas relacionados con los mismos. Un aspecto fundamental de la Termodinámica es el estudio de la transformación de una forma de energía en otra, especialmente la de calor en trabajo. Por otra parte, la transmisión del calor exige la existencia de un gradiente de temperaturas, es decir,que la temperatura no sea constante. La Termodinámica estudia la temperatura y el calor, pero no específicamente la distribución de temperaturas ante un proceso determinado de transferencia de calor. Dicho con palabras más sencillas, la Termodinámicadetermina la tasa de transferencia de calor y la Termotecnia se ocupa de la distribución de temperaturas. La Ingeniería Térmica pretende efectuar un estudio conjunto de ciertos aspectos fundamentales de la Termotecnia y de la Termodinámica. Así pues, laTermotecnia comprende el estudio de la transmisión de calor y de los dispositivos para llevarla a cabo, y la Termodinámica el estudio de las leyes fundamentales relacionadas con la energía.",
-                "price": 95.00
-            }
+            "title": "Ingenieria Térmica",
+            "publisher": "Marcombo",
+            "ISBN": "9788426715319",
+            "categories": "Ciencias",
+            "imageLinks": "http://books.google.com/books/content?id=fi7d9tNCwY0C&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE73PMZrvz8ILEr2sgDQKAq2eyTwSQzg9ba9aIRRYemvMkxMyMWm6KIot5sn9zwbQ4ubdMotILGYpUbHzTlvfqjsHRCeXdzUXp3ilXSqbpDcOOaXCI1XKnTtqJjPPXGNtOujCYMe4&source=gbs_api",
+            "description": "La Termodinámica es la parte de la Física, en sus dos vertientes, clásica y estadística,que estudia la energía y su transformación de una forma en otra. El estudio puede hacerse de forma macroscópica, es decir, sin tener en cuenta las peculiaridades de las partículas que integran el sistema (Termo. Clásica) o bien teniendo en cuenta las propiedades promedio de grandes grupos de partículas (Termo. Estadística). En general, se considera que su estudio ofrece algunas dificultades inherentes a ciertas peculiaridades en la formulación y desarrollo de sus leyes. Si nos limitásemos al estudio de los aspectos puramente aplicados perderíamos fácilmente la perspectiva general que todo técnico o ingeniero ha de poseer porque, aunque sea cierto en lo particular, se ha de tener un buen criterio general en los temas relacionados con los mismos. Un aspecto fundamental de la Termodinámica es el estudio de la transformación de una forma de energía en otra, especialmente la de calor en trabajo. Por otra parte, la transmisión del calor exige la existencia de un gradiente de temperaturas, es decir,que la temperatura no sea constante. La Termodinámica estudia la temperatura y el calor, pero no específicamente la distribución de temperaturas ante un proceso determinado de transferencia de calor. Dicho con palabras más sencillas, la Termodinámicadetermina la tasa de transferencia de calor y la Termotecnia se ocupa de la distribución de temperaturas. La Ingeniería Térmica pretende efectuar un estudio conjunto de ciertos aspectos fundamentales de la Termotecnia y de la Termodinámica. Así pues, laTermotecnia comprende el estudio de la transmisión de calor y de los dispositivos para llevarla a cabo, y la Termodinámica el estudio de las leyes fundamentales relacionadas con la energía.",
+            "price": 95.00
         },
         {
             "id": 18,
-            "volumeInfo": {
-                "title": "Sistemas Operativos",
-                "authors": [
-                    "Daniel Sol Llaven"
-                ],
-                "publisher": "Grupo Editorial Patria",
-                "publishedDate": "2015",
-                "industryIdentifiers": [
-                    {
-                        "type": "ISBN_13",
-                        "identifier": "9786077442677"
-                    },
-                    {
-                        "type": "ISBN_10",
-                        "identifier": "6077442674"
-                    }
-                ],
-                "pageCount": 47,
-                "categories": [
-                    "Education"
-                ],
-                "imageLinks": {
-                    "smallThumbnail": "http://books.google.com/books/publisher/content?id=qdFUCwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE71US4fn8gLBhUAX1BQWPhwVr6GHduAI2LAnCEbeRfPQnTWymTpIRSP4I5vP05mdXCyiKcrirO0IUxDCvpHqBkb-1z_vQuwzW1yoZCPlG8WwNhJI45poWrvESeW5X7F4PLs6FLbs&source=gbs_api",
-                    "thumbnail": "http://books.google.com/books/publisher/content?id=qdFUCwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE700MTnFqt1durh-jtnh6UlWOjVArgo_Ml-9lAhtPfsOODdm4a7mI4Xi_bUAMIQNy79D3lTWAYFGHz21BwDFZ1LduGcpY0pqhIwVtPJVjhhZYNdbCmvVs3bwicTdDJdVqFpe3iXE&source=gbs_api",
-                    "small": "http://books.google.com/books/publisher/content?id=qdFUCwAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE718x49jztOOqq60uFXg7iWwtCFsNQAQSh7Ovw8hNOvpGTlda7gJFtv4tpvM04fqJ5eUbZ4J58UDZldb7KUBRVOoMnO_pQIvLxqrJ9C4QM7M359eqTn65Ak2i1BEM3bYeIrtJ-mp&source=gbs_api",
-                    "medium": "http://books.google.com/books/publisher/content?id=qdFUCwAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE71vJMD2QNf5aRAn1KY275Go1W9-4tKn48sc7DWWEqtOMh5VvrIMMit5xdeBCnAI1tLXUCo09rXHTMA8enCkNJS5Jy-ebfYu7wOCkZeSs0x5gBuDaEwKgAXUI0_NzaxtaqgfiyMX&source=gbs_api",
-                    "large": "http://books.google.com/books/publisher/content?id=qdFUCwAAQBAJ&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE70-NjInPf876zZJcTiEkoTqh9qo79MlNQmW7haCN2w33H_VOoVvbhmuqEJq6KD29pbMSEWRxO-OdbcbAZIgCPbsTykHdHDlM6nCV-NnL19iAjDnYfYxp5TXC5J_e9eqt_-dx2MK&source=gbs_api",
-                    "extraLarge": "http://books.google.com/books/publisher/content?id=qdFUCwAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&imgtk=AFLRE72SA_vNJd6f8HA1XaJ2Vdbh-hZofxewtSa4snG4DG01slgchvMQz1lMDvCCKKjA1Z5fxSwqZjV7HjtJGdsaQjtRivN6fELp_E9q_DqZd4OCzITKaFte1D25EmBI_ZWTjSIckmlx&source=gbs_api"
-                },
-                "description": "El propósito principal de este texto es presentar de forma sencilla, clara y lo más completa que sea posible, la naturaleza y las características de los sistemas operativos modernos que se utilizan en computadoras personales, estaciones de trabajo o dispositivos móviles, como Android, iOS, Windows, Linux, entre otros. Sin duda, uno de los aspectos tecnológicos más relevantes y con mayor presencia en la actualidad, y parte fundamental de la formación académica de diversas carreras de ingeniería. En Sistemas Operativos. Panorama para la ingeniería en computación e informática se revisan y tratan con amplitud y sencillez los temas que conforman la mayoría de los programas de estudio de las carreras de Ingeniería en Computación, Ingeniería en Sistemas e Ingeniería Informática. Los sistemas operativos constituyen un elemento básico para la operación de los sistemas y el desarrollo de las aplicaciones, por lo que hoy día su estudio y tratamiento se establece como un tema relevante e indispensable que la mayoría de las instituciones de educación superior en el ramo de la ingeniería han decidido incorporar como parte integral en la formación de los futuros ingenieros en una asignatura. El enfoque clásico del sistema operativo como administrador de recursos, expuesto por autores como Andrew Tanenbaum, Glenn Brookshear y William Stallings en los libros de su autoría, permea en contenidos de este valioso texto.",
-                "price": 115.00
-            }
+            "title": "Sistemas Operativos",
+            "publisher": "Grupo Editorial Patria",
+            "ISBN": "9786077442677",
+            "categories": "Educación",
+            "imageLinks": "http://books.google.com/books/publisher/content?id=qdFUCwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE71US4fn8gLBhUAX1BQWPhwVr6GHduAI2LAnCEbeRfPQnTWymTpIRSP4I5vP05mdXCyiKcrirO0IUxDCvpHqBkb-1z_vQuwzW1yoZCPlG8WwNhJI45poWrvESeW5X7F4PLs6FLbs&source=gbs_api",
+            "description": "El propósito principal de este texto es presentar de forma sencilla, clara y lo más completa que sea posible, la naturaleza y las características de los sistemas operativos modernos que se utilizan en computadoras personales, estaciones de trabajo o dispositivos móviles, como Android, iOS, Windows, Linux, entre otros. Sin duda, uno de los aspectos tecnológicos más relevantes y con mayor presencia en la actualidad, y parte fundamental de la formación académica de diversas carreras de ingeniería. En Sistemas Operativos. Panorama para la ingeniería en computación e informática se revisan y tratan con amplitud y sencillez los temas que conforman la mayoría de los programas de estudio de las carreras de Ingeniería en Computación, Ingeniería en Sistemas e Ingeniería Informática. Los sistemas operativos constituyen un elemento básico para la operación de los sistemas y el desarrollo de las aplicaciones, por lo que hoy día su estudio y tratamiento se establece como un tema relevante e indispensable que la mayoría de las instituciones de educación superior en el ramo de la ingeniería han decidido incorporar como parte integral en la formación de los futuros ingenieros en una asignatura. El enfoque clásico del sistema operativo como administrador de recursos, expuesto por autores como Andrew Tanenbaum, Glenn Brookshear y William Stallings en los libros de su autoría, permea en contenidos de este valioso texto.",
+            "price": 115.00
         },
         {
             "id": 19,
-            "volumeInfo": {
-                "title": "Poesía Castellana",
-                "authors": [
-                    "Vega, Garcilaso de la"
-                ],
-                "publisher": "Ediciones AKAL",
-                "publishedDate": "2017-01-01",
-                "industryIdentifiers": [
-                    {
-                        "type": "ISBN_10",
-                        "identifier": "8446043505"
-                    },
-                    {
-                        "type": "ISBN_13",
-                        "identifier": "9788446043508"
-                    }
-                ],
-                "pageCount": 494,
-                "categories": [
-                    "Literary Criticism ",
-                    " Ancient & Classical"
-                ],
-                "imageLinks": {
-                    "smallThumbnail": "http://books.google.com/books/publisher/content?id=d74KDgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE70XwxzzoJGjjlMVBXs5J58bJbbAlSjITU12oWSz4lflfdPLDPoRkeislU7ucopikbznzqq-D1PAZ-jNeTe0gwK5mPQrRVEjunpcQFud002t667qtVkM8kb9TakCYH3Oe3ifP5Yt&source=gbs_api",
-                    "thumbnail": "http://books.google.com/books/publisher/content?id=d74KDgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE72y-HcPexcipmufyVBbHYrH8OU6-g1jNV4nyKVeoGdL-0oDaevGfIakasV5uvDvr9IOK_WEplKuFP6WylbF0FhwwCuh6f_qcjR4V-kZ5Jm9pjy9hVp5YXe0mr57bg4BGsTjDMdR&source=gbs_api",
-                    "small": "http://books.google.com/books/publisher/content?id=d74KDgAAQBAJ&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE73IovnZ0L9o5b4OFJP8vTZ3ND61_oBaI55rZjmKZq_Q9VgSB9SIso4yaTzA5nROTZFpEkOIj9ncqE_IJ6B7CZGwleQMtHwpzG2TjaEqH1Nt6FHWRlp6nn2DUsaCQhV-WIMzTyzs&source=gbs_api",
-                    "medium": "http://books.google.com/books/publisher/content?id=d74KDgAAQBAJ&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE705k1kbZAMepyQra7vqoRqQCP-NlJYez5N59gq-dyyNxWxwR38iFCMlsA3x6MkMleYvfLbvtDdHhJAOteLBc6NkyzoUOWkSSsW6rgZQLAo4NAJ3-kasqqP2wYPJHB21wS7Kii4X&source=gbs_api",
-                    "large": "http://books.google.com/books/publisher/content?id=d74KDgAAQBAJ&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE72YWYth2QwP0A1BqzClavo4rUMQyxuH_JfePVerFfP9bVIZajSJl5eGmN4tk9CQhYAdF128oT1yxZ9am_Dw7w7i-xud5grV9pFjrWozmuDhNXyBJ99rsN4G5pG2o3m7s7gCCswz&source=gbs_api",
-                    "extraLarge": "http://books.google.com/books/publisher/content?id=d74KDgAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&imgtk=AFLRE71Po-XXothbhXE7T6oNIq6kayLYsE2SPQ53NVmpKzFPnmfTfTz-3gxEjVID3RA7ofVES3ktux8Gp7WOooStGhEnw65ogijKlzqm7QA_GCg52fLJAtxrZBCMIzU3P5mBkE9vtSZJ&source=gbs_api"
-                },
-                "description": "La obra poética de Garcilaso de la Vega –compuesta por cuarenta sonetos, cinco canciones, una oda en liras, dos elegías, una epístola, tres églogas y siete coplas castellanas y tres odas latinas– se publicó por primera vez en 1543, a modo de apéndice de las Obras de Juán Boscán. La producción lírica de Garcilaso, máxima expresión del Renacimiento castellano, se convirtió, desde muy pronto, en una referencia inexcusable para los poetas españoles, que desde entonces no pudieron ignorar la revolución métrica y estética operada por él en la lírica española, al adaptar la métrica del castellano a los moldes del endecasílabo con tanto virtuosismo como sensibilidad, y encontrar en la nueva musicalidad del verso una consonancia con los acordes de una nueva sentimentalidad y un nuevo repertorio de temas, estructuras y recursos estilísticos procedentes del petrarquismo. La presente edición de la obra completa de Garcilaso pone a disposición del lector un texto moderno, pero no por ello exento de la corrección y del rigor exigibles al trabajo filológico. Tomando como base la edición crítica del especialista Bienvenido Morros (1995), cada poema es estudiado con profundidad y exhaustivamente anotado por los dos editores de la obra, Julián Jiménez Heffernan e Ignacio García Aguilar. Además, la edición cuenta con un esclarecedor estudio preliminar a cargo de Pedro Ruiz Pérez, catedrático de Literatura Española de la Universidad de Córdoba. Sin duda Garcilaso es el poeta de la elegancia, del que tantos otros, y grandes, se sentirán deudos, desde Luis de Góngora hasta Alberti, Juan Ramón Jiménez o Gustavo Adolfo Bécquer.",
-                "price": 62.00
-            }
+            "title": "Poesía Castellana",
+            "publisher": "Ediciones AKAL",
+            "ISBN": "8446043505",
+            "categories": " Literatura y Estudios Literarios",
+            "imageLinks": "http://books.google.com/books/publisher/content?id=d74KDgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE70XwxzzoJGjjlMVBXs5J58bJbbAlSjITU12oWSz4lflfdPLDPoRkeislU7ucopikbznzqq-D1PAZ-jNeTe0gwK5mPQrRVEjunpcQFud002t667qtVkM8kb9TakCYH3Oe3ifP5Yt&source=gbs_api",
+            "description": "La obra poética de Garcilaso de la Vega –compuesta por cuarenta sonetos, cinco canciones, una oda en liras, dos elegías, una epístola, tres églogas y siete coplas castellanas y tres odas latinas– se publicó por primera vez en 1543, a modo de apéndice de las Obras de Juán Boscán. La producción lírica de Garcilaso, máxima expresión del Renacimiento castellano, se convirtió, desde muy pronto, en una referencia inexcusable para los poetas españoles, que desde entonces no pudieron ignorar la revolución métrica y estética operada por él en la lírica española, al adaptar la métrica del castellano a los moldes del endecasílabo con tanto virtuosismo como sensibilidad, y encontrar en la nueva musicalidad del verso una consonancia con los acordes de una nueva sentimentalidad y un nuevo repertorio de temas, estructuras y recursos estilísticos procedentes del petrarquismo. La presente edición de la obra completa de Garcilaso pone a disposición del lector un texto moderno, pero no por ello exento de la corrección y del rigor exigibles al trabajo filológico. Tomando como base la edición crítica del especialista Bienvenido Morros (1995), cada poema es estudiado con profundidad y exhaustivamente anotado por los dos editores de la obra, Julián Jiménez Heffernan e Ignacio García Aguilar. Además, la edición cuenta con un esclarecedor estudio preliminar a cargo de Pedro Ruiz Pérez, catedrático de Literatura Española de la Universidad de Córdoba. Sin duda Garcilaso es el poeta de la elegancia, del que tantos otros, y grandes, se sentirán deudos, desde Luis de Góngora hasta Alberti, Juan Ramón Jiménez o Gustavo Adolfo Bécquer.",
+            "price": 62.00
         },
         {
             "id": 20,
-            "volumeInfo": {
-                "title": "Cielo, viento, estrella y poesía",
-                "authors": [
-                    "Tong-Ju Yun"
-                ],
-                "publisher": "Editorial Verbum",
-                "publishedDate": "2000-01-01",
-                "industryIdentifiers": [
-                    {
-                        "type": "ISBN_10",
-                        "identifier": "8479621559"
-                    },
-                    {
-                        "type": "ISBN_13",
-                        "identifier": "9788479621551"
-                    }
-                ],
-                "pageCount": 150,
-                "categories": [
-                    "Poetry"
-                ],
-                "imageLinks": {
-                    "smallThumbnail": "http://books.google.com/books/content?id=adDYdZlP2ywC&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE71yudxWanSHxXh6X2HVJyIy-pBAfkWOV0JIFpuDa7yTGUVHsm0hRvVGhYCx4n9usf8CXx4GdceAWgBoJ6Sau9cUy7zTwdnbOV6Lg8MdAX8gNVcn4y1h-C9fkR50KM4iHNk004rc&source=gbs_api",
-                    "thumbnail": "http://books.google.com/books/content?id=adDYdZlP2ywC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE73gfCFBGK2R8xIXxCbuL4EQWYGcqv-QYNnU_1SPsrHQhGyLwb41BUCcOyFbJQbVeKj6FahtWH-g29orWHXVFg_4YLBEmXM8hOTle3W_h5ebpZt13_IFkVwYJEQ6XfEMEGgYsrwR&source=gbs_api",
-                    "small": "http://books.google.com/books/content?id=adDYdZlP2ywC&printsec=frontcover&img=1&zoom=2&edge=curl&imgtk=AFLRE723sfqgCiuh37RciKDTCWocEacBXz7FoZUcMOU3ojD-QnQ8vzm0X_gAsrXsCFWfc5ZMQSjrNZYTO_q3WBxwGfaVOBPupGj1SYCOXW8v2vcVKqU-Lhcv-z_iw5TRX3dXN2bLibHY&source=gbs_api",
-                    "medium": "http://books.google.com/books/content?id=adDYdZlP2ywC&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE72SnsFVeOLQ5i4gYTI8WXpS-8obhtUcUqhVtZUVzDOP6gfQNAC1rebGx3uqsTmWpyxPEZ8pOTqHZfoavGKsdQn34riFjKqUdhx6zatGBfwDDPPU4pv6Tz7F-anCBgzRfZgENe-i&source=gbs_api",
-                    "large": "http://books.google.com/books/content?id=adDYdZlP2ywC&printsec=frontcover&img=1&zoom=4&edge=curl&imgtk=AFLRE70wcC1N-fPqENXRdrvKmTQC_w1hL9VlI_RBmiZ68gxKYlEVVRMTvNU3p2sd3waYMqBeHeOSk8kzTRniNiI1propaYwhN_DJpE6XGUKcp-U4R7BZGOkj6JYmlwfvyKi2_VaYpW3n&source=gbs_api",
-                    "extraLarge": "http://books.google.com/books/content?id=adDYdZlP2ywC&printsec=frontcover&img=1&zoom=6&edge=curl&imgtk=AFLRE73jLY_3tXj_DlycHgtBdnSrMbW1UnP_v2uW5HyRXI3qGqZa6AKCUCgZ1hQzu0juGr827sQzHi5_OwTfoO2PfOoi7JSQrwsIlLcwz9dYvlBO9Y70tv6fK16k3W4vM9NUrGZTGY_t&source=gbs_api"
-                },
-                "description": "Por primera vez en español se presenta una amplia muestra de la poesía coreana contemporánea. Un cuerpo poético íntimamente vinculado a la naturaleza, cuyo predominio temático con la soledad, la meditación, la contemplación de los misterios de lo cotidiano y del mundo.El poeta extrae de su propia vida y de la Naturaleza su mundo poético, el cual constituye esa ventana que lo eleva al cielo, a las estrellas, al viento y a la poesía.",
-                "price": 15.00
-            }
+            "title": "Cielo, viento, estrella y poesía",
+            "publisher": "Editorial Verbum",
+            "ISBN": "8479621559",
+            "categories": "Poesía",
+            "imageLinks": "http://books.google.com/books/content?id=adDYdZlP2ywC&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE71yudxWanSHxXh6X2HVJyIy-pBAfkWOV0JIFpuDa7yTGUVHsm0hRvVGhYCx4n9usf8CXx4GdceAWgBoJ6Sau9cUy7zTwdnbOV6Lg8MdAX8gNVcn4y1h-C9fkR50KM4iHNk004rc&source=gbs_api",
+            "description": "Por primera vez en español se presenta una amplia muestra de la poesía coreana contemporánea. Un cuerpo poético íntimamente vinculado a la naturaleza, cuyo predominio temático con la soledad, la meditación, la contemplación de los misterios de lo cotidiano y del mundo.El poeta extrae de su propia vida y de la Naturaleza su mundo poético, el cual constituye esa ventana que lo eleva al cielo, a las estrellas, al viento y a la poesía.",
+            "price": 15.00
         }
     ]
 }
