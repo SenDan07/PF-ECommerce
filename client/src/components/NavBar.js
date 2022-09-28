@@ -20,6 +20,10 @@ export default function NavBar() {
                 <Link to="/favorites" className="mx-3 cursor-pointer hover:text-hoverMenu">
                     FAVORITOS
                 </Link>
+
+                <Link to="/createbook" className="mx-3 cursor-pointer hover:text-hoverMenu">
+                    ADMINISTRAR
+                </Link>
             </div>
 
             <div>
