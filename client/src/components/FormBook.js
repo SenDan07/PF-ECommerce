@@ -27,14 +27,6 @@ export function validate(input){
             errors.precio="Precio no valido"
         }
     }
-   
-    if(Object.keys(errors)){
-          boton.className='boton_disabled'
-    }
-    else{
-        boton.className='boton_form'
-    }
-   
 return errors;
 }
 
@@ -49,8 +41,7 @@ export default function FormBook(){
   
     useEffect(()=>{
        boton= document.getElementById('enviar')
-       boton.disabled=true   
-       boton.className='boton_disabled'         
+       boton.disabled=true            
      },[]) 
      //let loading=useSelector(state=>state.loading)
      //let countries=useSelector(state=>state.countries)
@@ -84,7 +75,7 @@ export default function FormBook(){
          descripcion:''
         })
         e.target.name.focus()
-        let boton= document.getElementById('enviar')
+      //  let boton= document.getElementById('enviar')
         boton.disabled=true   
      //   setTimeout(()=>dispatch(setStatus('')),2000)
      }
@@ -116,32 +107,33 @@ export default function FormBook(){
      }
     return <div>
         
-        <form onSubmit={(e)=>handleSubmit(e)} className="form">
-            <fieldset>
-                <legend>Registro de Nuevo Libro</legend>
-                <label>AUTOR: </label>
-                <input type='text' className={errors.autor?'danger':'input'} name='autor' value={input.autor} placeholder='Ingrese el nombre del Autor' onChange={(e)=>handleChange(e)} autoFocus /><br />
-                {errors.autor?<p>{errors.autor}</p>:null}<br />
-                <label>EDITORIAL: </label>
-                <input type='text' className={errors.editorial?'danger':'input'} name='editorial' value={input.editorial} placeholder='Editorial' onChange={(e)=>handleChange(e)} /><br />
-                {errors.editorial?<p>{errors.editorial}</p>:null}<br />
-                <label>PRECIO: </label>
-                <input type='text' className={errors.precio?'danger':'input'} name='precio' value={input.precio} placeholder='Ingrese el precio' onChange={(e)=>handleChange(e)} /><br />
-                {errors.precio?<p>{errors.precio}</p>:null}<br />
-                <label>EDICION: </label>
-                <input type='text' className={errors.edicion?'danger':'input'} name='edicion' value={input.edicion} placeholder='Ingrese el precio' onChange={(e)=>handleChange(e)} /><br />
-                {errors.edicion?<p>{errors.edicion}</p>:null}<br />
-                <label>IMAGEN: </label>
-                <input type='text' className={errors.imagen?'danger':'input'} name='imagen' value={input.imagen} placeholder='imagen' onChange={(e)=>handleChange(e)} /><br />
-                {errors.imagen?<p>{errors.imagen}</p>:null}<br />
-                <label>TIPO: </label>
-                <input type='text' className={errors.tipo?'danger':'input'} name='tipo' value={input.tipo} placeholder='tipo' onChange={(e)=>handleChange(e)} /><br />
-                {errors.tipo?<p>{errors.tipo}</p>:null}<br />
-                <label>ISBN: </label>
-                <input type='text' className={errors.isbn?'danger':'input'} name='isbn' value={input.isbn} placeholder='isbn' onChange={(e)=>handleChange(e)} /><br />
-                {errors.isbn?<p>{errors.isbn}</p>:null}<br />
-                <label>CATEGORIA:</label>
-                <select name="categoria" value={input.categoria} placeholder='categoria' onClick={handleSelect} className={input.categoria?'danger':'input'} multiple>
+        <form onSubmit={(e)=>handleSubmit(e)} class="bg-[#a3a3a3] text-white container mx-auto p-20 m-20 rounded-3xl w-1/2">
+            <h2 class="text-center text-xl text-[30px] text-black">REGISTRO DE NUEVO LIBRO</h2><br />
+            <fieldset class="columns-2 text-[18px]">                
+                <label class="block">AUTOR: </label>
+                <input type='text' class={errors.autor?'text-red-600':'text-blue-600'} name='autor' value={input.autor} placeholder='Ingrese el nombre del Autor' onChange={(e)=>handleChange(e)} autoFocus /><br />
+                {errors.autor?<p class="text-red-600">{errors.autor}</p>:null}<br />
+                <label class="block">EDITORIAL: </label>
+                <input type='text' class={errors.editorial?'text-red-600':'text-blue-600'} name='editorial' value={input.editorial} placeholder='Editorial' onChange={(e)=>handleChange(e)} /><br />
+                {errors.editorial?<p class="text-red-600">{errors.editorial}</p>:null}<br />
+                <label class="block">PRECIO: </label>
+                <input type='text' class={errors.precio?'text-red-600':'text-blue-600'} name='precio' value={input.precio} placeholder='Ingrese el precio' onChange={(e)=>handleChange(e)} /><br />
+                {errors.precio?<p class="text-red-600">{errors.precio}</p>:null}<br />
+                <label class="block">EDICION: </label>
+                <input type='text' class={errors.edicion?'text-red-600':'text-blue-600'} name='edicion' value={input.edicion} placeholder='Ingrese el precio' onChange={(e)=>handleChange(e)} /><br />
+                {errors.edicion?<p class="text-red-600">{errors.edicion}</p>:null}<br /><br /><br />
+                <label class="block">IMAGEN: </label>
+                <input type='text' class={errors.imagen?'text-red-600':'text-blue-600'} name='imagen' value={input.imagen} placeholder='imagen' onChange={(e)=>handleChange(e)} />
+                <input type='button'class="bg-[#9a3412] p-1" onClick={e=>{return e} } value='Buscar' /><br />
+                {errors.imagen?<p class="text-red-600">{errors.imagen}</p>:null}<br />
+                <label class="block">TIPO: </label>
+                <input type='text' class={errors.tipo?'text-red-600':'text-blue-600'} name='tipo' value={input.tipo} placeholder='tipo' onChange={(e)=>handleChange(e)} /><br />
+                {errors.tipo?<p class="text-red-600">{errors.tipo}</p>:null}<br />
+                <label class="block">ISBN: </label>
+                <input type='text' class={errors.isbn?'text-red-600':'text-blue-600'} name='isbn' value={input.isbn} placeholder='isbn' onChange={(e)=>handleChange(e)} /><br />
+                {errors.isbn?<p class="text-red-600">{errors.isbn}</p>:null}<br />
+                <label class="block">CATEGORIA:</label>
+                <select name="categoria" value={input.categoria} placeholder='categoria' onClick={handleSelect} class={errors.categoria?'text-red-600':'text-blue-600'} multiple>
                     <option value='CIENCIA FICCION'>CIENCIA FICCION</option>
                     <option value='COMEDIA'>COMEDIA</option>
                     <option value='DRAMA'>DRAMA</option>
@@ -155,19 +147,19 @@ export default function FormBook(){
                     <option value='ROMANCE'>ROMANCE</option>
                     <option value='SIN CATEGORIA'>SIN CATEGORIA</option>
                 </select>
-                {errors.categoria?<p>{errors.categoria}</p>:null}<br />
+                {errors.categoria?<p class="text-red-600">{errors.categoria}</p>:null}<br />
                 {input.categoria.map(cat=>{
                     return <span>{cat},</span> 
                 })}
             </fieldset>
-            <fieldset>
+            <fieldset class="text-center">
             <legend>DESCRIPCION:</legend>
-                    <textarea className={errors.descripcion?'danger':'input'} name="descripcion" value={input.descripcion} onChange={(e)=>handleChange(e)} />
+                    <textarea class="w-full text-blue-600" name="descripcion" value={input.descripcion} onChange={(e)=>handleChange(e)} />
             
             <br /> 
            {/*loading?<p>{loading}</p>:null*/ }
-           <input type='submit' className="boton_form" id='enviar' disabled={(Object.keys(errors).length)? true:false} value='Guardar' />
-           <input type='button' className="boton_form" onClick={ handleClick } value='Regresar' />
+           <input type='submit' class={(Object.keys(errors).length)?"bg-[#94a3b8] p-5 m-2":"bg-[#9a3412] p-5 m-2"} id='enviar' disabled={(Object.keys(errors).length)? true:false} value='Guardar' />
+           <input type='button'class="bg-[#9a3412] p-5" onClick={ handleClick } value='Regresar' />
            </fieldset>
         </form>
        
