@@ -1,17 +1,17 @@
-/* import NavBar from "./components/NavBar";
+import NavBar from "./NavBar";
 import { Route, BrowserRouter, Switch, Routes } from "react-router-dom"
+import BookList from "./BookList";
 
 
 export default function Home() {
-
     return (
         <div>
-             <BrowserRouter>
-                <NavBar />
-                <Routes>
+            <NavBar />
 
-                </Routes>
-            </BrowserRouter> 
+            <BookList />
+            <Routes>
+            </Routes>
+
         </div>
     )
-} */
+}
