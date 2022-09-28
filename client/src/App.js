@@ -1,13 +1,21 @@
-import FormBook from "./components/FormBook";
+import NavBar from "./components/NavBar";
+import { Route, BrowserRouter, Switch, Routes } from "react-router-dom"
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <FormBook />
-      </header>
-    </div>
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+
+        </Routes>
+      </BrowserRouter>
+
+    </div >
   );
 }
 
 export default App;
+
+
