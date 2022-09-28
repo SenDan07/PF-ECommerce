@@ -11,10 +11,10 @@ const shopController = {
     }
   },
   orderBooksByAlphabetically: (req, res) => {
-    const { orderBy } = req.query;
+    const { type } = req.query;
     try {
-      if (!orderBy) throw "Debe enviar una opción";
-      const orderByName = (orderBy === 'asc') ? libros?.sort((prev, current) => prev.name.localeCompare(current.name)) : libros?.sort((prev, current) => current.name.localeCompare(prev.name));
+      if (!type) throw "Debe enviar una opción";
+      const orderByName = (type === 'asc') ? libros?.sort((prev, current) => prev.name.localeCompare(current.name)) : libros?.sort((prev, current) => current.name.localeCompare(prev.name));
       if (!orderByName.length) throw "No existen libros";
       return res.send(orderByName);
     } catch (error) {

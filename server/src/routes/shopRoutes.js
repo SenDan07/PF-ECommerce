@@ -1,8 +1,9 @@
 const { Router } = require('express');
-const shopControllers = require('../controllers/shopControllers.js');
+const shopController = require('../controllers/shopController.js');
 
 const router = Router();
 
-router.get('/books', shopControllers.filterBooksByAuthors);
+router.get('/books', shopController.filterBooksByAuthor);
+router.get('/books/order', shopController.orderBooksByAlphabetically);
 
 module.exports=router;
