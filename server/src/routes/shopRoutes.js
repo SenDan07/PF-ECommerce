@@ -1,11 +1,12 @@
-const { Router }=require('express');
-const router=Router();
-const shopControllers=require('../controllers/shopControllers.js');
 
+const { Router } = require('express');
+const shopController = require('../controllers/shopController.js');
 
+const router = Router();
 
-router.get('/books',shopControllers.filterBooksByAuthors)
+router.get('/books', shopController.filterBooksByAuthor);
+router.get('/books/order', shopController.orderBooksByAlphabetically);
+router.get('/book/:idBook', shopController.getBookById);
 
-
- 
+ main
 module.exports=router;
