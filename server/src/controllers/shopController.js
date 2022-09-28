@@ -1,3 +1,5 @@
+const libros = require('../../data/dataBook.json');
+
 const shopController = {
   filterBooksByAuthor: (req, res) => {
     try {
@@ -14,7 +16,7 @@ const shopController = {
     const { type } = req.query;
     try {
       if (!type) throw "Debe enviar una opción";
-      const orderByName = (type === 'asc') ? libros?.sort((prev, current) => prev.name.localeCompare(current.name)) : libros?.sort((prev, current) => current.name.localeCompare(prev.name));
+      const orderByName = (type === 'asc') ? libros.items?.sort((prev, current) => prev.title.localeCompare(current.title)) : libros.items?.sort((prev, current) => current.title.localeCompare(prev.title));
       if (!orderByName.length) throw "No existen libros";
       return res.send(orderByName);
     } catch (error) {
