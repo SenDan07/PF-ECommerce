@@ -13,7 +13,7 @@ Reglas para manejarse con Git durante el proyecto:
 
 - Traer todos los cambios mergeados el dia anterior a esta rama:
 
-    `git pull origin main` 
+    `git pull origin main`
 
 
 - Crear nueva rama con nombre en el siguiente formato: `<tipoDeTareaARealizar>/<descripciónDeLaTarea>`
@@ -34,11 +34,11 @@ Reglas para manejarse con Git durante el proyecto:
 
 
 -Crear un commit cada que crea o modifica un archivo y cuando se termina una tarea.
-  
+
 
 - Agregar los cambios a commitear:
 
-    `git add .` o `git add <nombreDeArchivo>` 
+    `git add .` o `git add <nombreDeArchivo>`
 
 - Crear el commit:
 
@@ -74,7 +74,7 @@ Reglas para manejarse con Git durante el proyecto:
 
 git branch  -------------------// muestra la branch en la que estamos con un *
 
-git branch -a  ----------------// nos muestra todas las branches 
+git branch -a  ----------------// nos muestra todas las branches
 
 git branch -d  ----------------// borrar la rama
 
@@ -90,11 +90,11 @@ git status  -------------------// ver el estado de nuestros cambios
 
 git push origin NombreRama  ---// especifica la rama a la que subiremos los cambios, usado luego del commit
 
-git merge Nombrerama  ---------// Pullea lo de la rama especificada, hacer con el master antes de pushear para 
-                      ---------// ver posibles conflictos y solucionarlos 
+git merge Nombrerama  ---------// Pullea lo de la rama especificada, hacer con el master antes de pushear para
+                      ---------// ver posibles conflictos y solucionarlos
 
 
-Lineamientos del repositorio:  
+Lineamientos del repositorio:
 -----------------------------
 
 *   Al crear una nueva rama especificar:  (taskType)/(taskName) ej: feature/shopping-cart
