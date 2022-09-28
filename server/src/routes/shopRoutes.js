@@ -6,5 +6,5 @@ const router = Router();
 router.get('/books', shopController.filterBooksByAuthor);
 router.get('/books/order', shopController.orderBooksByAlphabetically);
 router.get('/book/:idBook', shopController.getBookById);
-
+router.get('/books/orderprice',shopController.orderBooksPrice);
 module.exports=router;

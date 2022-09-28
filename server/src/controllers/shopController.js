@@ -1,3 +1,4 @@
+
 const shopController = {
   filterBooksByAuthor: (req, res) => {
     try {
@@ -7,7 +8,7 @@ const shopController = {
       if (authorsFound.length < 1) throw "El author no existe";
       return res.status(200).json(authorsFound);
     } catch (error) {
-      return res.status(404).send(error);
+      return res.status(400).send(error);
     }
   },
   orderBooksByAlphabetically: (req, res) => {
@@ -25,13 +26,32 @@ const shopController = {
     const { idBook } = req.params;
     try {
       if (!idBook) throw "Debe enviar el id";
-      const book = libros.find(({id}) => id === idBook);
+      const book = libros.find(({ id }) => id === idBook);
       if (!book) throw "El libro no existe";
       res.send(book);
     } catch (error) {
       res.status(400).send(error);
     }
   },
+  orderBooksPrice: (req, res) => {
+    try {
+      const { type } = req.query;
+      if(!type) throw "Debe enviar la tipo de ordenamiento";
+      if (type === "asc") {
+        libros.sort(function (a, b) {
+          return a.price - b.price
+        })
+      } else if (type === "desc") {
+        libros.sort(function (a, b) {
+          return b.price - a.price
+        })
+      }
+      return res.status(200).json(libros)
+    } catch (error) {
+      return res.status(400).send(error)
+    }
+  }
+
 }
 
 
