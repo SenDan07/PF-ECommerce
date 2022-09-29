@@ -27,18 +27,17 @@ const shopControllers = {
       return next(error);
     }
   },
-
   filterBooksByAuthor: (req, res) => {
     try {
       const { author } = req.query;
       if (!author) throw "Debe enviar un author";
-      const authorsFound = libros.filter((el) =>
-        el.author.toUpperCase().includes(author.toUpperCase())
-      );
+
+      const authorsFound = libros.items.filter(el => el.authors.map(el=> el.toUpperCase()).includes(author.toUpperCase()));
+
       if (authorsFound.length < 1) throw "El author no existe";
       return res.status(200).json(authorsFound);
     } catch (error) {
-      return res.status(404).send(error);
+      return res.status(400).send(error);
     }
   },
   orderBooksByAlphabetically: (req, res) => {
@@ -70,6 +69,24 @@ const shopControllers = {
       res.status(400).send(error);
     }
   },
+  orderBooksPrice: (req, res) => {
+    try {
+      const { type } = req.query;
+      if(!type) throw "Debe enviar la tipo de ordenamiento";
+      if (type === "asc") {
+        libros.items.sort(function (a, b) {
+          return a.price - b.price
+        })
+      } else if (type === "desc") {
+        libros.items.sort(function (a, b) {
+          return b.price - a.price
+        })
+      }
+      return res.status(200).json(libros)
+    } catch (error) {
+      return res.status(400).send(error)
+    }
+  }
 };
 
 module.exports = shopControllers;
