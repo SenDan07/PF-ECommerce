@@ -74,24 +74,17 @@ const shopControllers = {
     try {
       const { type } = req.query;
       if(!type) throw "Debe enviar la tipo de ordenamiento";
-      if (type === "asc") {
-        libros.items.sort(function (a, b) {
-          return a.price - b.price
-        })
-      } else if (type === "desc") {
-        libros.items.sort(function (a, b) {
-          return b.price - a.price
-        })
-      }
-      return res.status(200).json(libros)
+      if (type === "asc") libros.items.sort((a, b) => a.price - b.price);
+      else if (type === "desc") libros.items.sort((a, b) => b.price - a.price);
+      return res.status(200).json(libros);
     } catch (error) {
-      return res.status(400).send(error)
+      return res.status(400).send(error);
     }
   },
-  fetchAllCategories:(req,res)=>{
+  fetchAllCategories: (req, res) => {
     try {
-      if(dataCategory.categories.length<1) throw "No hay categorias para mostrar";
-        return res.status(200).json(dataCategory.categories)
+      if(dataCategory.categories.length < 1) throw "No hay categorias para mostrar";
+      return res.status(200).json(dataCategory.categories)
     } catch (error) {
       return res.status(400).send(error)
     }
