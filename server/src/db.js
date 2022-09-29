@@ -1,25 +1,22 @@
 const Sequelize = require('Sequelize');
 const fs = require('fs');
 const path = require('path');
-//const model = require('./src/models')
-const sequelize = new Sequelize('ecommerce','postgres','1234',{
-  hosst:'localhost',
-  dialect:'postgres'
+const sequelize = new Sequelize('DBNAME', 'ADMIN', 'PASSWORD', {
+  host: 'localhost',
+  dialect: 'postgres'
 });
-// vrificacion de la conexion 
+// verificacion de la conexion 
 sequelize.authenticate()
-        .then( ( response ) => {
-            console.log('Connection to database successfully')
-        } )
-        .catch( ( error ) => {
-            console.log(error) 
-        } )
+  .then((response) => {
+    console.log('Connection to database successfully')
+  })
+  .catch((error) => {
+    console.log(error)
+  })
 
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
- //server\src\models
-//const filenames = fs.readdirSync(__dirname,'/src');
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
 fs.readdirSync(path.join(__dirname, '/models'))
