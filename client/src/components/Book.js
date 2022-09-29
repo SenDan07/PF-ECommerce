@@ -4,7 +4,9 @@ export const Book = ({ name, image, price }) => {
   return (
     <div class="">
       <div>
-        <h2 class="text-center text-lg font-medium">{name}</h2>
+        <h2 className="randomName text-center text-[22px]">
+          {name.length > 19 ? `${name.slice(0, 18)}...` : name}
+        </h2>
       </div>
       <div>
         <img src={image} alt={`img-${name}`} class="h-80 w-64 rounded" />

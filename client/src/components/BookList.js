@@ -12,7 +12,7 @@ export default function BookList() {
   }, []);
 
   let booksData = useSelector((state) => state.books);
-  booksData = booksData.slice(0, 10);
+  // booksData = booksData.slice(0, 10);
 
   return (
     <div class="mt-10" className="contenedor">
@@ -24,9 +24,9 @@ export default function BookList() {
               <Link to={`/${book.id}`}>
                 <Book
                   key={book.id}
-                  name={book.name}
-                  image={book.image}
-                  price={book.id}
+                  name={book.title}
+                  image={book.bookImage}
+                  price={book.price}
                 />
               </Link>
             );

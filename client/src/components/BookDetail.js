@@ -33,13 +33,13 @@ const BookDetail = () => {
           <div>
             <div>
               <h3 class="text-center">
-                <span>Precio: </span>$00,00
+                <span>Precio: </span>${bookDetail.price}
               </h3>
             </div>
             <div>
               <img
-                src={bookDetail["image"]}
-                alt={`img-${bookDetail["name"]}`}
+                src={bookDetail["bookImage"]}
+                alt={`img-${bookDetail["title"]}`}
                 class="h-96 w-80 rounded"
               />
             </div>
@@ -49,7 +49,7 @@ const BookDetail = () => {
           </div>
           <div class="w-full">
             <div class="m-auto">
-              <h2 class="text-center">Titulo Libro</h2>
+              <h2 class="text-center">{bookDetail.title}</h2>
             </div>
             <div class="flex justify-center border-2 border-indigo-500/100 h-full">
               <div>
@@ -72,17 +72,7 @@ const BookDetail = () => {
           </div>
         </div>
         <div class="mt-10">
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
-          </p>
+          <p>{bookDetail.description}</p>
         </div>
       </div>
     </div>
