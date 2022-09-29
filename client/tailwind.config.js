@@ -9,6 +9,7 @@ module.exports = {
       'button': '#047857',
       'bgSearch': '#6F6666',
       'hoverMenu':'#ca8a04'
+      
     } ,
     extend: {},
   },
