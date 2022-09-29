@@ -12,3 +12,4 @@ router.get("/books/order", shopControllers.orderBooksByAlphabetically);
 router.get("/book/:idBook", shopControllers.getBookById);
 
 module.exports = router;
+router.get('/books/orderprice',shopController.orderBooksPrice);

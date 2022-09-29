@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Book } from "./Book";
 import { getBooks } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function BookList() {
   const dispatch = useDispatch();
@@ -20,12 +21,14 @@ export default function BookList() {
         {booksData.length ? (
           booksData.map((book) => {
             return (
-              <Book
-                key={book.id}
-                name={book.name}
-                image={book.image}
-                price={book.id}
-              />
+              <Link to={`/${book.id}`}>
+                <Book
+                  key={book.id}
+                  name={book.name}
+                  image={book.image}
+                  price={book.id}
+                />
+              </Link>
             );
           })
         ) : (
