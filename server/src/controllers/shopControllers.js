@@ -1,5 +1,6 @@
 const HttpError = require("../models/http-error");
 const libros = require("../../data/dataBook.json");
+const dataCategory=require("../../data/categories.json");
 
 const shopControllers = {
   fetchAllBooks: (req, res, next) => {
@@ -86,6 +87,15 @@ const shopControllers = {
     } catch (error) {
       return res.status(400).send(error)
     }
+  },
+  fetchAllCategories:(req,res)=>{
+    try {
+      if(dataCategory.categories.length<1) throw "No hay categorias para mostrar";
+        return res.status(200).json(dataCategory.categories)
+    } catch (error) {
+      return res.status(400).send(error)
+    }
+    
   }
 };
 
