@@ -5,7 +5,7 @@ const shopController = {
     try {
       const { author } = req.query;
       if (!author) throw "Debe enviar un author";
-      const authorsFound = libros.filter(el => el.author.toUpperCase().includes(author.toUpperCase()));
+      const authorsFound = libros.items?.filter(el => el.authors.toUpperCase().includes(author.toUpperCase()));
       if (authorsFound.length < 1) throw "El author no existe";
       return res.status(200).json(authorsFound);
     } catch (error) {
@@ -37,7 +37,7 @@ const shopController = {
   orderBooksPrice: (req, res) => {
     try {
       const { type } = req.query;
-      if(!type) throw "Debe enviar la tipo de ordenamiento";
+      if(!type) throw "Debe enviar el tipo de ordenamiento";
       if (type === "asc") {
         libros.sort(function (a, b) {
           return a.price - b.price
