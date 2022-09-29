@@ -8,7 +8,7 @@ router.get("/books", shopControllers.fetchAllBooks);
 
 router.get("/books", shopControllers.filterBooksByAuthor);
 
-router.get("/books/orderprice", shopControllers.orderBooksPrice);
+// router.get("/books/orderprice", shopControllers.orderBooksPrice);
 
 router.get("/books/order", shopControllers.orderBooksByAlphabetically);
 

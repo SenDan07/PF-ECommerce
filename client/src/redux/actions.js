@@ -1,7 +1,7 @@
 import { GET_BOOKS, GET_DETAIL_BOOK, ORDER_NAME, RESET_DETAIL, SEARCH_BOOK } from "./types.js";
 
 export const getBooks = () => (dispatch) => {
-  fetch(`https://videogame-deploy-app.herokuapp.com/videogames`)
+  fetch(`http://localhost:3001/shop/books`)
     .then((response) => response.json())
     .then((data) =>
       dispatch({
