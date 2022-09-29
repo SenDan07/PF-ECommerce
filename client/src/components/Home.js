@@ -1,16 +1,15 @@
-import NavBar from "./NavBar";
 import { Route, BrowserRouter, Switch, Routes } from "react-router-dom"
+import NavBar from "./NavBar";
 import BookList from "./BookList";
-
+import Carousel from "./Carousel";
 
 export default function Home() {
     return (
-        <div>
+        <div className="bg-bgHome">
             <NavBar />
-
+            <Carousel/>
             <BookList />
-            <Routes>
-            </Routes>
+
 
         </div>
     )
