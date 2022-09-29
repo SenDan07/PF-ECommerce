@@ -12,11 +12,17 @@ const errorHandler = require("../server/src/util/middleware/errorHandler");
 
 const app = express();
 
+<<<<<<< HEAD
 
 const adminRoutes = require("./src/routes/adminRoutes");
 const shopRoutes = require("./src/routes/shopRoutes");
 const loginRoutes = require('../server/src/routes/loginRoutes');
 
+=======
+//const adminRoutes = require("./src/routes");
+//const shopRoutes = require("./src/routes");
+const loginRoutes = require('../server/src/routes/loginRoutes');
+>>>>>>> 1aa44b1765f2e582ffb1bd9c077b118efca012c7
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -29,11 +35,17 @@ app.use(setHeader);
 
 dotenv.config();
 
+<<<<<<< HEAD
 
 app.use("/admin", adminRoutes);
 app.use("/shop", shopRoutes);
 app.use('/users', loginRoutes)
 
+=======
+//app.use("/admin", adminRoutes);
+//app.use(shopRoutes);
+app.use('/users', loginRoutes)
+>>>>>>> 1aa44b1765f2e582ffb1bd9c077b118efca012c7
 
 app.use(errorHandler);
 
