@@ -1,8 +1,9 @@
-const { Router } = require('express');
-const adminController = require('../controllers/adminController');
+const { Router } = require("express");
+const express = require("express");
 
-const router = Router();
+const router = express.Router();
+const adminControllers = require("../controllers/adminControllers");
 
-router.post('/books', adminController.createBook);
+router.post("/create-book", adminControllers.createBook);
 
-module.exports = router;
+module.exports = router

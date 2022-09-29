@@ -20,14 +20,14 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(cors({ origin: "*" }));
 app.use(cookieParser());
-app.use(logger('dev'));
+app.use(logger("dev"));
 
 app.use(setHeader);
 
 dotenv.config();
 
 app.use("/admin", adminRoutes);
-app.use(shopRoutes);
+app.use("/shop", shopRoutes);
 
 app.use(errorHandler);
 
