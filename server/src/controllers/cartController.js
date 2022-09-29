@@ -1,4 +1,3 @@
-const libros = require('../../data/dataBook.json');
 const cart = [
   {
     idCustomer: 1,
