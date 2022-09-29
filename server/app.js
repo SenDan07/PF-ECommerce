@@ -12,8 +12,9 @@ const errorHandler = require("../server/src/util/middleware/errorHandler");
 
 const app = express();
 
-const adminRoutes = require("./src/routes");
-const shopRoutes = require("./src/routes");
+//const adminRoutes = require("./src/routes");
+//const shopRoutes = require("./src/routes");
+const loginRoutes = require('../server/src/routes/loginRoutes');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -26,8 +27,9 @@ app.use(setHeader);
 
 dotenv.config();
 
-app.use("/admin", adminRoutes);
-app.use(shopRoutes);
+//app.use("/admin", adminRoutes);
+//app.use(shopRoutes);
+app.use('/users', loginRoutes)
 
 app.use(errorHandler);
 
