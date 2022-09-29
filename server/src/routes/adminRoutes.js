@@ -1,1 +1,4 @@
-//aquí van las rutas de controladores del administrador
+const express = require('express')
+
+const adminRouter = express.Router()
+const adminControllers = require('../controllers/adminControllers')
