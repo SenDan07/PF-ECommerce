@@ -1,6 +1,33 @@
+const HttpError = require("../models/http-error");
 const libros = require("../../data/dataBook.json");
 
 const shopControllers = {
+  fetchAllBooks: (req, res, next) => {
+    try {
+      const itemList = libros.items.map((e) => {
+        return {
+          id: e.id,
+          title: e.title,
+          authors: e.authors.join(", "),
+          publisher: e.publisher,
+          ISBN: e.ISBN,
+          categories: e.categories,
+          bookImage: e.imageLinks,
+          description: e.description,
+          price: e.price,
+        };
+      });
+      const allBooks = [...itemList];
+      res.status(200).send(allBooks);
+    } catch (err) {
+      const error = new HttpError(
+        `No hay libros en el inventario ${console.log(err)}`,
+        404
+      );
+      return next(error);
+    }
+  },
+
   filterBooksByAuthor: (req, res) => {
     try {
       const { author } = req.query;

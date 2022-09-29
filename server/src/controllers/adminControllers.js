@@ -8,7 +8,8 @@ const adminControllers = {
       libros.items = [...libros.items, { id: tam + 1, ...req.body }];
       res.status(201).send("El libro fue creado correctamente");
     } catch (err) {
-      const error = HttpError(
+      const error = new 
+      HttpError(
         `No se pudo crear el libro, intente nuevamente más tarde${console.log(
           err
         )}`,
