@@ -32,9 +32,7 @@ const shopControllers = {
     try {
       const { author } = req.query;
       if (!author) throw "Debe enviar un author";
-
       const authorsFound = libros.items.filter(el => el.authors.map(el=> el.toUpperCase()).includes(author.toUpperCase()));
-
       if (authorsFound.length < 1) throw "El author no existe";
       return res.status(200).json(authorsFound);
     } catch (error) {
