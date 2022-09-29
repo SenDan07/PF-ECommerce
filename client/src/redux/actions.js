@@ -1,4 +1,4 @@
-import { GET_BOOKS, GET_DETAIL_BOOK, RESET_DETAIL } from "./types.js";
+import { GET_BOOKS, GET_DETAIL_BOOK, ORDER_NAME, RESET_DETAIL, SEARCH_BOOK } from "./types.js";
 
 export const getBooks = () => (dispatch) => {
   fetch(`https://videogame-deploy-app.herokuapp.com/videogames`)
@@ -14,3 +14,18 @@ export const getBooks = () => (dispatch) => {
 export const getDetailBook = (payload) => ({ type: GET_DETAIL_BOOK, payload });
 
 export const resetDetail = () => ({ type: RESET_DETAIL });
+
+
+export function orderName(order) {
+  return {
+    type: ORDER_NAME,
+    payload: order
+  }
+}
+
+export function searchBook(book){
+  return {
+    type: SEARCH_BOOK,
+    payload: book
+  }
+}

@@ -10,7 +10,6 @@ export default function Home() {
             <Carousel/>
             <BookList />
 
-
         </div>
     )
 }
