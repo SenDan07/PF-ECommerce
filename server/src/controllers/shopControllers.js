@@ -13,7 +13,7 @@ const shopControllers = {
           publisher: e.publisher,
           ISBN: e.ISBN,
           categories: e.categories,
-          bookImage: e.imageLinks,
+          imageLinks : e.imageLinks,
           description: e.description,
           price: e.price,
         };

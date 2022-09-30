@@ -28,7 +28,7 @@ Reglas para manejarse con Git durante el proyecto:
 
 
 - Trabajar sobre esa rama
-
+   
 
 - Usar buenas practicas en el codigo
 
