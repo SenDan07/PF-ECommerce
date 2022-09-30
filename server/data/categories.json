@@ -1,56 +1,53 @@
 {
   "categories": [
-    "Drama",
-    "Artes",
-    "Arquitectura",
-    "Aspectos Generales",
-    "Cine, Televisión y Radio",
-    "Biología",
-    "Bioquímica",
-    "Geografía",
-    "Ciencias",
-    "Astronomia, Espacio y Tiempo",
-    "Ciencias Matematicas, Física y Química",
-    "Divulgación Cientifica",
-    "Econometría y Estadística",
-    "Libros de Cocina de Cocineros",
-    "Nutrición",
-    "Recetas y Cursos de Cocina",
-    "Cómics y Manga",
-    "Computación e Informática",
-    "Comunicación",
-    "Investigación Periodística Política",
-    "Deportes y Recreación al Aire Libre",
-    "Economía",
-    "Empresa y Gestión",
-    "Ficción",
-    "Genéricos",
-    "Humanidades",
-    "Arqueología",
-    "Ciencias Políticas",
-    "Educación",
-    "Pedagogía",
-    "Filosofía",
-    "Infantiles",
-    "Lenguas",
-    "Bibliotecología",
-    "Diccionarios",
-    "Linguística",
-    "Literatura juvenil",
-    "Narrativa",
-    "Poesía",
-    "Literatura y Estudios Literarios",  
+    {
+      "name":"Aventuras",
+    "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558360/Categorias/zfkojcumgapvdlhsxzln.jpg"
+    },
+    {
+      "name":"Ciencia Ficcion",
+    "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558562/Categorias/jozik2dkbyz6mcrbvjqj.jpg"
+    },
+    {
+      "name":"Comedia",
+    "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558610/Categorias/qhapmtkb6gqocbrafgjc.jpg"
+    },
+    {
+      "name":"Drama",
+    "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558655/Categorias/erd2d2fgikyh6av8rrju.jpg"
+    },
+    {
+      "name":"Educativo",
+    "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558712/Categorias/fh4jj8sk5jy6cw4kwexi.jpg"
+    },
+    {
+      "name":"Fantasia",
+    "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558756/Categorias/sswupfd4auvnbsmo6wvg.jpg"
+    },
+    {
+      "name":"Historia",
+    "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558834/Categorias/qazmlonrfugra08r8x0l.jpg"
+    },
+    {
+      "name":"Ilustraciones",
+    "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558898/Categorias/tuqcicd3siel6linv0fy.jpg"
+    },
+    {
+      "name":"Romance",
+    "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558956/Categorias/sc8alysehtogdpq80gs1.jpg"
+    },
+    {
+      "name":"Suspenso",
+    "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664559033/Categorias/yozpn4h7rmndjim65tvs.jpg"
+    },
+    {
+      "name":"Terror",
+    "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664559090/Categorias/jstnopducsskxigyzi4k.jpg"
+    },
+    {
+      "name":"Sin Categoria",
+    "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664559172/Categorias/i96kbhvacgunjbr9gfsg.jpg"
+    }
 
-    "Ciencia Ficción",
-    "Comedia",
-    "Drama",
-    "Misterio",
-    "Educativo cultural",
-    "Fantasía",
-    "Aventuras",
-    "Históricos",
-    "Ilustraciones",
-    "",
-    ""
   ]
 }
