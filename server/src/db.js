@@ -6,7 +6,7 @@ const sequelize = new Sequelize('ecommerce', 'postgres', '1234', {
   dialect: 'postgres'
 });
 // verificacion de la conexion 
-sequelize.authenticate() 
+sequelize.authenticate()
   .then((response) => {
     console.log('Connection to database successfully')
   })
@@ -24,9 +24,12 @@ fs.readdirSync(path.join(__dirname, '/models'))
   .forEach((file) => {
     modelDefiners.push(require(path.join(__dirname, '/models', file)));
   });
-console.log(modelDefiners)
+
 // Injectamos la conexion (sequelize) a todos los modelos
-modelDefiners[1](sequelize);
+modelDefiners.forEach(model => model(sequelize));
+// console.log(modelDefiners)
+// Injectamos la conexion (sequelize) a todos los modelos
+// modelDefiners[1](sequelize);
 
 // Capitalizamos los nombres de los modelos ie: product => Product
 let entries = Object.entries(sequelize.models);
