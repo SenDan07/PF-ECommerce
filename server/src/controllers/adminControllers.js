@@ -9,7 +9,7 @@ const adminControllers = {
       res.status(201).send("El libro fue creado correctamente");
     } catch (err) {
       const error = new HttpError(
-        `No se pudo crear el libro, intente nuevamente más tarde${console.log(
+        `No se pudo crear el libro, intente nuevamente más tarde git ${console.log(
           err
         )}`,
         500

@@ -1,10 +1,16 @@
 import { useState } from "react"
-
+import { useDispatch } from "react-redux"
+import { searchAuthor} from "../redux/actions"
+//import { searchBook } from "../redux/actions"
 
 export default function SearchBar() {
     const [search, setSearch] = useState("")
+    let dispatch = useDispatch()
+
     function onSubmit(e) {
         e.preventDefault()
+        //dispatch(searchBook(search))
+        setSearch("")
     }
     function onInputChange(e) {
         e.preventDefault()

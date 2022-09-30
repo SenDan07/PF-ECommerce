@@ -1,19 +1,10 @@
-app = require("./app");
+const app = require("./app");
+const { conn } = require("./src/db");
 
-
-const { conn } = require('../server/src/db'); 
-
+app.set("port", process.env.PORT || 3001);
 //Syncing all the models at once.
 conn.sync({ force: false }).then(() => {
-  app.listen(3001, () => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
+  app.listen(app.get("port"), () => {
+    console.log(`Servidor escuchando en el puerto ${app.get("port")}`); // eslint-disable-line no-console
   });
 });
-// app.set("port", process.env.PORT || 3001); 
-
-// app.listen(app.get("port"), () => {
-//   console.log(`Servidor escuchando en el puerto ${app.get("port")}`);
-// });
-
-
-

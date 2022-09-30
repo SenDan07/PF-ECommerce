@@ -27,7 +27,7 @@ export default function Carousel() {
 
     setTimeout(() => {
         handleButtonRight()
-    }, 5000)
+    }, 555555555000)
 
     return (
         <div className="mb-10 carousel slide relative">

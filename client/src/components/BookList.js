@@ -12,21 +12,20 @@ export default function BookList() {
   }, []);
 
   let booksData = useSelector((state) => state.books);
-  booksData = booksData.slice(0, 10);
+  // booksData = booksData.slice(0, 10);
 
   return (
-    <div class="mt-10" className="contenedor">
-      <h2 class="text-center text-2xl font-medium">Mas Populares</h2>
-      <div class="flex flex-wrap justify-center gap-20 p-8">
+    <div className="mt-10 contenedor">
+      <h2 className="text-center text-2xl font-medium">Mas Populares</h2>
+      <div className="flex flex-wrap justify-center gap-20 p-8">
         {booksData.length ? (
           booksData.map((book) => {
             return (
-              <Link to={`/${book.id}`}>
+              <Link to={`/${book.id}`} key={book.id}>
                 <Book
-                  key={book.id}
-                  name={book.name}
-                  image={book.image}
-                  price={book.id}
+                  name={book.title}
+                  image={book.bookImage}
+                  price={book.price}
                 />
               </Link>
             );
@@ -38,7 +37,7 @@ export default function BookList() {
               alt="loading-img"
             />
             <div>
-              <h3 class="text-center">Loading...</h3>
+              <h3 className="text-center">Loading...</h3>
             </div>
           </div>
         )}
