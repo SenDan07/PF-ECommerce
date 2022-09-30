@@ -37,14 +37,14 @@ export default function Carousel() {
                 </div>
 
                 <div className="absolute right-0 text-2xl top-64">
-                    <button onClick={handleButtonRight} className="bg-button hover:bg-hoverMenu p-2 -translate-x-60">{`>`}</button>
+                    <button onClick={handleButtonRight} className="bg-[#6b7280] hover:bg-hoverMenu p-2 -translate-x-60">{`>`}</button>
                 </div>
             </div>
 
             <img src={images[index]} alt="image not found" className="w-9/12 h-3/6 mx-auto" />
 
             <div className="">
-                <span className="text-4xl justify-center">{texts[index]}</span>
+                <span className="text-4xl flex justify-center">{texts[index]}</span>
             </div>
 
 

@@ -19,7 +19,8 @@ export default function CategoriesBooks() {
                 {category?.map(e => {
                     return (
                         <CategoriesDumb
-                            name={e} />
+                            name={e.name} 
+                            image={e.image}/>
                     )
                 })}
             </div>
