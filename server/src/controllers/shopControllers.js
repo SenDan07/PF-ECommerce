@@ -1,9 +1,19 @@
 const HttpError = require("../errors/http-error");
 const libros = require("../../data/dataBook.json");
 const dataCategory=require("../../data/categories.json");
+const {Categories} = require("../db");
+console.log(Categories)
+
+
 
 const shopControllers = {
+   
+ 
+
   fetchAllBooks: (req, res, next) => {
+   
+   
+
     try {
       const itemList = libros.items.map((e) => {
         return {
@@ -79,13 +89,86 @@ const shopControllers = {
       return res.status(400).send(error);
     }
   },
-  fetchAllCategories: (req, res) => {
-    try {
-      if(dataCategory.categories.length < 1) throw "No hay categorias para mostrar";
-      return res.status(200).json(dataCategory.categories)
-    } catch (error) {
-      return res.status(400).send(error)
+  fetchAllCategories: async(req, res) => {
+  //   try {
+  
+  //      await dataCategory.categories.forEach((el) => Categories.findOrCreate({ where: { name: el.name } }));
+  //  // console.log(res)
+  //     return Categories.findAll()
+  //   } catch (error) {
+  //     return res.status(400).send(error)
+  //   }
+  
+    
+  try{
+    let categories=await Categories.findAll()
+    if(!categories.length){
+         //buscar api
+         categories= await Categories.bulkCreate([
+          
+             [
+              {
+                "name":"Aventuras",
+              "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558360/Categorias/zfkojcumgapvdlhsxzln.jpg"
+              },
+              {
+                "name":"Ciencia Ficcion",
+              "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558562/Categorias/jozik2dkbyz6mcrbvjqj.jpg"
+              },
+              {
+                "name":"Comedia",
+              "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558610/Categorias/qhapmtkb6gqocbrafgjc.jpg"
+              },
+              {
+                "name":"Drama",
+              "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558655/Categorias/erd2d2fgikyh6av8rrju.jpg"
+              },
+              {
+                "name":"Educativo",
+              "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558712/Categorias/fh4jj8sk5jy6cw4kwexi.jpg"
+              },
+              {
+                "name":"Fantasia",
+              "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558756/Categorias/sswupfd4auvnbsmo6wvg.jpg"
+              },
+              {
+                "name":"Historia",
+              "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558834/Categorias/qazmlonrfugra08r8x0l.jpg"
+              },
+              {
+                "name":"Ilustraciones",
+              "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558898/Categorias/tuqcicd3siel6linv0fy.jpg"
+              },
+              {
+                "name":"Romance",
+              "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558956/Categorias/sc8alysehtogdpq80gs1.jpg"
+              },
+              {
+                "name":"Suspenso",
+              "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664559033/Categorias/yozpn4h7rmndjim65tvs.jpg"
+              },
+              {
+                "name":"Terror",
+              "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664559090/Categorias/jstnopducsskxigyzi4k.jpg"
+              },
+              {
+                "name":"Sin Categoria",
+              "Image-url":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664559172/Categorias/i96kbhvacgunjbr9gfsg.jpg"
+              }
+          
+            ]
+          
+          
+
+         ])
+
+         res.json(categories)
     }
+    else res.json(categories)
+}catch(e){
+    res.redirect('/error')
+}
+
     
   }
 };
