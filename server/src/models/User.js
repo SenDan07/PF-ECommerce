@@ -21,9 +21,22 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    role: DataTypes.ENUM('ADMIN', 'USER'),
-    email: DataTypes.STRING,
+    role: {
+      type:DataTypes.ENUM('ADMIN', 'USER'),
+      allowNull: false
+    },
+    email: {
+      type:DataTypes.STRING,
+      allowNull: false
+    },
+    // favorites:{ 
+    //   type:DataTypes.ARRAY(DataTypes.STRING)
+    
+    // }
+     
+  
    },
+
    {
     timestamps: false,
   });
