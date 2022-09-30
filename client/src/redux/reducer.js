@@ -6,6 +6,7 @@ import {
   SEARCH_BOOK,
   GET_ALL_CATEGORIES,
   SEARCH_AUTHOR,
+  ORDER_PRIECE,
 } from "./types";
 
 const initialState = {
@@ -43,11 +44,16 @@ function rootReducer(state = initialState, action) {
       };
 
     case ORDER_NAME:
-      console.log("action.payload: ", action.payload);
       return {
         ...state,
         books: action.payload,
       };
+
+      case ORDER_PRIECE:
+        return {
+          ...state,
+          book: action.payload,
+        }
     /* 
     case ORDER_NAME:
       let orderAuxName = [...state.booksFilter];

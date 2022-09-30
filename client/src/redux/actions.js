@@ -2,6 +2,7 @@ import {
   GET_BOOKS,
   GET_DETAIL_BOOK,
   ORDER_NAME,
+  ORDER_PRIECE,
   RESET_DETAIL,
   SEARCH_BOOK,
   GET_ALL_CATEGORIES,
@@ -40,15 +41,23 @@ export function getAllCategories() {
 
 export function orderName(value) {
   return async (dispatch) => {
-    let res = await axios.get(
-      `http://localhost:3001/shop/books/order?type=${value}`
-    );
-    console.log("res: ", res.data);
+    let res = await axios.get(`http://localhost:3001/shop/books/order?type=${value}`);
     return dispatch({
       type: ORDER_NAME,
       payload: res.data,
     });
   };
+}
+
+
+export function orderPriece(value){
+  return async (dispatch) => {
+    let res = await axios.get(`http://localhost:3001/shop/books/orderprice?type=${value}`);
+    return dispatch({
+      type: ORDER_PRIECE,
+      payload: res.data
+    })
+  }
 }
 
 export function searchBook(book) {
