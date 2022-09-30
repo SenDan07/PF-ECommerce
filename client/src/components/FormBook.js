@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
 //import {useDispatch, useSelector} from "react-redux"
 //import { useHistory } from "react-router-dom"
@@ -36,7 +36,7 @@ export function validate(input) {
         }
     }
     if (!input.price) {
-        errors.precio = 'precio es requerido';
+        errors.price = 'precio es requerido';
     }
     else if (input.price) {
         if (input.price < 0 || !/^[0-9]+([.][0-9]+)?$/.test(input.price)) {
@@ -47,20 +47,11 @@ export function validate(input) {
     return errors;
 }
 
+
+
 export default function FormBook() {
     //const dispatch = useDispatch()
-    //const history = useHistory()
-
-    function handleClick(e) {
-        //history.goBack()
-        //console.log("regresar")
-
-    }
-
-    useEffect(() => {
-        boton = document.getElementById('enviar')
-        boton.disabled = true
-    }, [])
+ 
     //let loading=useSelector(state=>state.loading)
     //let countries=useSelector(state=>state.countries)
 
@@ -76,10 +67,38 @@ export default function FormBook() {
     })
     const [errors, setErrors] = React.useState({});
 
+    const uploadImage= async (e)=>{
+        
+     try{
+        const files=e.target.files
+        const data=new FormData()
+        data.append('file',files[0])
+        data.append('upload_preset',"BooksApi")
+        const res=await fetch("https://api.cloudinary.com/v1_1/dl7pi3qek/image/upload",
+            {
+            method:"POST",
+            body:data
+            }
+        )
+        const file=await res.json()
+        setInput({
+            ...input,
+            [e.target.name]:file.secure_url
+        })
+    }catch(e){
+        setErrors({
+            ...errors,
+            imageLinks:"Imagen no se pudo cargar"
+        })
+        }       
+    
+    }
+
     function handleSubmit(e) {
 
         e.preventDefault()
         // dispatch(createActivity(input))
+        console.log(input)
         setInput({
             title:'',//texto
             authors: [],//arreglo
@@ -121,6 +140,17 @@ export default function FormBook() {
         }
 
     }
+
+    useEffect(() => {
+        
+        boton = document.getElementById('enviar')
+        
+        boton.disabled = true
+        console.log("boton",boton)
+        boton.className="bg-[#94a3b8] p-5 m-2"
+        console.log("boton",boton)
+    }, [])
+
     return <div>
 
         <form onSubmit={(e) => handleSubmit(e)} class="bg-[#a3a3a3] text-white container mx-auto p-20 m-20 rounded-3xl w-1/2">
@@ -142,8 +172,8 @@ export default function FormBook() {
                 <input type='text' class={errors.price ? 'text-[#dc2626]' : 'text-[#075985]'} name='price' value={input.price} placeholder='Ingrese el precio' onChange={(e) => handleChange(e)} /><br />
                 {errors.price ? <p class="text-[#dc2626]">{errors.price}</p> : null}<br />
                 <label class="block">IMAGEN: </label>
-                <input type='file' name='imageLinks' value={input.imageLinks} placeholder='imagen' onChange={(e) => handleChange(e)} />
-                {errors.imageLinks ? <p class="text-[#dc2626]">{errors.imageLinks}</p> : null}<br />
+                <input type='file' name='imageLinks' placeholder='Sube la portada del libro' onChange={(e) => uploadImage(e)} />
+                {errors.imageLinks ? <p class="text-[#dc2626]">{errors.imageLinks}</p> : input.imageLinks}<br />
                 <label class="block">CATEGORIA:</label>
                 <select name="categories" value={input.categories} placeholder='categoria' onClick={handleSelect} class={errors.categories ? 'text-[#dc2626]' : 'text-[#075985]'} multiple>
                     <option value='CIENCIA FICCION'>CIENCIA FICCION</option>
@@ -167,13 +197,12 @@ export default function FormBook() {
             <fieldset class="text-center">
                 <legend>DESCRIPCION:</legend>
                 <textarea class="w-full text-[#075985]" name="description" value={input.description} onChange={(e) => handleChange(e)} />
-
                 <br />
                 {/*loading?<p>{loading}</p>:null*/}
                 <input type='submit' class={(Object.keys(errors).length) ? "bg-[#94a3b8] p-5 m-2 cursor-pointer" : "bg-[#9a3412] p-5 m-2 cursor-pointer"} id='enviar' disabled={(Object.keys(errors).length) ? true : false} value='Guardar' />
 
                 <Link to="/">
-                    <input type='button' class="bg-[#9a3412] p-5 cursor-pointer" onClick={handleClick} value='Regresar' />
+                    <input type='button' class="bg-[#9a3412] p-5 cursor-pointer" value='Regresar' />
                 </Link>
             </fieldset>
         </form>
