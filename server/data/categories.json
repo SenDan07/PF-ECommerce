@@ -24,7 +24,6 @@
     "Economía",
     "Empresa y Gestión",
     "Ficción",
-    "Narrativa",
     "Genéricos",
     "Humanidades",
     "Arqueología",
@@ -40,6 +39,18 @@
     "Literatura juvenil",
     "Narrativa",
     "Poesía",
-    "Literatura y Estudios Literarios"
+    "Literatura y Estudios Literarios",  
+
+    "Ciencia Ficción",
+    "Comedia",
+    "Drama",
+    "Misterio",
+    "Educativo cultural",
+    "Fantasía",
+    "Aventuras",
+    "Históricos",
+    "Ilustraciones",
+    "",
+    ""
   ]
 }

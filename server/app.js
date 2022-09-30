@@ -14,7 +14,7 @@ const app = express();
 
 const adminRoutes = require("./src/routes/adminRoutes");
 const shopRoutes = require("./src/routes/shopRoutes");
-
+const loginRoutes = require('../server/src/routes/loginRoutes');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
@@ -28,6 +28,8 @@ dotenv.config();
 
 app.use("/admin", adminRoutes);
 app.use("/shop", shopRoutes);
+app.use('/users', loginRoutes)
+
 
 app.use(errorHandler);
 
