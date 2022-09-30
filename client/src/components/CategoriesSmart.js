@@ -9,6 +9,7 @@ export default function CategoriesBooks() {
     useEffect(() => { dispatch(getAllCategories()) }, [dispatch])
 
     const category = useSelector((state => state.categories))
+    console.log("category: ", category)
     return (
         <div className="bg-bgHome">
             <div className="mb-20 text-8xl ">
@@ -16,13 +17,14 @@ export default function CategoriesBooks() {
             </div>
             <div className="flex flex-wrap justify-center">
 
-                {category?.map(e => {
-                    return (
-                        <CategoriesDumb
-                            name={e.name} 
-                            image={e.image}/>
-                    )
-                })}
+                {
+                    category && category?.map(e => {
+                        return (
+                            <CategoriesDumb
+                                name={e.name}
+                                imageLinks={e.imageLinks} />
+                        )
+                    })}
             </div>
         </div>
     )
