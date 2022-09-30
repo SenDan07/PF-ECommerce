@@ -24,7 +24,7 @@ export default function BookList() {
               <Link to={`/${book.id}`} key={book.id}>
                 <Book
                   name={book.title}
-                  image={book.bookImage}
+                  image={book.imageLinks}
                   price={book.price}
                 />
               </Link>
