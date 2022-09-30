@@ -1,8 +1,11 @@
 const { Router } = require("express");
 
 const shopControllers = require("../controllers/shopControllers");
+const cartRoutes = require("./cartRoutes");
 
 const router = Router();
+
+router.use("/cart", cartRoutes);
 
 router.get("/books", shopControllers.fetchAllBooks);
 

@@ -3,6 +3,6 @@ const cartController = require('../controllers/cartController');
 
 const router = Router();
 
-router.get("/cart/:idCustomer", cartController);
+router.get("/:idCustomer", cartController.getCartByCustomer);
 
 module.exports = router
