@@ -29,9 +29,11 @@ export const getDetailBook = (id) => async (dispatch) => {
 
 export const resetDetail = () => ({ type: RESET_DETAIL });
 
+
 export function getAllCategories() {
   return async (dispatch) => {
     let res = await axios.get(`http://localhost:3001/shop/categories`);
+    console.log("res.data: ", res.data)
     return dispatch({
       type: GET_ALL_CATEGORIES,
       payload: res.data,
