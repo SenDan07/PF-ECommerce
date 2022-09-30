@@ -69,7 +69,7 @@ const loginController = {
 		})
 	},
 	deleteUser: () => {
-		
+
 	}
 }
 

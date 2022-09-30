@@ -1,9 +1,11 @@
-const Sequelize = require('Sequelize');
+const {Sequelize, Op} = require('Sequelize');
 const fs = require('fs');
 const path = require('path');
-const sequelize = new Sequelize('ecommerce', 'postgres', '1234', {
-  host: 'localhost',
-  dialect: 'postgres'
+const { dbUser, dbPassword, dbHost, dbName } = require('../config/db-config');
+
+const sequelize = new Sequelize(`postgres://${dbUser}:${dbPassword}@${dbHost}/${dbName}`, {
+  logging: false, // set to console.log to see the raw SQL queries
+  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
 // verificacion de la conexion 
 sequelize.authenticate()
@@ -46,4 +48,5 @@ const modelos = sequelize.models;
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
+  Op
 };
