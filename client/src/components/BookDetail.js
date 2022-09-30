@@ -7,7 +7,7 @@ import { useEffect } from "react";
 const BookDetail = () => {
   const dispatch = useDispatch();
   const bookId = useParams().id * 1;
-  console.log(bookId);
+
   useEffect(() => {
     dispatch(getDetailBook(bookId));
 
@@ -18,61 +18,66 @@ const BookDetail = () => {
 
   const bookDetail = useSelector((state) => state.detail);
 
-  //   const { name, description, released, rating, platforms, image, genres } =
-  //     bookDetail[0];
-  //   console.log(bookDetail);
   return (
-    <div>
-      <div>
+    <div className="bg-bgHome min-h-screen">
+      <div className="pt-5">
         <Link to="/">
-          <h3>&#129044; Regresar</h3>
+          <h3 className="border-1 border-rose-500 rounded w-max mx-auto px-3 py-2 bg-button text-white">
+            &#129044; Regresar
+          </h3>
         </Link>
       </div>
-      <div class="w-2/4 m-auto mt-20">
+      <div class="w-[60%] m-auto mt-20">
         <div class="flex">
           <div>
             <div>
-              <h3 class="text-center">
-                <span>Precio: </span>${bookDetail.price}
+              <h3 class="text-center text-3xl mb-1 font-medium">
+                <span className="text-white font-normal">Precio: </span>$
+                {Number(bookDetail.price).toFixed(2)}
               </h3>
             </div>
             <div>
               <img
-                src={bookDetail["bookImage"]}
+                src={bookDetail["imageLinks"]}
                 alt={`img-${bookDetail["title"]}`}
-                class="h-96 w-80 rounded"
+                class="h-96 w-96 "
               />
             </div>
             <div>
-              <h4 class="text-center">Añadir al carrito</h4>
+              <h4 class="text-center text-white w- bg-[#332727] w-11/12 m-auto mt-2 rounded py-1">
+                AGREGAR AL CARRITO
+              </h4>
             </div>
           </div>
-          <div class="w-full">
-            <div class="m-auto">
-              <h2 class="text-center">{bookDetail.title}</h2>
+          <div className="w-full">
+            <div className="m-auto">
+              <h2 className="text-center text-4xl font-bold">
+                {bookDetail.title}
+              </h2>
             </div>
-            <div class="flex justify-center border-2 border-indigo-500/100 h-full">
-              <div>
-                <h3>AUTOR</h3>
-                <h3>EDITORIAL</h3>
-                <h3>CATEGORÍAS</h3>
-                <h3>EDICIÓN</h3>
-                <h3>TIPO</h3>
-                <h3>ISBN</h3>
+            <div className="flex justify-center h-full mt-16 ml-5">
+              <div className="text-white text-2xl">
+                <h3 className="mb-7">AUTOR\ES</h3>
+                <h3 className="mb-7">EDITORIAL</h3>
+                <h3 className="mb-7">CATEGORÍAS</h3>
+                <h3 className="mb-7">ISBN</h3>
               </div>
-              <div>
-                <h3>Lorem Ipsum</h3>
-                <h3>Lorem Ipsum</h3>
-                <h3>Lorem Ipsum, Lorem Ipsum...</h3>
-                <h3>Lorem Ipsum</h3>
-                <h3>Lorem Ipsum</h3>
-                <h3>Lorem Ipsum</h3>
+              <div className="text-2xl font-medium ml-8">
+                <h3 className="mb-7 border-1 border-indigo-500/100">
+                  {Array(bookDetail.authors).join(", ")}
+                </h3>
+                <h3 className="mb-7">{bookDetail.publisher}</h3>
+                <h3 className="mb-7">
+                  {Array(bookDetail.categories).join(", ")}
+                </h3>
+                <h3 className="mb-7">{bookDetail.ISBN}</h3>
               </div>
             </div>
           </div>
         </div>
-        <div class="mt-10">
-          <p>{bookDetail.description}</p>
+        <div className="mt-8">
+          <h3 className="text-white text-2xl">Descripción</h3>
+          <p className="font-medium text-xl mt-5">{bookDetail.description}</p>
         </div>
       </div>
     </div>
