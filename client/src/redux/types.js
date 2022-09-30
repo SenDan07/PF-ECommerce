@@ -3,3 +3,5 @@ export const GET_DETAIL_BOOK = "GET_DETAIL_BOOK";
 export const RESET_DETAIL = "RESET_DETAIL";
 export const ORDER_NAME = "ORDER_NAME";
 export const SEARCH_BOOK = "SEARCH_BOOK";
+export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES";
+export const SEARCH_AUTHOR = "SEARCH_AUTHOR";
