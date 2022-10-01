@@ -7,6 +7,7 @@ import {
   GET_ALL_CATEGORIES,
   SEARCH_AUTHOR,
   ORDER_PRIECE,
+  FILTER_BOOKS
 } from "./types";
 
 const initialState = {
@@ -49,44 +50,57 @@ function rootReducer(state = initialState, action) {
         books: action.payload,
       };
 
-      case ORDER_PRIECE:
-        return {
-          ...state,
-          book: action.payload,
-        }
-    /* 
-    case ORDER_NAME:
-      let orderAuxName = [...state.booksFilter];
-      let orderBookName = orderAuxName.sort((a, b) => {
-        if (a.title <= b.name) {
-          return action.payload === "asc" ? -1 : 1;
-        }
-
-        if (a.title > b.title) {
-          return action.payload === "des" ? -1 : 1;
-        }
-      });
+    case ORDER_PRIECE:
+      console.log("action.payload: ", action.payload)
       return {
         ...state,
-        booksFilter: orderBookName,
-      };
+        books: action.payload.items,
+      }
 
-      case SEARCH_BOOK:
-        let searchBook = [...state.books]
-        searchBook = searchBook.filter(e => e.title.toLowerCase().includes(action.payload.toLowerCase()))
-        if(searchBook.length === 0){
-          searchBook = [...state.books]
-          alert("Libro no encontrado")
-        }
-        return {
-          ...state,
-          booksFilter: searchBook
-        }
+    /*     case FILTER_BOOKS:
+          return {
+            ...state,
+            books: action.payload
+          } */
 
-    */
+
     default:
       return state;
   }
 }
 
 export default rootReducer;
+
+
+
+
+/*
+case ORDER_NAME:
+  let orderAuxName = [...state.booksFilter];
+  let orderBookName = orderAuxName.sort((a, b) => {
+    if (a.title <= b.name) {
+      return action.payload === "asc" ? -1 : 1;
+    }
+
+    if (a.title > b.title) {
+      return action.payload === "des" ? -1 : 1;
+    }
+  });
+  return {
+    ...state,
+    booksFilter: orderBookName,
+  };
+
+  case SEARCH_BOOK:
+    let searchBook = [...state.books]
+    searchBook = searchBook.filter(e => e.title.toLowerCase().includes(action.payload.toLowerCase()))
+    if(searchBook.length === 0){
+      searchBook = [...state.books]
+      alert("Libro no encontrado")
+    }
+    return {
+      ...state,
+      booksFilter: searchBook
+    }
+
+*/
