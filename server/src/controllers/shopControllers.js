@@ -13,21 +13,16 @@ const allBooks = async () => {
         attributes: []
       }
     }
-  })
-  return books
+  });
+  return books;
 }
 
 const shopControllers = {
 
-
   fetchAllBooks: async (req, res, next) => {
-
     try {
       const books = await allBooks();
-
-      return res.status(200).json(books)
-
- develop
+      return res.status(200).json(books);
     } catch (err) {
       const error = new HttpError(
         `No hay libros en el inventario ${console.log(err)}`,
@@ -43,8 +38,12 @@ const shopControllers = {
       const authorsFound = libros.items.filter(el => el.authors.map(el => el.toUpperCase()).includes(author.toUpperCase()));
       if (authorsFound.length < 1) throw "El author no existe";
       return res.status(200).json(authorsFound);
-    } catch (error) {
-      return res.status(400).send(error);
+    } catch (err) {
+      const error = new HttpError(
+        `No hay libros en el inventario ${console.log(err)}`,
+        404
+      );
+      return next(error);
     }
   },
   orderBooksByAlphabetically: (req, res) => {
@@ -61,62 +60,61 @@ const shopControllers = {
           );
       if (!orderByName.length) throw "No existen libros";
       return res.send(orderByName);
-    } catch (error) {
-      return res.status(400).send(error);
+    } catch (err) {
+      const error = new HttpError(
+        `No hay libros en el inventario ${console.log(err)}`,
+        404
+      );
+      return next(error);
     }
   },
   getBookById: async(req, res) => {
     const { idBook } = req.params;
     try {
       if (!idBook) throw "Debe enviar el id";
-
       const book = await Books.findOne({
         where: {
-            id: idBook
+          id: idBook
         },
         include: {
-            model: Categories,
-            attributes: ["name", "imageLinks"],
-            through: {
-                attributes: []
-            }
+          model: Categories,
+          attributes: ["name", "imageLinks"],
+          through: {
+            attributes: []
+          }
         }
-    })
-
+      });
       if (!book) throw "El libro no existe";
       res.status(200).json(book);
-    } catch (error) {
-      res.status(400).send(error);
+    } catch (err) {
+      const error = new HttpError(
+        `No hay libros en el inventario ${console.log(err)}`,
+        404
+      );
+      return next(error);
     }
   },
   orderBooksPrice: async (req, res) => {
     try {
       const { type } = req.query;
       if (!type) throw "Debe enviar la tipo de ordenamiento";
-
       const books = await allBooks();
-      if (type === "asc") books.sort((a, b) => a.price - b.price)
-
+      if (type === "asc") books.sort((a, b) => a.price - b.price);
       else if (type === "desc") books.sort((a, b) => b.price - a.price);
       return res.status(200).json(books);
-develop
-    } catch (error) {
-      return res.status(400).send(error);
+    } catch (err) {
+      const error = new HttpError(
+        `No hay libros en el inventario ${console.log(err)}`,
+        404
+      );
+      return next(error);
     }
   },
   fetchAllCategories: async (req, res) => {
- develop
-
     try {
-      let categories = await Categories.findAll()
-
+      const categories = await Categories.findAll();
       if (!categories.length) {
-
-        
         categories = await Categories.bulkCreate([
-
-
- develop
           {
             "name": "Aventuras",
             "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558360/Categorias/zfkojcumgapvdlhsxzln.jpg"
@@ -165,18 +163,13 @@ develop
             "name": "Sin Categoria",
             "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664559172/Categorias/i96kbhvacgunjbr9gfsg.jpg"
           }
-
         ])
-
-        res.json(categories)
+        res.json(categories);
       }
-      else res.json(categories)
- develop
+      else res.json(categories);
     } catch (e) {
-      res.redirect('/error')
+      res.redirect('/error');
     }
-
- develop
   }
 };
 

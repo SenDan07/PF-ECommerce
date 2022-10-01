@@ -14,18 +14,9 @@ const adminControllers = {
       price,
       categories } = req.body
     try {
-      const books = await Books.findAll({
-        where: {
-          title,
-
-        }
-      })
-
-
-      if (books.length > 0) {
-        res.status(200).json('El libro existe')
-      } else {
-
+      const books = await Books.findAll({where: {title}})
+      if (books.length > 0) res.status(200).json('El libro existe')
+      else {
         let createBook = await Books.create({
           title,
           authors,
@@ -37,15 +28,9 @@ const adminControllers = {
         });
         let typeofBooks = await Categories.findAll({ where: { name:categories } });
         //console.log(typeofBooks.JSON())
-        createBook.addCategories(typeofBooks);
-        
-        return res.send("El libro fue creado");
-        
+        createBook.addCategories(typeofBooks);       
+        return res.send("El libro fue creado");   
       }
-
-    
-
-     
     } catch (err) {
       const error = new HttpError(
         `No se pudo crear el libro, intente nuevamente más tarde git ${console.log(
