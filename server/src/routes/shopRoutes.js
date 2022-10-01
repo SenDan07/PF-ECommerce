@@ -9,7 +9,7 @@ router.use("/cart", cartRoutes);
 
 router.get("/books", shopControllers.fetchAllBooks);
 
-router.get("/books", shopControllers.filterBooksByAuthor);
+router.get("/books/filter", shopControllers.joinFilterByTitleAndAuthor);
 
 router.get("/books/orderprice", shopControllers.orderBooksPrice);
 
