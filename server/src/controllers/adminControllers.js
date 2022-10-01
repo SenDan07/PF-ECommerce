@@ -27,7 +27,6 @@ const adminControllers = {
       } else {
 
         let createBook = await Books.create({
-
           title,
           authors,
           publisher,

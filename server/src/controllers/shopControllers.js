@@ -1,26 +1,33 @@
 const HttpError = require("../errors/http-error");
 const libros = require("../../data/dataBook.json");
 const dataCategory = require("../../data/categories.json");
-const { Categories } = require("../db");
+
+const { Categories, Books } = require("../db");
+
+const allBooks = async () => {
+  const books = await Books.findAll({
+    include: {
+      model: Categories,
+      attributes: ["name", "imageLinks"],
+      through: {
+        attributes: []
+      }
+    }
+  })
+  return books
+}
 
 const shopControllers = {
-  fetchAllBooks: (req, res, next) => {
+
+
+  fetchAllBooks: async (req, res, next) => {
+
     try {
-      const itemList = libros.items.map((e) => {
-        return {
-          id: e.id,
-          title: e.title,
-          authors: e.authors.join(", "),
-          publisher: e.publisher,
-          ISBN: e.ISBN,
-          categories: e.categories,
-          imageLinks: e.imageLinks,
-          description: e.description,
-          price: e.price,
-        };
-      });
-      const allBooks = [...itemList];
-      res.status(200).send(allBooks);
+      const books = await allBooks();
+
+      return res.status(200).json(books)
+
+ develop
     } catch (err) {
       const error = new HttpError(
         `No hay libros en el inventario ${console.log(err)}`,
@@ -58,45 +65,58 @@ const shopControllers = {
       return res.status(400).send(error);
     }
   },
-  getBookById: (req, res) => {
+  getBookById: async(req, res) => {
     const { idBook } = req.params;
     try {
       if (!idBook) throw "Debe enviar el id";
-      const book = libros.items?.find(({ id }) => id === Number(idBook));
+
+      const book = await Books.findOne({
+        where: {
+            id: idBook
+        },
+        include: {
+            model: Categories,
+            attributes: ["name", "imageLinks"],
+            through: {
+                attributes: []
+            }
+        }
+    })
+
       if (!book) throw "El libro no existe";
-      res.send(book);
+      res.status(200).json(book);
     } catch (error) {
       res.status(400).send(error);
     }
   },
-  orderBooksPrice: (req, res) => {
+  orderBooksPrice: async (req, res) => {
     try {
       const { type } = req.query;
       if (!type) throw "Debe enviar la tipo de ordenamiento";
-      if (type === "asc") libros.items.sort((a, b) => a.price - b.price);
-      else if (type === "desc") libros.items.sort((a, b) => b.price - a.price);
-      return res.status(200).json(libros);
+
+      const books = await allBooks();
+      if (type === "asc") books.sort((a, b) => a.price - b.price)
+
+      else if (type === "desc") books.sort((a, b) => b.price - a.price);
+      return res.status(200).json(books);
+develop
     } catch (error) {
       return res.status(400).send(error);
     }
   },
   fetchAllCategories: async (req, res) => {
-    //   try {
-
-    //      await dataCategory.categories.forEach((el) => Categories.findOrCreate({ where: { name: el.name } }));
-    //  // console.log(res)
-    //     return Categories.findAll()
-    //   } catch (error) {
-    //     return res.status(400).send(error)
-    //   }
-
+ develop
 
     try {
       let categories = await Categories.findAll()
 
       if (!categories.length) {
-        //buscar api
+
+        
         categories = await Categories.bulkCreate([
+
+
+ develop
           {
             "name": "Aventuras",
             "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558360/Categorias/zfkojcumgapvdlhsxzln.jpg"
@@ -147,12 +167,16 @@ const shopControllers = {
           }
 
         ])
+
+        res.json(categories)
       }
-      return res.json(categories)
+      else res.json(categories)
+ develop
     } catch (e) {
       res.redirect('/error')
     }
 
+ develop
   }
 };
 
