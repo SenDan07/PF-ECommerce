@@ -1,34 +1,28 @@
 const HttpError = require("../errors/http-error");
 const libros = require("../../data/dataBook.json");
-const dataCategory=require("../../data/categories.json");
-const {Categories} = require("../db");
+const dataCategory = require("../../data/categories.json");
 
+const { Categories, Books } = require("../db");
 
+const allBooks = async () => {
+  const books = await Books.findAll({
+    include: {
+      model: Categories,
+      attributes: ["name", "imageLinks"],
+      through: {
+        attributes: []
+      }
+    }
+  });
+  return books;
+}
 
 const shopControllers = {
-   
- 
 
-  fetchAllBooks: (req, res, next) => {
-   
-   
-
+  fetchAllBooks: async (req, res, next) => {
     try {
-      const itemList = libros.items.map((e) => {
-        return {
-          id: e.id,
-          title: e.title,
-          authors: e.authors.join(", "),
-          publisher: e.publisher,
-          ISBN: e.ISBN,
-          categories: e.categories,
-          imageLinks : e.imageLinks,
-          description: e.description,
-          price: e.price,
-        };
-      });
-      const allBooks = [...itemList];
-      res.status(200).send(allBooks);
+      const books = await allBooks();
+      return res.status(200).json(books);
     } catch (err) {
       const error = new HttpError(
         `No hay libros en el inventario ${console.log(err)}`,
@@ -41,11 +35,15 @@ const shopControllers = {
     try {
       const { author } = req.query;
       if (!author) throw "Debe enviar un author";
-      const authorsFound = libros.items.filter(el => el.authors.map(el=> el.toUpperCase()).includes(author.toUpperCase()));
+      const authorsFound = libros.items.filter(el => el.authors.map(el => el.toUpperCase()).includes(author.toUpperCase()));
       if (authorsFound.length < 1) throw "El author no existe";
       return res.status(200).json(authorsFound);
-    } catch (error) {
-      return res.status(400).send(error);
+    } catch (err) {
+      const error = new HttpError(
+        `No hay libros en el inventario ${console.log(err)}`,
+        404
+      );
+      return next(error);
     }
   },
   orderBooksByAlphabetically: (req, res) => {
@@ -55,37 +53,61 @@ const shopControllers = {
       const orderByName =
         type === "asc"
           ? libros.items?.sort((prev, current) =>
-              prev.title.localeCompare(current.title)
-            )
+            prev.title.localeCompare(current.title)
+          )
           : libros.items?.sort((prev, current) =>
-              current.title.localeCompare(prev.title)
-            );
+            current.title.localeCompare(prev.title)
+          );
       if (!orderByName.length) throw "No existen libros";
       return res.send(orderByName);
-    } catch (error) {
-      return res.status(400).send(error);
+    } catch (err) {
+      const error = new HttpError(
+        `No hay libros en el inventario ${console.log(err)}`,
+        404
+      );
+      return next(error);
     }
   },
-  getBookById: (req, res) => {
+  getBookById: async(req, res) => {
     const { idBook } = req.params;
     try {
       if (!idBook) throw "Debe enviar el id";
-      const book = libros.items?.find(({ id }) => id === Number(idBook));
+      const book = await Books.findOne({
+        where: {
+          id: idBook
+        },
+        include: {
+          model: Categories,
+          attributes: ["name", "imageLinks"],
+          through: {
+            attributes: []
+          }
+        }
+      });
       if (!book) throw "El libro no existe";
-      res.send(book);
-    } catch (error) {
-      res.status(400).send(error);
+      res.status(200).json(book);
+    } catch (err) {
+      const error = new HttpError(
+        `No hay libros en el inventario ${console.log(err)}`,
+        404
+      );
+      return next(error);
     }
   },
-  orderBooksPrice: (req, res) => {
+  orderBooksPrice: async (req, res) => {
     try {
       const { type } = req.query;
-      if(!type) throw "Debe enviar la tipo de ordenamiento";
-      if (type === "asc") libros.items.sort((a, b) => a.price - b.price);
-      else if (type === "desc") libros.items.sort((a, b) => b.price - a.price);
-      return res.status(200).json(libros);
-    } catch (error) {
-      return res.status(400).send(error);
+      if (!type) throw "Debe enviar la tipo de ordenamiento";
+      const books = await allBooks();
+      if (type === "asc") books.sort((a, b) => a.price - b.price);
+      else if (type === "desc") books.sort((a, b) => b.price - a.price);
+      return res.status(200).json(books);
+    } catch (err) {
+      const error = new HttpError(
+        `No hay libros en el inventario ${console.log(err)}`,
+        404
+      );
+      return next(error);
     }
   },
   fetchAllCategories: async(req, res) => {
