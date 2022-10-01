@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function CategoryBook({ name, image }) {
+export default function CategoryBook({ name, imageLinks }) {
   return (
     <div className="m-5 ">
       <Link to={`/categories/${name}`} >
-        <img src={image} alt="IMAGE NOT FOUND" />
+        <img src={imageLinks} alt="IMAGE NOT FOUND" />
         <h2 className="flex justify-center text-xl">{name}</h2>
       </Link>
     </div>

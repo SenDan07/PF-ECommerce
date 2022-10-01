@@ -1,6 +1,7 @@
 const HttpError = require("../errors/http-error");
 const libros = require("../../data/dataBook.json");
 const dataCategory = require("../../data/categories.json");
+
 const { Categories, Books } = require("../db");
 
 const allBooks = async () => {
@@ -26,6 +27,7 @@ const shopControllers = {
 
       return res.status(200).json(books)
 
+ develop
     } catch (err) {
       const error = new HttpError(
         `No hay libros en el inventario ${console.log(err)}`,
@@ -91,24 +93,30 @@ const shopControllers = {
     try {
       const { type } = req.query;
       if (!type) throw "Debe enviar la tipo de ordenamiento";
+
       const books = await allBooks();
       if (type === "asc") books.sort((a, b) => a.price - b.price)
 
       else if (type === "desc") books.sort((a, b) => b.price - a.price);
       return res.status(200).json(books);
+develop
     } catch (error) {
       return res.status(400).send(error);
     }
   },
   fetchAllCategories: async (req, res) => {
+ develop
 
     try {
       let categories = await Categories.findAll()
 
       if (!categories.length) {
+
         
         categories = await Categories.bulkCreate([
 
+
+ develop
           {
             "name": "Aventuras",
             "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558360/Categorias/zfkojcumgapvdlhsxzln.jpg"
@@ -157,16 +165,18 @@ const shopControllers = {
             "name": "Sin Categoria",
             "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664559172/Categorias/i96kbhvacgunjbr9gfsg.jpg"
           }
+
         ])
 
         res.json(categories)
       }
       else res.json(categories)
+ develop
     } catch (e) {
       res.redirect('/error')
     }
 
-
+ develop
   }
 };
 
