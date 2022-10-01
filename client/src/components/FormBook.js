@@ -9,9 +9,10 @@ export function validate(input) {
 
     let errors = {};
     let expLetras = /^[A-Za-z]+[A-Za-z\s]*[A-Za-z]$/
+    let expLetras_Num=/^[A-Za-z0-9]+[A-Za-z0-9\s]*[A-Za-z0-9]$/
     if (!input.title) {
         errors.title = 'Titulo es requerido';
-    } else if (!expLetras.test(input.title)) {
+    } else if (!expLetras_Num.test(input.title)) {
         errors.title = 'Titulo es invalido'
     }
     if (!input.authors) {
@@ -19,10 +20,10 @@ export function validate(input) {
     } else if (!expLetras.test(input.authors)) {
         errors.authors = 'Autor es invalido'
     }
-    if (input.publisher) {
-        if (!expLetras.test(input.publisher)) {
+    if (!input.publisher) {
+        errors.publisher = 'Editorial es requerido';
+    }else if (!expLetras_Num.test(input.publisher)) {
             errors.publisher = 'Editorial es invalida'
-        }
     }
      if (input.ISBN) {
         if (/\D/.test(input.ISBN)) {
