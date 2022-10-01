@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
-//import {useDispatch, useSelector} from "react-redux"
-//import { useHistory } from "react-router-dom"
-//import { createActivity,setStatus } from "../Redux/actions";
-//import  '../Styles/FormActivity.css'
+import {useDispatch, useSelector} from "react-redux"
+import { getAllCategories, postCreateBook, setStatus } from "../redux/actions"
+
 
 let boton
 export function validate(input) {
@@ -47,17 +46,14 @@ export function validate(input) {
     return errors;
 }
 
-
-
 export default function FormBook() {
-    //const dispatch = useDispatch()
+    const dispatch = useDispatch()
  
     //let loading=useSelector(state=>state.loading)
-    //let countries=useSelector(state=>state.countries)
-
+   
     const [input, setInput] = React.useState({
         title:'',//texto
-        authors: [],//arreglo
+        authors:'',//arreglo
         publisher: '',//texto
         ISBN:'',//integer
         categories: [],//string
@@ -97,16 +93,16 @@ export default function FormBook() {
     function handleSubmit(e) {
 
         e.preventDefault()
-        // dispatch(createActivity(input))
+        dispatch(postCreateBook(input))
         console.log(input)
         setInput({
-            title:'',//texto
-            authors: [],//arreglo
-            publisher: '',//texto
-            ISBN:'',//integer
-            categories: [],//string
-            imageLinks: '',//string
-            description:'',//string
+            title:'',
+            authors: '',
+            publisher: '',
+            ISBN:'',
+            categories: [],
+            imageLinks: '',
+            description:'',
             price: 0,
         })
         e.target.title.focus()
@@ -144,13 +140,12 @@ export default function FormBook() {
     useEffect(() => {
         
         boton = document.getElementById('enviar')
-        
-        boton.disabled = true
-        console.log("boton",boton)
-        boton.className="bg-[#94a3b8] p-5 m-2"
-        console.log("boton",boton)
-    }, [])
 
+        dispatch(getAllCategories())
+        boton.disabled = true
+        boton.className="bg-[#94a3b8] p-5 m-2"
+    }, [])
+    let categories=useSelector(state=>state.categories)
     return <div>
 
         <form onSubmit={(e) => handleSubmit(e)} class="bg-[#a3a3a3] text-white container mx-auto p-20 m-20 rounded-3xl w-1/2">
@@ -176,18 +171,9 @@ export default function FormBook() {
                 {errors.imageLinks ? <p class="text-[#dc2626]">{errors.imageLinks}</p> : input.imageLinks}<br />
                 <label class="block">CATEGORIA:</label>
                 <select name="categories" value={input.categories} placeholder='categoria' onClick={handleSelect} class={errors.categories ? 'text-[#dc2626]' : 'text-[#075985]'} multiple>
-                    <option value='CIENCIA FICCION'>CIENCIA FICCION</option>
-                    <option value='COMEDIA'>COMEDIA</option>
-                    <option value='DRAMA'>DRAMA</option>
-                    <option value='EDUCATIVO/CULTURAL'>EDUCATIVO/CULTURAL</option>
-                    <option value='TERROR'>TERROR</option>
-                    <option value='MISTERIO'>MISTERIO</option>
-                    <option value='FANTASIA'>FANTASIA</option>
-                    <option value='AVENTURAS'>AVENTURAS</option>
-                    <option value='HISTORICOS'>HISTORICOS</option>
-                    <option value='ILUSTRACIONES'>ILUSTRACIONES</option>
-                    <option value='ROMANCE'>ROMANCE</option>
-                    <option value='SIN CATEGORIA'>SIN CATEGORIA</option>
+                    {categories.map(category=>{
+                         return <option value={category.name}>{category.name}</option>
+                    })}
                 </select>
                 {errors.categories ? <p class="text-[#dc2626]">{errors.categories}</p> : null}<br />
                 {input.categories.map(cat => {

@@ -1,6 +1,7 @@
 import {
   GET_BOOKS,
   GET_DETAIL_BOOK,
+  POST_CREATE_BOOK,
   RESET_DETAIL,
   ORDER_NAME,
   SEARCH_BOOK,
@@ -31,6 +32,11 @@ function rootReducer(state = initialState, action) {
         detail: action.payload,
       };
 
+      case POST_CREATE_BOOK:
+        return {
+          ...state
+        };
+
     case RESET_DETAIL:
       return {
         ...state,
@@ -38,6 +44,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_ALL_CATEGORIES:
+      
       return {
         ...state,
         categories: action.payload,

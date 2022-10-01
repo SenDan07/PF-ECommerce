@@ -110,66 +110,88 @@ const shopControllers = {
       return next(error);
     }
   },
-  fetchAllCategories: async (req, res) => {
-    try {
-      const categories = await Categories.findAll();
-      if (!categories.length) {
-        categories = await Categories.bulkCreate([
-          {
-            "name": "Aventuras",
-            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558360/Categorias/zfkojcumgapvdlhsxzln.jpg"
-          },
-          {
-            "name": "Ciencia Ficcion",
-            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558562/Categorias/jozik2dkbyz6mcrbvjqj.jpg"
-          },
-          {
-            "name": "Comedia",
-            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558610/Categorias/qhapmtkb6gqocbrafgjc.jpg"
-          },
-          {
-            "name": "Drama",
-            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558655/Categorias/erd2d2fgikyh6av8rrju.jpg"
-          },
-          {
-            "name": "Educativo",
-            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558712/Categorias/fh4jj8sk5jy6cw4kwexi.jpg"
-          },
-          {
-            "name": "Fantasia",
-            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558756/Categorias/sswupfd4auvnbsmo6wvg.jpg"
-          },
-          {
-            "name": "Historia",
-            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558834/Categorias/qazmlonrfugra08r8x0l.jpg"
-          },
-          {
-            "name": "Ilustraciones",
-            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558898/Categorias/tuqcicd3siel6linv0fy.jpg"
-          },
-          {
-            "name": "Romance",
-            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558956/Categorias/sc8alysehtogdpq80gs1.jpg"
-          },
-          {
-            "name": "Suspenso",
-            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664559033/Categorias/yozpn4h7rmndjim65tvs.jpg"
-          },
-          {
-            "name": "Terror",
-            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664559090/Categorias/jstnopducsskxigyzi4k.jpg"
-          },
-          {
-            "name": "Sin Categoria",
-            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664559172/Categorias/i96kbhvacgunjbr9gfsg.jpg"
-          }
-        ])
-        res.json(categories);
-      }
-      else res.json(categories);
-    } catch (e) {
-      res.redirect('/error');
-    }
+  fetchAllCategories: async(req, res) => {
+  //   try {
+  
+  //      await dataCategory.categories.forEach((el) => Categories.findOrCreate({ where: { name: el.name } }));
+  //  // console.log(res)
+  //     return Categories.findAll()
+  //   } catch (error) {
+  //     return res.status(400).send(error)
+  //   }
+  
+    
+  try{
+    let categories=await Categories.findAll()
+    
+    if(!categories.length){
+         //buscar api
+         categories= await Categories.bulkCreate([
+          
+             
+              {
+                "name":"Aventuras",
+              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558360/Categorias/zfkojcumgapvdlhsxzln.jpg"
+              },
+              {
+                "name":"Ciencia Ficcion",
+              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558562/Categorias/jozik2dkbyz6mcrbvjqj.jpg"
+              },
+              {
+                "name":"Comedia",
+              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558610/Categorias/qhapmtkb6gqocbrafgjc.jpg"
+              },
+              {
+                "name":"Drama",
+              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558655/Categorias/erd2d2fgikyh6av8rrju.jpg"
+              },
+              {
+                "name":"Educativo",
+              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558712/Categorias/fh4jj8sk5jy6cw4kwexi.jpg"
+              },
+              {
+                "name":"Fantasia",
+              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558756/Categorias/sswupfd4auvnbsmo6wvg.jpg"
+              },
+              {
+                "name":"Historia",
+              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558834/Categorias/qazmlonrfugra08r8x0l.jpg"
+              },
+              {
+                "name":"Ilustraciones",
+              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558898/Categorias/tuqcicd3siel6linv0fy.jpg"
+              },
+              {
+                "name":"Romance",
+              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558956/Categorias/sc8alysehtogdpq80gs1.jpg"
+              },
+              {
+                "name":"Suspenso",
+              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664559033/Categorias/yozpn4h7rmndjim65tvs.jpg"
+              },
+              {
+                "name":"Terror",
+              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664559090/Categorias/jstnopducsskxigyzi4k.jpg"
+              },
+              {
+                "name":"Sin Categoria",
+              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664559172/Categorias/i96kbhvacgunjbr9gfsg.jpg"
+              }
+          
+            
+          
+          
+
+         ])
+
+        }
+        return res.json(categories)
+    
+}catch(e){
+    res.redirect('/error')
+}
+
+    
   }
 };
 
