@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
-//import {useDispatch, useSelector} from "react-redux"
-//import { useHistory } from "react-router-dom"
-//import { createActivity,setStatus } from "../Redux/actions";
-//import  '../Styles/FormActivity.css'
+import {useDispatch, useSelector} from "react-redux"
+import { getAllCategories, postCreateBook, setStatus } from "../redux/actions"
+
 
 let boton
 export function validate(input) {
 
     let errors = {};
     let expLetras = /^[A-Za-z]+[A-Za-z\s]*[A-Za-z]$/
+    let expLetras_Num=/^[A-Za-z0-9]+[A-Za-z0-9\s]*[A-Za-z0-9]$/
     if (!input.title) {
         errors.title = 'Titulo es requerido';
-    } else if (!expLetras.test(input.title)) {
+    } else if (!expLetras_Num.test(input.title)) {
         errors.title = 'Titulo es invalido'
     }
     if (!input.authors) {
@@ -20,10 +20,10 @@ export function validate(input) {
     } else if (!expLetras.test(input.authors)) {
         errors.authors = 'Autor es invalido'
     }
-    if (input.publisher) {
-        if (!expLetras.test(input.publisher)) {
+    if (!input.publisher) {
+        errors.publisher = 'Editorial es requerido';
+    }else if (!expLetras_Num.test(input.publisher)) {
             errors.publisher = 'Editorial es invalida'
-        }
     }
      if (input.ISBN) {
         if (/\D/.test(input.ISBN)) {
@@ -31,7 +31,7 @@ export function validate(input) {
         }
     }
     if (input.description) {
-        if (!expLetras.test(input.description)) {
+        if (!expLetras_Num.test(input.description)) {
             errors.description = "Descripcion es invalida"
         }
     }
@@ -47,17 +47,14 @@ export function validate(input) {
     return errors;
 }
 
-
-
 export default function FormBook() {
-    //const dispatch = useDispatch()
+    const dispatch = useDispatch()
  
     //let loading=useSelector(state=>state.loading)
-    //let countries=useSelector(state=>state.countries)
-
+   
     const [input, setInput] = React.useState({
         title:'',//texto
-        authors: [],//arreglo
+        authors:'',//arreglo
         publisher: '',//texto
         ISBN:'',//integer
         categories: [],//string
@@ -97,16 +94,16 @@ export default function FormBook() {
     function handleSubmit(e) {
 
         e.preventDefault()
-        // dispatch(createActivity(input))
+        dispatch(postCreateBook(input))
         console.log(input)
         setInput({
-            title:'',//texto
-            authors: [],//arreglo
-            publisher: '',//texto
-            ISBN:'',//integer
-            categories: [],//string
-            imageLinks: '',//string
-            description:'',//string
+            title:'',
+            authors: '',
+            publisher: '',
+            ISBN:'',
+            categories: [],
+            imageLinks: '',
+            description:'',
             price: 0,
         })
         e.target.title.focus()
@@ -144,65 +141,56 @@ export default function FormBook() {
     useEffect(() => {
         
         boton = document.getElementById('enviar')
-        
-        boton.disabled = true
-        console.log("boton",boton)
-        boton.className="bg-[#94a3b8] p-5 m-2"
-        console.log("boton",boton)
-    }, [])
 
+        dispatch(getAllCategories())
+        boton.disabled = true
+        boton.className="bg-[#94a3b8] p-5 m-2"
+    }, [])
+    let categories=useSelector(state=>state.categories)
     return <div>
 
-        <form onSubmit={(e) => handleSubmit(e)} class="bg-[#a3a3a3] text-white container mx-auto p-20 m-20 rounded-3xl w-1/2">
-            <h2 class="text-center text-xl text-[30px] text-black">REGISTRO DE NUEVO LIBRO</h2><br />
-            <fieldset class="columns-2 text-[18px]">
-                <label class="block">TITULO: </label>
-                <input type='text' class={errors.title ? 'text-[#dc2626]' : 'text-[#075985]'} name='title' value={input.title} placeholder='Ingrese el Titulo del libro' onChange={(e) => handleChange(e)} autoFocus /><br />
-                {errors.title ? <p class="text-[#dc2626]">{errors.title}</p> : null}<br />
-                <label class="block">AUTOR: </label>
-                <input type='text' class={errors.authors ? 'text-[#dc2626]' : 'text-[#075985]'} name='authors' value={input.authors} placeholder='Ingrese el nombre del Autor' onChange={(e) => handleChange(e)} /><br />
-                {errors.authors ? <p class="text-[#dc2626]">{errors.authors}</p> : null}<br />
-                <label class="block">EDITORIAL: </label>
-                <input type='text' class={errors.publisher ? 'text-[#dc2626]' : 'text-[#075985]'} name='publisher' value={input.publisher} placeholder='Editorial' onChange={(e) => handleChange(e)} /><br />
-                {errors.publisher ? <p class="text-[#dc2626]">{errors.publisher}</p> : null}<br />
-                <label class="block">ISBN: </label>
-                <input type='text' class={errors.ISBN ? 'text-[#dc2626]' : 'text-[#075985]'} name='ISBN' value={input.ISBN} placeholder='isbn' onChange={(e) => handleChange(e)} /><br />
-                {errors.ISBN ? <p class="text-[#dc2626]">{errors.ISBN}</p> : null}<br />                               
-                <label class="block">PRECIO: </label>
-                <input type='text' class={errors.price ? 'text-[#dc2626]' : 'text-[#075985]'} name='price' value={input.price} placeholder='Ingrese el precio' onChange={(e) => handleChange(e)} /><br />
-                {errors.price ? <p class="text-[#dc2626]">{errors.price}</p> : null}<br />
-                <label class="block">IMAGEN: </label>
+        <form onSubmit={(e) => handleSubmit(e)} className="bg-[#a3a3a3] text-white container mx-auto p-20 m-20 rounded-3xl w-1/2">
+            <h2 className="text-center text-xl text-[30px] text-black">REGISTRO DE NUEVO LIBRO</h2><br />
+            <fieldset className="columns-2 text-[18px]">
+                <label className="block">TITULO: </label>
+                <input type='text' className={errors.title ? 'text-[#dc2626] rounded-lg' : 'text-[#075985] rounded-lg'} name='title' value={input.title} placeholder='Ingrese el Titulo del libro' onChange={(e) => handleChange(e)} autoFocus /><br />
+                {errors.title ? <p className="text-[#dc2626]">{errors.title}</p> : null}<br />
+                <label className="block">AUTOR: </label>
+                <input type='text' className={errors.authors ? 'text-[#dc2626] rounded-lg' : 'text-[#075985] rounded-lg'} name='authors' value={input.authors} placeholder='Ingrese el nombre del Autor' onChange={(e) => handleChange(e)} /><br />
+                {errors.authors ? <p className="text-[#dc2626]">{errors.authors}</p> : null}<br />
+                <label className="block">EDITORIAL: </label>
+                <input type='text' className={errors.publisher ? 'text-[#dc2626] rounded-lg' : 'text-[#075985] rounded-lg'} name='publisher' value={input.publisher} placeholder='Editorial' onChange={(e) => handleChange(e)} /><br />
+                {errors.publisher ? <p className="text-[#dc2626]">{errors.publisher}</p> : null}<br />
+                <label className="block">ISBN: </label>
+                <input type='text' className={errors.ISBN ? 'text-[#dc2626] rounded-lg' : 'text-[#075985] rounded-lg'} name='ISBN' value={input.ISBN} placeholder='isbn' onChange={(e) => handleChange(e)} /><br />
+                {errors.ISBN ? <p className="text-[#dc2626]">{errors.ISBN}</p> : null}<br />                               
+                <label className="block">PRECIO: </label>
+                <input type='text' className={errors.price ? 'text-[#dc2626] rounded-lg' : 'text-[#075985] rounded-lg'} name='price' value={input.price} placeholder='Ingrese el precio' onChange={(e) => handleChange(e)} /><br />
+                {errors.price ? <p className="text-[#dc2626]">{errors.price}</p> : null}<br />
+                <label className="block">IMAGEN: </label>
                 <input type='file' name='imageLinks' placeholder='Sube la portada del libro' onChange={(e) => uploadImage(e)} />
-                {errors.imageLinks ? <p class="text-[#dc2626]">{errors.imageLinks}</p> : input.imageLinks}<br />
-                <label class="block">CATEGORIA:</label>
-                <select name="categories" value={input.categories} placeholder='categoria' onClick={handleSelect} class={errors.categories ? 'text-[#dc2626]' : 'text-[#075985]'} multiple>
-                    <option value='CIENCIA FICCION'>CIENCIA FICCION</option>
-                    <option value='COMEDIA'>COMEDIA</option>
-                    <option value='DRAMA'>DRAMA</option>
-                    <option value='EDUCATIVO/CULTURAL'>EDUCATIVO/CULTURAL</option>
-                    <option value='TERROR'>TERROR</option>
-                    <option value='MISTERIO'>MISTERIO</option>
-                    <option value='FANTASIA'>FANTASIA</option>
-                    <option value='AVENTURAS'>AVENTURAS</option>
-                    <option value='HISTORICOS'>HISTORICOS</option>
-                    <option value='ILUSTRACIONES'>ILUSTRACIONES</option>
-                    <option value='ROMANCE'>ROMANCE</option>
-                    <option value='SIN CATEGORIA'>SIN CATEGORIA</option>
+                {errors.imageLinks ? <p className="text-[#dc2626]">{errors.imageLinks}</p> : input.imageLinks}<br />
+                <label className="block">CATEGORIA:</label>
+                <select name="categories" value={input.categories} placeholder='categoria' onClick={handleSelect} className={errors.categories ? 'text-[#dc2626]' : 'text-[#075985]'} multiple>
+                    {categories.map(category=>{
+                         return <option value={category.name}>{category.name}</option>
+                    })}
                 </select>
-                {errors.categories ? <p class="text-[#dc2626]">{errors.categories}</p> : null}<br />
+                {errors.categories ? <p className="text-[#dc2626]">{errors.categories}</p> : null}<br />
                 {input.categories.map(cat => {
                     return <span>{cat},</span>
                 })}
             </fieldset>
-            <fieldset class="text-center">
+            <fieldset className="text-center">
                 <legend>DESCRIPCION:</legend>
-                <textarea class="w-full text-[#075985]" name="description" value={input.description} onChange={(e) => handleChange(e)} />
+                <textarea className="w-full text-[#075985] rounded-lg" name="description" value={input.description} onChange={(e) => handleChange(e)} />
+                {errors.description ? <p className="text-[#dc2626]">{errors.description}</p> : null}<br />
                 <br />
                 {/*loading?<p>{loading}</p>:null*/}
-                <input type='submit' class={(Object.keys(errors).length) ? "bg-[#94a3b8] p-5 m-2 cursor-pointer" : "bg-[#9a3412] p-5 m-2 cursor-pointer"} id='enviar' disabled={(Object.keys(errors).length) ? true : false} value='Guardar' />
+                <input type='submit' className={(Object.keys(errors).length) ? "bg-[#94a3b8] p-5 m-2 cursor-pointer rounded-3xl" : "bg-[#9a3412] p-5 m-2 cursor-pointer rounded-3xl"} id='enviar' disabled={(Object.keys(errors).length) ? true : false} value='Guardar' />
 
                 <Link to="/">
-                    <input type='button' class="bg-[#9a3412] p-5 cursor-pointer" value='Regresar' />
+                    <input type='button' className="bg-[#9a3412] p-5 cursor-pointer rounded-3xl" value='Regresar' />
                 </Link>
             </fieldset>
         </form>

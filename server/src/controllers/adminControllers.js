@@ -14,20 +14,10 @@ const adminControllers = {
       price,
       categories } = req.body
     try {
-      const books = await Books.findAll({
-        where: {
-          title,
-
-        }
-      })
-
-
-      if (books.length > 0) {
-        res.status(200).json('El libro existe')
-      } else {
-
-        let createBook = await Books.create({
-
+      const books = await Books.findOne({where: {title}});
+      if (books) throw new HttpError("El libro ya existe", 400);
+      else {
+        const createBook = await Books.create({
           title,
           authors,
           publisher,
@@ -36,27 +26,17 @@ const adminControllers = {
           description,
           price,
         });
-        let typeofBooks = await Categories.findAll({ where: { name:categories } });
+        const typeofBooks = await Categories.findAll({ where: { name:categories } });
         //console.log(typeofBooks.JSON())
-        createBook.addCategories(typeofBooks);
-        
-        return res.send("El libro fue creado");
-        
+        createBook.addCategories(typeofBooks);       
+        return res.send("El libro fue creado");   
       }
-
-    
-
-     
-    } catch (err) {
-      const error = new HttpError(
-        `No se pudo crear el libro, intente nuevamente más tarde git ${console.log(
-          err
-        )}`,
-        500
-      );
+    } catch (error) {
+      if (!(error instanceof HttpError)) {
+        error = new HttpError("No se pudo crear el libro, intente nuevamente más tarde", 500);
+      }
       return next(error);
     }
-    res.send('soy un libro')
   },
 };
 

@@ -1,6 +1,7 @@
 import {
   GET_BOOKS,
   GET_DETAIL_BOOK,
+  POST_CREATE_BOOK,
   ORDER_NAME,
   ORDER_PRIECE,
   RESET_DETAIL,
@@ -19,6 +20,7 @@ export const getBooks = () => async (dispatch) => {
   });
 };
 
+
 export const getDetailBook = (id) => async (dispatch) => {
   let bookDetail = await axios(`http://localhost:3001/shop//book/${id}`);
 
@@ -30,13 +32,21 @@ export const getDetailBook = (id) => async (dispatch) => {
 
 export const resetDetail = () => ({ type: RESET_DETAIL });
 
-
 export function getAllCategories() {
   return async (dispatch) => {
     let res = await axios.get(`http://localhost:3001/shop/categories`);
-    console.log("res.data: ", res.data)
     return dispatch({
       type: GET_ALL_CATEGORIES,
+      payload: res.data,
+    });
+  };
+}
+
+export function postCreateBook(input) {
+  return async (dispatch) => {
+    let res=await axios.post(`http://localhost:3001/admin/create-book`, input);
+    return dispatch({
+      type: POST_CREATE_BOOK,
       payload: res.data,
     });
   };
