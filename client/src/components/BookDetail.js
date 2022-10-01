@@ -27,11 +27,11 @@ const BookDetail = () => {
           </h3>
         </Link>
       </div>
-      <div class="w-[60%] m-auto mt-20">
-        <div class="flex">
+      <div className="w-[60%] m-auto mt-20">
+        <div className="flex">
           <div>
             <div>
-              <h3 class="text-center text-3xl mb-1 font-medium">
+              <h3 className="text-center text-3xl mb-1 font-medium">
                 <span className="text-white font-normal">Precio: </span>$
                 {Number(bookDetail.price).toFixed(2)}
               </h3>
@@ -40,11 +40,11 @@ const BookDetail = () => {
               <img
                 src={bookDetail["imageLinks"]}
                 alt={`img-${bookDetail["title"]}`}
-                class="h-96 w-96 "
+                className="h-96 w-96 "
               />
             </div>
             <div>
-              <h4 class="text-center text-white w- bg-[#332727] w-11/12 m-auto mt-2 rounded py-1">
+              <h4 className="text-center text-white w- bg-[#332727] w-11/12 m-auto mt-2 rounded py-1">
                 AGREGAR AL CARRITO
               </h4>
             </div>

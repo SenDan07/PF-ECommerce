@@ -25,28 +25,29 @@ export default function Carousel() {
             setIndex(0) : setIndex(index + 1)
     }
 
-    setTimeout(() => {
+/*     setInterval(() => {
         handleButtonRight()
-    }, 555555555000)
+    }, 5000) */
 
     return (
-        <div className="mb-10 carousel slide relative">
-            <div className="relative">
-                <div className="absolute left-0 text-2xl top-64 ">
-                    <button onClick={handleButtonLeft} className="absolute bg-[#6b7280] hover:bg-hoverMenu rounded-full p-2 translate-x-60" >{`<`}</button>
+        <div className="mb-10">
+            <div className="relative w-full">
+                <div className="absolute left-0 text-2xl top-80 ">
+                    <button onClick={handleButtonLeft} className="absolute bg-[#6b7280] hover:bg-hoverMenu rounded-full p-5 translate-x-60 animate-bounce">{`<`}</button>
                 </div>
 
-                <div className="absolute right-0 text-2xl top-64">
-                    <button onClick={handleButtonRight} className="bg-[#6b7280] hover:bg-hoverMenu p-2 -translate-x-60">{`>`}</button>
+                <div className="absolute right-0 text-2xl top-80">
+                    <button onClick={handleButtonRight} className="bg-[#6b7280] hover:bg-hoverMenu rounded-full p-5 -translate-x-60 animate-bounce">{`>`}</button>
                 </div>
             </div>
 
-            <img src={images[index]} alt="image not found" className="w-9/12 h-3/6 mx-auto" />
-
-            <div className="">
-                <span className="text-4xl flex justify-center">{texts[index]}</span>
+            <div className="h-2/4">
+                <img src={images[index]} alt="image not found" className=" mx-auto object-fill h-192 w-full" />
             </div>
 
+            <div className="z-10 bg-NavBar">
+                <span className="text-4xl flex justify-center text-white py-2">{texts[index]}</span>
+            </div>
 
         </div>
     )

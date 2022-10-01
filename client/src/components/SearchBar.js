@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 import { searchAuthor} from "../redux/actions"
 //import { searchBook } from "../redux/actions"
 
+
 export default function SearchBar() {
     const [search, setSearch] = useState("")
     let dispatch = useDispatch()
@@ -19,13 +20,13 @@ export default function SearchBar() {
     return (
         <div className="text-white">
             <form onSubmit={onSubmit}>
-                <input className="text-xl py-3 rounded bg-bgSearch text-NavBar"
+                <input className="text-xl py-3 rounded bg-bgSearch text-white"
                     type="text"
                     onChange={onInputChange}
                     value={search}
-                    placeholder="Libro, Autor, Editorial..." />
+                    placeholder="Titulo o Autor" />
 
-                <input className="bg-button text-xl px-4 py-3 rounded cursor-pointer hover:bg-hoverMenu"
+                <input className="bg-bgHome text-xl px-4 py-3 rounded cursor-pointer hover:bg-hoverMenu text-white"
                     type="submit"
                     value="Buscar" />
             </form>

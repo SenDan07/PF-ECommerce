@@ -6,7 +6,6 @@ export default function OrderName() {
 
     function onSelectChange(e) {
         dispatch(orderPriece(e.target.value))
-
     }
 
     return (

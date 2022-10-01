@@ -21,7 +21,7 @@ export default function BookList() {
         {booksData.length ? (
           booksData.map((book) => {
             return (
-              <Link to={`/${book.id}`} key={book.id}>
+              <Link to={`/books/${book.id}`} key={book.id}>
                 <Book
                   name={book.title}
                   image={book.imageLinks}
