@@ -46,10 +46,11 @@ sequelize.models = Object.fromEntries(capsEntries);
 const {Books,Categories} = sequelize.models;
 
 
-Books.belongsToMany(Categories,{ 
+Books.belongsToMany(Categories,{
+  as: "categories",
   through: "Books_Categories"
 });  
-Categories.belongsToMany(Books,{  
+Categories.belongsToMany(Books,{
   through: "Books_Categories"
 })
 

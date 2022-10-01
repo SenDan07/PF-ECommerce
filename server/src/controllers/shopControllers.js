@@ -1,20 +1,23 @@
+const uuid = require("uuid");
 const HttpError = require("../errors/http-error");
 const libros = require("../../data/dataBook.json");
 const dataCategory = require("../../data/categories.json");
 
-const { Categories, Books } = require("../db");
+const { Categories, Books, Op } = require("../db");
+
+const lengthBooks = async () => await Books.count();
+
+const include = {
+  model: Categories,
+  as: "categories",
+  attributes: ["name", "imageLinks"],
+  through: {
+    attributes: []
+  }
+};
 
 const allBooks = async () => {
-  const books = await Books.findAll({
-    include: {
-      model: Categories,
-      attributes: ["name", "imageLinks"],
-      through: {
-        attributes: []
-      }
-    }
-  });
-  return books;
+  return await Books.findAll({include});
 }
 
 const shopControllers = {
@@ -24,89 +27,133 @@ const shopControllers = {
       const books = await allBooks();
       return res.status(200).json(books);
     } catch (err) {
-      const error = new HttpError(
-        `No hay libros en el inventario ${console.log(err)}`,
-        404
-      );
+      const error = new HttpError("No hay libros en el inventario", 404);
       return next(error);
     }
   },
-  filterBooksByAuthor: (req, res) => {
+  joinFilterByTitleAndAuthor: async (req, res, next) => {
+    const { value } = req.query;
     try {
-      const { author } = req.query;
-      if (!author) throw "Debe enviar un author";
-      const authorsFound = libros.items.filter(el => el.authors.map(el => el.toUpperCase()).includes(author.toUpperCase()));
-      if (authorsFound.length < 1) throw "El author no existe";
-      return res.status(200).json(authorsFound);
-    } catch (err) {
-      const error = new HttpError(
-        `No hay libros en el inventario ${console.log(err)}`,
-        404
-      );
+      if (!await lengthBooks()) throw new HttpError("No hay libros en el inventario", 404);
+      if (!value) throw new HttpError("Debe enviar un Valor", 400);
+      const booksFilter = await Books.findAll({
+        where: {
+          [Op.or]: [
+            {
+              title: {
+                [Op.iLike]: `%${value}%`
+              }
+            },
+            {
+              authors: {
+                [Op.iLike]: `%${value}%`
+              }
+            }
+          ]
+        },
+        include
+      });
+      if (!booksFilter.length) throw new HttpError("No hay libros con ese criterio de búsqueda", 404);
+      return res.send(booksFilter);
+    } catch (error) {
+      if (!(error instanceof HttpError)) {
+        error = new HttpError("Error interno del ervidor", 500);
+      }
       return next(error);
     }
   },
-  orderBooksByAlphabetically: (req, res) => {
+  filterBooksByTitle: async (req, res, next) => {
+    const { title } = req.query;
+    try {
+      if (!await lengthBooks()) throw new HttpError("No hay libros en el inventario", 404);
+      if (!title) throw new HttpError("Debe enviar un título", 400);
+      const booksFilter = await Books.findAll({
+        where: {
+          title: {
+            [Op.iLike]: `%${author}%`
+          }
+        },
+        include
+      });
+      if (!booksFilter.length) throw new HttpError("El author no existe", 404);
+      return res.status(200).json(booksFilter);
+    } catch (error) {
+      if (!(error instanceof HttpError)) {
+        error = new HttpError("Error interno del ervidor", 500);
+      }
+      return next(error);
+    }
+  },
+  filterBooksByAuthor: async (req, res, next) => {
+    const { author } = req.query;
+    try {
+      if (!await lengthBooks()) throw new HttpError("No hay libros en el inventario", 404);
+      if (!author) throw new HttpError("Debe enviar un author", 400);
+      const authorsFound = await Books.findAll({
+        where: {
+          authors: {
+            [Op.iLike]: `%${author}%`
+          }
+        },
+        include
+      });
+      if (!authorsFound.length) throw new HttpError("El author no existe", 404);
+      return res.status(200).json(authorsFound);
+    } catch (error) {
+      if (!(error instanceof HttpError)) {
+        error = new HttpError("Error interno del ervidor", 500);
+      }
+      return next(error);
+    }
+  },
+  orderBooksByAlphabetically: async (req, res, next) => {
     const { type } = req.query;
     try {
-      if (!type) throw "Debe enviar una opción";
-      const orderByName =
-        type === "asc"
-          ? libros.items?.sort((prev, current) =>
-            prev.title.localeCompare(current.title)
-          )
-          : libros.items?.sort((prev, current) =>
-            current.title.localeCompare(prev.title)
-          );
-      if (!orderByName.length) throw "No existen libros";
-      return res.send(orderByName);
-    } catch (err) {
-      const error = new HttpError(
-        `No hay libros en el inventario ${console.log(err)}`,
-        404
-      );
-      return next(error);
-    }
-  },
-  getBookById: async(req, res) => {
-    const { idBook } = req.params;
-    try {
-      if (!idBook) throw "Debe enviar el id";
-      const book = await Books.findOne({
-        where: {
-          id: idBook
-        },
-        include: {
-          model: Categories,
-          attributes: ["name", "imageLinks"],
-          through: {
-            attributes: []
-          }
-        }
+      if (!await lengthBooks()) throw new HttpError("No hay libros en el inventario", 404);
+      if (!type || (type !== "asc" && type !== "desc")) throw new HttpError("Enviar un tipo de ordenamiento", 400);
+      let sort = type === "asc" ? "ASC" : "DESC";
+      const orderByTitle = await Books.findAll({
+        order: [
+          ["title", sort]
+        ],
+        include
       });
-      if (!book) throw "El libro no existe";
-      res.status(200).json(book);
-    } catch (err) {
-      const error = new HttpError(
-        `No hay libros en el inventario ${console.log(err)}`,
-        404
-      );
+      return res.send(orderByTitle);
+    } catch (error) {
+      if (!(error instanceof HttpError)) {
+        error = new HttpError("Error interno del servidor", 500);
+      }
       return next(error);
     }
   },
-  orderBooksPrice: async (req, res) => {
+  getBookById: async (req, res, next) => {
+    let id = req.params.idBook;
+    try {
+      if (!await lengthBooks()) throw new HttpError("No hay libros en el inventario", 404);
+      if (!uuid.validate(id)) throw new HttpError("Formato de id no válido", 400);
+      const book = await Books.findByPk(id, {include});
+      if (!book) throw new HttpError("El libro no existe", 400);
+      res.status(200).json(book);
+    } catch (error) {
+      if (!(error instanceof HttpError)) {
+        error = new HttpError("Error interno del servidor", 500);
+      }
+      return next(error);
+    }
+  },
+  orderBooksPrice: async (req, res, next) => {
     try {
       const { type } = req.query;
-      if (!type) throw "Debe enviar la tipo de ordenamiento";
+      if (!await lengthBooks()) throw new HttpError("No hay libros en el inventario", 404);
+      if (!type || (type !== "asc" && type !== "desc")) throw new HttpError("Enviar un tipo de ordenamiento", 400);
       const books = await allBooks();
       if (type === "asc") books.sort((a, b) => a.price - b.price);
       else if (type === "desc") books.sort((a, b) => b.price - a.price);
       return res.status(200).json(books);
-    } catch (err) {
-      const error = new HttpError(
-        `No hay libros en el inventario ${console.log(err)}`,
-        404
-      );
+    } catch (error) {
+      if (!(error instanceof HttpError)) {
+        error = new HttpError( "Error interno del servidor", 500);
+      }
       return next(error);
     }
   },
