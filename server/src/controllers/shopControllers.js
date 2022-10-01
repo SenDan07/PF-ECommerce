@@ -162,9 +162,9 @@ const shopControllers = {
 
          ])
 
-         res.json(categories)
-    }
-    else res.json('tets')
+        }
+        return res.json(categories)
+    
 }catch(e){
     res.redirect('/error')
 }
