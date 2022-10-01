@@ -19,4 +19,6 @@ router.get("/book/:idBook", shopControllers.getBookById);
 
 router.get("/categories", shopControllers.fetchAllCategories);
 
+router.get("/booksCategory", shopControllers.booksByCategory);
+
 module.exports = router;

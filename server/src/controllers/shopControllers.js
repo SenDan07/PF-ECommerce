@@ -5,6 +5,8 @@ const dataCategory = require("../../data/categories.json");
 
 const { Categories, Books, Op } = require("../db");
 
+
+
 const lengthBooks = async () => await Books.count();
 
 const include = {
@@ -16,14 +18,35 @@ const include = {
   }
 };
 
+const bookscargados = async () => {
+
+  libros.items.forEach(async (el) => {
+    const createBook = await Books.create({
+      title: el.title,
+      authors: el.authors.join(),
+      publisher: el.publisher,
+      ISBN: el.ISBN,
+      imageLinks: el.imageLinks,
+      description: el.description,
+      price: el.price
+    });
+
+    const typeofBooks = await Categories.findAll({ where: { name: el.categories } });
+    //console.log(typeofBooks.JSON())
+    createBook.addCategories(typeofBooks);
+  })
+
+}
 const allBooks = async () => {
-  return await Books.findAll({include});
+
+  return await Books.findAll({ include });
 }
 
 const shopControllers = {
 
   fetchAllBooks: async (req, res, next) => {
     try {
+
       const books = await allBooks();
       return res.status(200).json(books);
     } catch (err) {
@@ -131,7 +154,7 @@ const shopControllers = {
     try {
       if (!await lengthBooks()) throw new HttpError("No hay libros en el inventario", 404);
       if (!uuid.validate(id)) throw new HttpError("Formato de id no válido", 400);
-      const book = await Books.findByPk(id, {include});
+      const book = await Books.findByPk(id, { include });
       if (!book) throw new HttpError("El libro no existe", 400);
       res.status(200).json(book);
     } catch (error) {
@@ -152,93 +175,107 @@ const shopControllers = {
       return res.status(200).json(books);
     } catch (error) {
       if (!(error instanceof HttpError)) {
-        error = new HttpError( "Error interno del servidor", 500);
+        error = new HttpError("Error interno del servidor", 500);
       }
       return next(error);
     }
   },
-  fetchAllCategories: async(req, res) => {
-  //   try {
-  
-  //      await dataCategory.categories.forEach((el) => Categories.findOrCreate({ where: { name: el.name } }));
-  //  // console.log(res)
-  //     return Categories.findAll()
-  //   } catch (error) {
-  //     return res.status(400).send(error)
-  //   }
-  
-    
-  try{
-    let categories=await Categories.findAll()
-    
-    if(!categories.length){
-         //buscar api
-         categories= await Categories.bulkCreate([
-          
-             
-              {
-                "name":"Aventuras",
-              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558360/Categorias/zfkojcumgapvdlhsxzln.jpg"
-              },
-              {
-                "name":"Ciencia Ficcion",
-              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558562/Categorias/jozik2dkbyz6mcrbvjqj.jpg"
-              },
-              {
-                "name":"Comedia",
-              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558610/Categorias/qhapmtkb6gqocbrafgjc.jpg"
-              },
-              {
-                "name":"Drama",
-              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558655/Categorias/erd2d2fgikyh6av8rrju.jpg"
-              },
-              {
-                "name":"Educativo",
-              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558712/Categorias/fh4jj8sk5jy6cw4kwexi.jpg"
-              },
-              {
-                "name":"Fantasia",
-              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558756/Categorias/sswupfd4auvnbsmo6wvg.jpg"
-              },
-              {
-                "name":"Historia",
-              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558834/Categorias/qazmlonrfugra08r8x0l.jpg"
-              },
-              {
-                "name":"Ilustraciones",
-              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558898/Categorias/tuqcicd3siel6linv0fy.jpg"
-              },
-              {
-                "name":"Romance",
-              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558956/Categorias/sc8alysehtogdpq80gs1.jpg"
-              },
-              {
-                "name":"Suspenso",
-              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664559033/Categorias/yozpn4h7rmndjim65tvs.jpg"
-              },
-              {
-                "name":"Terror",
-              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664559090/Categorias/jstnopducsskxigyzi4k.jpg"
-              },
-              {
-                "name":"Sin Categoria",
-              "imageLinks":"https://res.cloudinary.com/dl7pi3qek/image/upload/v1664559172/Categorias/i96kbhvacgunjbr9gfsg.jpg"
-              }
-          
-            
-          
-          
+  fetchAllCategories: async (req, res) => {
+    //   try {
 
-         ])
+    //      await dataCategory.categories.forEach((el) => Categories.findOrCreate({ where: { name: el.name } }));
+    //  // console.log(res)
+    //     return Categories.findAll()
+    //   } catch (error) {
+    //     return res.status(400).send(error)
+    //   }
 
-        }
-        return res.json(categories)
-    
-}catch(e){
-    res.redirect('/error')
-}
 
-    
+    try {
+      let categories = await Categories.findAll()
+
+      if (!categories.length) {
+        await bookscargados()
+        //buscar api
+        categories = await Categories.bulkCreate([
+
+
+          {
+            "name": "Aventuras",
+            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558360/Categorias/zfkojcumgapvdlhsxzln.jpg"
+          },
+          {
+            "name": "Ciencia Ficcion",
+            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558562/Categorias/jozik2dkbyz6mcrbvjqj.jpg"
+          },
+          {
+            "name": "Comedia",
+            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558610/Categorias/qhapmtkb6gqocbrafgjc.jpg"
+          },
+          {
+            "name": "Drama",
+            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558655/Categorias/erd2d2fgikyh6av8rrju.jpg"
+          },
+          {
+            "name": "Educativo",
+            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558712/Categorias/fh4jj8sk5jy6cw4kwexi.jpg"
+          },
+          {
+            "name": "Fantasia",
+            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558756/Categorias/sswupfd4auvnbsmo6wvg.jpg"
+          },
+          {
+            "name": "Historia",
+            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558834/Categorias/qazmlonrfugra08r8x0l.jpg"
+          },
+          {
+            "name": "Ilustraciones",
+            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558898/Categorias/tuqcicd3siel6linv0fy.jpg"
+          },
+          {
+            "name": "Romance",
+            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664558956/Categorias/sc8alysehtogdpq80gs1.jpg"
+          },
+          {
+            "name": "Suspenso",
+            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664559033/Categorias/yozpn4h7rmndjim65tvs.jpg"
+          },
+          {
+            "name": "Terror",
+            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664559090/Categorias/jstnopducsskxigyzi4k.jpg"
+          },
+          {
+            "name": "Sin Categoria",
+            "imageLinks": "https://res.cloudinary.com/dl7pi3qek/image/upload/v1664559172/Categorias/i96kbhvacgunjbr9gfsg.jpg"
+          }
+
+
+
+
+
+        ])
+
+      }
+      return res.json(categories)
+
+    } catch (e) {
+      res.redirect('/error')
+    }
+
+
+  },
+  booksByCategory: async (req, res) => {
+    try {
+      const { name } = req.query;
+      if (!name) throw "Debe ingresar la categoria"
+      const books = await allBooks();
+      const booksCategory = books.filter(el => el.categories.map(ele => ele.name.toUpperCase()).includes(name.toUpperCase()));
+      if (!booksCategory.length) throw "No se encontraron libros en esta categoria"
+      return res.status(200).json(booksCategory);
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+
   }
 };
 

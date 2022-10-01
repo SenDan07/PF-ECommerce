@@ -10,15 +10,15 @@ module.exports = (sequelize) => {
 			primaryKey: true,
 		}, 
 		title: {
-			type: DataTypes.STRING,
+			type: DataTypes.TEXT,
 			allowNull: false
 		},
 		authors: {	
-			type: DataTypes.STRING,
+			type: DataTypes.TEXT,
 			allowNull: false
 		},
 		publisher: {
-			type: DataTypes.STRING,
+			type: DataTypes.TEXT,
 			allowNull: false
 		},
 		ISBN: {
@@ -26,7 +26,7 @@ module.exports = (sequelize) => {
 			allowNull: false
 		},
 		imageLinks: {
-			type: DataTypes.STRING,
+			type: DataTypes.TEXT,
 		},
 		description: {
 			type: DataTypes.TEXT,
