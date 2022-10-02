@@ -44,7 +44,7 @@ const BookDetail = () => {
               />
             </div>
             <div>
-              <h4 className="text-center text-white w- bg-[#332727] w-11/12 m-auto mt-2 rounded py-1">
+              <h4 className="text-center text-white w- bg-[#909a9e] w-11/12 m-auto mt-2 rounded py-1 hover:cursor-no-drop">
                 AGREGAR AL CARRITO
               </h4>
             </div>
@@ -67,7 +67,9 @@ const BookDetail = () => {
                   {Array(bookDetail.authors).join(", ")}
                 </h3>
                 <h3 className="mb-7">{bookDetail.publisher}</h3>
-                <h3 className="mb-7">Sin Categoria</h3>
+                <h3 className="mb-7">
+                  {bookDetail.categories?.map((e) => e.name).join(", ")}
+                </h3>
                 <h3 className="mb-7">{bookDetail.ISBN}</h3>
               </div>
             </div>
@@ -75,7 +77,9 @@ const BookDetail = () => {
         </div>
         <div className="mt-8">
           <h3 className="text-white text-2xl">Descripción</h3>
-          <p className="font-medium text-xl mt-5">{bookDetail.description}</p>
+          <p className="font-medium text-xl mt-5 pb-20">
+            {bookDetail.description}
+          </p>
         </div>
       </div>
     </div>

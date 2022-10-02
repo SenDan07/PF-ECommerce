@@ -29,11 +29,14 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_DETAIL_BOOK:
-      let categoriesBook = action.payload.categories.map((e) => e.name);
-      console.log(categoriesBook);
+      // let categoriesBook = action.payload.categories.map((e) => e.name);
+      // let arreglo = { ...action.payload };
+      // categoriesBook = categoriesBook.toString();
+      // console.log(categoriesBook);
+      // arreglo.categories = categoriesBook;
       return {
         ...state,
-        detail: action.payload,
+        detail: { ...action.payload },
       };
 
     case POST_CREATE_BOOK:
