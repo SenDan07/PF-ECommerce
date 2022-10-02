@@ -8,7 +8,8 @@ import {
   GET_ALL_CATEGORIES,
   SEARCH_AUTHOR,
   ORDER_PRIECE,
-  CATEGORY_BOOKS
+  CATEGORY_BOOKS,
+  RESET_SEARCH_BOOK,
 } from "./types";
 
 const initialState = {
@@ -17,6 +18,7 @@ const initialState = {
   booksFilter: [],
   categories: [],
   mostPopulars: [],
+  booksBySearch: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -41,7 +43,7 @@ function rootReducer(state = initialState, action) {
 
     case POST_CREATE_BOOK:
       return {
-        ...state
+        ...state,
       };
 
     case RESET_DETAIL:
@@ -51,7 +53,6 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_ALL_CATEGORIES:
-
       return {
         ...state,
         categories: action.payload,
@@ -73,15 +74,20 @@ function rootReducer(state = initialState, action) {
     case CATEGORY_BOOKS:
       return {
         ...state,
-        books: action.payload
-          }
+        books: action.payload,
+      };
 
     case SEARCH_BOOK:
-      
-            return {
-              ...state,
-              booksFilter: action.payload
-            }
+      return {
+        ...state,
+        booksBySearch: [...action.payload],
+      };
+
+    case RESET_SEARCH_BOOK:
+      return {
+        ...state,
+        booksBySearch: [],
+      };
 
     default:
       return state;
