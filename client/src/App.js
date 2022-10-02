@@ -5,6 +5,7 @@ import CategoryBooksSmart from "./components/CategoryBooksSmart"
 //import Categories from "./components/Categories";
 import CategoriesSmart from "./components/CategoriesSmart";
 import BookDetail from "./components/BookDetail";
+import SearchBarSmart from "./components/SearchBarSmart"
 import { Route, BrowserRouter, Switch, Routes } from "react-router-dom";
 
 function App() {
@@ -17,7 +18,9 @@ function App() {
           <Route exact path="/favorites" element={<Favorites />} />
 
           <Route exact path="/books/:id" element={<BookDetail />} />
-
+          
+          <Route exact path="/searchbar" element={<SearchBarSmart />} />
+          
           <Route exact path="/categories/:category" element={<CategoryBooksSmart/>}/>
 
           //<Route exact path="/categories" element={<CategoriesSmart/>}/>
