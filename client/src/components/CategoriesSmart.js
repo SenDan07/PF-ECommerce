@@ -17,7 +17,7 @@ export default function CategoriesBooks() {
             <NavBar />
 
             <Link to="/">
-                <h3 class="border-1 border-rose-500 rounded w-max mx-auto mt-12 px-3 py-2 bg-button text-white">
+                <h3 className="border-1 border-rose-500 rounded w-max mx-auto mt-12 px-3 py-2 bg-button text-white">
                     &#129044; Regresar
                 </h3>
             </Link>
@@ -33,7 +33,8 @@ export default function CategoriesBooks() {
                         return (
                             <CategoriesDumb
                                 name={e.name}
-                                imageLinks={e.imageLinks} />
+                                imageLinks={e.imageLinks} 
+                                key={e.id}/>
                         )
                     })}
             </div>

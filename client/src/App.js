@@ -1,6 +1,7 @@
 import Home from "./components/Home";
 import FormBook from "./components/FormBook";
 import Favorites from "./components/Favorites";
+import CategoryBooksSmart from "./components/CategoryBooksSmart"
 //import Categories from "./components/Categories";
 import CategoriesSmart from "./components/CategoriesSmart";
 import BookDetail from "./components/BookDetail";
@@ -17,7 +18,9 @@ function App() {
 
           <Route exact path="/favorites" element={<Favorites />} />
 
-          <Route exact path="/:id" element={<BookDetail />} />
+          <Route exact path="/books/:id" element={<BookDetail />} />
+
+          <Route exact path="/categories/:category" element={<CategoryBooksSmart/>}/>
 
           //<Route exact path="/categories" element={<CategoriesSmart/>}/>
         </Routes>

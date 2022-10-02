@@ -1,7 +1,8 @@
-/* import React from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
-export default function CategoryBook({ name: title, imageLinks, price }) {
+export default function CategoryBook({ title, imageLinks, price, id }) {
+    console.log("title: ", title)
     return (
         <div className="m-5 ">
             <Link to={`/books/${id}`} >
@@ -13,10 +14,10 @@ export default function CategoryBook({ name: title, imageLinks, price }) {
                     <img src={imageLinks} alt={`img-${title}`} className="h-80 w-64 rounded" />
                 </div>
 
-                <h3 className="text-center text-lg font-bold">
-                    <span className="font-medium">Price: </span>${price.toFixed(2)}
+                <h3 className="text-center text-lg font-bold flex mt-16 justify-center">
+                    <span className="font-medium  ">Price: </span>${price.toFixed(2)}
                 </h3>
             </Link>
         </div>
     );
-}; */
+}; 

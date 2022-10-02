@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 const BookDetail = () => {
   const dispatch = useDispatch();
-  const bookId = useParams().id * 1;
+  const bookId = useParams().id;
 
   useEffect(() => {
     dispatch(getDetailBook(bookId));

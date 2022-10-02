@@ -8,6 +8,10 @@ export default function NavBar() {
                 <h6 className="text-5xl">LIBRERIA</h6>
             </div>
 
+            <div>
+                <SearchBar />
+            </div>
+
             <div className="">
                 <Link to="/" className="mx-3 cursor-pointer hover:text-hoverMenu">
                     INICIO
@@ -17,20 +21,22 @@ export default function NavBar() {
                     CATEGORIAS
                 </Link>
 
-                <Link to="/favorites" className="mx-3 cursor-pointer hover:text-hoverMenu">
-                    FAVORITOS
-                </Link>
-
                 <Link to="/createbook" className="mx-3 cursor-pointer hover:text-hoverMenu">
                     ADMINISTRAR
                 </Link>
             </div>
+        </div>
+    )
+}
 
-            <div>
-                <SearchBar />
-            </div>
 
-            <div >
+/* 
+                <Link to="/favorites" className="mx-3 cursor-pointer hover:text-hoverMenu">
+                    FAVORITOS
+                </Link>
+
+
+                            <div >
                 <Link to="/auth" className="mx-3 cursor-pointer hover:text-hoverMenu">
                     INICIAR SESIÓN
                 </Link>
@@ -39,6 +45,4 @@ export default function NavBar() {
                     COMPRAS
                 </Link>
             </div>
-        </div>
-    )
-}
+*/
