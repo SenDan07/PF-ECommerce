@@ -8,7 +8,7 @@ import {
   GET_ALL_CATEGORIES,
   SEARCH_AUTHOR,
   ORDER_PRIECE,
-  FILTER_BOOKS
+  FILTER_BOOKS,
 } from "./types";
 
 const initialState = {
@@ -16,6 +16,7 @@ const initialState = {
   detail: {},
   booksFilter: [],
   categories: [],
+  mostPopulars: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -28,15 +29,17 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_DETAIL_BOOK:
+      let categoriesBook = action.payload.categories.map((e) => e.name);
+      console.log(categoriesBook);
       return {
         ...state,
         detail: action.payload,
       };
 
-      case POST_CREATE_BOOK:
-        return {
-          ...state
-        };
+    case POST_CREATE_BOOK:
+      return {
+        ...state,
+      };
 
     case RESET_DETAIL:
       return {
@@ -45,7 +48,6 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_ALL_CATEGORIES:
-      
       return {
         ...state,
         categories: action.payload,
@@ -58,11 +60,11 @@ function rootReducer(state = initialState, action) {
       };
 
     case ORDER_PRIECE:
-      console.log("action.payload: ", action.payload)
+      console.log("action.payload: ", action.payload);
       return {
         ...state,
         books: action.payload.items,
-      }
+      };
 
     /*     case FILTER_BOOKS:
           return {
@@ -70,16 +72,12 @@ function rootReducer(state = initialState, action) {
             books: action.payload
           } */
 
-
     default:
       return state;
   }
 }
 
 export default rootReducer;
-
-
-
 
 /*
 case ORDER_NAME:
