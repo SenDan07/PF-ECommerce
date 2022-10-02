@@ -1,28 +1,47 @@
-import { useSelector } from "react-redux"
-import {Book} from "./Book"
-import { Link } from "react-router-dom"
+import { useSelector } from "react-redux";
+import { Book } from "./Book";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { resetSearchBook } from "../redux/actions";
 
-export default function SearchBarSmart(){
+export default function SearchBarSmart() {
+  const busqueda = useSelector((state) => state.booksBySearch);
+  console.log(busqueda);
 
-    const busqueda=useSelector((state)=>state.booksFilter)
-    console.log(busqueda)
-    return <div>
-        <h1>Resultados de la busqueda {/*deberia mostrar el cards*/}</h1> 
-       {
-        busqueda.map((book) => {
-            return (
-              <Link to={`/books/${book.id}`} key={book.id}>
-                <Book
-                  name={book.title}
-                  image={book.imageLinks}
-                  price={book.price}
-                />
-              </Link>
-            );
-          })
-       }
-        
-   
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    return () => {
+      dispatch(resetSearchBook());
+    };
+  }, []);
+  return (
+    <div>
+      <h1 className="text-center text-3xl pt-10">
+        Resultados de la busqueda {/*deberia mostrar el cards*/}
+      </h1>
+      <div className="pt-5 w-max m-auto">
+        <Link to="/">
+          <h3 className="border-1 border-rose-500 rounded w-max mx-auto px-3 py-2 bg-button text-white">
+            &#129044; Regresar
+          </h3>
+        </Link>
+      </div>
+      <div className="border-1 border-black-500 flex flex-wrap gap-36 justify-center mt-32 pb-20">
+        {busqueda.map((book) => {
+          return (
+            <div key={book.id}>
+              <Book
+                name={book.title}
+                image={book.imageLinks}
+                price={book.price}
+                id={book.id}
+              />
+            </div>
+          );
+        })}
+      </div>
     </div>
+  );
 }

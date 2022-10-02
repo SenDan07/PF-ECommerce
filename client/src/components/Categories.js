@@ -6,11 +6,13 @@ const Categories = () => {
     <div>
       <h1 class="text-center text-5xl mt-10">Categorias</h1>
 
-      <Link to="/">
-        <h3 class="border-1 border-rose-500 rounded w-max mx-auto mt-12 px-3 py-2 bg-button text-white">
-          &#129044; Regresar
-        </h3>
-      </Link>
+      <div className="w-max m-auto">
+        <Link to="/">
+          <h3 class="border-1 border-rose-500 rounded w-max mx-auto mt-12 px-3 py-2 bg-button text-white">
+            &#129044; Regresar
+          </h3>
+        </Link>
+      </div>
 
       <div class="flex justify-center">
         <img
