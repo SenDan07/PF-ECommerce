@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Book } from "./Book";
 import { getBooks, getAllCategories } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
 export default function BookList() {
   const dispatch = useDispatch();
@@ -12,7 +11,7 @@ export default function BookList() {
     dispatch(getBooks());
   }, []);
 
-  let booksData = useSelector((state) => state.books);
+  let booksData = useSelector((state) => state.books.slice(0, 10));
 
   return (
     <div className="mt-10 contenedor">
@@ -21,13 +20,13 @@ export default function BookList() {
         {booksData.length ? (
           booksData.map((book) => {
             return (
-              <Link to={`/books/${book.id}`} key={book.id}>
-                <Book
-                  name={book.title}
-                  image={book.imageLinks}
-                  price={book.price}
-                />
-              </Link>
+              <Book
+                key={book.id}
+                name={book.title}
+                image={book.imageLinks}
+                price={book.price}
+                id={book.id}
+              />
             );
           })
         ) : (

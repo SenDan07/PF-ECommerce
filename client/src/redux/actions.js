@@ -8,7 +8,8 @@ import {
   SEARCH_BOOK,
   GET_ALL_CATEGORIES,
   CATEGORY_BOOKS,
-  RESET_CATEGORY_BOOKS
+  RESET_CATEGORY_BOOKS,
+  RESET_SEARCH_BOOK,
 } from "./types.js";
 import axios from "axios";
 
@@ -75,6 +76,7 @@ export function orderName(order) {
     payload: order
   }
 }
+*/
 
 export function orderPrice(order){
   return {
@@ -85,33 +87,39 @@ export function orderPrice(order){
 
 /* export function orderPriece(value) {
   return async (dispatch) => {
-    let res = await axios.get(`http://localhost:3001/shop/books/orderprice?type=${value}`);
+    let res = await axios.get(
+      `http://localhost:3001/shop/books/orderprice?type=${value}`
+    );
     return dispatch({
       type: ORDER_PRIECE,
       payload: res.data,
     });
   };
-} */
+}
 
 
 export function categoryBooks(category) {
   return async (dispatch) => {
-    let res = await axios.get(`http://localhost:3001/shop/booksCategory?name=${category}`);
+    let res = await axios.get(
+      `http://localhost:3001/shop/booksCategory?name=${category}`
+    );
     return dispatch({
       type: CATEGORY_BOOKS,
-      payload: res.data
-    })
-  }
+      payload: res.data,
+    });
+  };
 }
-
-export const resetCategoryBooks = () => ({ type: RESET_CATEGORY_BOOKS });
 
 export function searchBook(book) {
   return async (dispatch) => {
-    let res = await axios.get(`http://localhost:3001/shop/books/filter?value=${book}`);
+    let res = await axios.get(
+      `http://localhost:3001/shop/books/filter?value=${book}`
+    );
     return dispatch({
       type: SEARCH_BOOK,
-      payload: res.data
-    })
-  }
+      payload: res.data,
+    });
+  };
 }
+
+export const resetSearchBook = () => ({ type: RESET_SEARCH_BOOK });

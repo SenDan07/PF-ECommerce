@@ -9,7 +9,8 @@ import {
   SEARCH_AUTHOR,
   ORDER_PRICE,
   CATEGORY_BOOKS,
-  RESET_CATEGORY_BOOKS
+  RESET_CATEGORY_BOOKS,
+  RESET_SEARCH_BOOK,
 } from "./types";
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
   booksFilter: [],
   categories: [],
   mostPopulars: [],
+  booksBySearch: [],
   booksByCategory: [],
 };
 
@@ -43,7 +45,7 @@ function rootReducer(state = initialState, action) {
 
     case POST_CREATE_BOOK:
       return {
-        ...state
+        ...state,
       };
 
     case RESET_DETAIL:
@@ -53,7 +55,6 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_ALL_CATEGORIES:
-
       return {
         ...state,
         categories: action.payload,
@@ -122,8 +123,14 @@ function rootReducer(state = initialState, action) {
     case SEARCH_BOOK:
       return {
         ...state,
-        booksFilter: action.payload
-      }
+        booksBySearch: [...action.payload],
+      };
+
+    case RESET_SEARCH_BOOK:
+      return {
+        ...state,
+        booksBySearch: [],
+      };
 
     default:
       return state;
