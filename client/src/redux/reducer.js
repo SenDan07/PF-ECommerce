@@ -8,7 +8,7 @@ import {
   GET_ALL_CATEGORIES,
   SEARCH_AUTHOR,
   ORDER_PRIECE,
-  FILTER_BOOKS,
+  CATEGORY_BOOKS
 } from "./types";
 
 const initialState = {
@@ -38,7 +38,7 @@ function rootReducer(state = initialState, action) {
 
     case POST_CREATE_BOOK:
       return {
-        ...state,
+        ...state
       };
 
     case RESET_DETAIL:
@@ -48,6 +48,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_ALL_CATEGORIES:
+
       return {
         ...state,
         categories: action.payload,
@@ -66,10 +67,10 @@ function rootReducer(state = initialState, action) {
         books: action.payload.items,
       };
 
-    /*     case FILTER_BOOKS:
-          return {
-            ...state,
-            books: action.payload
+    case CATEGORY_BOOKS:
+      return {
+        ...state,
+        books: action.payload
           } */
 
     default:

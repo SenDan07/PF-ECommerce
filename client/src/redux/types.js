@@ -7,4 +7,4 @@ export const SEARCH_BOOK = "SEARCH_BOOK";
 export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES";
 export const SEARCH_AUTHOR = "SEARCH_AUTHOR";
 export const ORDER_PRIECE = "ORDER_PRIECE";
-export const FILTER_BOOKS = "FILTER_BOOKS";
+export const CATEGORY_BOOKS = "CATEGORY_BOOKS";

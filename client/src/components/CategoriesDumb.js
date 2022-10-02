@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function CategoryBook({ name, imageLinks }) {
+export default function CategoryBook({ name, imageLinks, id }) {
   return (
     <div className="m-5 ">
       <Link to={`/categories/${name}`} >

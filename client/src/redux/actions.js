@@ -7,7 +7,7 @@ import {
   RESET_DETAIL,
   SEARCH_BOOK,
   GET_ALL_CATEGORIES,
-  FILTER_BOOKS,
+  CATEGORY_BOOKS
 } from "./types.js";
 import axios from "axios";
 
@@ -68,10 +68,7 @@ export function orderName(value) {
 
 export function orderPriece(value) {
   return async (dispatch) => {
-    let res = await axios.get(
-      `http://localhost:3001/shop/books/orderprice?type=${value}`
-    );
-    console.log("res.data: ", res.data);
+    let res = await axios.get(`http://localhost:3001/shop/books/orderprice?type=${value}`);
     return dispatch({
       type: ORDER_PRIECE,
       payload: res.data,
@@ -79,17 +76,17 @@ export function orderPriece(value) {
   };
 }
 
-/* 
-export function filterBooks(){
+
+export function categoryBooks(category){
   return async (dispatch) => {
-    let res = await axios.get(``);
+    let res = await axios.get(`http://localhost:3001/shop/booksCategory?name=${category}`);
     return dispatch({
-      type: FILTER_BOOKS,
+      type: CATEGORY_BOOKS,
       payload: res.data
     })
   }  
 }
- */
+ 
 
 export function searchBook(book) {
   return {

@@ -9,14 +9,14 @@ export default function CategoriesBooks() {
   //   const dispatch = useDispatch();
   // useEffect(() => { dispatch(getAllCategories()) }, [dispatch])
 
-  const category = useSelector((state) => state.categories);
-  console.log("category: ", category);
-  return (
-    <div className="bg-bgHome min-h-screen">
-      <NavBar />
+    const category = useSelector((state => state.categories))
+    console.log("category: ", category)
+    return (
+        <div className="bg-bgHome min-h-screen">
+            <NavBar />
 
       <Link to="/">
-        <h3 class="border-1 border-rose-500 rounded w-max mx-auto mt-12 px-3 py-2 bg-button text-white">
+        <h3 className="border-1 border-rose-500 rounded w-max mx-auto mt-12 px-3 py-2 bg-button text-white">
           &#129044; Regresar
         </h3>
       </Link>
@@ -25,12 +25,18 @@ export default function CategoriesBooks() {
         <h5 className="flex justify-center">CATEGORIAS</h5>
       </div>
 
-      <div className="flex flex-wrap justify-center ">
-        {category &&
-          category?.map((e) => {
-            return <CategoriesDumb name={e.name} imageLinks={e.imageLinks} />;
-          })}
-      </div>
-    </div>
-  );
+            <div className="flex flex-wrap justify-center ">
+
+                {
+                    category && category?.map(e => {
+                        return (
+                            <CategoriesDumb
+                                name={e.name}
+                                imageLinks={e.imageLinks} 
+                                key={e.id}/>
+                        )
+                    })}
+            </div>
+        </div>
+    )
 }
