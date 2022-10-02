@@ -71,7 +71,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         books: action.payload
-          } */
+          }
 
     default:
       return state;
