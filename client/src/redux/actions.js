@@ -8,8 +8,8 @@ import {
   SEARCH_BOOK,
   GET_ALL_CATEGORIES,
   CATEGORY_BOOKS,
-  RESET_CATEGORY_BOOKS,
   RESET_SEARCH_BOOK,
+  RESET_CATEGORY_BOOKS,
 } from "./types.js";
 import axios from "axios";
 
@@ -56,47 +56,43 @@ export function postCreateBook(input) {
   };
 }
 
-/* 
-export function orderName(value) {
-  return async (dispatch) => {
-    let res = await axios.get(
-      `http://localhost:3001/shop/books/order?type=${value}`
-    );
-    return dispatch({
-      type: ORDER_NAME,
-      payload: res.data,
-    });
-  };
-} 
-*/
+// export function orderName(value) {
+//   return async (dispatch) => {
+//     let res = await axios.get(
+//       `http://localhost:3001/shop/books/order?type=${value}`
+//     );
+//     return dispatch({
+//       type: ORDER_NAME,
+//       payload: res.data,
+//     });
+//   };
+// }
+
+// export function orderPriece(value) {
+//   return async (dispatch) => {
+//     let res = await axios.get(
+//       `http://localhost:3001/shop/books/orderprice?type=${value}`
+//     );
+//     return dispatch({
+//       type: ORDER_PRIECE,
+//       payload: res.data,
+//     });
+//   };
+// }
 
 export function orderName(order) {
   return {
     type: ORDER_NAME,
-    payload: order
-  }
-}
-*/
-
-export function orderPrice(order){
-  return {
-    type: ORDER_PRICE,
-    payload: order
-  }
-}
-
-/* export function orderPriece(value) {
-  return async (dispatch) => {
-    let res = await axios.get(
-      `http://localhost:3001/shop/books/orderprice?type=${value}`
-    );
-    return dispatch({
-      type: ORDER_PRIECE,
-      payload: res.data,
-    });
+    payload: order,
   };
 }
 
+export function orderPrice(order) {
+  return {
+    type: ORDER_PRICE,
+    payload: order,
+  };
+}
 
 export function categoryBooks(category) {
   return async (dispatch) => {
@@ -109,6 +105,8 @@ export function categoryBooks(category) {
     });
   };
 }
+
+export const resetCategoryBooks = () => ({ type: RESET_CATEGORY_BOOKS });
 
 export function searchBook(book) {
   return async (dispatch) => {

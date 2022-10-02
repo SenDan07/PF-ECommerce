@@ -1,34 +1,42 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux"
-import { categoryBooks, getAllCategories, getBooks, resetCategoryBooks } from "../redux/actions"
+import { useDispatch, useSelector } from "react-redux";
+import {
+  categoryBooks,
+  getAllCategories,
+  getBooks,
+  resetCategoryBooks,
+} from "../redux/actions";
 import CategoryBooksDumb from "./CategoryBooksDumb";
 import NavBar from "./NavBar";
-import FilterBar from "./FilterBar"
-
-
+import FilterBar from "./FilterBar";
 
 export default function CategoriesBooks() {
-    const dispatch = useDispatch()
-    let { category } = useParams()
-    useEffect(() => { dispatch(categoryBooks(category)) }, [dispatch])
-    useEffect(() => { dispatch(getAllCategories()) }, [dispatch])
-    //useEffect(() => { dispatch(getBooks()) }, [])
+  const dispatch = useDispatch();
+  let { category } = useParams();
+  useEffect(() => {
+    dispatch(categoryBooks(category));
+  }, [dispatch]);
 
-    useEffect(() => {
-        return () => {
-            dispatch(resetCategoryBooks());
-        };
-    }, [dispatch])
+  useEffect(() => {
+    dispatch(getAllCategories());
+  }, [dispatch]);
+  //useEffect(() => { dispatch(getBooks()) }, [])
 
+  useEffect(() => {
+    return () => {
+      dispatch(resetCategoryBooks());
+    };
+  }, [dispatch]);
 
-    const booksFilter = useSelector((state => state.booksByCategory))
+  const booksFilter = useSelector((state) => state.booksByCategory);
 
-    console.log("booksFilter: ", booksFilter)
-    return (
-        <div className="bg-bgHome min-h-screen">
-            <NavBar />
-            <FilterBar/>
+  // const booksFilter = useSelector((state) => state.books);
+  // console.log("booksFilter: ", booksFilter);
+  return (
+    <div className="bg-bgHome min-h-screen">
+      <NavBar />
+      <FilterBar />
 
       <div className="w-max m-auto">
         <Link to="/categories">
@@ -38,33 +46,28 @@ export default function CategoriesBooks() {
         </Link>
       </div>
 
-            <div className="mb-20 text-8xl">
-                <h5 className="flex justify-center">{category}</h5>
-            </div>
+      <div className="mb-20 text-8xl">
+        <h5 className="flex justify-center">{category}</h5>
+      </div>
 
-            <div className="flex flex-wrap justify-center ">
-
-                {
-
-                    booksFilter.length === 0 ?
-                        (<h4 className="text-5xl">NO HAY LIBROS EN ESTA CATEGORIA</h4>)
-                        :
-                        (booksFilter.map(e => {
-
-                            return (
-                                <CategoryBooksDumb
-                                    title={e.title}
-                                    imageLinks={e.imageLinks}
-                                    price={e.price}
-                                    key={e.id}
-                                    id={e.id} />
-                            )
-                        }))
-
-
-
-                }
-            </div>
-        </div>
-    )
-} 
+      <div className="flex flex-wrap justify-center ">
+        {console.log("antes del map")}
+        {booksFilter.length === 0 ? (
+          <h4 className="text-5xl">NO HAY LIBROS EN ESTA CATEGORIA</h4>
+        ) : (
+          booksFilter.map((e) => {
+            return (
+              <CategoryBooksDumb
+                title={e.title}
+                imageLinks={e.imageLinks}
+                price={e.price}
+                key={e.id}
+                id={e.id}
+              />
+            );
+          })
+        )}
+      </div>
+    </div>
+  );
+}
