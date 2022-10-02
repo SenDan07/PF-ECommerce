@@ -89,8 +89,11 @@ export function categoryBooks(category){
  
 
 export function searchBook(book) {
-  return {
-    type: SEARCH_BOOK,
-    payload: book,
-  };
+  return async (dispatch) => {
+    let res = await axios.get(`http://localhost:3001/shop/books/filter?value=${book}`);
+    return dispatch({
+      type: SEARCH_BOOK,
+      payload: res.data
+    })
+  }  
 }

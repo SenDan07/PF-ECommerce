@@ -73,6 +73,13 @@ function rootReducer(state = initialState, action) {
         books: action.payload
           }
 
+    case SEARCH_BOOK:
+      
+            return {
+              ...state,
+              booksFilter: action.payload
+            }
+
     default:
       return state;
   }
