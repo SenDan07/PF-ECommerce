@@ -12,14 +12,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Home />} />
-
           <Route exact path="/createbook" element={<FormBook />} />
-
           <Route exact path="/favorites" element={<Favorites />} />
-
-          <Route exact path="/:id" element={<BookDetail />} />
-
-          //<Route exact path="/categories" element={<CategoriesSmart/>}/>
+          <Route exact path="/books/:id" element={<BookDetail />} />
+          //
+          <Route exact path="/categories" element={<CategoriesSmart />} />
         </Routes>
       </BrowserRouter>
     </div>
@@ -27,6 +24,5 @@ function App() {
 }
 
 export default App;
-
 
 //<Route exact path="/categories" element={<Categories />} />
