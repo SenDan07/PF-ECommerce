@@ -20,6 +20,7 @@ const BookDetail = () => {
 
   return (
     <div className="bg-bgHome min-h-screen">
+
       <div className="pt-5">
         <Link to="/">
           <h3 className="border-1 border-rose-500 rounded w-max mx-auto px-3 py-2 bg-button text-white">
