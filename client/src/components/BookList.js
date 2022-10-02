@@ -12,7 +12,7 @@ export default function BookList() {
     dispatch(getBooks());
   }, []);
 
-  let booksData = useSelector((state) => state.books.slice(0, 10));
+  let booksData = useSelector((state) => state.books);
 
   return (
     <div className="mt-10 contenedor">
