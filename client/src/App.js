@@ -13,9 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Home />} />
-
           <Route exact path="/createbook" element={<FormBook />} />
-
           <Route exact path="/favorites" element={<Favorites />} />
 
           <Route exact path="/books/:id" element={<BookDetail />} />
@@ -30,6 +28,5 @@ function App() {
 }
 
 export default App;
-
 
 //<Route exact path="/categories" element={<Categories />} />

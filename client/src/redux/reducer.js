@@ -16,6 +16,7 @@ const initialState = {
   detail: {},
   booksFilter: [],
   categories: [],
+  mostPopulars: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -28,6 +29,8 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_DETAIL_BOOK:
+      let categoriesBook = action.payload.categories.map((e) => e.name);
+      console.log(categoriesBook);
       return {
         ...state,
         detail: action.payload,
@@ -58,18 +61,17 @@ function rootReducer(state = initialState, action) {
       };
 
     case ORDER_PRIECE:
-      console.log("action.payload: ", action.payload)
+      console.log("action.payload: ", action.payload);
       return {
         ...state,
         books: action.payload.items,
-      }
+      };
 
     case CATEGORY_BOOKS:
       return {
         ...state,
         books: action.payload
-      }
-
+          } */
 
     default:
       return state;
@@ -77,9 +79,6 @@ function rootReducer(state = initialState, action) {
 }
 
 export default rootReducer;
-
-
-
 
 /*
 case ORDER_NAME:

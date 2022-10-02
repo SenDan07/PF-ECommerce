@@ -67,9 +67,7 @@ const BookDetail = () => {
                   {Array(bookDetail.authors).join(", ")}
                 </h3>
                 <h3 className="mb-7">{bookDetail.publisher}</h3>
-                <h3 className="mb-7">
-                  {Array(bookDetail.categories).join(", ")}
-                </h3>
+                <h3 className="mb-7">Sin Categoria</h3>
                 <h3 className="mb-7">{bookDetail.ISBN}</h3>
               </div>
             </div>
