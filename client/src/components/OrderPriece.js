@@ -1,11 +1,11 @@
 import { useDispatch } from "react-redux";
-import { orderPriece } from "../redux/actions"
+import { orderPrice } from "../redux/actions"
 
-export default function OrderName() {
+export default function OrderPrice() {
     const dispatch = useDispatch()
 
     function onSelectChange(e) {
-        dispatch(orderPriece(e.target.value))
+        dispatch(orderPrice(e.target.value))
     }
 
     return (

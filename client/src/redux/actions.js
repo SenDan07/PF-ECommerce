@@ -3,11 +3,12 @@ import {
   GET_DETAIL_BOOK,
   POST_CREATE_BOOK,
   ORDER_NAME,
-  ORDER_PRIECE,
+  ORDER_PRICE,
   RESET_DETAIL,
   SEARCH_BOOK,
   GET_ALL_CATEGORIES,
   CATEGORY_BOOKS,
+  RESET_CATEGORY_BOOKS,
   RESET_SEARCH_BOOK,
 } from "./types.js";
 import axios from "axios";
@@ -55,6 +56,7 @@ export function postCreateBook(input) {
   };
 }
 
+/* 
 export function orderName(value) {
   return async (dispatch) => {
     let res = await axios.get(
@@ -65,9 +67,25 @@ export function orderName(value) {
       payload: res.data,
     });
   };
+} 
+*/
+
+export function orderName(order) {
+  return {
+    type: ORDER_NAME,
+    payload: order
+  }
+}
+*/
+
+export function orderPrice(order){
+  return {
+    type: ORDER_PRICE,
+    payload: order
+  }
 }
 
-export function orderPriece(value) {
+/* export function orderPriece(value) {
   return async (dispatch) => {
     let res = await axios.get(
       `http://localhost:3001/shop/books/orderprice?type=${value}`
@@ -78,6 +96,7 @@ export function orderPriece(value) {
     });
   };
 }
+
 
 export function categoryBooks(category) {
   return async (dispatch) => {
