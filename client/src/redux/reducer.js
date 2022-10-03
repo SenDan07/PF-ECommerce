@@ -71,11 +71,11 @@ function rootReducer(state = initialState, action) {
       console.log("orderAuxName: ", orderAuxName);
       let orderBookName = orderAuxName.sort((a, b) => {
         if (a.title <= b.title) {
-          return action.payload === "asc" ? -1 : 1;
+          return action.payload === "AZ" ? -1 : 1;
         }
 
         if (a.title > b.title) {
-          return action.payload === "des" ? -1 : 1;
+          return action.payload === "ZA" ? -1 : 1;
         }
       });
       return {
@@ -94,11 +94,11 @@ function rootReducer(state = initialState, action) {
       let orderAuxPrice = [...state.booksByCategory];
       let orderBookPrice = orderAuxPrice.sort((a, b) => {
         if (a.price <= b.price) {
-          return action.payload === "asc" ? -1 : 1;
+          return action.payload === "menor" ? -1 : 1;
         }
 
         if (a.price > b.price) {
-          return action.payload === "desc" ? -1 : 1;
+          return action.payload === "mayor" ? -1 : 1;
         }
       });
       // console.log("orderBookPrice: ", orderBookPrice);
