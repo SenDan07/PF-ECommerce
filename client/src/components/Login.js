@@ -8,6 +8,9 @@ export const Login = () => {
   //   const navigate = useNavigate();
   let dispatch = useDispatch();
 
+  let regexEmail =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
   const initialInputs = {
     email: "",
     password: "",
@@ -17,7 +20,7 @@ export const Login = () => {
 
   function onSubmit(e) {
     e.preventDefault();
-    if (data.email.length > 5 && data.password.length > 5) {
+    if (data.email.length > 5 && data.password.length >= 4) {
       dispatch(login(data));
       setData(initialInputs);
     } else {

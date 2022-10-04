@@ -108,8 +108,8 @@ function rootReducer(state = initialState, action) {
       first === 0
         ? (filterPrice = [...filterAuxPrice])
         : first === 100
-          ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
-          : (filterPrice = filterAuxPrice.filter(
+        ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
+        : (filterPrice = filterAuxPrice.filter(
             (e) => e.price >= first && e.price <= last
           ));
 
@@ -150,14 +150,15 @@ function rootReducer(state = initialState, action) {
       };
 
     case LOGIN:
+      console.log(action.payload);
       return {
         ...state,
         login: action.payload.status,
       };
     case REGISTER:
       return {
-        ...state
-      }
+        ...state,
+      };
 
     default:
       return state;
