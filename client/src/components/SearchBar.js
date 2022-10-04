@@ -26,21 +26,28 @@ export default function SearchBar() {
   }
   return (
     <div className="text-white">
-      <form onSubmit={onSubmit}>
-        <input
-          className="text-xl py-3 rounded bg-bgSearch text-white"
-          type="text"
-          onChange={onInputChange}
-          name="search"
-          value={search}
-          placeholder="Titulo o Autor"
-        />
+      <form
+        onSubmit={onSubmit}
+        className="flex items-center rounded-full pr-3 bg-[#222] pb-[1.5px]"
+      >
+        <div>
+          <input
+            className="text-lg py-1 rounded-full bg-bgSearch text-white outline-none pl-3 italic"
+            type="text"
+            onChange={onInputChange}
+            name="search"
+            value={search}
+            placeholder="Titulo o Autor"
+          />
+        </div>
 
-        <input
-          className="bg-bgHome text-xl px-4 py-3 rounded cursor-pointer hover:bg-hoverMenu text-white"
-          type="submit"
-          value="Buscar"
-        />
+        <div type="submit" className="hover:cursor-pointer ml-1">
+          <input
+            className="text-lg hover:cursor-pointer hover:rotate-12"
+            type="submit"
+            value="&#128269;"
+          />
+        </div>
       </form>
     </div>
   );

@@ -14,7 +14,7 @@ export const Book = ({ name, image, price, id }) => {
           <img
             src={image}
             alt={`img-${name}`}
-            className="w-[200px] h-[300px] rounded sombra"
+            className="w-[200px] h-[300px] rounded sombra hover:rotate-3"
           />
         </Link>
       </div>
