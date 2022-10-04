@@ -124,7 +124,7 @@ export function searchBook(book) {
 
 export function login(body) {
   return async(dispatch) => {
-    let res = await axios.post(`localhost:3001/users/login`, body) 
+    let res = await axios.post(`http://localhost:3001/users/login`, body) 
     return dispatch ({
       type: LOGIN,
       payload: res.data,
@@ -136,7 +136,7 @@ export function login(body) {
 export function register(body){
   console.log(body)
   return async(dispatch) => {
-    let res = await axios.post("localhost:3001/users/register", body)
+    let res = await axios.post("http://localhost:3001/users/register", body)
     return dispatch ({
       type: REGISTER,
       payload: res.data
