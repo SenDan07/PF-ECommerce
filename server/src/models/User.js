@@ -9,6 +9,11 @@ module.exports = (sequelize) => {
       defaultValue: Sequelize.UUIDV4,
       primaryKey: true,
     },
+    isActive: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false
@@ -22,23 +27,23 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     role: {
-      type:DataTypes.ENUM('ADMIN', 'USER'),
+      type: DataTypes.ENUM('ADMIN', 'USER'),
       allowNull: false,
-      defaultValue:'USER'
+      defaultValue: 'USER'
     },
     email: {
-      type:DataTypes.STRING,
+      type: DataTypes.STRING,
       allowNull: false
     },
     // favorites:{ 
     //   type:DataTypes.ARRAY(DataTypes.STRING)
-    
-    // }
-     
-  
-   },
 
-   {
-    timestamps: false,
-  });
+    // }
+
+
+  },
+
+    {
+      timestamps: false,
+    });
 };
