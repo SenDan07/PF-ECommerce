@@ -15,7 +15,7 @@ export default function BookList() {
 
   return (
     <div className="mt-10 contenedor">
-      <h2 className="text-center text-2xl font-medium">Mas Populares</h2>
+      <h2 className="text-center text-5xl font-medium">MAS POPULARES</h2>
       <div className="flex flex-wrap justify-center gap-20 p-8">
         {booksData.length ? (
           booksData.map((book) => {

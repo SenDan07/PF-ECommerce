@@ -12,7 +12,7 @@ export default function NavBar() {
                 <SearchBar />
             </div>
 
-            <div className="">
+            <div className="flex items-center">
                 <Link to="/" className="mx-3 cursor-pointer hover:text-hoverMenu">
                     INICIO
                 </Link>
@@ -24,6 +24,20 @@ export default function NavBar() {
                 <Link to="/admin" className="mx-3 cursor-pointer hover:text-hoverMenu">
                     ADMINISTRAR
                 </Link>
+
+                <div className="ml-10">
+                    <Link to="/login">
+                        <h4 className="text-xl cursor-pointer hover:text-hoverMenu">
+                            LOGIN
+                        </h4>
+                    </Link>
+
+                    <Link to="/register">
+                        <h4 className="text-xl cursor-pointer hover:text-hoverMenu">
+                            REGISTRARSE
+                        </h4>
+                    </Link>
+                </div>
             </div>
         </div>
     )
