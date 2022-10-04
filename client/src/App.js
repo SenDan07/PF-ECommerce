@@ -8,7 +8,7 @@ import BookDetail from "./components/BookDetail";
 import SearchBarSmart from "./components/SearchBarSmart"
 import { Route, BrowserRouter, Switch, Routes } from "react-router-dom";
 import MenuAdmin from "./components/MenuAdmin"
-//import FormUser from "./components/FormUser"
+import FormUser from "./components/FormUser"
 
 function App() {
   return (
@@ -23,6 +23,7 @@ function App() {
           <Route exact path="/categories/:category" element={<CategoryBooksSmart/>}/>
           <Route exact path="/categories" element={<CategoriesSmart/>}/>
           <Route exact path="/admin" element={<MenuAdmin/>}/>
+          <Route exact path="/adminuser" element={<FormUser/>}/>
           {/* <Route exact path="/categories" element={<Categories />} /> */}
         </Routes>
       </BrowserRouter>
@@ -34,4 +35,4 @@ export default App;
 
 //
 
-// <Route exact path="/adminuser" element={<FormUser/>}/>
+//
