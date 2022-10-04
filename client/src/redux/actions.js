@@ -10,6 +10,9 @@ import {
   CATEGORY_BOOKS,
   RESET_SEARCH_BOOK,
   RESET_CATEGORY_BOOKS,
+  FILTER_PRICE,
+  LOGIN,
+  REGISTER,
   SET_STATUS
 } from "./types.js";
 import axios from "axios";
@@ -62,6 +65,93 @@ export function postCreateBook(input) {
     
   };
 }
+
+
+export function orderName(order) {
+  return {
+    type: ORDER_NAME,
+    payload: order,
+  };
+}
+
+export function orderPrice(order) {
+  return {
+    type: ORDER_PRICE,
+    payload: order,
+  };
+}
+
+
+export function filterPrice(price) {
+  return {
+    type: FILTER_PRICE,
+    payload: price
+  }
+}
+
+export function categoryBooks(category) {
+  return async (dispatch) => {
+    let res = await axios.get(
+      `http://localhost:3001/shop/booksCategory?name=${category}`
+    );
+    return dispatch({
+      type: CATEGORY_BOOKS,
+      payload: res.data,
+    });
+  };
+}
+
+export const resetCategoryBooks = () => ({ type: RESET_CATEGORY_BOOKS });
+
+export function searchBook(book) {
+    return async (dispatch) => {
+    try{
+      dispatch(setStatus('Cargando'))
+      var res = await axios.get(
+      `http://localhost:3001/shop/books/filter?value=${book}`
+    );
+    return dispatch({
+      type: SEARCH_BOOK,
+      payload: res.data,
+    });
+    }catch(e){
+      return console.log(res)
+    }
+      
+  };
+}
+
+
+export function login(body) {
+  return async(dispatch) => {
+    let res = await axios.post(`localhost:3001/users/login`, body) 
+    return dispatch ({
+      type: LOGIN,
+      payload: res.data,
+    })
+  }
+}
+
+
+export function register(body){
+  return async(dispatch) => {
+    let res = await axios.post("localhost:3001/users/register", body)
+    return dispatch ({
+      type: REGISTER,
+      payload: res.data
+    })
+  }
+}
+
+export function setStatus(mensaje){
+  return {
+    type: SET_STATUS,
+    payload:mensaje
+  }
+}
+export const resetSearchBook = () => ({ type: RESET_SEARCH_BOOK });
+
+
 
 // export function orderName(value) {
 //   return async (dispatch) => {

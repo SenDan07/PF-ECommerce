@@ -11,6 +11,9 @@ import {
   CATEGORY_BOOKS,
   RESET_SEARCH_BOOK,
   RESET_CATEGORY_BOOKS,
+  FILTER_PRICE,
+  REGISTER,
+  LOGIN
   SET_STATUS
 } from "./types";
 
@@ -22,6 +25,8 @@ const initialState = {
   mostPopulars: [],
   booksBySearch: [],
   booksByCategory: [],
+  booksByPrice: [],
+  login: 0
   loading:''
 };
 
@@ -64,11 +69,6 @@ function rootReducer(state = initialState, action) {
         categories: action.payload,
       };
 
-    // case ORDER_NAME:
-    //   return {
-    //     ...state,
-    //     books: action.payload,
-    //   };
 
     case ORDER_NAME:
       let orderAuxName = [...state.booksByCategory];
@@ -87,12 +87,6 @@ function rootReducer(state = initialState, action) {
         booksByCategory: orderBookName,
       };
 
-    // case ORDER_PRIECE:
-    //   console.log("action.payload: ", action.payload);
-    //   return {
-    //     ...state,
-    //     books: action.payload.items,
-    //   };
 
     case ORDER_PRICE:
       let orderAuxPrice = [...state.booksByCategory];
@@ -105,17 +99,37 @@ function rootReducer(state = initialState, action) {
           return action.payload === "mayor" ? -1 : 1;
         }
       });
-      // console.log("orderBookPrice: ", orderBookPrice);
       return {
         ...state,
-        booksByCategory: orderBookPrice,
+        booksByCategory: orderBookPrice
       };
 
-    // case CATEGORY_BOOKS:
-    //   return {
-    //     ...state,
-    //     books: action.payload,
-    //   };
+
+    case FILTER_PRICE:
+      let filterAuxPrice = [...state.books]
+      let filterPrice = [...filterAuxPrice]
+      //state.booksByPrice = [...state.booksFilter]
+      //console.log("filterAuxPrice: ", filterAuxPrice)
+      if (action.payload === "tier1") {
+        filterPrice = filterAuxPrice.filter(e => e.price < 25)
+      }
+      if (action.payload === "tier2") {
+        filterPrice = filterAuxPrice.filter(e => e.price >= 25 && e.price <= 50)
+      }
+      if (action.payload === "tier3") {
+        filterPrice = filterAuxPrice.filter(e => e.price >= 50 && e.price <= 75)
+      }
+      if (action.payload === "tier4") {
+        filterPrice = filterAuxPrice.filter(e => e.price >= 75 && e.price <= 100)
+      }
+      if (action.payload === "tier5") {
+        filterPrice = filterAuxPrice.filter(e => e.price > 100)
+      }
+      return {
+        ...state,
+        booksByCategory: filterPrice
+      };
+
 
     case CATEGORY_BOOKS:
       return {
@@ -145,6 +159,14 @@ function rootReducer(state = initialState, action) {
         ...state,
         loading:action.payload
       }
+
+      case LOGIN:
+        return {
+          ...state,
+          login: action.payload.status
+        }
+
+
 
     default:
       return state;
@@ -183,3 +205,25 @@ case ORDER_NAME:
     }
 
 */
+
+
+    // case CATEGORY_BOOKS:
+    //   return {
+    //     ...state,
+    //     books: action.payload,
+    //   };
+
+
+    // case ORDER_PRIECE:
+    //   console.log("action.payload: ", action.payload);
+    //   return {
+    //     ...state,
+    //     books: action.payload.items,
+    //   };
+
+
+        // case ORDER_NAME:
+    //   return {
+    //     ...state,
+    //     books: action.payload,
+    //   };
