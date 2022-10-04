@@ -1,19 +1,18 @@
 const { User } = require("../../db");
 
 
-const isRoleValid = async(role ='') => {
-    console.log(role)
-    const validRole = await User.findOne({
-        where:{
-            role:'ADMIN',
-        }
-    })
+const thereIsEmail = async(email ='') => {
+    console.log(email)
+    
+    const user = await User.findOne({where: {email:email}});
 
-    if(! validRole){
-       throw new Error(`El rol ${ role } no existe`)
+    if(!user){
+       return null
+    }else{
+        return user;
     }
 }
 
 module.exports = {
-    isRoleValid
+    thereIsEmail
 }

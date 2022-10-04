@@ -3,10 +3,18 @@ const JWT = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const models = require('../db');
 const HttpError = require("../errors/http-error");
+const {thereIsEmail}= require('../util/helpers/db-validators');
+const { validationResult } = require('express-validator');
 
 const loginController = {
-
 	registerUser: async(req, res,next) => {
+
+		//verifico los campos del req
+		const errors = validationResult(req);
+
+		if( !errors.isEmpty() ){
+			return res.status(400).json(errors)
+		}
 		// tomo los datos desde el body
 		let name = req.body.name;
 		let email = req.body.email;
@@ -15,7 +23,7 @@ const loginController = {
 		let password = bcrypt.hashSync(req.body.password, 10);
 		//compruebo si el email ya existe
   try{
-	const user = await models.User.findOne({where: {email}})
+	const user = await thereIsEmail( email );
 		
 			if (user){
 				 return res.status(400).json({
@@ -46,10 +54,15 @@ const loginController = {
 		}
 	},
 	loginUser: async (req, res,next) => {
+		const errors = validationResult(req);
+
+		if( !errors.isEmpty() ){
+			return res.status(400).json(errors)
+		}
 // por body el mail
 		try{
-
-	const user = await	models.User.findOne({where: {email: req.body.email}});
+			// funcion validadora de email
+			const user = await thereIsEmail( req.body.email );
 
 			if (user) {
 				if (bcrypt.compareSync(req.body.password, user.password)) {
@@ -67,6 +80,7 @@ const loginController = {
 					return res.status(200).json({
 						status: 1,
 						messsage: 'User logged in successfully',
+						role:user.role,
 						token: userToken
 					});
 				} else {
@@ -90,11 +104,11 @@ const loginController = {
 	deleteUser: () => {
 
 	},
-	putUser: async() => {
+	putUser: async(req,res,next) => {
 
-		const { id } = req.params;
-		const  modification  = req.body;
-		const user = await	models.User.findOne({where: {email: req.body.email}});
+		const { id } = req.params;// saco el id 
+		const  modification  = req.body;// los cambios que voy a realizar
+		const user = await thereIsEmail( req.body.email );
 		if ( password ){
 			if (bcrypt.compareSync(req.body.password, user.password)) {
 				const change = await models.User.update(modification,{
