@@ -9,7 +9,7 @@ import SearchBarSmart from "./components/SearchBarSmart";
 import { Route, BrowserRouter, Switch, Routes } from "react-router-dom";
 import MenuAdmin from "./components/MenuAdmin";
 import { Login } from "./components/Login";
-//import FormUser from "./components/FormUser"
+import FormUser from "./components/FormUser";
 
 function App() {
   return (
@@ -28,6 +28,7 @@ function App() {
           />
           <Route exact path="/categories" element={<CategoriesSmart />} />
           <Route exact path="/admin" element={<MenuAdmin />} />
+          <Route exact path="/adminuser" element={<FormUser />} />
           {/* <Route exact path="/categories" element={<Categories />} /> */}
           <Route exact path="/login" element={<Login />} />
         </Routes>
@@ -40,4 +41,4 @@ export default App;
 
 //
 
-// <Route exact path="/adminuser" element={<FormUser/>}/>
+//
