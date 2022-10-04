@@ -21,7 +21,7 @@ export default function NavBar() {
                     CATEGORIAS
                 </Link>
 
-                <Link to="/createbook" className="mx-3 cursor-pointer hover:text-hoverMenu">
+                <Link to="/admin" className="mx-3 cursor-pointer hover:text-hoverMenu">
                     ADMINISTRAR
                 </Link>
             </div>
