@@ -2,37 +2,55 @@ const jwtConfig = require('../../config/jwt-config');
 const JWT = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const models = require('../db');
+const HttpError = require("../errors/http-error");
 
 const loginController = {
 
-	registerUser: (req, res) => {
+	registerUser: async(req, res,next) => {
+		// tomo los datos desde el body
 		let name = req.body.name;
 		let email = req.body.email;
 		let role = req.body.role;
 		let lastName = req.body.lastName;
 		let password = bcrypt.hashSync(req.body.password, 10);
-
-		models.User.findOne({where: {email}})
-		.then((user) => {
-			if (user) res.status(200).json({messsage: 'User already exists'});
-			else {
-				models.User.create({name, lastName, password, email, role})
-				.then((response) => {
-					res.status(200).json({msg: 'User registered successfully', data: response});
-				})
-				.catch((error) => {
-					console.log(error);
-					res.status(500).json({msg: 'Failed to register'});
-				})
+		//compruebo si el email ya existe
+  try{
+	const user = await models.User.findOne({where: {email}})
+		
+			if (user){
+				 return res.status(400).json({
+					status:0,
+					messsage: 'User already exists'});
 			}
-		})
-		.catch((error) => {
-			console.log(error);
-		});
+			 if(!user){//creo el usuario
+				const userCreated = await models.User.create({name, lastName, password, email, role})
+				       
+					 console.log (userCreated._previousDataValues.password)
+					//let { password,...data }= userCreated._previousDataValues
+					const data = {
+						name:userCreated._previousDataValues.name,
+						lastName:userCreated._previousDataValues.lastName,
+						email:userCreated._previousDataValues.email,
+						role:userCreated._previousDataValues.role
+					}
+
+					return res.status(200).json({
+						status:1,
+						msg: 'User registered successfully', 
+						data: data });
+				
+			}
+		 
+		}catch(error) {
+		console.log(error)
+		}
 	},
-	loginUser: (req, res) => {
-		models.User.findOne({where: {email: req.body.email}})
-		.then((user) => {
+	loginUser: async (req, res,next) => {
+// por body el mail
+		try{
+
+	const user = await	models.User.findOne({where: {email: req.body.email}});
+
 			if (user) {
 				if (bcrypt.compareSync(req.body.password, user.password)) {
 					let userToken = JWT.sign({
@@ -46,14 +64,14 @@ const loginController = {
 						issuer: jwtConfig.issuer,
 						algorithm: jwtConfig.algorithm
 					})
-					res.status(200).json({
+					return res.status(200).json({
 						status: 1,
 						messsage: 'User logged in successfully',
 						token: userToken
 					});
 				} else {
-					res.status(500).json({
-						status: 0,
+					return res.status(500).json({
+						status:0,
 						messsage: 'User do not match'
 					});
 				}
@@ -63,13 +81,29 @@ const loginController = {
 					messsage: 'User do not exists whidth email address '
 				});
 			}
-		})
-		.catch((error) => {
+		}
+	
+		catch(error){
 			console.log(error);
-		})
+		}
 	},
 	deleteUser: () => {
 
+	},
+	putUser: async() => {
+
+		const { id } = req.params;
+		const  modification  = req.body;
+		const user = await	models.User.findOne({where: {email: req.body.email}});
+		if ( password ){
+			if (bcrypt.compareSync(req.body.password, user.password)) {
+				const change = await models.User.update(modification,{
+					where: {
+						id:id,
+					}
+				}  )
+			}
+		}
 	}
 }
 

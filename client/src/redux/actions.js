@@ -13,6 +13,7 @@ import {
   FILTER_PRICE,
   LOGIN,
   REGISTER,
+  SET_STATUS
 } from "./types.js";
 import axios from "axios";
 
@@ -48,14 +49,20 @@ export function getAllCategories() {
 
 export function postCreateBook(input) {
   return async (dispatch) => {
-    let res = await axios.post(
-      `http://localhost:3001/admin/create-book`,
-      input
-    );
-    return dispatch({
-      type: POST_CREATE_BOOK,
-      payload: res.data,
-    });
+    try{
+        dispatch(setStatus("Guardando"))
+        var res = await axios.post(
+        `http://localhost:3001/admin/create-book`,
+        input
+      );
+      return dispatch({
+        type: POST_CREATE_BOOK,
+        payload: res.data,
+      });
+    }catch(e){
+      dispatch(setStatus("Datos no se guardaron correctamente"))
+    }
+    
   };
 }
 
@@ -97,12 +104,20 @@ export function categoryBooks(category) {
 export const resetCategoryBooks = () => ({ type: RESET_CATEGORY_BOOKS });
 
 export function searchBook(book) {
-  return async (dispatch) => {
-    let res = await axios.get(`http://localhost:3001/shop/books/filter?value=${book}`);
+    return async (dispatch) => {
+    try{
+      dispatch(setStatus('Cargando'))
+      var res = await axios.get(
+      `http://localhost:3001/shop/books/filter?value=${book}`
+    );
     return dispatch({
       type: SEARCH_BOOK,
       payload: res.data,
     });
+    }catch(e){
+      return console.log(res)
+    }
+      
   };
 }
 
@@ -128,6 +143,12 @@ export function register(body){
   }
 }
 
+export function setStatus(mensaje){
+  return {
+    type: SET_STATUS,
+    payload:mensaje
+  }
+}
 export const resetSearchBook = () => ({ type: RESET_SEARCH_BOOK });
 
 
