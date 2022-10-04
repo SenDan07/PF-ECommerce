@@ -38,10 +38,10 @@ export default function CategoriesBooks() {
       <NavBar />
       <FilterBar />
 
-      <div className="w-[80%] m-auto mt-5">
-        <div className="flex justify-center mb-10">
+      <div className="w-full mt-5">
+        <div className="flex justify-start mb-10">
           <Link to="/categories">
-            <h3 className="rounded w-max mx-auto px-3 py-2 bg-button text-white">
+            <h3 className="border-1 border-rose-500 rounded mx-auto px-5 py-2 bg-button text-black hover:text-white mt-5 mx-10">
               &#129044; Regresar
             </h3>
           </Link>

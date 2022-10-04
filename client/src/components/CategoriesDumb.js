@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 export default function CategoryBook({ name, imageLinks, id }) {
   return (
-    <div className="m-5 ">
+    <div className="m-5 hover:text-white">
       <Link to={`/categories/${name}`} >
         <div className="w-64 h-64">
-          <img src={imageLinks} alt="IMAGE NOT FOUND" className="object-fill h-64 w-full" />
+          <img src={imageLinks} alt="IMAGE NOT FOUND" className="object-fill h-64 w-full rounded-lg hover:opacity-50" />
         </div>
         <h2 className="flex justify-center text-xl">{name}</h2>
       </Link>
