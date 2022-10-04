@@ -50,7 +50,7 @@ export function validate(input) {
 export default function FormBook() {
     const dispatch = useDispatch()
  
-    //let loading=useSelector(state=>state.loading)
+    let loading=useSelector(state=>state.loading)
    
     const [input, setInput] = React.useState({
         title:'',//texto
@@ -60,7 +60,7 @@ export default function FormBook() {
         categories: [],//string
         imageLinks: '',//string
         description:'',//string
-        price: 0,//float
+        price: '',//float
     })
     const [errors, setErrors] = React.useState({});
 
@@ -95,7 +95,7 @@ export default function FormBook() {
 
         e.preventDefault()
         dispatch(postCreateBook(input))
-        console.log(input)
+       
         setInput({
             title:'',
             authors: '',
@@ -104,12 +104,12 @@ export default function FormBook() {
             categories: [],
             imageLinks: '',
             description:'',
-            price: 0,
+            price:'',
         })
         e.target.title.focus()
         //  let boton= document.getElementById('enviar')
         boton.disabled = true
-        //   setTimeout(()=>dispatch(setStatus('')),2000)
+        setTimeout(()=>dispatch(setStatus('')),5000)
     }
 
     function handleChange(e) {
@@ -168,9 +168,9 @@ export default function FormBook() {
                 <input type='text' className={errors.price ? 'text-[#dc2626] rounded-lg' : 'text-[#075985] rounded-lg'} name='price' value={input.price} placeholder='Ingrese el precio' onChange={(e) => handleChange(e)} /><br />
                 {errors.price ? <p className="text-[#dc2626]">{errors.price}</p> : null}<br />
                 <label className="block">IMAGEN: </label>
-                <input type='file' name='imageLinks' placeholder='Sube la portada del libro' onChange={(e) => uploadImage(e)} />
-                {errors.imageLinks ? <p className="text-[#dc2626]">{errors.imageLinks}</p> : input.imageLinks}<br />
-                <label className="block">CATEGORIA:</label>
+                <input type='file' name='imageLinks' className="w-64" accept="image/png, image/jpeg" onChange={(e) => uploadImage(e)} />
+                <img src={input.imageLinks} alt="imagen" className="h-10 w-16" />
+                <label className="block">CATEGORIA:</label>           
                 <select name="categories" value={input.categories} placeholder='categoria' onClick={handleSelect} className={errors.categories ? 'text-[#dc2626]' : 'text-[#075985]'} multiple>
                     {categories.map(category=>{
                          return <option value={category.name}>{category.name}</option>
@@ -186,7 +186,7 @@ export default function FormBook() {
                 <textarea className="w-full text-[#075985] rounded-lg" name="description" value={input.description} onChange={(e) => handleChange(e)} />
                 {errors.description ? <p className="text-[#dc2626]">{errors.description}</p> : null}<br />
                 <br />
-                {/*loading?<p>{loading}</p>:null*/}
+                {loading?<p>{loading}</p>:null}
                 <input type='submit' className={(Object.keys(errors).length) ? "bg-[#94a3b8] p-5 m-2 cursor-pointer rounded-3xl" : "bg-[#9a3412] p-5 m-2 cursor-pointer rounded-3xl"} id='enviar' disabled={(Object.keys(errors).length) ? true : false} value='Guardar' />
 
                 <Link to="/">

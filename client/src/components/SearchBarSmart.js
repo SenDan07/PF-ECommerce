@@ -7,7 +7,6 @@ import { resetSearchBook } from "../redux/actions";
 
 export default function SearchBarSmart() {
   const busqueda = useSelector((state) => state.booksBySearch);
-  console.log(busqueda);
 
   const dispatch = useDispatch();
 
@@ -29,7 +28,7 @@ export default function SearchBarSmart() {
         </Link>
       </div>
       <div className="border-1 border-black-500 flex flex-wrap gap-36 justify-center mt-32 pb-20">
-        {busqueda.map((book) => {
+        {busqueda.length?busqueda.map((book) => {
           return (
             <div key={book.id}>
               <Book
@@ -40,7 +39,7 @@ export default function SearchBarSmart() {
               />
             </div>
           );
-        })}
+        }):<p>No se encontraron Resultados</p>}
       </div>
     </div>
   );
