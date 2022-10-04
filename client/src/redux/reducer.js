@@ -13,7 +13,7 @@ import {
   RESET_CATEGORY_BOOKS,
   FILTER_PRICE,
   REGISTER,
-  LOGIN
+  LOGIN,
   SET_STATUS
 } from "./types";
 
@@ -26,7 +26,7 @@ const initialState = {
   booksBySearch: [],
   booksByCategory: [],
   booksByPrice: [],
-  login: 0
+  login: 0,
   loading:''
 };
 
