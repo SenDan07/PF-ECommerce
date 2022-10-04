@@ -10,7 +10,7 @@ module.exports = {
       'bgSearch': '#6F6666',
       'hoverMenu': '#ca8a04',
       'black': '#000000',
-
+      'bgItems': '#a3a3a3',
     },
     extend: {
       height: {

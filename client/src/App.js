@@ -28,7 +28,7 @@ function App() {
           />
           <Route exact path="/categories" element={<CategoriesSmart />} />
           <Route exact path="/admin" element={<MenuAdmin />} />
-          <Route exact path="/adminuser" element={<FormUser />} />
+          <Route exact path="/register" element={<FormUser />} />
           {/* <Route exact path="/categories" element={<Categories />} /> */}
           <Route exact path="/login" element={<Login />} />
         </Routes>
