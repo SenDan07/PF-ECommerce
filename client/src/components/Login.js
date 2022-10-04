@@ -39,7 +39,7 @@ export const Login = () => {
   return (
     <div className="flex h-screen justify-center items-center relative">
       <Link to="/">
-        <h3 className="border-1 border-rose-500 rounded w-max mx-auto px-3 py-2 bg-button text-white absolute mt-[-20%] ml-[6%]">
+        <h3 className="border-1 border-rose-500 rounded w-max mx-auto px-3 py-2 bg-button text-black hover:text-white absolute mt-[-20%] ml-[6%]">
           &#129044; Regresar
         </h3>
       </Link>
