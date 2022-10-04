@@ -43,7 +43,7 @@ export default function FormUser() {
         name:'',
         lastName:'',
         password: '',
-        role:'',
+        role:'USER',
         email:''
     })
     const [errors, setErrors] = React.useState({});
@@ -81,7 +81,7 @@ export default function FormUser() {
         dispatch(register(input))
        
         setInput({
-            name:'',
+        name:'',
         lastName:'',
         password: '',
         role:'',
@@ -116,7 +116,7 @@ export default function FormUser() {
 
         <form onSubmit={(e) => handleSubmit(e)} className="bg-[#a3a3a3] text-white container mx-auto p-20 m-20 rounded-3xl w-1/2">
             <h2 className="text-center text-xl text-[30px] text-black">REGISTRO DE USUARIOS</h2><br />
-            <fieldset className="columns-2 text-[18px]">
+            <fieldset className="columns-2 text-[18px] m-2">
                 <label className="block">NOMBRE: </label>
                 <input type='text' className={errors.name ? 'text-[#dc2626] rounded-lg' : 'text-[#075985] rounded-lg'} name='name' value={input.name} placeholder='Ingrese el Nombre de Usuario' onChange={(e) => handleChange(e)} autoFocus /><br />
                 {errors.name ? <p className="text-[#dc2626]">{errors.name}</p> : null}<br />
@@ -127,18 +127,29 @@ export default function FormUser() {
                 <input type='password' className={errors.password ? 'text-[#dc2626] rounded-lg' : 'text-[#075985] rounded-lg'} name='password' value={input.password} placeholder='Password' onChange={(e) => handleChange(e)} /><br />
                 {errors.password ? <p className="text-[#dc2626]">{errors.password}</p> : null}<br />
                 <label className="block">EMAIL: </label>
-                <input type='email' className={errors.email ? 'text-[#dc2626] rounded-lg' : 'text-[#075985] rounded-lg'} name='ISBN' value={input.email} placeholder='Email' onChange={(e) => handleChange(e)} /><br />
+                <input type='email' className={errors.email ? 'text-[#dc2626] rounded-lg' : 'text-[#075985] rounded-lg'} name='email' value={input.email} placeholder='Email' onChange={(e) => handleChange(e)} /><br />
                 {errors.email ? <p className="text-[#dc2626]">{errors.email}</p> : null}<br />                               
                 
                 {/*<label className="block">IMAGEN: </label>
                 <input type='file' name='imageLinks' className="w-64" accept="image/png, image/jpeg" onChange={(e) => uploadImage(e)} />
                 <img src={input.imageLinks} alt="imagen" className="h-10 w-16" />*/}
                 <label className="block">ROL:</label>           
-                <select name="role" value={input.role} onClick={handleChange(e)} className={errors.role ? 'text-[#dc2626]' : 'text-[#075985]'} >
-                          <option value='ADMIN'>{category.name}</option>
-                          <option value='USER' select>{category.name}</option>
+                <select name="role" value={input.role} onChange={handleChange} className={errors.role ? 'text-[#dc2626]' : 'text-[#075985]'} >
+                          <option value='USER'>USER</option>
+                          <option value='ADMIN'>ADMIN</option>                         
                 </select>
-            </fieldset>
+                <br /><br /><br />
+                
+                </fieldset>
+                <fieldset className="text-center">
+                {loading?<p>{loading}</p>:null}
+                <input type='submit' className={(Object.keys(errors).length) ? "bg-[#94a3b8] p-5 m-2 cursor-pointer rounded-3xl" : "bg-[#9a3412] p-5 m-2 cursor-pointer rounded-3xl"} id='enviar' disabled={(Object.keys(errors).length) ? true : false} value='Guardar' />
+
+                <Link to="/admin">
+                    <input type='button' className="bg-[#9a3412] p-5 cursor-pointer rounded-3xl" value='Regresar' />
+                </Link>
+                </fieldset>    
+           
         </form>
 
     </div>
