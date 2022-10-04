@@ -10,3 +10,6 @@ export const ORDER_PRICE = "ORDER_PRICE";
 export const CATEGORY_BOOKS = "CATEGORY_BOOKS";
 export const RESET_SEARCH_BOOK = "RESET_SEARCH_BOOK";
 export const RESET_CATEGORY_BOOKS = "RESET_CATEGORY_BOOKS";
+export const FILTER_PRICE = "FILTER_PRICE"
+export const LOGIN = "LOGIN";
+export const REGISTER = "REGISTER";
