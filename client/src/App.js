@@ -7,6 +7,8 @@ import CategoriesSmart from "./components/CategoriesSmart";
 import BookDetail from "./components/BookDetail";
 import SearchBarSmart from "./components/SearchBarSmart"
 import { Route, BrowserRouter, Switch, Routes } from "react-router-dom";
+import MenuAdmin from "./components/MenuAdmin"
+//import FormUser from "./components/FormUser"
 
 function App() {
   return (
@@ -16,14 +18,12 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/createbook" element={<FormBook />} />
           <Route exact path="/favorites" element={<Favorites />} />
-
           <Route exact path="/books/:id" element={<BookDetail />} />
-          
-          <Route exact path="/searchbar" element={<SearchBarSmart />} />
-          
+          <Route exact path="/searchbar" element={<SearchBarSmart />} />         
           <Route exact path="/categories/:category" element={<CategoryBooksSmart/>}/>
-
-          //<Route exact path="/categories" element={<CategoriesSmart/>}/>
+          <Route exact path="/categories" element={<CategoriesSmart/>}/>
+          <Route exact path="/admin" element={<MenuAdmin/>}/>
+          {/* <Route exact path="/categories" element={<Categories />} /> */}
         </Routes>
       </BrowserRouter>
     </div>
@@ -32,4 +32,6 @@ function App() {
 
 export default App;
 
-//<Route exact path="/categories" element={<Categories />} />
+//
+
+// <Route exact path="/adminuser" element={<FormUser/>}/>
