@@ -14,6 +14,7 @@ import {
   FILTER_PRICE,
   REGISTER,
   LOGIN
+  SET_STATUS
 } from "./types";
 
 const initialState = {
@@ -26,6 +27,7 @@ const initialState = {
   booksByCategory: [],
   booksByPrice: [],
   login: 0
+  loading:''
 };
 
 function rootReducer(state = initialState, action) {
@@ -49,8 +51,10 @@ function rootReducer(state = initialState, action) {
       };
 
     case POST_CREATE_BOOK:
+      console.log(action.payload)
       return {
         ...state,
+        loading:action.payload
       };
 
     case RESET_DETAIL:
@@ -150,6 +154,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         booksBySearch: [],
       };
+    case SET_STATUS:
+      return{
+        ...state,
+        loading:action.payload
+      }
 
       case LOGIN:
         return {
