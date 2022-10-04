@@ -29,7 +29,7 @@ export default function CategoriesBooks() {
     };
   }, [dispatch]);
 
-  const booksFilter = useSelector((state) => state.booksByCategory);
+  const booksFilter = useSelector((state) => state.booksByPrice);
 
   // const booksFilter = useSelector((state) => state.books);
   // console.log("booksFilter: ", booksFilter);
@@ -38,16 +38,20 @@ export default function CategoriesBooks() {
       <NavBar />
       <FilterBar />
 
-      <div className="w-max m-auto">
-        <Link to="/categories">
-          <h3 className="border-1 border-rose-500 rounded w-max mx-auto mt-12 px-3 py-2 bg-button text-white">
-            &#129044; Regresar
-          </h3>
-        </Link>
-      </div>
+      <div className="w-[80%] m-auto mt-5">
+        <div className="flex justify-center mb-10">
+          <Link to="/categories">
+            <h3 className="rounded w-max mx-auto px-3 py-2 bg-button text-white">
+              &#129044; Regresar
+            </h3>
+          </Link>
+        </div>
 
-      <div className="mb-20 text-8xl">
-        <h5 className="flex justify-center">{category}</h5>
+        <div className="mb-20 font-bold text-5xl font-serif italic">
+          <h5 className="flex justify-center underline decoration-NavBar">
+            {category}
+          </h5>
+        </div>
       </div>
 
       <div className="flex flex-wrap justify-center ">

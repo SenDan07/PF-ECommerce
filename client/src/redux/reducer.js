@@ -13,7 +13,7 @@ import {
   RESET_CATEGORY_BOOKS,
   FILTER_PRICE,
   REGISTER,
-  LOGIN
+  LOGIN,
 } from "./types";
 
 const initialState = {
@@ -25,7 +25,7 @@ const initialState = {
   booksBySearch: [],
   booksByCategory: [],
   booksByPrice: [],
-  login: 0
+  login: 0,
 };
 
 function rootReducer(state = initialState, action) {
@@ -38,11 +38,6 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_DETAIL_BOOK:
-      // let categoriesBook = action.payload.categories.map((e) => e.name);
-      // let arreglo = { ...action.payload };
-      // categoriesBook = categoriesBook.toString();
-      // console.log(categoriesBook);
-      // arreglo.categories = categoriesBook;
       return {
         ...state,
         detail: { ...action.payload },
@@ -65,10 +60,9 @@ function rootReducer(state = initialState, action) {
         categories: action.payload,
       };
 
-
     case ORDER_NAME:
-      let orderAuxName = [...state.booksByCategory];
-      console.log("orderAuxName: ", orderAuxName);
+      let orderAuxName = [...state.booksByPrice];
+
       let orderBookName = orderAuxName.sort((a, b) => {
         if (a.title <= b.title) {
           return action.payload === "AZ" ? -1 : 1;
@@ -80,12 +74,11 @@ function rootReducer(state = initialState, action) {
       });
       return {
         ...state,
-        booksByCategory: orderBookName,
+        booksByPrice: orderBookName,
       };
 
-
     case ORDER_PRICE:
-      let orderAuxPrice = [...state.booksByCategory];
+      let orderAuxPrice = [...state.booksByPrice];
       let orderBookPrice = orderAuxPrice.sort((a, b) => {
         if (a.price <= b.price) {
           return action.payload === "menor" ? -1 : 1;
@@ -97,46 +90,42 @@ function rootReducer(state = initialState, action) {
       });
       return {
         ...state,
-        booksByCategory: orderBookPrice
+        booksByPrice: orderBookPrice,
       };
-
 
     case FILTER_PRICE:
-      let filterAuxPrice = [...state.books]
-      let filterPrice = [...filterAuxPrice]
-      //state.booksByPrice = [...state.booksFilter]
-      //console.log("filterAuxPrice: ", filterAuxPrice)
-      if (action.payload === "tier1") {
-        filterPrice = filterAuxPrice.filter(e => e.price < 25)
-      }
-      if (action.payload === "tier2") {
-        filterPrice = filterAuxPrice.filter(e => e.price >= 25 && e.price <= 50)
-      }
-      if (action.payload === "tier3") {
-        filterPrice = filterAuxPrice.filter(e => e.price >= 50 && e.price <= 75)
-      }
-      if (action.payload === "tier4") {
-        filterPrice = filterAuxPrice.filter(e => e.price >= 75 && e.price <= 100)
-      }
-      if (action.payload === "tier5") {
-        filterPrice = filterAuxPrice.filter(e => e.price > 100)
-      }
+      state.booksByPrice = [...state.booksByCategory];
+      let filterAuxPrice = [...state.booksByPrice];
+      let filterPrice;
+
+      let first = action.payload.split("-")[0] * 1;
+      let last = action.payload.split("-")[1] * 1;
+
+      first === 0
+        ? (filterPrice = [...filterAuxPrice])
+        : first === 100
+        ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
+        : (filterPrice = filterAuxPrice.filter(
+            (e) => e.price >= first && e.price <= last
+          ));
+
       return {
         ...state,
-        booksByCategory: filterPrice
+        booksByPrice: filterPrice,
       };
-
 
     case CATEGORY_BOOKS:
       return {
         ...state,
         booksByCategory: action.payload,
+        booksByPrice: state.booksByCategory,
       };
 
     case RESET_CATEGORY_BOOKS:
       return {
         ...state,
         booksByCategory: [],
+        booksByPrice: [],
       };
 
     case SEARCH_BOOK:
@@ -151,13 +140,11 @@ function rootReducer(state = initialState, action) {
         booksBySearch: [],
       };
 
-      case LOGIN:
-        return {
-          ...state,
-          login: action.payload.status
-        }
-
-
+    case LOGIN:
+      return {
+        ...state,
+        login: action.payload.status,
+      };
 
     default:
       return state;
@@ -197,24 +184,21 @@ case ORDER_NAME:
 
 */
 
+// case CATEGORY_BOOKS:
+//   return {
+//     ...state,
+//     books: action.payload,
+//   };
 
-    // case CATEGORY_BOOKS:
-    //   return {
-    //     ...state,
-    //     books: action.payload,
-    //   };
+// case ORDER_PRIECE:
+//   console.log("action.payload: ", action.payload);
+//   return {
+//     ...state,
+//     books: action.payload.items,
+//   };
 
-
-    // case ORDER_PRIECE:
-    //   console.log("action.payload: ", action.payload);
-    //   return {
-    //     ...state,
-    //     books: action.payload.items,
-    //   };
-
-
-        // case ORDER_NAME:
-    //   return {
-    //     ...state,
-    //     books: action.payload,
-    //   };
+// case ORDER_NAME:
+//   return {
+//     ...state,
+//     books: action.payload,
+//   };
