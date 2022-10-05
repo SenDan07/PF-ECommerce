@@ -1,48 +1,70 @@
-import { Link } from "react-router-dom"
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
 export default function NavBar() {
-    return (
-        <div className="bg-NavBar text-2xl text-white flex justify-between items-center px-7 py-3">
-            <div>
-                <h6 className="text-5xl">LIBRERIA</h6>
-            </div>
+  const LOGIN = useSelector((state) => state.login);
+  const ROLE = useSelector((state) => state.role);
 
-            <div>
-                <SearchBar />
-            </div>
+  return (
+    <div className="bg-NavBar text-2xl text-white flex justify-between items-center px-7 py-3">
+      <div>
+        <h6 className="text-5xl">LIBRERIA</h6>
+      </div>
 
-            <div className="flex items-center">
-                <Link to="/" className="mx-3 cursor-pointer hover:text-hoverMenu">
-                    INICIO
-                </Link>
+      <div>
+        <SearchBar />
+      </div>
 
-                <Link to="/categories" className="mx-3 cursor-pointer hover:text-hoverMenu">
-                    CATEGORIAS
-                </Link>
+      <div className="flex items-center">
+        <Link to="/" className="mx-3 cursor-pointer hover:text-hoverMenu">
+          INICIO
+        </Link>
 
-                <Link to="/admin" className="mx-3 cursor-pointer hover:text-hoverMenu">
+        <Link
+          to="/categories"
+          className="mx-3 cursor-pointer hover:text-hoverMenu"
+        >
+          CATEGORIAS
+        </Link>
+
+        {/* <Link to="/admin" className="mx-3 cursor-pointer hover:text-hoverMenu">
                     ADMINISTRAR
-                </Link>
+                </Link> */}
 
-                <div className="ml-10">
-                    <Link to="/login">
-                        <h4 className="text-xl cursor-pointer hover:text-hoverMenu">
-                            LOGIN
-                        </h4>
-                    </Link>
+        {LOGIN === 1 && ROLE === "USER" ? (
+          <Link
+            to="/favorites"
+            className="mx-3 cursor-pointer hover:text-hoverMenu"
+          >
+            FAVORITOS
+          </Link>
+        ) : LOGIN === 1 && ROLE === "ADMIN" ? (
+          <Link
+            to="/admin"
+            className="mx-3 cursor-pointer hover:text-hoverMenu"
+          >
+            ADMINISTRAR
+          </Link>
+        ) : null}
 
-                    <Link to="/register">
-                        <h4 className="text-xl cursor-pointer hover:text-hoverMenu">
-                            REGISTRARSE
-                        </h4>
-                    </Link>
-                </div>
-            </div>
+        <div className="ml-10">
+          <Link to="/login">
+            <h4 className="text-xl cursor-pointer hover:text-hoverMenu">
+              LOGIN
+            </h4>
+          </Link>
+
+          <Link to="/register">
+            <h4 className="text-xl cursor-pointer hover:text-hoverMenu">
+              REGISTRARSE
+            </h4>
+          </Link>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
-
 
 /* 
                 <Link to="/favorites" className="mx-3 cursor-pointer hover:text-hoverMenu">
