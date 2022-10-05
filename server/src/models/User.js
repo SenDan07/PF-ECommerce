@@ -40,6 +40,7 @@ module.exports = (sequelize) => {
       // favorites:{
       //   type:DataTypes.ARRAY(DataTypes.STRING)
 
+
       // }
     },
 
