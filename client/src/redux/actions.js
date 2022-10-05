@@ -135,7 +135,7 @@ export function register(body) {
     let res = await axios.post("http://localhost:3001/users/register", body);
     return dispatch({
       type: REGISTER,
-      payload: res.data,
+      payload: res.data.status?"Usuario se guardo correctamente":res.data.messsage,
     });
     }catch (e) {
       dispatch(setStatus("Datos no se guardaron correctamente"));
