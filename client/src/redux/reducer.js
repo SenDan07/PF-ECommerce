@@ -158,6 +158,7 @@ function rootReducer(state = initialState, action) {
     case REGISTER:
       return {
         ...state,
+        loading: action.payload,
       };
 
     default:

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function Carousel() {
     let img1 = "https://imagenes.elpais.com/resizer/F9W3qboQF2wyx2uSySg-9E7uqqs=/1200x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/X4HMK44RJNAH4GWXZPZTZJUGEI.jpg"
@@ -12,22 +12,26 @@ export default function Carousel() {
     let text3 = "Pronto tendrenos cambiaremos a nuestro horario de verano."
     let text4 = "Hacemos envios a todo el mundo."
     let texts = [text1, text2, text3, text4]
-
     let [index, setIndex] = useState(0)
-
+    let time
+    
     function handleButtonLeft() {
+        console.log("Ingresa boton izquierda",index)
+        clearTimeout(time)
         index > 0 ?
             setIndex(index - 1) : setIndex(images.length - 1)
     }
 
     function handleButtonRight() {
+        console.log("Ingresa boton derecha",index)
+        clearTimeout(time)
         index === images.length - 1 ?
             setIndex(0) : setIndex(index + 1)
-    }
-
-/*     setInterval(() => {
-        handleButtonRight()
-    }, 5000) */
+    } 
+    
+    useEffect(()=>{        
+            time=setTimeout(handleButtonRight,5000)
+            },[index])
 
     return (
         <div className="mb-10">
