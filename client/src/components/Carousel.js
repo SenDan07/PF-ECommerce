@@ -1,62 +1,74 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 export default function Carousel() {
-    let img1 = "https://imagenes.elpais.com/resizer/F9W3qboQF2wyx2uSySg-9E7uqqs=/1200x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/X4HMK44RJNAH4GWXZPZTZJUGEI.jpg"
-    let img2 = "https://st2.depositphotos.com/1496410/8568/v/950/depositphotos_85685620-stock-illustration-red-stamp-bestseller.jpg"
-    let img3 = "https://www.latejedora.org/wp-content/uploads/2015/11/Horario-InviernoTeje.jpg"
-    let img4 = "https://www.southexpress.pe/wp-content/uploads/2019/06/envios-internacionales-2.jpg"
-    let images = [img1, img2, img3, img4]
+  let img1 =
+    "https://imagenes.elpais.com/resizer/F9W3qboQF2wyx2uSySg-9E7uqqs=/1200x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/X4HMK44RJNAH4GWXZPZTZJUGEI.jpg";
+  let img2 =
+    "https://st2.depositphotos.com/1496410/8568/v/950/depositphotos_85685620-stock-illustration-red-stamp-bestseller.jpg";
+  let img3 =
+    "https://www.latejedora.org/wp-content/uploads/2015/11/Horario-InviernoTeje.jpg";
+  let img4 =
+    "https://www.southexpress.pe/wp-content/uploads/2019/06/envios-internacionales-2.jpg";
+  let images = [img1, img2, img3, img4];
 
-    let text1 = "Celebramos Halloween con descuentos de miedo (Promoción válida desde 28 de octubre al 2 de noviembre)."
-    let text2 = "Tenemos los mejores libros, revisa nuestro catalogo y adquiere tus Best Sellers favoritos."
-    let text3 = "Pronto tendrenos cambiaremos a nuestro horario de verano."
-    let text4 = "Hacemos envios a todo el mundo."
-    let texts = [text1, text2, text3, text4]
-    let [index, setIndex] = useState(0)
-    let time
-    
-    function handleButtonLeft() {
-        console.log("Ingresa boton izquierda",index)
-        clearTimeout(time)
-        index > 0 ?
-            setIndex(index - 1) : setIndex(images.length - 1)
-    }
+  let text1 =
+    "Celebramos Halloween con descuentos de miedo (Promoción válida desde 28 de octubre al 2 de noviembre).";
+  let text2 =
+    "Tenemos los mejores libros, revisa nuestro catalogo y adquiere tus Best Sellers favoritos.";
+  let text3 = "Pronto tendrenos cambiaremos a nuestro horario de verano.";
+  let text4 = "Hacemos envios a todo el mundo.";
+  let texts = [text1, text2, text3, text4];
+  let [index, setIndex] = useState(0);
+  let time;
 
-    function handleButtonRight() {
-        console.log("Ingresa boton derecha",index)
-        clearTimeout(time)
-        index === images.length - 1 ?
-            setIndex(0) : setIndex(index + 1)
-    } 
-    
-    useEffect(()=>{        
-            time=setTimeout(handleButtonRight,5000)
-            },[index])
+  function handleButtonLeft() {
+    clearTimeout(time);
+    index > 0 ? setIndex(index - 1) : setIndex(images.length - 1);
+  }
 
-    return (
-        <div className="mb-10">
-            <div className="relative w-full">
-                <div className="absolute left-0 text-2xl top-80 ">
-                    <button onClick={handleButtonLeft} className="absolute bg-[#6b7280] hover:bg-hoverMenu rounded-full p-5 translate-x-60 animate-bounce">{`<`}</button>
-                </div>
+  function handleButtonRight() {
+    clearTimeout(time);
+    index === images.length - 1 ? setIndex(0) : setIndex(index + 1);
+  }
 
-                <div className="absolute right-0 text-2xl top-80">
-                    <button onClick={handleButtonRight} className="bg-[#6b7280] hover:bg-hoverMenu rounded-full p-5 -translate-x-60 animate-bounce">{`>`}</button>
-                </div>
-            </div>
+  useEffect(() => {
+    time = setTimeout(handleButtonRight, 5000);
+  }, [index]);
 
-            <div className="h-2/4">
-                <img src={images[index]} alt="image not found" className=" mx-auto object-fill h-192 w-full" />
-            </div>
-
-            <div className="z-10 bg-NavBar">
-                <span className="text-4xl flex justify-center text-white py-2">{texts[index]}</span>
-            </div>
-
+  return (
+    <div className="mb-10">
+      <div className="relative w-full">
+        <div className="absolute left-0 text-2xl top-80 ">
+          <button
+            onClick={handleButtonLeft}
+            className="absolute bg-[#6b7280] hover:bg-hoverMenu rounded-full p-5 translate-x-60 animate-bounce"
+          >{`<`}</button>
         </div>
-    )
-}
 
+        <div className="absolute right-0 text-2xl top-80">
+          <button
+            onClick={handleButtonRight}
+            className="bg-[#6b7280] hover:bg-hoverMenu rounded-full p-5 -translate-x-60 animate-bounce"
+          >{`>`}</button>
+        </div>
+      </div>
+
+      <div className="h-2/4">
+        <img
+          src={images[index]}
+          alt="image not found"
+          className=" mx-auto object-fill h-192 w-full"
+        />
+      </div>
+
+      <div className="z-10 bg-NavBar">
+        <span className="text-4xl flex justify-center text-white py-2">
+          {texts[index]}
+        </span>
+      </div>
+    </div>
+  );
+}
 
 /* export default function Carousel() {
     return (

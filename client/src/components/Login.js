@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 // import { Navigate, useNavigate } from "react-router-dom";
 import { login } from "../redux/actions";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Login = () => {
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
   let dispatch = useDispatch();
 
   let regexEmail =
@@ -23,6 +23,7 @@ export const Login = () => {
     if (data.email.length > 5 && data.password.length >= 4) {
       dispatch(login(data));
       setData(initialInputs);
+      navigate("/");
     } else {
       alert("Debe Completar los campos correctamente!!");
     }
@@ -66,7 +67,7 @@ export const Login = () => {
             <br />
             <input
               className="text-xl py-1 rounded outline-none pl-2"
-              type="text"
+              type="password"
               onChange={onInputChange}
               name="password"
               value={data.password}
