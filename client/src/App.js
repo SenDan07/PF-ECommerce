@@ -10,15 +10,21 @@ import { Route, BrowserRouter, Switch, Routes } from "react-router-dom";
 import MenuAdmin from "./components/MenuAdmin";
 import { Login } from "./components/Login";
 import FormUser from "./components/FormUser";
+import { useSelector } from "react-redux";
 
 function App() {
+  const LOGIN = useSelector((state) => state.login);
+  const ROLE = useSelector((state) => state.role);
+
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/createbook" element={<FormBook />} />
-          <Route exact path="/favorites" element={<Favorites />} />
+          {LOGIN === 1 && ROLE === "USER" ? (
+            <Route exact path="/favorites" element={<Favorites />} />
+          ) : null}
           <Route exact path="/books/:id" element={<BookDetail />} />
           <Route exact path="/searchbar" element={<SearchBarSmart />} />
           <Route
@@ -27,7 +33,9 @@ function App() {
             element={<CategoryBooksSmart />}
           />
           <Route exact path="/categories" element={<CategoriesSmart />} />
-          <Route exact path="/admin" element={<MenuAdmin />} />
+          {LOGIN === 1 && ROLE === "ADMIN" ? (
+            <Route exact path="/admin" element={<MenuAdmin />} />
+          ) : null}
           <Route exact path="/register" element={<FormUser />} />
           {/* <Route exact path="/categories" element={<Categories />} /> */}
           <Route exact path="/login" element={<Login />} />

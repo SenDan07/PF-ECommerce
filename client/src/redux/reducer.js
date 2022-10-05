@@ -28,6 +28,7 @@ const initialState = {
   booksByPrice: [],
   login: 0,
   loading: "",
+  role: "",
 };
 
 function rootReducer(state = initialState, action) {
@@ -154,6 +155,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         login: action.payload.status,
+        role: action.payload.role,
       };
     case REGISTER:
       return {
