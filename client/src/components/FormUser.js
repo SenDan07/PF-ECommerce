@@ -9,6 +9,7 @@ export function validate(input) {
 
     let errors = {};
     let expLetras = /^[A-Za-z]+[A-Za-z\s]*[A-Za-z]$/
+    let email=/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
    
     if (!input.name) {
         errors.name = 'Nombre es requerido';
@@ -30,6 +31,8 @@ export function validate(input) {
     }
     if (!input.email) {
         errors.email = 'Email es requerido';
+    }else if (!email.test(input.email)) {
+        errors.email = 'Email es invalido'
     }
     return errors;
 }
@@ -84,7 +87,7 @@ export default function FormUser() {
         name:'',
         lastName:'',
         password: '',
-        role:'',
+        role:'USER',
         email:''
         })
         e.target.name.focus()

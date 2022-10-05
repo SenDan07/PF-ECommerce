@@ -130,11 +130,16 @@ export function login(body) {
 export function register(body) {
   console.log(body);
   return async (dispatch) => {
+    try{
+      dispatch(setStatus("Guardando"));
     let res = await axios.post("http://localhost:3001/users/register", body);
     return dispatch({
       type: REGISTER,
       payload: res.data,
     });
+    }catch (e) {
+      dispatch(setStatus("Datos no se guardaron correctamente"));
+    }    
   };
 }
 
