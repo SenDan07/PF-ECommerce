@@ -34,6 +34,11 @@ module.exports = (sequelize) => {
 		price: {
 			type: DataTypes.FLOAT,
 			allowNull: false
+		},
+		activado:{
+			type:DataTypes.BOOLEAN,
+            allowNull:false,
+            defaultValue:true
 		}
 	}, 
 	{
