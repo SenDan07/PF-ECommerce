@@ -3,6 +3,7 @@ const { check, oneOf, validationResult } = require('express-validator');
 const router = Router();
 const loginController = require('../controllers/loginController');
 const { thereIsUserById } = require('../util/helpers/db-validators');
+const { jwtValidator } = require('../util/middleware/jwt-validator');
 // registrar usuario 
 router.post('/register',[
     check('name','El nombre es requerido').not().isEmpty(),
@@ -20,5 +21,8 @@ router.put('/:id',[check('id').custom( thereIsUserById )],loginController.putUse
 //obtener todos los usuarios
 router.get('/allUsers',loginController.getAllUsers);
 //borrado logico del usuario 
-router.delete('/:id',[check('id').custom( thereIsUserById )],loginController.deleteUser)
+router.delete('/:id',[check('id').custom( thereIsUserById )],loginController.deleteUser);
+
+//revalidar token 
+router.get('/renew',jwtValidator,loginController.tokenRevalidate)
 module.exports = router;
