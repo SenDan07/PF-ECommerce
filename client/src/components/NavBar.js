@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { isLogin } from "../redux/actions";
 import SearchBar from "./SearchBar";
 
 export default function NavBar() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const LOGIN = useSelector((state) => state.login);
   const ROLE = useSelector((state) => state.role);
 
@@ -37,6 +38,7 @@ export default function NavBar() {
         role: "",
       })
     );
+    navigate("/");
   }
   return (
     <div className="bg-NavBar text-2xl text-white flex justify-between items-center px-7 py-3">
