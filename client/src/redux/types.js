@@ -15,3 +15,5 @@ export const FILTER_PRICE = "FILTER_PRICE";
 export const LOGIN = "LOGIN";
 export const REGISTER = "REGISTER";
 export const IS_LOGIN = "IS_LOGIN";
+export const GET_USERS = "GET_USERS";
+export const DELETE_USER = "DELETE_USER";
