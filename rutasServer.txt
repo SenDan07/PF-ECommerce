@@ -1,0 +1,84 @@
+Rutas Server
+
+<------ SHOP --------->
+
+(GET) http://localhost:3001/shop/categories => Trae un Categorias
+
+(GET) http://localhost:3001/shop/books => Trae un todos los Libros
+
+(GET) http://localhost:3001/shop/books/orderprice?type=desc ó asc => Ordena por precio del libro
+
+(GET) http://localhost:3001/shop/book/id_del_libro => Trae el libro
+
+(GET) http://localhost:3001/shop/booksCategory?name=nombre categoria => Filtrado de libros por categoria
+
+(GET) http://localhost:3001/shop/books/filter?value=titulo ó autor => Filtra libro por el titulo o nombre del autor
+
+<------ ADMIN --------->
+
+------ books ---------
+
+* (POST) http://localhost:3001/admin/create-book => Crea un Libro
+  
+Debe enviar por body los siguientes campos:
+ejemplo:
+
+{
+  "title":"inter stelar",
+  "authors":"BRAYAN",
+  "publisher":"editorial2",
+  "ISBN":10,
+  "imageLinks":"https://s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2016/07/20201756/mejores-libros-La-Iliada-SF.jpg",
+  "description":"esta es la descripcion",
+  "price":200,
+  "categories":["Ciencia Ficcion","Educativo"]
+}
+
+* (PUT) http://localhost:3001/admin/books/:idBook => Edita un Libro
+  
+Debe enviar por body los siguientes campos:
+ejemplo:
+
+{
+  "title":"inter stelar",
+  "authors":"BRAYAN",
+  "publisher":"editorial2",
+  "ISBN":10,
+  "imageLinks":"https://s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2016/07/20201756/mejores-libros-La-Iliada-SF.jpg",
+  "description":"esta es la descripcion",
+  "price":200,
+  "categories":["Ciencia Ficcion","Educativo"]
+}
+
+* (DELETE) http://localhost:3001/admin/books/:idBook => Borra logico de un Libro
+  
+
+
+
+<------ USERS --------->
+
+* (POST) http://localhost:3001/users/register  => Registra un usuario
+
+Debe enviar por body los siguientes campos:
+ejemplo:
+
+{
+ name,
+ lastName,
+ password,
+ email,
+ role
+}
+ 
+
+
+* (POST) http://localhost:3001/users/login => Logea un usuario
+
+Debe enviar por body los siguientes campos:
+ejemplo:
+
+{
+ email,
+ password,
+ 
+ }
