@@ -59,7 +59,10 @@ function App() {
           {activeLogin == 1 ? null : (
             <Route exact path="/login" element={<Login />} />
           )}
-          <Route exact path="/adminuser" element={<ManageUsers />} />
+
+          {LOGIN == 1 && ROLE === "ADMIN" ? (
+            <Route exact path="/adminuser" element={<ManageUsers />} />
+          ) : null}
         </Routes>
       </BrowserRouter>
     </div>

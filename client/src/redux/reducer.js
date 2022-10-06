@@ -18,6 +18,7 @@ import {
   IS_LOGIN,
   GET_USERS,
   DELETE_USER,
+  RESET_USER,
 } from "./types";
 
 const initialState = {
@@ -32,7 +33,7 @@ const initialState = {
   login: 0,
   loading: "",
   role: "",
-  users: [],
+  activeUsers: [],
   inactiveUsers: [],
 };
 
@@ -178,14 +179,14 @@ function rootReducer(state = initialState, action) {
     case GET_USERS:
       return {
         ...state,
-        users: action.payload.activeRegData,
+        activeUsers: action.payload.activeRegData,
         inactiveUsers: action.payload.inactiveRegData,
       };
 
     case DELETE_USER:
       const idUserDelete = action.payload.data.id;
 
-      const usersActive = state.users.filter(
+      const usersActive = state.activeUsers.filter(
         (user) => user.id !== idUserDelete
       );
 
@@ -193,8 +194,21 @@ function rootReducer(state = initialState, action) {
 
       return {
         ...state,
-        users: usersActive,
+        activeUsers: usersActive,
         inactiveUsers: usersInactive,
+      };
+
+    case RESET_USER:
+      const idUserReset = action.payload.data.id;
+      const activeUsersReset = [...state.activeUsers, action.payload.data];
+      const inactiveUsersReset = state.inactiveUsers.filter(
+        (user) => user.id !== idUserReset
+      );
+
+      return {
+        ...state,
+        activeUsers: activeUsersReset,
+        inactiveUsers: inactiveUsersReset,
       };
 
     default:

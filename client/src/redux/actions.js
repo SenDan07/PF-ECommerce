@@ -17,6 +17,7 @@ import {
   IS_LOGIN,
   GET_USERS,
   DELETE_USER,
+  RESET_USER,
 } from "./types.js";
 import axios from "axios";
 
@@ -184,6 +185,17 @@ export const deleteUser =
     return dispatch({
       type: DELETE_USER,
       payload: usersActive.data,
+    });
+  };
+
+export const resetUser =
+  (idUser, data = { isActive: "true" }) =>
+  async (dispatch) => {
+    let users = await axios.put(`http://localhost:3001/users/${idUser}`, data);
+
+    return dispatch({
+      type: RESET_USER,
+      payload: users.data,
     });
   };
 
