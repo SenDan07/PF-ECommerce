@@ -5,8 +5,6 @@ const Sequelize = require('Sequelize');
 module.exports = (sequelize) => {
     // defino el modelo
     sequelize.define('Categories', {
-
-
         id: {
             type: Sequelize.UUID,
             defaultValue: Sequelize.UUIDV4,
@@ -16,11 +14,15 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-
         imageLinks: {
-            type: DataTypes.STRING,
-        
+            type: DataTypes.TEXT,
+            
         },
+        activado:{
+			type:DataTypes.BOOLEAN,
+            allowNull:false,
+            defaultValue:true
+		}
 
     }, {
         timestamps: false,

@@ -15,6 +15,7 @@ import {
   REGISTER,
   LOGIN,
   SET_STATUS,
+  IS_LOGIN,
 } from "./types";
 
 const initialState = {
@@ -28,6 +29,7 @@ const initialState = {
   booksByPrice: [],
   login:[],
   loading: "",
+  role: "",
 };
 
 function rootReducer(state = initialState, action) {
@@ -154,11 +156,19 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         login: action.payload.status,
+        role: action.payload.role,
       };
     case REGISTER:
       return {
         ...state,
         loading: action.payload,
+      };
+
+    case IS_LOGIN:
+      return {
+        ...state,
+        login: action.payload.login,
+        role: action.payload.role,
       };
 
     default:
