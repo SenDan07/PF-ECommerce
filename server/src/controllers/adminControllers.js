@@ -26,6 +26,7 @@ const adminControllers = {
           description,
           price,
         });
+        categories.forEach(el => Categories.findOrCreate({ where: { name: el } }));
         const typeofBooks = await Categories.findAll({ where: { name:categories } });
         //console.log(typeofBooks.JSON())
         createBook.addCategories(typeofBooks);       
@@ -103,6 +104,60 @@ updateBook: async (req, res) => {
         
     }
 
+},
+//OPERACIONES CATEGORIA
+createCategory:async(req,res)=>{
+  try {
+    const { name,imageLinks }=req.body;
+   const category = await Categories.findOne({where: {name}});
+   if(category) throw "La categoria Existe!!";
+
+   await Categories.create({
+    name,
+    imageLinks
+   })
+
+   return res.status(200).json("La categoria se creo correctamente!!")
+  } catch (error) {
+    return res.status(400).json(error)
+  }
+  
+},
+updateCategory:async(req,res,next)=>{
+ try {
+  const { idCategory }=req.params;
+  const { name,imageLinks }=req.body;
+
+  await Categories.update({
+    name,
+    imageLinks
+  },{where:{id:idCategory}})
+
+  return res.status(200).json("Se edito correctamente!!")
+
+ } catch (error) {
+  if (!(error instanceof HttpError)) {
+    error = new HttpError("No se pudo editar la categoria, intente nuevamente más tarde", 500);
+  }
+  return next(error); 
+ }
+},
+deleteCategory:async(req,res)=>{
+  try {
+    const { idCategory }=req.params;
+
+  const category=await Categories.findByPk(idCategory);
+
+  if (!category) throw "La categoria no existe"
+
+  await Categories.update({
+    activado:!category.activado
+  },{where:{id:idCategory}})
+  res.status(200).json("Se elimino correctamente!!")
+  } catch (error) {
+    res.status(400).json(error)
+  }
+  
 }
 };
 
