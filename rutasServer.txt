@@ -2,9 +2,9 @@ Rutas Server
 
 <------ SHOP --------->
 
-(GET) http://localhost:3001/shop/categories => Trae un Categorias
+(GET) http://localhost:3001/shop/categories => Trae todas las Categorias
 
-(GET) http://localhost:3001/shop/books => Trae un todos los Libros
+(GET) http://localhost:3001/shop/books => Trae todos los Libros
 
 (GET) http://localhost:3001/shop/books/orderprice?type=desc ó asc => Ordena por precio del libro
 
@@ -50,7 +50,7 @@ ejemplo:
   "categories":["Ciencia Ficcion","Educativo"]
 }
 
-* (DELETE) http://localhost:3001/admin/books/:idBook => Borra logico de un Libro
+* (DELETE) http://localhost:3001/admin/books/:idBook => Borrado logico de un Libro
   
 
 
