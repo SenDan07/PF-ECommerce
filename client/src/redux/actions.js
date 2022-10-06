@@ -14,6 +14,7 @@ import {
   LOGIN,
   REGISTER,
   SET_STATUS,
+  IS_LOGIN,
 } from "./types.js";
 import axios from "axios";
 
@@ -130,16 +131,16 @@ export function login(body) {
 export function register(body) {
   console.log(body);
   return async (dispatch) => {
-    try{
+    try {
       dispatch(setStatus("Guardando"));
-    let res = await axios.post("http://localhost:3001/users/register", body);
-    return dispatch({
-      type: REGISTER,
-      payload: res.data,
-    });
-    }catch (e) {
+      let res = await axios.post("http://localhost:3001/users/register", body);
+      return dispatch({
+        type: REGISTER,
+        payload: res.data,
+      });
+    } catch (e) {
       dispatch(setStatus("Datos no se guardaron correctamente"));
-    }    
+    }
   };
 }
 
@@ -151,6 +152,13 @@ export function setStatus(mensaje) {
 }
 
 export const resetSearchBook = () => ({ type: RESET_SEARCH_BOOK });
+
+export const isLogin = (data) => {
+  return {
+    type: IS_LOGIN,
+    payload: data,
+  };
+};
 
 // export function orderName(value) {
 //   return async (dispatch) => {

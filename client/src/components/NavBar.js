@@ -6,6 +6,18 @@ export default function NavBar() {
   const LOGIN = useSelector((state) => state.login);
   const ROLE = useSelector((state) => state.role);
 
+  if (LOGIN && ROLE.length) {
+    localStorage.setItem("LOGIN", LOGIN);
+    localStorage.setItem("ROLE", ROLE);
+  }
+
+  const activeLogin = localStorage.getItem("LOGIN");
+  const activeRole = localStorage.getItem("ROLE");
+
+  // console.log(activeLogin);
+  // console.log(activeRole);
+
+  //localStorage.clear();
   return (
     <div className="bg-NavBar text-2xl text-white flex justify-between items-center px-7 py-3">
       <div>
@@ -32,14 +44,14 @@ export default function NavBar() {
                     ADMINISTRAR
                 </Link> */}
 
-        {LOGIN === 1 && ROLE === "USER" ? (
+        {activeLogin == 1 && activeRole == "USER" ? (
           <Link
             to="/favorites"
             className="mx-3 cursor-pointer hover:text-hoverMenu"
           >
             FAVORITOS
           </Link>
-        ) : LOGIN === 1 && ROLE === "ADMIN" ? (
+        ) : activeLogin == 1 && activeRole == "ADMIN" ? (
           <Link
             to="/admin"
             className="mx-3 cursor-pointer hover:text-hoverMenu"
