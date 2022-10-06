@@ -14,6 +14,7 @@ import FormUser from "./components/FormUser";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { isLogin } from "./redux/actions";
+import { ManageUsers } from "./components/ManageUsers";
 
 function App() {
   const dispatch = useDispatch();
@@ -60,6 +61,7 @@ function App() {
           {activeLogin == 1 ? null : (
             <Route exact path="/login" element={<Login />} />
           )}
+          <Route exact path="/adminuser" element={<ManageUsers />} />
         </Routes>
       </BrowserRouter>
     </div>

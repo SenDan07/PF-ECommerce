@@ -16,6 +16,8 @@ import {
   REGISTER,
   SET_STATUS,
   IS_LOGIN,
+  GET_USERS,
+  DELETE_USER,
 } from "./types.js";
 import axios from "axios";
 
@@ -182,6 +184,29 @@ export const isLogin = (data) => {
     payload: data,
   };
 };
+
+export const getUsers = () => async (dispatch) => {
+  let dataBooks = await axios(`http://localhost:3001/users/allUsers`);
+
+  return dispatch({
+    type: GET_USERS,
+    payload: dataBooks.data,
+  });
+};
+
+export const deleteUser =
+  (idUser, data = { isActive: "false" }) =>
+  async (dispatch) => {
+    let usersActive = await axios.put(
+      `http://localhost:3001/users/${idUser}`,
+      data
+    );
+
+    return dispatch({
+      type: DELETE_USER,
+      payload: usersActive.data,
+    });
+  };
 
 // export function orderName(value) {
 //   return async (dispatch) => {
