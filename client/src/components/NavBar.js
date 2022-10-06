@@ -17,7 +17,9 @@ export default function NavBar() {
   // console.log(activeLogin);
   // console.log(activeRole);
 
-  //localStorage.clear();
+  function salir() {
+    localStorage.clear();
+  }
   return (
     <div className="bg-NavBar text-2xl text-white flex justify-between items-center px-7 py-3">
       <div>
@@ -60,19 +62,27 @@ export default function NavBar() {
           </Link>
         ) : null}
 
-        <div className="ml-10">
-          <Link to="/login">
-            <h4 className="text-xl cursor-pointer hover:text-hoverMenu">
-              LOGIN
-            </h4>
-          </Link>
+        {activeLogin === null && activeRole === null ? (
+          <div>
+            <div className="ml-10">
+              <Link to="/login">
+                <h4 className="text-xl cursor-pointer hover:text-hoverMenu">
+                  LOGIN
+                </h4>
+              </Link>
 
-          <Link to="/register">
-            <h4 className="text-xl cursor-pointer hover:text-hoverMenu">
-              REGISTRARSE
-            </h4>
-          </Link>
-        </div>
+              <Link to="/register">
+                <h4 className="text-xl cursor-pointer hover:text-hoverMenu">
+                  REGISTRARSE
+                </h4>
+              </Link>
+            </div>
+          </div>
+        ) : (
+          <div onClick={() => salir()} className="hover:cursor-pointer">
+            Salir
+          </div>
+        )}
       </div>
     </div>
   );
