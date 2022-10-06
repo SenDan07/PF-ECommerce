@@ -2,6 +2,7 @@ import {
   GET_BOOKS,
   GET_DETAIL_BOOK,
   POST_CREATE_BOOK,
+  POST_CREATE_CATEGORY,
   ORDER_NAME,
   ORDER_PRICE,
   RESET_DETAIL,
@@ -58,6 +59,24 @@ export function postCreateBook(input) {
       );
       return dispatch({
         type: POST_CREATE_BOOK,
+        payload: res.data,
+      });
+    } catch (e) {
+      dispatch(setStatus("Datos no se guardaron correctamente"));
+    }
+  };
+}
+
+export function postCreateCategory(input) {
+  return async (dispatch) => {
+    try {
+      dispatch(setStatus("Guardando"));
+      var res = await axios.post(
+        `http://localhost:3001/admin/create-book`,
+        input
+      );
+      return dispatch({
+        type: POST_CREATE_CATEGORY,
         payload: res.data,
       });
     } catch (e) {
