@@ -1,8 +1,11 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { isLogin } from "../redux/actions";
 import SearchBar from "./SearchBar";
 
 export default function NavBar() {
+  const dispatch = useDispatch();
   const LOGIN = useSelector((state) => state.login);
   const ROLE = useSelector((state) => state.role);
 
@@ -17,8 +20,23 @@ export default function NavBar() {
   // console.log(activeLogin);
   // console.log(activeRole);
 
+  useEffect(() => {
+    dispatch(
+      isLogin({
+        login: activeLogin,
+        role: activeRole,
+      })
+    );
+  }, [activeLogin, activeRole]);
+
   function salir() {
     localStorage.clear();
+    dispatch(
+      isLogin({
+        login: 0,
+        role: "",
+      })
+    );
   }
   return (
     <div className="bg-NavBar text-2xl text-white flex justify-between items-center px-7 py-3">
