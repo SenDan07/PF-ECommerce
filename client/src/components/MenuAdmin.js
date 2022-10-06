@@ -47,7 +47,7 @@ export default function NavAdmin() {
       </div>
 
       <div className="flex justify-center">
-        <div className="text-xl">BIENVENIDO NOMBRE</div>
+        <div className="text-xl">BIENVENIDO ADMIN</div>
       </div>
 
       <div className="text-4xl mt-20">
@@ -86,7 +86,7 @@ export default function NavAdmin() {
         </div>
 
         <div className="mb-10 flex justify-center">
-          <Link>
+          <Link to="/deletebook">
             <div className="cursor-pointer hover:text-white ">
               Eliminar Libros
             </div>

@@ -17,6 +17,7 @@ import {
   LOGIN,
   SET_STATUS,
   IS_LOGIN,
+  DELETE_BOOKS,
   GET_USERS,
   DELETE_USER,
   RESET_USER,
@@ -54,7 +55,6 @@ function rootReducer(state = initialState, action) {
       };
 
     case POST_CREATE_BOOK:
-      console.log(action.payload);
       return {
         ...state,
         loading: action.payload,
@@ -165,7 +165,6 @@ function rootReducer(state = initialState, action) {
       };
 
     case LOGIN:
-      console.log(action.payload);
       return {
         ...state,
         login: action.payload.status,
