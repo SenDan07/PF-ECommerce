@@ -1,5 +1,6 @@
 import Home from "./components/Home";
 import FormBook from "./components/FormBook";
+import FormCategory from "./components/FormCategory";
 import Favorites from "./components/Favorites";
 import CategoryBooksSmart from "./components/CategoryBooksSmart";
 //import Categories from "./components/Categories";
@@ -38,6 +39,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/createbook" element={<FormBook />} />
+          <Route exact path="/createcategory" element={<FormCategory />} />
           {LOGIN == 1 && ROLE === "USER" ? (
             <Route exact path="/favorites" element={<Favorites />} />
           ) : null}

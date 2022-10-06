@@ -64,7 +64,7 @@ export default function NavAdmin() {
         </div>
 
         <div className="mb-10 flex justify-center">
-          <Link>
+          <Link to="/createcategory">
             <div className="cursor-pointer hover:text-white">
               Crear Categorias
             </div>

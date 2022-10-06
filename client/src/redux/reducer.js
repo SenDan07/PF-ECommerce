@@ -2,6 +2,7 @@ import {
   GET_BOOKS,
   GET_DETAIL_BOOK,
   POST_CREATE_BOOK,
+  POST_CREATE_CATEGORY,
   RESET_DETAIL,
   ORDER_NAME,
   SEARCH_BOOK,
@@ -16,6 +17,7 @@ import {
   LOGIN,
   SET_STATUS,
   IS_LOGIN,
+ 
 } from "./types";
 
 const initialState = {
@@ -53,6 +55,13 @@ function rootReducer(state = initialState, action) {
         ...state,
         loading: action.payload,
       };
+
+      case POST_CREATE_CATEGORY:
+        console.log(action.payload);
+        return {
+          ...state,
+          loading: action.payload,
+        };
 
     case RESET_DETAIL:
       return {
