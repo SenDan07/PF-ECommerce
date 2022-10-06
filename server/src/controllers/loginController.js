@@ -1,12 +1,13 @@
-const jwtConfig = require('../../config/jwt-config');
-const JWT = require('jsonwebtoken');
+
 const bcrypt = require('bcrypt');
 const models = require('../db');
 const HttpError = require("../errors/http-error");
 const { thereIsEmail } = require('../util/helpers/db-validators');
 const { validationResult } = require('express-validator');
+const {generateToken} = require('../util/helpers/jwt-generator');
 
 const loginController = {
+
 	registerUser: async (req, res, next) => {
 
 		//verifico los campos del req
@@ -25,6 +26,7 @@ const loginController = {
 		//compruebo si el email ya existe
 		try {
 			const user = await thereIsEmail(email);
+			console.log(user)
 
 			if (user) {
 				return res.status(400).json({
@@ -35,14 +37,14 @@ const loginController = {
 			if (!user) {//creo el usuario
 				const userCreated = await models.User.create({ name,isActive, lastName, password, email, role })
 
-			
-				//let { password,...data }= userCreated._previousDataValues
+			  
 				const data = {
 					name: userCreated._previousDataValues.name,
 					lastName: userCreated._previousDataValues.lastName,
 		 			email: userCreated._previousDataValues.email,
 					role: userCreated._previousDataValues.role,
-					isActive: userCreated._previousDataValues.isActive
+					isActive: userCreated._previousDataValues.isActive,
+					//token: token
 				}
 
 				return res.status(200).json({
@@ -59,33 +61,24 @@ const loginController = {
 	},
 	loginUser: async (req, res, next) => {
 		const errors = validationResult(req);
-
+           console.log(res.headers)
 		if (!errors.isEmpty()) {
 			return res.status(400).json(errors)
 		}
-		// por body el mail
+		// por body el mail 
 		try {
 			// funcion validadora de email
 			const user = await thereIsEmail(req.body.email);
 
 			if (user) {
 				if (bcrypt.compareSync(req.body.password, user.password)) {
-					let userToken = JWT.sign({
-						email: user.email,
-						id: user.id
-					},
-						jwtConfig.secret, {
-						expiresIn: jwtConfig.expiresIn, 
-						notBefore: jwtConfig.notBefore,
-						audience: jwtConfig.audience,
-						issuer: jwtConfig.issuer,
-						algorithm: jwtConfig.algorithm
-					})
+					
+				const token = await generateToken( user.id,user.name )
 					return res.status(200).json({
 						status: 1,
 						messsage: 'User logged in successfully',
 						role: user.role,
-						token: userToken
+						token: token
 					});
 				} else {
 					return res.status(500).json({
@@ -159,9 +152,25 @@ const loginController = {
 		activeRegQuantity:activeUser.count,
 		inactiveRegData:inactiveUsers.rows,
 		inactiveQuantity:inactiveUsers.count
-	}) 
+
+	})
+
+
+		 
 	},
-  getFavorites: async (req, res, next) => {
+	tokenRevalidate:async(req,res,next) => {
+	
+		const id = req.id;
+	    const name = req.name;
+		const token = await generateToken( id, name )
+		res.status(200).json({
+			status:true,
+			id,
+			name,
+			token
+		})
+	},
+  getFavorites: async (req, res, next) => { 
 		const { id } = req.params;
 		try {
 			if (!id) throw new HttpError("Debe enviar el id del usuario", 400);
@@ -184,9 +193,10 @@ const loginController = {
 			if (!(error instanceof HttpError)) {
 				error = new HttpError("Error interno del servidor", 500)
 			}
-			return next(error);
+			return next(error); 
 		}
 	},
+
 }
 
 module.exports = loginController

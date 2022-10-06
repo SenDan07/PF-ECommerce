@@ -2,6 +2,7 @@ import {
   GET_BOOKS,
   GET_DETAIL_BOOK,
   POST_CREATE_BOOK,
+  POST_CREATE_CATEGORY,
   ORDER_NAME,
   ORDER_PRICE,
   RESET_DETAIL,
@@ -19,6 +20,7 @@ import {
   DELETE_USER,
 } from "./types.js";
 import axios from "axios";
+
 
 export const getBooks = () => async (dispatch) => {
   let dataBooks = await axios(`http://localhost:3001/shop/books`);
@@ -60,6 +62,24 @@ export function postCreateBook(input) {
       );
       return dispatch({
         type: POST_CREATE_BOOK,
+        payload: res.data,
+      });
+    } catch (e) {
+      dispatch(setStatus("Datos no se guardaron correctamente"));
+    }
+  };
+}
+
+export function postCreateCategory(input) {
+  return async (dispatch) => {
+    try {
+      dispatch(setStatus("Guardando"));
+      var res = await axios.post(
+        `http://localhost:3001/admin/create-category`,
+        input
+      );
+      return dispatch({
+        type: POST_CREATE_CATEGORY,
         payload: res.data,
       });
     } catch (e) {
@@ -121,8 +141,10 @@ export function searchBook(book) {
 }
 
 export function login(body) {
-  return async (dispatch) => {
+  return async (dispatch) => { 
+   
     let res = await axios.post(`http://localhost:3001/users/login`, body);
+   
     return dispatch({
       type: LOGIN,
       payload: res.data,
@@ -147,7 +169,6 @@ export function register(body) {
     }
   };
 }
-
 export function setStatus(mensaje) {
   return {
     type: SET_STATUS,
