@@ -12,7 +12,7 @@ export default function CategoriesBooks() {
   }, [dispatch]);
 
   const category = useSelector((state) => state.categories);
-  console.log("category: ", category);
+
   return (
     <div className="bg-bgHome min-h-screen">
       <NavBar />

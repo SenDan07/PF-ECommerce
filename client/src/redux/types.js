@@ -1,6 +1,7 @@
 export const GET_BOOKS = "GET_BOOKS";
 export const GET_DETAIL_BOOK = "GET_DETAIL_BOOK";
 export const POST_CREATE_BOOK = "POST_CREATE_BOOK";
+export const POST_CREATE_CATEGORY = "POST_CREATE_CATEGORY";
 export const RESET_DETAIL = "RESET_DETAIL";
 export const ORDER_NAME = "ORDER_NAME";
 export const SEARCH_BOOK = "SEARCH_BOOK";
@@ -16,3 +17,6 @@ export const LOGIN = "LOGIN";
 export const REGISTER = "REGISTER";
 export const IS_LOGIN = "IS_LOGIN";
 export const DELETE_BOOKS = "DELETE_BOOKS"
+export const GET_USERS = "GET_USERS";
+export const DELETE_USER = "DELETE_USER";
+export const RESET_USER = "RESET_USER";

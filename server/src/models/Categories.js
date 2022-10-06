@@ -14,11 +14,15 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-
         imageLinks: {
-            type: DataTypes.STRING,
-        
+            type: DataTypes.TEXT,
+            
         },
+        activado:{
+			type:DataTypes.BOOLEAN,
+            allowNull:false,
+            defaultValue:true
+		}
 
     }, {
         timestamps: false,

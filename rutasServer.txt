@@ -2,9 +2,9 @@ Rutas Server
 
 <------ SHOP --------->
 
-(GET) http://localhost:3001/shop/categories => Trae un Categorias
+(GET) http://localhost:3001/shop/categories => Trae todas las Categorias
 
-(GET) http://localhost:3001/shop/books => Trae un todos los Libros
+(GET) http://localhost:3001/shop/books => Trae todos los Libros
 
 (GET) http://localhost:3001/shop/books/orderprice?type=desc ó asc => Ordena por precio del libro
 
@@ -50,7 +50,32 @@ ejemplo:
   "categories":["Ciencia Ficcion","Educativo"]
 }
 
-* (DELETE) http://localhost:3001/admin/books/:idBook => Borra logico de un Libro
+* (DELETE) http://localhost:3001/admin/books/:idBook => Borrado logico de un Libro
+  
+
+------ categorias ---------
+
+* (POST) http://localhost:3001/admin/create-category => Crea una categoria
+  
+Debe enviar por body los siguientes campos:
+ejemplo:
+
+{
+	"name":"anime",
+	"imageLinks":"https://i0.wp.com/codigoespagueti.com/wp-content/uploads/2022/07/mejores-animes-temporada-primavera-2022.jpg?fit=1280%2C720&quality=80&ssl=1"
+}
+
+* (PUT) http://localhost:3001/admin/category/:idCategory => Edita un Libro
+  
+Debe enviar por body los siguientes campos:
+ejemplo:
+
+{
+	"name":"anime",
+	"imageLinks":"dfgdfg"
+}
+
+* (DELETE) http://localhost:3001/admin/category/:idCategory => Borrado logico de una categoria
   
 
 

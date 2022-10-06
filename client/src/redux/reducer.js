@@ -2,6 +2,7 @@ import {
   GET_BOOKS,
   GET_DETAIL_BOOK,
   POST_CREATE_BOOK,
+  POST_CREATE_CATEGORY,
   RESET_DETAIL,
   ORDER_NAME,
   SEARCH_BOOK,
@@ -17,6 +18,9 @@ import {
   SET_STATUS,
   IS_LOGIN,
   DELETE_BOOKS,
+  GET_USERS,
+  DELETE_USER,
+  RESET_USER,
 } from "./types";
 
 const initialState = {
@@ -28,9 +32,11 @@ const initialState = {
   booksBySearch: [],
   booksByCategory: [],
   booksByPrice: [],
-  login: 0,
+  login:[],
   loading: "",
   role: "",
+  activeUsers: [],
+  inactiveUsers: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -53,6 +59,13 @@ function rootReducer(state = initialState, action) {
         ...state,
         loading: action.payload,
       };
+
+      case POST_CREATE_CATEGORY:
+        console.log(action.payload);
+        return {
+          ...state,
+          loading: action.payload,
+        };
 
     case RESET_DETAIL:
       return {
@@ -170,6 +183,40 @@ function rootReducer(state = initialState, action) {
         role: action.payload.role,
       };
 
+    case GET_USERS:
+      return {
+        ...state,
+        activeUsers: action.payload.activeRegData,
+        inactiveUsers: action.payload.inactiveRegData,
+      };
+
+    case DELETE_USER:
+      const idUserDelete = action.payload.data.id;
+
+      const usersActive = state.activeUsers.filter(
+        (user) => user.id !== idUserDelete
+      );
+
+      const usersInactive = [...state.inactiveUsers, action.payload.data];
+
+      return {
+        ...state,
+        activeUsers: usersActive,
+        inactiveUsers: usersInactive,
+      };
+
+    case RESET_USER:
+      const idUserReset = action.payload.data.id;
+      const activeUsersReset = [...state.activeUsers, action.payload.data];
+      const inactiveUsersReset = state.inactiveUsers.filter(
+        (user) => user.id !== idUserReset
+      );
+
+      return {
+        ...state,
+        activeUsers: activeUsersReset,
+        inactiveUsers: inactiveUsersReset,
+      };
 
     default:
       return state;
