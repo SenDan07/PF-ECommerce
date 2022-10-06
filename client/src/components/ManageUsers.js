@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteUser, getUsers } from "../redux/actions";
+import { Link } from "react-router-dom";
+import { deleteUser, resetUser, getUsers } from "../redux/actions";
 
 export const ManageUsers = () => {
   const dispatch = useDispatch();
@@ -13,17 +14,22 @@ export const ManageUsers = () => {
     dispatch(deleteUser(idUser));
   };
 
-  let data = { isActive: "true" };
-
   const restablecerUser = (idUser) => {
-    dispatch(deleteUser(idUser, data));
+    dispatch(resetUser(idUser));
   };
 
-  const activeUsers = useSelector((state) => state.users);
+  const activeUsers = useSelector((state) => state.activeUsers);
   const inactiveUsers = useSelector((state) => state.inactiveUsers);
 
   return (
     <div>
+      <div className="mt-5 ml-10 flex justify-start w-max">
+        <Link to="/admin">
+          <h3 className="border-1 border-rose-500 rounded px-5 py-2 bg-button text-black hover:text-white">
+            &#129044; Regresar
+          </h3>
+        </Link>
+      </div>
       <div className="mb-40">
         <h1 className="text-center text-2xl font-bold mt-10">
           Registro usuarios activos:{" "}

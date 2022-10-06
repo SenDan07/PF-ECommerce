@@ -55,7 +55,6 @@ export default function CategoriesBooks() {
       </div>
 
       <div className="flex flex-wrap justify-center gap-10">
-        {console.log("antes del map")}
         {booksFilter.length === 0 ? (
           <h4 className="text-5xl">NO HAY LIBROS EN ESTA CATEGORIA</h4>
         ) : (
