@@ -118,7 +118,33 @@ const loginController = {
 				}  )
 			}
 		}
-	}
+	},
+	getFavorites: async (req, res, next) => {
+		const { id } = req.params;
+		try {
+			if (!id) throw new HttpError("Debe enviar el id del usuario", 400);
+			const userfind = models.User.findByPk({
+				where: {
+					id,
+					status: 'active', 
+				},
+				include: [{
+          model: Books,
+          as: 'books',
+					through: {
+						attributes: []
+					}
+        }],
+			});
+			if (!userfind) throw new HttpError("Usuario no logeado", 404);
+			res.json(userfind);
+		} catch (error) {
+			if (!(error instanceof HttpError)) {
+				error = new HttpError("Error interno del servidor", 500)
+			}
+			return next(error);
+		}
+	},
 }
 
 module.exports = loginController
