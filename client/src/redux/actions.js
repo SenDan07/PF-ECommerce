@@ -73,7 +73,7 @@ export function postCreateCategory(input) {
     try {
       dispatch(setStatus("Guardando"));
       var res = await axios.post(
-        `http://localhost:3001/admin/create-book`,
+        `http://localhost:3001/admin/create-category`,
         input
       );
       return dispatch({
