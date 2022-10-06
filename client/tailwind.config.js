@@ -11,7 +11,8 @@ module.exports = {
       'hoverMenu': '#ca8a04',
       'black': '#000000',
       'bgItems': '#a3a3a3',
-      'hoverButton': '#2D682A'
+      'hoverButton': '#2D682A',
+      'table': '#60805C'
     },
     extend: {
       height: {

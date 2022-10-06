@@ -15,6 +15,7 @@ import {
   REGISTER,
   SET_STATUS,
   IS_LOGIN,
+  DELETE_BOOKS,
 } from "./types.js";
 import axios from "axios";
 
@@ -89,9 +90,7 @@ export function filterPrice(price) {
 
 export function categoryBooks(category) {
   return async (dispatch) => {
-    let res = await axios.get(
-      `http://localhost:3001/shop/booksCategory?name=${category}`
-    );
+    let res = await axios.get(`http://localhost:3001/shop/booksCategory?name=${category}`);
     return dispatch({
       type: CATEGORY_BOOKS,
       payload: res.data,
@@ -128,6 +127,16 @@ export function login(body) {
   };
 }
 
+export function deleteBook(idBook) {
+  return async (dispatch) => {
+    let res = await axios.delete(`http://localhost:3001/admin/books/${idBook}`)
+    return dispatch({
+      type: DELETE_BOOKS,
+      payload: res.data
+    })
+  }
+}
+
 export function register(body) {
   console.log(body);
   return async (dispatch) => {
@@ -161,6 +170,8 @@ export const isLogin = (data) => {
     payload: data,
   };
 };
+
+
 
 // export function orderName(value) {
 //   return async (dispatch) => {

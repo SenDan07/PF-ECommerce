@@ -16,6 +16,7 @@ import {
   LOGIN,
   SET_STATUS,
   IS_LOGIN,
+  DELETE_BOOKS,
 } from "./types";
 
 const initialState = {
@@ -48,7 +49,6 @@ function rootReducer(state = initialState, action) {
       };
 
     case POST_CREATE_BOOK:
-      console.log(action.payload);
       return {
         ...state,
         loading: action.payload,
@@ -152,7 +152,6 @@ function rootReducer(state = initialState, action) {
       };
 
     case LOGIN:
-      console.log(action.payload);
       return {
         ...state,
         login: action.payload.status,
@@ -170,6 +169,7 @@ function rootReducer(state = initialState, action) {
         login: action.payload.login,
         role: action.payload.role,
       };
+
 
     default:
       return state;
