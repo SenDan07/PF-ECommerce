@@ -9,6 +9,7 @@ export function validate(input) {
 
     let errors = {};
     let expLetras = /^[A-Za-z]+[A-Za-z\s]*[A-Za-z]$/
+    let email=/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
    
     if (!input.name) {
         errors.name = 'Nombre es requerido';
@@ -30,6 +31,8 @@ export function validate(input) {
     }
     if (!input.email) {
         errors.email = 'Email es requerido';
+    }else if (!email.test(input.email)) {
+        errors.email = 'Email es invalido'
     }
     return errors;
 }
@@ -84,7 +87,7 @@ export default function FormUser() {
         name:'',
         lastName:'',
         password: '',
-        role:'',
+        role:'USER',
         email:''
         })
         e.target.name.focus()
@@ -128,17 +131,17 @@ export default function FormUser() {
                 {errors.password ? <p className="text-[#dc2626]">{errors.password}</p> : null}<br />
                 <label className="block">EMAIL: </label>
                 <input type='email' className={errors.email ? 'text-[#dc2626] rounded-lg' : 'text-[#075985] rounded-lg'} name='email' value={input.email} placeholder='Email' onChange={(e) => handleChange(e)} /><br />
-                {errors.email ? <p className="text-[#dc2626]">{errors.email}</p> : null}<br />                               
+                {errors.email ? <p className="text-[#dc2626]">{errors.email}</p> : null}                              
                 
                 {/*<label className="block">IMAGEN: </label>
                 <input type='file' name='imageLinks' className="w-64" accept="image/png, image/jpeg" onChange={(e) => uploadImage(e)} />
                 <img src={input.imageLinks} alt="imagen" className="h-10 w-16" />*/}
-                <label className="block">ROL:</label>           
+                {/*<label className="block">ROL:</label>           
                 <select name="role" value={input.role} onChange={handleChange} className={errors.role ? 'text-[#dc2626]' : 'text-[#075985]'} >
                           <option value='USER'>USER</option>
                           <option value='ADMIN'>ADMIN</option>                         
-                </select>
-                <br /><br /><br />
+            </select>*/}
+                <br />
                 
                 </fieldset>
                 <fieldset className="text-center">

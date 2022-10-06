@@ -17,9 +17,9 @@ export default function CategoriesBooks() {
     <div className="bg-bgHome min-h-screen">
       <NavBar />
 
-      <div className="w-max m-auto">
+      <div className="m-auto flex justify-start ">
         <Link to="/">
-          <h3 className="border-1 border-rose-500 rounded w-max mx-auto mt-12 px-3 py-2 bg-button text-white">
+          <h3 className="border-1 border-rose-500 rounded mx-auto px-5 py-2 bg-button text-black hover:text-white mt-5 mx-10">
             &#129044; Regresar
           </h3>
         </Link>

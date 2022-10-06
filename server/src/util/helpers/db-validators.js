@@ -13,6 +13,16 @@ const thereIsEmail = async(email ='') => {
     }
 }
 
+const thereIsUserById = async( id='' ) => {
+    console.log(id)
+    const user = await User.findByPk(id);
+    console.log({user:user})
+    if( !user ){
+        throw new Error(`The Id ${ id } it doesnt exists`)
+    }
+}
+
 module.exports = {
-    thereIsEmail
+    thereIsEmail,
+    thereIsUserById
 }

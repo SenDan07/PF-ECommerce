@@ -15,6 +15,7 @@ import {
   REGISTER,
   LOGIN,
   SET_STATUS,
+  IS_LOGIN,
 } from "./types";
 
 const initialState = {
@@ -28,6 +29,7 @@ const initialState = {
   booksByPrice: [],
   login: 0,
   loading: "",
+  role: "",
 };
 
 function rootReducer(state = initialState, action) {
@@ -108,8 +110,8 @@ function rootReducer(state = initialState, action) {
       first === 0
         ? (filterPrice = [...filterAuxPrice])
         : first === 100
-          ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
-          : (filterPrice = filterAuxPrice.filter(
+        ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
+        : (filterPrice = filterAuxPrice.filter(
             (e) => e.price >= first && e.price <= last
           ));
 
@@ -150,14 +152,24 @@ function rootReducer(state = initialState, action) {
       };
 
     case LOGIN:
+      console.log(action.payload);
       return {
         ...state,
         login: action.payload.status,
+        role: action.payload.role,
       };
     case REGISTER:
       return {
-        ...state
-      }
+        ...state,
+        loading: action.payload,
+      };
+
+    case IS_LOGIN:
+      return {
+        ...state,
+        login: action.payload.login,
+        role: action.payload.role,
+      };
 
     default:
       return state;

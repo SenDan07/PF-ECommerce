@@ -5,8 +5,6 @@ const Sequelize = require('Sequelize');
 module.exports = (sequelize) => {
     // defino el modelo
     sequelize.define('Categories', {
-
-
         id: {
             type: Sequelize.UUID,
             defaultValue: Sequelize.UUIDV4,

@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 // import { Navigate, useNavigate } from "react-router-dom";
 import { login } from "../redux/actions";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Login = () => {
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
   let dispatch = useDispatch();
+
+  let regexEmail =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   const initialInputs = {
     email: "",
@@ -17,9 +20,10 @@ export const Login = () => {
 
   function onSubmit(e) {
     e.preventDefault();
-    if (data.email.length > 5 && data.password.length > 5) {
+    if (data.email.length > 5 && data.password.length >= 4) {
       dispatch(login(data));
       setData(initialInputs);
+      navigate("/");
     } else {
       alert("Debe Completar los campos correctamente!!");
     }
@@ -36,7 +40,7 @@ export const Login = () => {
   return (
     <div className="flex h-screen justify-center items-center relative">
       <Link to="/">
-        <h3 className="border-1 border-rose-500 rounded w-max mx-auto px-3 py-2 bg-button text-white absolute mt-[-20%] ml-[6%]">
+        <h3 className="border-1 border-rose-500 rounded w-max mx-auto px-3 py-2 bg-button text-black hover:text-white absolute mt-[-20%] ml-[6%]">
           &#129044; Regresar
         </h3>
       </Link>
@@ -63,7 +67,7 @@ export const Login = () => {
             <br />
             <input
               className="text-xl py-1 rounded outline-none pl-2"
-              type="text"
+              type="password"
               onChange={onInputChange}
               name="password"
               value={data.password}

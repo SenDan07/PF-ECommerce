@@ -27,19 +27,23 @@ export default function SearchBarSmart() {
           </h3>
         </Link>
       </div>
-      <div className="border-1 border-black-500 flex flex-wrap gap-36 justify-center mt-32 pb-20">
-        {busqueda.length?busqueda.map((book) => {
-          return (
-            <div key={book.id}>
-              <Book
-                name={book.title}
-                image={book.imageLinks}
-                price={book.price}
-                id={book.id}
-              />
-            </div>
-          );
-        }):<p>No se encontraron Resultados</p>}
+      <div className="w-[85%] m-auto border-1 border-black-500 flex flex-wrap gap-36 justify-center mt-32 pb-20">
+        {busqueda.length ? (
+          busqueda.map((book) => {
+            return (
+              <div key={book.id}>
+                <Book
+                  name={book.title}
+                  image={book.imageLinks}
+                  price={book.price}
+                  id={book.id}
+                />
+              </div>
+            );
+          })
+        ) : (
+          <p className="text-xl">No se encontraron Resultados</p>
+        )}
       </div>
     </div>
   );
