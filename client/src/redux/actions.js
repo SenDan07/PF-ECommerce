@@ -17,6 +17,7 @@ import {
 } from "./types.js";
 import axios from "axios";
 
+
 export const getBooks = () => async (dispatch) => {
   let dataBooks = await axios(`http://localhost:3001/shop/books`);
 
@@ -118,8 +119,10 @@ export function searchBook(book) {
 }
 
 export function login(body) {
-  return async (dispatch) => {
+  return async (dispatch) => { 
+   
     let res = await axios.post(`http://localhost:3001/users/login`, body);
+   
     return dispatch({
       type: LOGIN,
       payload: res.data,
@@ -132,10 +135,10 @@ export function register(body) {
   return async (dispatch) => {
     try{
       dispatch(setStatus("Guardando"));
-    let res = await axios.post("http://localhost:3001/users/register", body);
-    return dispatch({
-      type: REGISTER,
-      payload: res.data,
+      let res = await axios.post("http://localhost:3001/users/register", body);
+      return dispatch({
+        type: REGISTER,
+        payload: res.data,
     });
     }catch (e) {
       dispatch(setStatus("Datos no se guardaron correctamente"));

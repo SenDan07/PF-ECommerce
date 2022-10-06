@@ -26,7 +26,7 @@ const initialState = {
   booksBySearch: [],
   booksByCategory: [],
   booksByPrice: [],
-  login: 0,
+  login:[],
   loading: "",
 };
 
