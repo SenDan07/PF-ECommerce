@@ -11,7 +11,7 @@ export default function BookList() {
     dispatch(getBooks());
   }, []);
 
-  let booksData = useSelector((state) => state.books.slice(0, 10));
+  let booksData = useSelector((state) => state.booksFilter.slice(0, 10));
 
   return (
     <div className="mt-10 contenedor">
@@ -26,6 +26,7 @@ export default function BookList() {
                 image={book.imageLinks}
                 price={book.price}
                 id={book.id}
+                activado={book.activado}
               />
             );
           })
