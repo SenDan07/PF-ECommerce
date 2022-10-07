@@ -32,7 +32,7 @@ const initialState = {
   booksBySearch: [],
   booksByCategory: [],
   booksByPrice: [],
-  login:[],
+  login: [],
   loading: "",
   role: "",
   activeUsers: [],
@@ -42,10 +42,11 @@ const initialState = {
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case GET_BOOKS:
+      let auxBookFilter = action.payload.filter(book => book.activado)
       return {
         ...state,
         books: [...action.payload],
-        booksFilter: [...action.payload],
+        booksFilter: auxBookFilter,
       };
 
     case GET_DETAIL_BOOK:
@@ -60,12 +61,12 @@ function rootReducer(state = initialState, action) {
         loading: action.payload,
       };
 
-      case POST_CREATE_CATEGORY:
-        console.log(action.payload);
-        return {
-          ...state,
-          loading: action.payload,
-        };
+    case POST_CREATE_CATEGORY:
+      console.log(action.payload);
+      return {
+        ...state,
+        loading: action.payload,
+      };
 
     case RESET_DETAIL:
       return {
@@ -123,8 +124,8 @@ function rootReducer(state = initialState, action) {
       first === 0
         ? (filterPrice = [...filterAuxPrice])
         : first === 100
-        ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
-        : (filterPrice = filterAuxPrice.filter(
+          ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
+          : (filterPrice = filterAuxPrice.filter(
             (e) => e.price >= first && e.price <= last
           ));
 
@@ -134,9 +135,10 @@ function rootReducer(state = initialState, action) {
       };
 
     case CATEGORY_BOOKS:
+      let auxBookCategoryFilter = action.payload.filter(book => book.activado)
       return {
         ...state,
-        booksByCategory: action.payload,
+        booksByCategory: auxBookCategoryFilter,
         booksByPrice: state.booksByCategory,
       };
 
@@ -217,6 +219,17 @@ function rootReducer(state = initialState, action) {
         activeUsers: activeUsersReset,
         inactiveUsers: inactiveUsersReset,
       };
+
+
+    case DELETE_BOOKS:
+    let auxBookDeleted = [...state.books]  
+    let bookDeleted = auxBookDeleted.filter(book => !!book.activado === true)
+    console.log("bookDeleted: ", bookDeleted)
+      return {
+        ...state,
+        booksFilter: [...bookDeleted]
+      }
+
 
     default:
       return state;
