@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { deleteCategory, getAllCategories } from "../redux/actions";
 
 export const ManageCategories = () => {
@@ -9,9 +10,9 @@ export const ManageCategories = () => {
         dispatch(getAllCategories());
     }, []);
 
-    const deleteCategoryId = async(idCategory) => {
-       await dispatch(deleteCategory(idCategory));
-       await dispatch(getAllCategories())
+    const deleteCategoryId = async (idCategory) => {
+        await dispatch(deleteCategory(idCategory));
+        await dispatch(getAllCategories())
     };
 
     // let data = { isActive: "true" };
@@ -28,6 +29,15 @@ export const ManageCategories = () => {
     return (
         <div>
             <div className="mb-40">
+
+                <div className="m-auto flex justify-start ">
+                    <Link to="/">
+                        <h3 className="border-1 border-rose-500 rounded mx-auto px-5 py-2 bg-button text-black hover:text-white mt-5 mx-10">
+                            &#129044; Regresar
+                        </h3>
+                    </Link>
+                </div>
+
                 <h1 className="text-center text-2xl font-bold mt-10">
                     Registro Categorias:{" "}
                     <span className="font-medium text-white">{categories.length}</span>
@@ -52,7 +62,7 @@ export const ManageCategories = () => {
                 </div>
                 <div>
                     {categories?.map((category, id) => {
-                       
+
                         return (
                             <div
                                 key={id + 1}
@@ -65,7 +75,7 @@ export const ManageCategories = () => {
                                     <h3>{category.name}</h3>
                                 </div>
                                 <div className="border w-96 text-center text-xl font-medium">
-                                    <h3>{category.imageLinks.length>30?`${category.imageLinks.slice(0,30)}...`:category.imageLinks}</h3>
+                                    <h3>{category.imageLinks.length > 30 ? `${category.imageLinks.slice(0, 30)}...` : category.imageLinks}</h3>
                                 </div>
                                 <div className="border w-64 text-center text-xl font-medium">
                                     <h3>{category.activado ? "Activado" : "Eliminado"}</h3>

@@ -31,7 +31,9 @@ export default function CategoriesBooks() {
 
       <div className="flex flex-wrap justify-center ">
         {category &&
-          category?.map((e) => {
+          category.filter((c)=>{
+           return c.activado===true
+          }).map((e) => {
             return (
               <CategoriesDumb
                 name={e.name}
