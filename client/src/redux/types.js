@@ -19,4 +19,5 @@ export const IS_LOGIN = "IS_LOGIN";
 export const DELETE_BOOKS = "DELETE_BOOKS"
 export const GET_USERS = "GET_USERS";
 export const DELETE_USER = "DELETE_USER";
+export const DELETE_CATEGORY = "DELETE_CATEGORY";
 export const RESET_USER = "RESET_USER";

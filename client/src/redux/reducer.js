@@ -20,6 +20,7 @@ import {
   DELETE_BOOKS,
   GET_USERS,
   DELETE_USER,
+  DELETE_CATEGORY
   RESET_USER,
 } from "./types";
 
@@ -74,6 +75,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_ALL_CATEGORIES:
+      console.log(action.payload  )
       return {
         ...state,
         categories: action.payload,
@@ -205,6 +207,21 @@ function rootReducer(state = initialState, action) {
         inactiveUsers: usersInactive,
       };
 
+      case DELETE_CATEGORY:
+        console.log(action.payload)
+       // const idUserDelete = action.payload.data.id;
+  
+       // const usersActive = state.users.filter(
+         // (user) => user.id !== idUserDelete
+        //);
+        //const usersInactive = [...state.inactiveUsers, action.payload.data];
+  
+        return {
+          ...state,
+       //  categories: action.payload,
+        //  inactiveUsers: usersInactive,
+        };
+        
     case RESET_USER:
       const idUserReset = action.payload.data.id;
       const activeUsersReset = [...state.activeUsers, action.payload.data];

@@ -19,6 +19,7 @@ import {
   DELETE_BOOKS,
   GET_USERS,
   DELETE_USER,
+  DELETE_CATEGORY
   RESET_USER,
 } from "./types.js";
 import axios from "axios";
@@ -219,6 +220,20 @@ export const deleteUser =
     });
   };
 
+ export function deleteCategory(idCategory){
+    return async (dispatch) => {
+    const res=await axios.delete(
+        `http://localhost:3001/admin/category/${idCategory}`
+      );
+  
+      return dispatch({
+        type: DELETE_CATEGORY,
+        payload:res.data
+      });
+    };
+  }
+ // (idUser, data = { isActive: "false" }) =>
+
 export const resetUser =
   (idUser, data = { isActive: "true" }) =>
   async (dispatch) => {
@@ -229,6 +244,7 @@ export const resetUser =
       payload: users.data,
     });
   };
+
 
 
 // export function orderName(value) {
