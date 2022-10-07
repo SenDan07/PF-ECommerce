@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { isLogin } from "./redux/actions";
 import { ManageUsers } from "./components/ManageUsers";
+import {ManageCategories} from "./components/ManageCategories"
 
 function App() {
   const dispatch = useDispatch();
@@ -62,6 +63,7 @@ function App() {
             <Route exact path="/login" element={<Login />} />
           )}
           <Route exact path="/adminuser" element={<ManageUsers />} />
+          <Route exact path="/admicategory" element={<ManageCategories />} />
         </Routes>
       </BrowserRouter>
     </div>

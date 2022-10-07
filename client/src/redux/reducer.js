@@ -19,6 +19,7 @@ import {
   IS_LOGIN,
   GET_USERS,
   DELETE_USER,
+  DELETE_CATEGORY
 } from "./types";
 
 const initialState = {
@@ -73,6 +74,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_ALL_CATEGORIES:
+      console.log(action.payload  )
       return {
         ...state,
         categories: action.payload,
@@ -204,6 +206,21 @@ function rootReducer(state = initialState, action) {
         users: usersActive,
         inactiveUsers: usersInactive,
       };
+
+      case DELETE_CATEGORY:
+        console.log(action.payload)
+       // const idUserDelete = action.payload.data.id;
+  
+       // const usersActive = state.users.filter(
+         // (user) => user.id !== idUserDelete
+        //);
+        //const usersInactive = [...state.inactiveUsers, action.payload.data];
+  
+        return {
+          ...state,
+       //  categories: action.payload,
+        //  inactiveUsers: usersInactive,
+        };
 
     default:
       return state;

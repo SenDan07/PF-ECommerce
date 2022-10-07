@@ -58,6 +58,12 @@ export default function NavAdmin() {
         </div>
 
         <div className="mb-10 flex justify-center">
+          <div className="cursor-pointer hover:text-white">
+            <Link to="/admicategory">Administrar Categorias</Link>
+          </div>
+        </div>
+
+        <div className="mb-10 flex justify-center">
           <Link to="/createbook">
             <div className="cursor-pointer hover:text-white">Crear Libros</div>
           </Link>

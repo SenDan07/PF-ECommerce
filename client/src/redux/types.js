@@ -18,3 +18,4 @@ export const REGISTER = "REGISTER";
 export const IS_LOGIN = "IS_LOGIN";
 export const GET_USERS = "GET_USERS";
 export const DELETE_USER = "DELETE_USER";
+export const DELETE_CATEGORY = "DELETE_CATEGORY";
