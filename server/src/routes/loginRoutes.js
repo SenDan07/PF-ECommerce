@@ -22,7 +22,9 @@ router.put('/:id',[check('id').custom( thereIsUserById )],loginController.putUse
 router.get('/allUsers',loginController.getAllUsers);
 //borrado logico del usuario 
 router.delete('/:id',[check('id').custom( thereIsUserById )],loginController.deleteUser);
-
+//google sign in 
+router.post('/google',[check('id_token','Falta token').not().isEmpty(),
+check('email','Formato de mail inválido').isEmail(),],loginController.googleSignIn)
 //revalidar token 
 router.get('/renew',jwtValidator,loginController.tokenRevalidate)
 module.exports = router;
