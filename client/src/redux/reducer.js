@@ -20,7 +20,7 @@ import {
   DELETE_BOOKS,
   GET_USERS,
   DELETE_USER,
-  DELETE_CATEGORY
+  DELETE_CATEGORY,
   RESET_USER,
 } from "./types";
 

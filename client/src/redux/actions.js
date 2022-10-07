@@ -19,7 +19,7 @@ import {
   DELETE_BOOKS,
   GET_USERS,
   DELETE_USER,
-  DELETE_CATEGORY
+  DELETE_CATEGORY,
   RESET_USER,
 } from "./types.js";
 import axios from "axios";
@@ -169,6 +169,7 @@ export function register(body) {
     try {
       dispatch(setStatus("Guardando"));
       let res = await axios.post("http://localhost:3001/users/register", body);
+      
       return dispatch({
         type: REGISTER,
         payload: res.data.status
