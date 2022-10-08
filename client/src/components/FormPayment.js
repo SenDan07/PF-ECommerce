@@ -17,11 +17,12 @@ function CheckoutForm() {
             card: elements.getElement(CardElement)
         })
         if (!error) {
-            const id = paymentMethod
+            const {id} = paymentMethod
             try {
-                const { data } = await axios.post('http://localhost:3001/users/checkout', {
+                //El monto se multiplica por 100
+                const { data } = await axios.post('http://localhost:3001/activities/api/checkout', {
                     id,
-                    amount: 10000
+                    amount: 20000 
                 })
                 console.log(data)
                 elements.getElement(CardElement).clear()
