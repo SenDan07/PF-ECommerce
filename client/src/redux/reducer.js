@@ -172,6 +172,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case LOGIN:
+      console.log(action.payload);
       return {
         ...state,
         login: action.payload.status,

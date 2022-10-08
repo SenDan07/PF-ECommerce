@@ -1,11 +1,10 @@
 const bcrypt = require("bcrypt");
-const models = require("../db");
 const HttpError = require("../errors/http-error");
 const { thereIsEmail } = require("../util/helpers/db-validators");
 const { validationResult } = require("express-validator");
 const { generateToken } = require("../util/helpers/jwt-generator");
-const { googleVerify } = require("../util/helpers/google-verificator");
-const User = require("../models/User");
+const models = require("../db");
+const { User } = require("../db");
 const jwt_decode = require("jwt-decode");
 
 const loginController = {
@@ -36,7 +35,7 @@ const loginController = {
       }
       if (!user) {
         //creo el usuario
-        const userCreated = await models.User.create({
+        const userCreated = await User.create({
           name,
           isActive,
           lastName,
@@ -78,9 +77,19 @@ const loginController = {
       if (user) {
         if (bcrypt.compareSync(req.body.password, user.password)) {
           const token = await generateToken(user.id, user.name);
+
+          const resp = {
+            name: user.name,
+            lastName: user.lastName,
+            role: user.role,
+            isActive: user.isActive,
+            email: user.email,
+            isGoogle: user.isGoogle,
+          };
           return res.status(200).json({
             status: 1,
             messsage: "User logged in successfully",
+            user: resp,
             role: user.role,
             token: token,
           });
@@ -135,7 +144,7 @@ const loginController = {
 
     const data = await models.User.findByPk(id);
     return res.json({
-      mesg: "Usuario actualizado",
+      mesg: "User updated",
       data: data,
     });
   },
@@ -172,28 +181,20 @@ const loginController = {
 
   googleSignIn: async (req, res, next) => {
     const { credential } = req.body;
-    console.log(credential);
-    const dataUserGoogle = jwt_decode(credential);
-    console.log(dataUserGoogle);
+
+    const googleUser = jwt_decode(credential);
 
     try {
-      //const googleUser = await googleVerify(credential);
-
-      const googleUser = dataUserGoogle;
-
       // me pregunto si email por token existe en mi base de datos
 
       const user = await thereIsEmail(googleUser.email);
-
-      //   console.log("Google User: ", googleUser);
-      console.log("User: ", user);
 
       if (!user) {
         const data = {
           isGoogle: true,
           isActive: true,
           name: googleUser.given_name,
-          lastName: googleUser.family_name, //?? nodemailer
+          lastName: googleUser.family_name, // nodemailer
           //   password: "::P)",
           password: "1234hola",
           role: "USER",
@@ -201,8 +202,6 @@ const loginController = {
         };
 
         console.log("Data: ", data);
-
-        // const newUser = await User.bulkCreate([data]);
 
         const userCreated = await models.User.create({
           name: data.name,
@@ -212,11 +211,20 @@ const loginController = {
           email: data.email,
           role: data.role,
         });
+        const { name, lastName, role, isActive, email } = userCreated;
+
+        const resp = {
+          name,
+          lastName,
+          role,
+          isActive,
+          email,
+        };
 
         return res.status(200).json({
           status: 1,
-          messsage: "Usuario creado con éxito",
-          id_token: id_token,
+          message: "User has been created with successfull",
+          user: resp,
         });
       }
 
@@ -225,24 +233,34 @@ const loginController = {
       if (!user.isActive) {
         return res.status(401).json({
           status: 0,
-          messsage: "Usuario no autorizado",
+          message: "Unauthorized user",
         });
       }
 
       //genero el json web token
 
-      // const token = await generateToken(user.id, user.name);
+      const token = await generateToken(user.id, user.name);
+
+      const { name, lastName, role, isActive, email } = user;
+      const resp2 = {
+        name,
+        lastName,
+        role,
+        isActive,
+        email,
+      };
 
       res.status(200).json({
         status: 1,
-        messsage: "Soy un google",
-        user: user,
+        message: "User created with google",
+        user: resp2,
         token: token,
       });
     } catch (error) {
+      console.log(error);
       res.status(500).json({
         status: 0,
-        mesaage: "no puedo verificar token",
+        message: "Ivalid token",
       });
     }
   },
