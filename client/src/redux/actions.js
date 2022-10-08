@@ -249,11 +249,12 @@ export const resetUser =
 export function loginWithGoogle(info) {
   return async (dispatch) => {
     const response = await axios.post(
-      `http://localhost:3001/users/google/${info}`
+      `http://localhost:3001/users/google`,
+      info
     );
 
     return dispatch({
-      type: DELETE_CATEGORY,
+      type: LOGIN_WITH_GOOGLE,
       payload: response.data,
     });
   };

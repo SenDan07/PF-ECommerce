@@ -178,6 +178,7 @@ function rootReducer(state = initialState, action) {
         role: action.payload.role,
       };
     case REGISTER:
+      console.log(action.payload);
       return {
         ...state,
         loading: action.payload,
