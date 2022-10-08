@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login, loginWithGoogle } from "../redux/actions";
-import { useGoogleLogin } from "@react-oauth/google";
-import axios from "axios";
+import { GoogleLogin } from "@react-oauth/google";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -39,9 +38,13 @@ export const Login = () => {
     });
   }
 
-  const loginGoogle = useGoogleLogin({
-    onSuccess: (tokenResponse) => dispatch(loginWithGoogle(tokenResponse)),
-  });
+  // const loginGoogle = useGoogleLogin({
+  //   onSuccess: (tokenResponse) => dispatch(loginWithGoogle(tokenResponse)),
+  // });
+
+  // const loginGoogle = useGoogleLogin({
+  //   onSuccess: (tokenResponse) => console.log(tokenResponse),
+  // });
 
   // const loginGoogle = useGoogleLogin({
   //   onSuccess: async (response) => {
@@ -120,8 +123,8 @@ export const Login = () => {
           </div>
         </form>
         <div className="relative flex items-center justify-center w-4/5 mt-6 border border-[#aaaaaa] m-auto"></div>
-        <div className="flex mt-4 gap-x-2">
-          <button
+        <div className="flex mt-4 justify-center">
+          {/* <button
             type="button"
             className="flex items-center justify-around w-1/2 m-auto p-2 border border-[#888888] rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-violet-600 text-white bg-[#22463d] text-lg hover:bg-NavBar"
             onClick={loginGoogle}
@@ -152,7 +155,16 @@ export const Login = () => {
               </g>
             </svg>
             Inicia sesión con Google
-          </button>
+          </button> */}
+          <GoogleLogin
+            onSuccess={(credentialResponse) => {
+              console.log(credentialResponse);
+              dispatch(loginWithGoogle(credentialResponse));
+            }}
+            onError={() => {
+              console.log("Login Failed");
+            }}
+          />
         </div>
 
         <p className="mt-8 text-lg font-light text-center text-[#cccccc]">
