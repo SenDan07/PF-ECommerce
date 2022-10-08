@@ -17,6 +17,7 @@ import { isLogin } from "./redux/actions";
 import DeleteBooksSmart from "./components/DeleteBookSmart";
 import { ManageUsers } from "./components/ManageUsers";
 import {ManageCategories} from "./components/ManageCategories"
+import FormPayment from "./components/FormPayment"
 
 
 function App() {
@@ -73,6 +74,7 @@ function App() {
 
           <Route exact path="/adminuser" element={<ManageUsers />} />
           <Route exact path="/admicategory" element={<ManageCategories />} />
+          <Route exact path="/payment" element={<FormPayment />} />
 
           {LOGIN == 1 && ROLE === "ADMIN" ?
             (<Route exact path="/deletebook" element={<DeleteBooksSmart />} />) :
