@@ -22,9 +22,11 @@
     "express-validator": "^6.14.2",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
+    "nodemailer": "^6.8.0",
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.23.2",
+    "stripe": "^10.13.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
