@@ -12,6 +12,11 @@ module.exports = (sequelize) => {
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
       },
+      isGoogle:{
+        type:DataTypes.BOOLEAN,
+        defaultValue:false,
+        
+      },
       isActive: {
         type: DataTypes.BOOLEAN,
         allowNull: false,

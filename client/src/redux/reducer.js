@@ -22,6 +22,7 @@ import {
   DELETE_USER,
   DELETE_CATEGORY,
   RESET_USER,
+  LOGIN_WITH_GOOGLE,
 } from "./types";
 
 const initialState = {
@@ -43,7 +44,7 @@ const initialState = {
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case GET_BOOKS:
-      let auxBookFilter = action.payload.filter(book => book.activado)
+      let auxBookFilter = action.payload.filter((book) => book.activado);
       return {
         ...state,
         books: [...action.payload],
@@ -76,7 +77,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_ALL_CATEGORIES:
-      console.log(action.payload  )
+      // console.log(action.payload  )
       return {
         ...state,
         categories: action.payload,
@@ -126,8 +127,8 @@ function rootReducer(state = initialState, action) {
       first === 0
         ? (filterPrice = [...filterAuxPrice])
         : first === 100
-          ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
-          : (filterPrice = filterAuxPrice.filter(
+        ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
+        : (filterPrice = filterAuxPrice.filter(
             (e) => e.price >= first && e.price <= last
           ));
 
@@ -137,7 +138,9 @@ function rootReducer(state = initialState, action) {
       };
 
     case CATEGORY_BOOKS:
-      let auxBookCategoryFilter = action.payload.filter(book => book.activado)
+      let auxBookCategoryFilter = action.payload.filter(
+        (book) => book.activado
+      );
       return {
         ...state,
         booksByCategory: auxBookCategoryFilter,
@@ -169,12 +172,14 @@ function rootReducer(state = initialState, action) {
       };
 
     case LOGIN:
+      console.log(action.payload);
       return {
         ...state,
         login: action.payload.status,
         role: action.payload.role,
       };
     case REGISTER:
+      console.log(action.payload);
       return {
         ...state,
         loading: action.payload,
@@ -209,21 +214,21 @@ function rootReducer(state = initialState, action) {
         inactiveUsers: usersInactive,
       };
 
-      case DELETE_CATEGORY:
-        console.log(action.payload)
-       // const idUserDelete = action.payload.data.id;
-  
-       // const usersActive = state.users.filter(
-         // (user) => user.id !== idUserDelete
-        //);
-        //const usersInactive = [...state.inactiveUsers, action.payload.data];
-  
-        return {
-          ...state,
-       //  categories: action.payload,
+    case DELETE_CATEGORY:
+      console.log(action.payload);
+      // const idUserDelete = action.payload.data.id;
+
+      // const usersActive = state.users.filter(
+      // (user) => user.id !== idUserDelete
+      //);
+      //const usersInactive = [...state.inactiveUsers, action.payload.data];
+
+      return {
+        ...state,
+        //  categories: action.payload,
         //  inactiveUsers: usersInactive,
-        };
-        
+      };
+
     case RESET_USER:
       const idUserReset = action.payload.data.id;
       const activeUsersReset = [...state.activeUsers, action.payload.data];
@@ -237,16 +242,22 @@ function rootReducer(state = initialState, action) {
         inactiveUsers: inactiveUsersReset,
       };
 
-
     case DELETE_BOOKS:
-    let auxBookDeleted = [...state.books]  
-    let bookDeleted = auxBookDeleted.filter(book => !!book.activado === true)
-    console.log("bookDeleted: ", bookDeleted)
+      let auxBookDeleted = [...state.books];
+      let bookDeleted = auxBookDeleted.filter(
+        (book) => !!book.activado === true
+      );
+      console.log("bookDeleted: ", bookDeleted);
       return {
         ...state,
-        booksFilter: [...bookDeleted]
-      }
+        booksFilter: [...bookDeleted],
+      };
 
+    case LOGIN_WITH_GOOGLE:
+      console.log(action.payload);
+      return {
+        ...state,
+      };
 
     default:
       return state;
