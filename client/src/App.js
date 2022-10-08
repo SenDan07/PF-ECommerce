@@ -16,8 +16,8 @@ import { useEffect } from "react";
 import { isLogin } from "./redux/actions";
 import DeleteBooksSmart from "./components/DeleteBookSmart";
 import { ManageUsers } from "./components/ManageUsers";
-import {ManageCategories} from "./components/ManageCategories"
-
+import { ManageCategories } from "./components/ManageCategories";
+import { FormUserTwo } from "../src/components/FormUserTwo";
 
 function App() {
   const dispatch = useDispatch();
@@ -55,7 +55,11 @@ function App() {
 
           <Route exact path="/searchbar" element={<SearchBarSmart />} />
 
-          <Route exact path="/categories/:category" element={<CategoryBooksSmart />} />
+          <Route
+            exact
+            path="/categories/:category"
+            element={<CategoryBooksSmart />}
+          />
 
           <Route exact path="/categories" element={<CategoriesSmart />} />
 
@@ -74,14 +78,13 @@ function App() {
           <Route exact path="/adminuser" element={<ManageUsers />} />
           <Route exact path="/admicategory" element={<ManageCategories />} />
 
-          {LOGIN == 1 && ROLE === "ADMIN" ?
-            (<Route exact path="/deletebook" element={<DeleteBooksSmart />} />) :
-            null}
-            
+          {LOGIN == 1 && ROLE === "ADMIN" ? (
+            <Route exact path="/deletebook" element={<DeleteBooksSmart />} />
+          ) : null}
+
           {LOGIN == 1 && ROLE === "ADMIN" ? (
             <Route exact path="/adminuser" element={<ManageUsers />} />
           ) : null}
-          
         </Routes>
       </BrowserRouter>
     </div>

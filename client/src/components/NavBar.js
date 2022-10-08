@@ -9,6 +9,7 @@ export default function NavBar() {
   const navigate = useNavigate();
   const LOGIN = useSelector((state) => state.login);
   const ROLE = useSelector((state) => state.role);
+  console.log(ROLE);
 
   if (LOGIN && ROLE.length) {
     localStorage.setItem("LOGIN", LOGIN);
