@@ -62,8 +62,19 @@ export default function NavBar() {
         <SearchBar />
       </div>
 
-      <div className="flex items-center">
+        <Link to="/car"  className="text-xl text-[#f8fafc]">
+          <box-icon name="cart"></box-icon>
+          <span>0</span>
+        </Link>
+
+        {/* <Link to="/admin" className="mx-3 cursor-pointer hover:text-hoverMenu">
+                    ADMINISTRAR
+                </Link> */}
+
+        {activeLogin == 1 && activeRole == "USER" ? (
+
         {LOGIN === 1 && ROLE === "USER" ? (
+
           <Link
             to="/favorites"
             className="mr-10 cursor-pointer hover:text-hoverMenu"
