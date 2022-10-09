@@ -2,6 +2,7 @@ import {
   GET_BOOKS,
   GET_DETAIL_BOOK,
   POST_CREATE_BOOK,
+  POST_CREATE_CATEGORY,
   ORDER_NAME,
   ORDER_PRICE,
   RESET_DETAIL,
@@ -15,9 +16,14 @@ import {
   REGISTER,
   SET_STATUS,
   IS_LOGIN,
+  DELETE_BOOKS,
+  GET_USERS,
+  DELETE_USER,
+  DELETE_CATEGORY,
+  RESET_USER,
+  LOGIN_WITH_GOOGLE,
 } from "./types.js";
 import axios from "axios";
-
 
 export const getBooks = () => async (dispatch) => {
   let dataBooks = await axios(`http://localhost:3001/shop/books`);
@@ -59,6 +65,24 @@ export function postCreateBook(input) {
       );
       return dispatch({
         type: POST_CREATE_BOOK,
+        payload: res.data,
+      });
+    } catch (e) {
+      dispatch(setStatus("Datos no se guardaron correctamente"));
+    }
+  };
+}
+
+export function postCreateCategory(input) {
+  return async (dispatch) => {
+    try {
+      dispatch(setStatus("Guardando"));
+      var res = await axios.post(
+        `http://localhost:3001/admin/create-category`,
+        input
+      );
+      return dispatch({
+        type: POST_CREATE_CATEGORY,
         payload: res.data,
       });
     } catch (e) {
@@ -120,12 +144,21 @@ export function searchBook(book) {
 }
 
 export function login(body) {
-  return async (dispatch) => { 
-   
+  return async (dispatch) => {
     let res = await axios.post(`http://localhost:3001/users/login`, body);
-   
+
     return dispatch({
       type: LOGIN,
+      payload: res.data,
+    });
+  };
+}
+
+export function deleteBook(idBook) {
+  return async (dispatch) => {
+    let res = await axios.delete(`http://localhost:3001/admin/books/${idBook}`);
+    return dispatch({
+      type: DELETE_BOOKS,
       payload: res.data,
     });
   };
@@ -137,6 +170,7 @@ export function register(body) {
     try {
       dispatch(setStatus("Guardando"));
       let res = await axios.post("http://localhost:3001/users/register", body);
+
       return dispatch({
         type: REGISTER,
         payload: res.data.status
@@ -163,6 +197,68 @@ export const isLogin = (data) => {
     payload: data,
   };
 };
+
+export const getUsers = () => async (dispatch) => {
+  let dataBooks = await axios(`http://localhost:3001/users/allUsers`);
+
+  return dispatch({
+    type: GET_USERS,
+    payload: dataBooks.data,
+  });
+};
+
+export const deleteUser =
+  (idUser, data = { isActive: "false" }) =>
+  async (dispatch) => {
+    let usersActive = await axios.put(
+      `http://localhost:3001/users/${idUser}`,
+      data
+    );
+
+    return dispatch({
+      type: DELETE_USER,
+      payload: usersActive.data,
+    });
+  };
+
+export function deleteCategory(idCategory) {
+  return async (dispatch) => {
+    const res = await axios.delete(
+      `http://localhost:3001/admin/category/${idCategory}`
+    );
+
+    return dispatch({
+      type: DELETE_CATEGORY,
+      payload: res.data,
+    });
+  };
+}
+// (idUser, data = { isActive: "false" }) =>
+
+export const resetUser =
+  (idUser, data = { isActive: "true" }) =>
+  async (dispatch) => {
+    let users = await axios.put(`http://localhost:3001/users/${idUser}`, data);
+
+    return dispatch({
+      type: RESET_USER,
+      payload: users.data,
+    });
+  };
+
+export function loginWithGoogle(info) {
+  return async (dispatch) => {
+    const response = await axios.post(
+      `http://localhost:3001/users/google`,
+      info
+    );
+
+    return dispatch({
+      type: LOGIN_WITH_GOOGLE,
+      payload: response.data,
+    });
+  };
+}
 
 // export function orderName(value) {
 //   return async (dispatch) => {

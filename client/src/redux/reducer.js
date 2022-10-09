@@ -2,6 +2,7 @@ import {
   GET_BOOKS,
   GET_DETAIL_BOOK,
   POST_CREATE_BOOK,
+  POST_CREATE_CATEGORY,
   RESET_DETAIL,
   ORDER_NAME,
   SEARCH_BOOK,
@@ -16,6 +17,12 @@ import {
   LOGIN,
   SET_STATUS,
   IS_LOGIN,
+  DELETE_BOOKS,
+  GET_USERS,
+  DELETE_USER,
+  DELETE_CATEGORY,
+  RESET_USER,
+  LOGIN_WITH_GOOGLE,
 } from "./types";
 
 const initialState = {
@@ -27,18 +34,21 @@ const initialState = {
   booksBySearch: [],
   booksByCategory: [],
   booksByPrice: [],
-  login:[],
+  login: [],
   loading: "",
   role: "",
+  activeUsers: [],
+  inactiveUsers: [],
 };
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case GET_BOOKS:
+      let auxBookFilter = action.payload.filter((book) => book.activado);
       return {
         ...state,
         books: [...action.payload],
-        booksFilter: [...action.payload],
+        booksFilter: auxBookFilter,
       };
 
     case GET_DETAIL_BOOK:
@@ -48,6 +58,12 @@ function rootReducer(state = initialState, action) {
       };
 
     case POST_CREATE_BOOK:
+      return {
+        ...state,
+        loading: action.payload,
+      };
+
+    case POST_CREATE_CATEGORY:
       console.log(action.payload);
       return {
         ...state,
@@ -61,6 +77,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_ALL_CATEGORIES:
+      // console.log(action.payload  )
       return {
         ...state,
         categories: action.payload,
@@ -121,9 +138,12 @@ function rootReducer(state = initialState, action) {
       };
 
     case CATEGORY_BOOKS:
+      let auxBookCategoryFilter = action.payload.filter(
+        (book) => book.activado
+      );
       return {
         ...state,
-        booksByCategory: action.payload,
+        booksByCategory: auxBookCategoryFilter,
         booksByPrice: state.booksByCategory,
       };
 
@@ -152,13 +172,13 @@ function rootReducer(state = initialState, action) {
       };
 
     case LOGIN:
-      console.log(action.payload);
       return {
         ...state,
         login: action.payload.status,
         role: action.payload.role,
       };
     case REGISTER:
+      console.log(action.payload);
       return {
         ...state,
         loading: action.payload,
@@ -169,6 +189,73 @@ function rootReducer(state = initialState, action) {
         ...state,
         login: action.payload.login,
         role: action.payload.role,
+      };
+
+    case GET_USERS:
+      return {
+        ...state,
+        activeUsers: action.payload.activeRegData,
+        inactiveUsers: action.payload.inactiveRegData,
+      };
+
+    case DELETE_USER:
+      const idUserDelete = action.payload.data.id;
+
+      const usersActive = state.activeUsers.filter(
+        (user) => user.id !== idUserDelete
+      );
+
+      const usersInactive = [...state.inactiveUsers, action.payload.data];
+
+      return {
+        ...state,
+        activeUsers: usersActive,
+        inactiveUsers: usersInactive,
+      };
+
+    case DELETE_CATEGORY:
+      console.log(action.payload);
+      // const idUserDelete = action.payload.data.id;
+
+      // const usersActive = state.users.filter(
+      // (user) => user.id !== idUserDelete
+      //);
+      //const usersInactive = [...state.inactiveUsers, action.payload.data];
+
+      return {
+        ...state,
+        //  categories: action.payload,
+        //  inactiveUsers: usersInactive,
+      };
+
+    case RESET_USER:
+      const idUserReset = action.payload.data.id;
+      const activeUsersReset = [...state.activeUsers, action.payload.data];
+      const inactiveUsersReset = state.inactiveUsers.filter(
+        (user) => user.id !== idUserReset
+      );
+
+      return {
+        ...state,
+        activeUsers: activeUsersReset,
+        inactiveUsers: inactiveUsersReset,
+      };
+
+    case DELETE_BOOKS:
+      let auxBookDeleted = [...state.books];
+      let bookDeleted = auxBookDeleted.filter(
+        (book) => !!book.activado === true
+      );
+      console.log("bookDeleted: ", bookDeleted);
+      return {
+        ...state,
+        booksFilter: [...bookDeleted],
+      };
+
+    case LOGIN_WITH_GOOGLE:
+      console.log(action.payload);
+      return {
+        ...state,
       };
 
     default:
