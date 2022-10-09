@@ -36,7 +36,7 @@ export default function Carousel() {
   }, [index]);
 
   return (
-    <div className="mb-10">
+    <div className="mb-10 pt-16">
       <div className="relative w-full">
         <div className="absolute left-0 text-2xl top-80 ">
           <button
@@ -56,7 +56,7 @@ export default function Carousel() {
       <div className="h-2/4">
         <img
           src={images[index]}
-          alt="image not found"
+          alt="img-not-found"
           className=" mx-auto object-fill h-192 w-full"
         />
       </div>

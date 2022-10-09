@@ -23,6 +23,8 @@ import FormPayment from "./components/FormPayment"
 import Cart from"./components/Cart"
 import 'boxicons'
 // import { FormUserTwo } from "../src/components/FormUserTwo";
+import FormPayment from "./components/FormPayment";
+import { ErrorNotFound } from "./components/ErrorNotFound";
 
 
 function App() {
@@ -55,7 +57,9 @@ function App() {
 
           {LOGIN === 1 && ROLE === "USER" ? (
             <Route exact path="/favorites" element={<Favorites />} />
-          ) : null}
+          ) : (
+            <Route exact path="/favorites" element={<ErrorNotFound />} />
+          )}
 
           <Route exact path="/books/:id" element={<BookDetail />} />
 
@@ -71,7 +75,9 @@ function App() {
 
           {LOGIN === 1 && ROLE === "ADMIN" ? (
             <Route exact path="/admin" element={<MenuAdmin />} />
-          ) : null}
+          ) : (
+            <Route exact path="/favorites" element={<ErrorNotFound />} />
+          )}
 
           {LOGIN === 1 ? null : (
             <Route exact path="/register" element={<FormUser />} />

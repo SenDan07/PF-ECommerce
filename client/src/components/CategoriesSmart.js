@@ -17,7 +17,7 @@ export default function CategoriesBooks() {
     <div className="bg-bgHome min-h-screen">
       <NavBar />
 
-      <div className="m-auto flex justify-start ">
+      <div className="m-auto flex justify-start pt-20">
         <Link to="/">
           <h3 className="border-1 border-rose-500 rounded mx-auto px-5 py-2 bg-button text-black hover:text-white mt-5 mx-10">
             &#129044; Regresar
@@ -31,17 +31,19 @@ export default function CategoriesBooks() {
 
       <div className="flex flex-wrap justify-center ">
         {category &&
-          category.filter((c)=>{
-           return c.activado===true
-          }).map((e) => {
-            return (
-              <CategoriesDumb
-                name={e.name}
-                imageLinks={e.imageLinks}
-                key={e.id}
-              />
-            );
-          })}
+          category
+            .filter((c) => {
+              return c.activado === true;
+            })
+            .map((e) => {
+              return (
+                <CategoriesDumb
+                  name={e.name}
+                  imageLinks={e.imageLinks}
+                  key={e.id}
+                />
+              );
+            })}
       </div>
     </div>
   );

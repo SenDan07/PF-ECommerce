@@ -8,7 +8,7 @@ const Categories = () => {
 
       <div className="w-max m-auto">
         <Link to="/">
-          <h3 class="border-1 border-rose-500 rounded w-max mx-auto mt-12 px-3 py-2 bg-button text-white">
+          <h3 class="border-1 border-rose-500 rounded w-max mx-auto mt-12 px-3 py-2 pt-40 bg-button text-white">
             &#129044; Regresar
           </h3>
         </Link>
