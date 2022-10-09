@@ -12,10 +12,9 @@ module.exports = (sequelize) => {
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
       },
-      isGoogle:{
-        type:DataTypes.BOOLEAN,
-        defaultValue:false,
-        
+      isGoogle: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
       isActive: {
         type: DataTypes.BOOLEAN,
@@ -43,9 +42,14 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      picture: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        defaultValue:
+          "https://res.cloudinary.com/dzcpdipdg/image/upload/v1665265607/samples/icons/img-perfil-default_krpmpp.jpg",
+      },
       // favorites:{
       //   type:DataTypes.ARRAY(DataTypes.STRING)
-
 
       // }
     },

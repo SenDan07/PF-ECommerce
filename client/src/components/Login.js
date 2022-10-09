@@ -158,8 +158,9 @@ export const Login = () => {
           </button> */}
           <GoogleLogin
             onSuccess={(credentialResponse) => {
-              console.log(credentialResponse);
+              // console.log(credentialResponse);
               dispatch(loginWithGoogle(credentialResponse));
+              navigate("/");
             }}
             onError={() => {
               console.log("Login Failed");

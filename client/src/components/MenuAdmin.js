@@ -1,34 +1,38 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { isLogin } from "../redux/actions";
 import NavBar from "./NavBar";
 
 export default function NavAdmin() {
-  const activeLogin = localStorage.getItem("LOGIN");
-  const activeRole = localStorage.getItem("ROLE");
+  // const activeLogin = localStorage.getItem("LOGIN");
+  // const activeRole = localStorage.getItem("ROLE");
 
-  const dispatch = useDispatch();
-  //   console.log(activeLogin);
-  //   console.log(activeRole);
+  const activeLogin = useSelector((state) => state.login);
+  const activeRole = useSelector((state) => state.role);
+  const USER = useSelector((state) => state.user);
 
-  useEffect(() => {
-    dispatch(
-      isLogin({
-        login: activeLogin,
-        role: activeRole,
-      })
-    );
+  // const dispatch = useDispatch();
+  // //   console.log(activeLogin);
+  // //   console.log(activeRole);
 
-    return () => {
-      dispatch(
-        isLogin({
-          login: activeLogin,
-          role: activeRole,
-        })
-      );
-    };
-  }, [activeLogin, activeRole]);
+  // useEffect(() => {
+  //   dispatch(
+  //     isLogin({
+  //       login: activeLogin,
+  //       role: activeRole,
+  //     })
+  //   );
+
+  //   return () => {
+  //     dispatch(
+  //       isLogin({
+  //         login: activeLogin,
+  //         role: activeRole,
+  //       })
+  //     );
+  //   };
+  // }, [activeLogin, activeRole]);
 
   return (
     <div className="justify-self-center">
@@ -36,7 +40,7 @@ export default function NavAdmin() {
 
       <div className="m-auto flex justify-start ">
         <Link to="/">
-          <h3 className="border-1 border-rose-500 rounded mx-auto px-5 py-2 bg-button text-black hover:text-white mt-5 mx-10">
+          <h3 className="border-1 border-rose-500 rounded px-5 py-2 bg-button text-black hover:text-white mt-5 mx-10">
             &#129044; Regresar
           </h3>
         </Link>
@@ -47,7 +51,7 @@ export default function NavAdmin() {
       </div>
 
       <div className="flex justify-center">
-        <div className="text-xl">BIENVENIDO ADMIN</div>
+        <div className="text-xl">BIENVENID@ {USER.name}</div>
       </div>
 
       <div className="text-4xl mt-20">

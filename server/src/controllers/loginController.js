@@ -22,10 +22,11 @@ const loginController = {
     let role = req.body.role;
     let lastName = req.body.lastName;
     let password = bcrypt.hashSync(req.body.password, 10);
+    let picture = req.body.picture;
     //compruebo si el email ya existe
     try {
       const user = await thereIsEmail(email);
-      console.log(user);
+      //console.log(user);
 
       if (user) {
         return res.status(400).json({
@@ -42,6 +43,7 @@ const loginController = {
           password,
           email,
           role,
+          picture,
         });
 
         const data = {
@@ -50,6 +52,8 @@ const loginController = {
           email: userCreated._previousDataValues.email,
           role: userCreated._previousDataValues.role,
           isActive: userCreated._previousDataValues.isActive,
+          isGoogle: false,
+          picture: userCreated._previousDataValues.picture,
           //token: token
         };
 
@@ -65,7 +69,7 @@ const loginController = {
   },
   loginUser: async (req, res, next) => {
     const errors = validationResult(req);
-    console.log(res.headers);
+    //console.log(res.headers);
     if (!errors.isEmpty()) {
       return res.status(400).json(errors);
     }
@@ -85,6 +89,7 @@ const loginController = {
             isActive: user.isActive,
             email: user.email,
             isGoogle: user.isGoogle,
+            picture: user.picture,
           };
           return res.status(200).json({
             status: 1,
@@ -117,7 +122,7 @@ const loginController = {
     }
     const { id } = req.params; // saco el id
     const modification = req.body;
-    console.log(modification);
+    //console.log(modification);
     const user = await models.User.update(modification, {
       where: {
         id: id,
@@ -189,6 +194,8 @@ const loginController = {
 
       const user = await thereIsEmail(googleUser.email);
 
+      // console.log(googleUser);
+
       if (!user) {
         const data = {
           isGoogle: true,
@@ -199,26 +206,32 @@ const loginController = {
           password: "1234hola",
           role: "USER",
           email: googleUser.email,
+          picture: googleUser.picture,
         };
 
-        console.log("Data: ", data);
+        // console.log("Data: ", data);
 
         const userCreated = await models.User.create({
           name: data.name,
           isActive: true,
+          isGoogle: data.isGoogle,
           lastName: data.lastName,
           password: data.password,
           email: data.email,
           role: data.role,
+          picture: data.picture,
         });
-        const { name, lastName, role, isActive, email } = userCreated;
+        const { name, lastName, role, isActive, email, isGoogle, picture } =
+          userCreated;
 
         const resp = {
           name,
           lastName,
           role,
           isActive,
+          isGoogle,
           email,
+          picture,
         };
 
         return res.status(200).json({
@@ -241,13 +254,15 @@ const loginController = {
 
       const token = await generateToken(user.id, user.name);
 
-      const { name, lastName, role, isActive, email } = user;
+      const { name, lastName, role, isActive, email, isGoogle, picture } = user;
       const resp2 = {
         name,
         lastName,
         role,
         isActive,
         email,
+        isGoogle,
+        picture,
       };
 
       res.status(200).json({
@@ -257,7 +272,7 @@ const loginController = {
         token: token,
       });
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       res.status(500).json({
         status: 0,
         message: "Ivalid token",

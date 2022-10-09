@@ -15,7 +15,7 @@ import {
   LOGIN,
   REGISTER,
   SET_STATUS,
-  IS_LOGIN,
+  LOGOUT,
   DELETE_BOOKS,
   GET_USERS,
   DELETE_USER,
@@ -191,10 +191,9 @@ export function setStatus(mensaje) {
 
 export const resetSearchBook = () => ({ type: RESET_SEARCH_BOOK });
 
-export const isLogin = (data) => {
+export const logoutUser = () => {
   return {
-    type: IS_LOGIN,
-    payload: data,
+    type: LOGOUT,
   };
 };
 
