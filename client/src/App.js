@@ -17,15 +17,14 @@ import { logoutUser } from "./redux/actions";
 import DeleteBooksSmart from "./components/DeleteBookSmart";
 import { ManageUsers } from "./components/ManageUsers";
 import { ManageCategories } from "./components/ManageCategories";
-import { FormUserTwo } from "../src/components/FormUserTwo";
-import FormOrder from "./components/FormOrder"
-import FormPayment from "./components/FormPayment"
-import Cart from"./components/Cart"
-import 'boxicons'
 // import { FormUserTwo } from "../src/components/FormUserTwo";
+import FormOrder from "./components/FormOrder";
 import FormPayment from "./components/FormPayment";
+import Cart from "./components/Cart";
+import "boxicons";
+// import { FormUserTwo } from "../src/components/FormUserTwo";
+// import FormPayment from "./components/FormPayment";
 import { ErrorNotFound } from "./components/ErrorNotFound";
-
 
 function App() {
   // const dispatch = useDispatch();
@@ -50,53 +49,46 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Home />} />
-
           <Route exact path="/createbook" element={<FormBook />} />
-
           <Route exact path="/createcategory" element={<FormCategory />} />
-
           {LOGIN === 1 && ROLE === "USER" ? (
             <Route exact path="/favorites" element={<Favorites />} />
           ) : (
             <Route exact path="/favorites" element={<ErrorNotFound />} />
           )}
-
           <Route exact path="/books/:id" element={<BookDetail />} />
-
           <Route exact path="/searchbar" element={<SearchBarSmart />} />
-
           <Route
             exact
             path="/categories/:category"
             element={<CategoryBooksSmart />}
           />
-
           <Route exact path="/categories" element={<CategoriesSmart />} />
-
           {LOGIN === 1 && ROLE === "ADMIN" ? (
             <Route exact path="/admin" element={<MenuAdmin />} />
           ) : (
-            <Route exact path="/favorites" element={<ErrorNotFound />} />
+            <Route exact path="/admin" element={<ErrorNotFound />} />
           )}
-
           {LOGIN === 1 ? null : (
             <Route exact path="/register" element={<FormUser />} />
           )}
-
           {LOGIN === 1 ? null : (
             <Route exact path="/login" element={<Login />} />
           )}
-
           <Route exact path="/adminuser" element={<ManageUsers />} />
           <Route exact path="/admicategory" element={<ManageCategories />} />
           <Route exact path="/payment" element={<FormPayment />} />
-          <Route exact path="/car" element={<Cart />} />
-          <Route excat path="/order" element={<FormOrder />} />1
+          {LOGIN === 1 && ROLE === "ADMIN" ? null : (
+            <Route exact path="/car" element={<Cart />} />
+          )}
+
+          {LOGIN === 1 && ROLE === "USER" ? (
+            <Route excat path="/order" element={<FormOrder />} />
+          ) : null}
 
           {LOGIN === 1 && ROLE === "ADMIN" ? (
             <Route exact path="/deletebook" element={<DeleteBooksSmart />} />
           ) : null}
-
           {LOGIN === 1 && ROLE === "ADMIN" ? (
             <Route exact path="/adminuser" element={<ManageUsers />} />
           ) : null}
