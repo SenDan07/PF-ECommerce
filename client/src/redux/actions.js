@@ -22,6 +22,7 @@ import {
   DELETE_CATEGORY,
   RESET_USER,
   LOGIN_WITH_GOOGLE,
+  ADD_CART
 } from "./types.js";
 import axios from "axios";
 
@@ -257,6 +258,13 @@ export function loginWithGoogle(info) {
       payload: response.data,
     });
   };
+}
+
+export function addCart(book){
+  return {
+    type:ADD_CART,
+    payload:book
+  }
 }
 
 // export function orderName(value) {
