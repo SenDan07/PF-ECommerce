@@ -38,7 +38,7 @@ export default function NavBar() {
   }
 
   return (
-    <div className="bg-NavBar text-2xl text-white flex justify-between items-center px-7 py-3">
+    <div className="bg-NavBar text-2xl text-white flex justify-between items-center px-7 py-3 fixed left-0 right-0 z-50">
       <div className="flex items-center gap-20">
         <div>
           <h6 className="text-5xl">LIBRERIA</h6>
@@ -79,7 +79,7 @@ export default function NavBar() {
           </Link>
         ) : null}
 
-        {LOGIN === 0 && ROLE === "" ? (
+        {(LOGIN === 0 || LOGIN.length === 0) && ROLE === "" ? (
           <div>
             <div className="ml-10 flex gap-5">
               <Link to="/login">
@@ -97,9 +97,9 @@ export default function NavBar() {
           </div>
         ) : (
           <div className="flex gap-5 items-center">
-            <div className="flex gap-3 items-center">
+            <div className="flex gap-3 items-center border border-[#444444] pl-2 pr-1 py-1 rounded">
               <div>
-                <h3>{USER.name}</h3>
+                <h3 className="font-mono text-xl">{USER.name}</h3>
               </div>
               <div>
                 <img
@@ -109,8 +109,25 @@ export default function NavBar() {
                 />
               </div>
             </div>
-            <div onClick={() => logout()} className="hover:cursor-pointer">
+            <div
+              onClick={() => logout()}
+              className="flex items-center gap-1 border border-[#444444] bg-[#444444] text-xl rounded px-1 hover:cursor-pointer hover:bg-[#222222] duration-200"
+            >
               <h4>Salir</h4>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-5 h-5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
+                />
+              </svg>
             </div>
           </div>
         )}

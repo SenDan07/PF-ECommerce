@@ -14,8 +14,10 @@ export default function BookList() {
   let booksData = useSelector((state) => state.booksFilter.slice(0, 10));
 
   return (
-    <div className="mt-10 contenedor">
-      <h2 className="text-center text-5xl font-medium">MAS POPULARES</h2>
+    <div className="mt-40 contenedor">
+      <h2 className="text-center text-4xl font-bold font-serif italic">
+        DESTACADOS
+      </h2>
       <div className="flex flex-wrap justify-center gap-20 p-8">
         {booksData.length ? (
           booksData.map((book) => {

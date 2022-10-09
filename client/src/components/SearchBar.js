@@ -28,11 +28,11 @@ export default function SearchBar() {
     <div className="text-white">
       <form
         onSubmit={onSubmit}
-        className="flex items-center rounded-full pr-3 bg-[#222] pb-[1.5px]"
+        className="flex items-center rounded bg-[#222] pb-[1.5px]"
       >
         <div>
           <input
-            className="text-lg py-1 rounded-full bg-bgSearch text-white outline-none pl-3 italic"
+            className="text-xl py-1 rounded bg-bgSearch text-white outline-none pl-3 italic"
             type="text"
             onChange={onInputChange}
             name="search"
@@ -41,9 +41,12 @@ export default function SearchBar() {
           />
         </div>
 
-        <div type="submit" className="hover:cursor-pointer ml-1">
+        <div
+          type="submit"
+          className="hover:cursor-pointer hover:bg-[#000] duration-200 px-3 rounded"
+        >
           <input
-            className="text-lg hover:cursor-pointer hover:rotate-12"
+            className="text-lg hover:cursor-pointer hover:rotate-12 py-1 rounded"
             type="submit"
             value="&#128269;"
           />

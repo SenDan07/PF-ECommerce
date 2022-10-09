@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { isLogin } from "../redux/actions";
 import NavBar from "./NavBar";
 
@@ -11,6 +11,10 @@ export default function NavAdmin() {
   const activeLogin = useSelector((state) => state.login);
   const activeRole = useSelector((state) => state.role);
   const USER = useSelector((state) => state.user);
+  const navigate = useNavigate();
+
+  const LOGIN = useSelector((state) => state.login);
+  console.log(LOGIN);
 
   // const dispatch = useDispatch();
   // //   console.log(activeLogin);
