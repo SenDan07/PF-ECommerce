@@ -25,6 +25,8 @@ router.delete('/:id',[check('id').custom( thereIsUserById )],loginController.del
 //google sign in 
 router.post('/google',[check('id_token','Falta token').not().isEmpty(),
 check('email','Formato de mail inválido').isEmail(),],loginController.googleSignIn)
+//obtener libros favoritos
+router.get('/favorites/:id', loginController.getFavorites);
 //revalidar token 
 router.get('/renew',jwtValidator,loginController.tokenRevalidate)
 module.exports = router;
