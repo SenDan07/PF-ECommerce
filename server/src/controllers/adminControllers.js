@@ -11,6 +11,7 @@ const adminControllers = {
       ISBN,
       imageLinks,
       description,
+      stock,
       price,
       categories } = req.body
     try {
@@ -24,6 +25,7 @@ const adminControllers = {
           ISBN,
           imageLinks,
           description,
+          stock,
           price,
         });
         categories.forEach(el => Categories.findOrCreate({ where: { name: el } }));
