@@ -23,6 +23,7 @@ import {
   DELETE_CATEGORY,
   RESET_USER,
   LOGIN_WITH_GOOGLE,
+  ADD_CART
 } from "./types";
 
 const initialState = {
@@ -39,6 +40,7 @@ const initialState = {
   role: "",
   activeUsers: [],
   inactiveUsers: [],
+  cart:[]
 };
 
 function rootReducer(state = initialState, action) {
@@ -176,7 +178,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         login: action.payload.status,
-        role: action.payload.role,
+        role: action.payload.role,  
       };
     case REGISTER:
       console.log(action.payload);
@@ -258,6 +260,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case ADD_CART:
+      return{
+       ...state,
+        cart:action.payload
+      }
 
     default:
       return state;

@@ -62,6 +62,10 @@ export default function NavBar() {
         >
           CATEGORIAS
         </Link>
+        <Link to="/car"  className="text-xl text-[#f8fafc]">
+          <box-icon name="cart"></box-icon>
+          <span>0</span>
+        </Link>
 
         {/* <Link to="/admin" className="mx-3 cursor-pointer hover:text-hoverMenu">
                     ADMINISTRAR

@@ -18,7 +18,10 @@ import DeleteBooksSmart from "./components/DeleteBookSmart";
 import { ManageUsers } from "./components/ManageUsers";
 import { ManageCategories } from "./components/ManageCategories";
 import { FormUserTwo } from "../src/components/FormUserTwo";
+import FormOrder from "./components/FormOrder"
 import FormPayment from "./components/FormPayment"
+import Cart from"./components/Cart"
+import 'boxicons'
 
 
 function App() {
@@ -80,6 +83,8 @@ function App() {
           <Route exact path="/adminuser" element={<ManageUsers />} />
           <Route exact path="/admicategory" element={<ManageCategories />} />
           <Route exact path="/payment" element={<FormPayment />} />
+          <Route exact path="/car" element={<Cart />} />
+          <Route excat path="/order" element={<FormOrder />} />1
 
           {LOGIN == 1 && ROLE === "ADMIN" ? (
             <Route exact path="/deletebook" element={<DeleteBooksSmart />} />
@@ -95,7 +100,6 @@ function App() {
 }
 
 export default App;
-
 /* 
 
             <Route exact path="/deletebook" element={<DeleteBooksSmart/>}/>

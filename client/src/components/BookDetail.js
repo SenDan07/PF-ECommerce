@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetailBook, resetDetail } from "../redux/actions";
 import { useEffect } from "react";
+import { addCart } from "../redux/actions";
 
 const BookDetail = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,15 @@ const BookDetail = () => {
   }, []);
 
   const bookDetail = useSelector((state) => state.detail);
+   function handleClick(e){
+    let cart=JSON.parse(localStorage.getItem("bookDetail"))||[]
+   
+      cart.push(bookDetail)
+      alert("se Agrega Libro")
+      dispatch(addCart(cart))
+      cart=JSON.stringify(cart)
+      localStorage.setItem("bookDetail",cart)         
+  }
 
   return (
     <div className="bg-bgHome min-h-screen">
@@ -44,9 +54,9 @@ const BookDetail = () => {
               />
             </div>
             <div>
-              <h4 className="text-center text-white w- bg-[#909a9e] w-11/12 m-auto mt-2 rounded py-1 hover:cursor-no-drop">
+              <button className="border-1 border-rose-500 rounded w-max mx-auto px-3 py-2 bg-button text-white" onClick={handleClick}>
                 AGREGAR AL CARRITO
-              </h4>
+              </button>
             </div>
           </div>
           <div className="w-full">
