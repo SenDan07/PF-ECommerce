@@ -62,19 +62,17 @@ export default function NavBar() {
         <SearchBar />
       </div>
 
-        <Link to="/car"  className="text-xl text-[#f8fafc]">
-          <box-icon name="cart"></box-icon>
-          <span>0</span>
-        </Link>
-
-        {/* <Link to="/admin" className="mx-3 cursor-pointer hover:text-hoverMenu">
-                    ADMINISTRAR
-                </Link> */}
-
-        {activeLogin == 1 && activeRole == "USER" ? (
-
+      <div>
         {LOGIN === 1 && ROLE === "USER" ? (
+          <Link to="/car" className="text-xl text-[#f8fafc]">
+            <box-icon name="cart"></box-icon>
+            <span>0</span>
+          </Link>
+        ) : null}
+      </div>
 
+      <div className="flex items-center">
+        {LOGIN === 1 && ROLE === "USER" ? (
           <Link
             to="/favorites"
             className="mr-10 cursor-pointer hover:text-hoverMenu"
@@ -155,7 +153,7 @@ export default function NavBar() {
 
                             <div >
                 <Link to="/auth" className="mx-3 cursor-pointer hover:text-hoverMenu">
-                    INICIAR SESIÓN
+                    INICIAR SESIÃ“N
                 </Link>
 
                 <Link to="/basket" className="mx-3 cursor-pointer hover:text-hoverMenu">
