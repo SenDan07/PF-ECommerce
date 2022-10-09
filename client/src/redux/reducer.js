@@ -16,7 +16,7 @@ import {
   REGISTER,
   LOGIN,
   SET_STATUS,
-  IS_LOGIN,
+  LOGOUT,
   DELETE_BOOKS,
   GET_USERS,
   DELETE_USER,
@@ -41,6 +41,7 @@ const initialState = {
   activeUsers: [],
   inactiveUsers: [],
   cart:[]
+  user: {},
 };
 
 function rootReducer(state = initialState, action) {
@@ -174,12 +175,14 @@ function rootReducer(state = initialState, action) {
       };
 
     case LOGIN:
-      console.log(action.payload);
+      console.log(action.payload.user);
       return {
         ...state,
         login: action.payload.status,
-        role: action.payload.role,  
+        role: action.payload.role,
+        user: action.payload.user,
       };
+
     case REGISTER:
       console.log(action.payload);
       return {
@@ -187,11 +190,12 @@ function rootReducer(state = initialState, action) {
         loading: action.payload,
       };
 
-    case IS_LOGIN:
+    case LOGOUT:
       return {
         ...state,
-        login: action.payload.login,
-        role: action.payload.role,
+        login: 0,
+        role: "",
+        user: {},
       };
 
     case GET_USERS:
@@ -256,9 +260,12 @@ function rootReducer(state = initialState, action) {
       };
 
     case LOGIN_WITH_GOOGLE:
-      console.log(action.payload);
+      console.log(action.payload.user);
       return {
         ...state,
+        user: action.payload.user,
+        login: action.payload.user.isActive ? 1 : 0,
+        role: action.payload.user.role,
       };
     case ADD_CART:
       return{

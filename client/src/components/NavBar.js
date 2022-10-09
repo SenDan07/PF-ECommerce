@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { isLogin } from "../redux/actions";
+import { logoutUser } from "../redux/actions";
 import SearchBar from "./SearchBar";
 
 export default function NavBar() {
@@ -9,59 +9,59 @@ export default function NavBar() {
   const navigate = useNavigate();
   const LOGIN = useSelector((state) => state.login);
   const ROLE = useSelector((state) => state.role);
-  console.log(ROLE);
+  const USER = useSelector((state) => state.user);
+  // console.log(ROLE);
 
-  if (LOGIN && ROLE.length) {
-    localStorage.setItem("LOGIN", LOGIN);
-    localStorage.setItem("ROLE", ROLE);
-  }
+  // if (LOGIN && ROLE.length) {
+  //   localStorage.setItem("LOGIN", LOGIN);
+  //   localStorage.setItem("ROLE", ROLE);
+  // }
 
-  const activeLogin = localStorage.getItem("LOGIN");
-  const activeRole = localStorage.getItem("ROLE");
+  // const activeLogin = localStorage.getItem("LOGIN");
+  // const activeRole = localStorage.getItem("ROLE");
 
   // console.log(activeLogin);
   // console.log(activeRole);
 
-  useEffect(() => {
-    dispatch(
-      isLogin({
-        login: activeLogin,
-        role: activeRole,
-      })
-    );
-  }, [activeLogin, activeRole]);
+  // useEffect(() => {
+  //   dispatch(
+  //     isLogin({
+  //       login: LOGIN,
+  //       role: ROLE,
+  //     })
+  //   );
+  // }, [LOGIN, ROLE]);
 
-  function salir() {
-    localStorage.clear();
-    dispatch(
-      isLogin({
-        login: 0,
-        role: "",
-      })
-    );
+  function logout() {
+    dispatch(logoutUser());
     navigate("/");
   }
+
   return (
     <div className="bg-NavBar text-2xl text-white flex justify-between items-center px-7 py-3">
-      <div>
-        <h6 className="text-5xl">LIBRERIA</h6>
+      <div className="flex items-center gap-20">
+        <div>
+          <h6 className="text-5xl">LIBRERIA</h6>
+        </div>
+
+        <div>
+          <Link to="/" className="mx-3 cursor-pointer hover:text-hoverMenu">
+            INICIO
+          </Link>
+
+          <Link
+            to="/categories"
+            className="mx-3 cursor-pointer hover:text-hoverMenu"
+          >
+            CATEGORIAS
+          </Link>
+        </div>
       </div>
 
-      <div>
+      <div className="">
         <SearchBar />
       </div>
 
-      <div className="flex items-center">
-        <Link to="/" className="mx-3 cursor-pointer hover:text-hoverMenu">
-          INICIO
-        </Link>
-
-        <Link
-          to="/categories"
-          className="mx-3 cursor-pointer hover:text-hoverMenu"
-        >
-          CATEGORIAS
-        </Link>
         <Link to="/car"  className="text-xl text-[#f8fafc]">
           <box-icon name="cart"></box-icon>
           <span>0</span>
@@ -72,13 +72,16 @@ export default function NavBar() {
                 </Link> */}
 
         {activeLogin == 1 && activeRole == "USER" ? (
+
+        {LOGIN === 1 && ROLE === "USER" ? (
+
           <Link
             to="/favorites"
-            className="mx-3 cursor-pointer hover:text-hoverMenu"
+            className="mr-10 cursor-pointer hover:text-hoverMenu"
           >
             FAVORITOS
           </Link>
-        ) : activeLogin == 1 && activeRole == "ADMIN" ? (
+        ) : LOGIN === 1 && ROLE === "ADMIN" ? (
           <Link
             to="/admin"
             className="mx-3 cursor-pointer hover:text-hoverMenu"
@@ -87,9 +90,9 @@ export default function NavBar() {
           </Link>
         ) : null}
 
-        {activeLogin === null && activeRole === null ? (
+        {LOGIN === 0 && ROLE === "" ? (
           <div>
-            <div className="ml-10">
+            <div className="ml-10 flex gap-5">
               <Link to="/login">
                 <h4 className="text-xl cursor-pointer hover:text-hoverMenu">
                   LOGIN
@@ -104,8 +107,22 @@ export default function NavBar() {
             </div>
           </div>
         ) : (
-          <div onClick={() => salir()} className="hover:cursor-pointer">
-            Salir
+          <div className="flex gap-5 items-center">
+            <div className="flex gap-3 items-center">
+              <div>
+                <h3>{USER.name}</h3>
+              </div>
+              <div>
+                <img
+                  src={USER.picture}
+                  alt={`${USER.name}-img`}
+                  className="w-[40px] h-[40px] rounded"
+                />
+              </div>
+            </div>
+            <div onClick={() => logout()} className="hover:cursor-pointer">
+              <h4>Salir</h4>
+            </div>
           </div>
         )}
       </div>
