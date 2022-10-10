@@ -1,4 +1,4 @@
-const { Sequelize, Op } = require("Sequelize");
+const { Sequelize, Op } = require("sequelize");
 const fs = require("fs");
 require("dotenv").config();
 const path = require("path");
