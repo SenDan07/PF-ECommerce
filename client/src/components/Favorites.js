@@ -17,7 +17,7 @@ const Favorites = () => {
     <div>
       <div className="w-max">
         <Link to="/">
-          <h3 class="border-1 border-rose-500 rounded ml-10 mt-8 px-3 py-2 w-max bg-button text-white">
+          <h3 className="border-1 border-rose-500 rounded ml-10 mt-8 px-3 py-2 w-max bg-button text-white">
             &#129044; Regresar
           </h3>
         </Link>
@@ -25,7 +25,9 @@ const Favorites = () => {
 
       <div className="flex justify-center items-center">
         <div className="h-min">
-          <h1 class="text-center text-5xl mt-3 font-serif italic">Favoritos</h1>
+          <h1 className="text-center text-5xl mt-3 font-serif italic">
+            Favoritos
+          </h1>
         </div>
         <div className="h-[max-content] w-max mt-4 ml-5">
           <svg

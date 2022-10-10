@@ -147,7 +147,8 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         booksByCategory: auxBookCategoryFilter,
-        booksByPrice: state.booksByCategory,
+        // booksByPrice: state.booksByCategory,
+        booksByPrice: auxBookCategoryFilter,
       };
 
     case RESET_CATEGORY_BOOKS:

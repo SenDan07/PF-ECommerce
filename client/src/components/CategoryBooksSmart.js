@@ -14,6 +14,7 @@ import FilterBar from "./FilterBar";
 export default function CategoriesBooks() {
   const dispatch = useDispatch();
   let { category } = useParams();
+
   useEffect(() => {
     dispatch(categoryBooks(category));
   }, [dispatch]);
