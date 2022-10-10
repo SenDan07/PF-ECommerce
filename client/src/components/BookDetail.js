@@ -18,6 +18,8 @@ const BookDetail = () => {
   }, []);
 
   const bookDetail = useSelector((state) => state.detail);
+  bookDetail.quantity=1
+
    function handleClick(e){
     let cart=JSON.parse(localStorage.getItem("bookDetail"))||[]
    
