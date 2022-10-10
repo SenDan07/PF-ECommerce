@@ -287,12 +287,12 @@ const loginController = {
       const userfind = models.User.findByPk({
         where: {
           id,
-          status: "active",
+          isActive: true,
         },
         include: [
           {
             model: Books,
-            as: "books",
+            as: "favorites",
             through: {
               attributes: [],
             },
