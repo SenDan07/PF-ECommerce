@@ -11,7 +11,7 @@ export default function BookList() {
     dispatch(getBooks());
   }, []);
 
-  let booksData = useSelector((state) => state.booksFilter.slice(0, 10));
+  let booksData = useSelector((state) => state.booksFilter.slice(26, 36));
 
   return (
     <div className="mt-40 contenedor">
