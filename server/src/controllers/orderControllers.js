@@ -37,15 +37,20 @@ const orderControllers = {
            
   
            books.forEach(async (element, index) => {
-              await Detalle.create({
+            console.log(carrito)
+            const det=await Detalle.create({
                  BookId: element.id,
                  orderId: order.id,
                  cantidad: carrito[index].cantidad
               })
+              console.log(det)
            });
+           
+           
   
            res.status(200).json(true)
         } catch (error) {
+         console.log(error)
            res.status(400).json({error})
         }
      }

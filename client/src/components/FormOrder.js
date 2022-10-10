@@ -51,24 +51,32 @@ function CheckoutForm() {
             console.log(user)
             try {
                 let cart = JSON.parse(localStorage.getItem("bookDetail"));
-                let cant={cantidad:10}
-                let cartCantidad=cart.map(el=>{
-                    return {...el,...cant}
+                let cartNuevo=cart.map(el=>{
+                    return {
+                        title:el.title,
+                        cantidad:el.quantity
+                    }
                 })
+                               
+                const total=cart.reduce((ac,e)=>{
+                    return ac+(e.price*Number(e.quantity))
+                     },0).toFixed(2)
                 //El monto se multiplica por 100
                 const { data } = await axios.post('http://localhost:3001/checkout/create', {
                     id,
                     UserId:User.iduser,
-                    total: 600,
+                    total:total*100,
                     direccion:user.address,
                     telefono: user.phone,
                     pais:user.country,
-                    carrito:cartCantidad
+                    carrito:cartNuevo
                 })
+                console.log(total)
+                console.log(cart)
                 console.log(paymentMethod)
                 elements.getElement(CardElement).clear()
-                console.log(data)
-                if(data.error){
+                //console.log(data)
+               if(data.error){
                     alert("La Operación fallo!!")
                 }else{
                     alert("Se realizo la compra Correctamente!!")
@@ -117,7 +125,7 @@ function CheckoutForm() {
                     Resumen de Pedido
                     <h3>Total::{cart.reduce((ac,e)=>{
                 return ac+e.price*e.quantity
-                 },0)}</h3>
+                 },0).toFixed(2)}</h3>
                 </fieldset>
 
             </form>

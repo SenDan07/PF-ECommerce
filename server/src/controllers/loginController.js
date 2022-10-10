@@ -233,6 +233,7 @@ const loginController = {
           isGoogle,
           email,
           picture,
+          iduser:userCreated.id
         };
 
         return res.status(200).json({
@@ -264,6 +265,7 @@ const loginController = {
         email,
         isGoogle,
         picture,
+        iduser:user.id
       };
 
       res.status(200).json({
