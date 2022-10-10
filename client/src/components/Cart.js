@@ -22,6 +22,9 @@ export default function Cart(){
          <div className="mt-20">
             Resumen de Pedido
             <h3>Total: S/120</h3>
+        <Link to="/order">
+        <button className="border-1 border-rose-500 rounded w-max mx-auto px-3 py-2 bg-button text-white">Procesar Compra</button>
+        </Link> 
         </div>
     </div>
 }
