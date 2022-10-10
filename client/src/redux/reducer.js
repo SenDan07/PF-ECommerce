@@ -23,8 +23,8 @@ import {
   DELETE_CATEGORY,
   RESET_USER,
   LOGIN_WITH_GOOGLE,
-  ADD_CART,
-} from "./types";
+  ADD_CART
+  } from "./types";
 
 const initialState = {
   books: [],
@@ -42,9 +42,10 @@ const initialState = {
   inactiveUsers: [],
   cart: [],
   user: {},
-  order:{},
-  detail:[]
-};
+
+  };
+
+
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -274,7 +275,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         cart: action.payload,
       };
-
+      
     default:
       return state;
   }

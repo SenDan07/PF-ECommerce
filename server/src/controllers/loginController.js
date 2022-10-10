@@ -90,6 +90,7 @@ const loginController = {
             email: user.email,
             isGoogle: user.isGoogle,
             picture: user.picture,
+            iduser:user.id
           };
           return res.status(200).json({
             status: 1,

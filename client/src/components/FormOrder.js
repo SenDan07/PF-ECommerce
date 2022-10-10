@@ -2,9 +2,20 @@ import { useState } from "react"
 import { useSelector } from "react-redux"
 //import CartItem from "./CartItem"
 import { Link } from "react-router-dom";
-import FormPayment from "./FormPayment";
+//import FormPayment from "./FormPayment";
+import { loadStripe } from "@stripe/stripe-js"
+import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
+import axios from "axios"
 
-export default function FormOrder() {
+const stripePromise = loadStripe(process.env.REACT_APP_CLAVE_PUBLICA_STRIPE)
+
+function CheckoutForm() {
+
+
+    const stripe = useStripe()
+    const elements = useElements()
+
+    
 
     const User = useSelector(state => state.user)
     let cart = JSON.parse(localStorage.getItem("bookDetail"));
@@ -13,14 +24,61 @@ export default function FormOrder() {
         name: User.name,
         lastName: User.lastName,
         email: User.email,
-        phone:"",
+        phone: "",
         address: "",
-        country:""
+        country: ""
     })
     function handleChange(e) {
         setUser({
-            [e.name]: e.value
+            ...user,
+            [e.target.name]: e.target.value
         })
+    }
+    
+    async function hanledSubmit(e) {
+        e.preventDefault()
+        
+        const { error, paymentMethod } = await stripe.createPaymentMethod({
+            type: 'card',
+            card: elements.getElement(CardElement)
+        })
+
+        if (!error) {
+            console.log(paymentMethod)
+            
+            const {id} = paymentMethod
+            console.log("user despues de stripe")
+            console.log(user)
+            try {
+                let cart = JSON.parse(localStorage.getItem("bookDetail"));
+                let cant={cantidad:10}
+                let cartCantidad=cart.map(el=>{
+                    return {...el,...cant}
+                })
+                //El monto se multiplica por 100
+                const { data } = await axios.post('http://localhost:3001/checkout/create', {
+                    id,
+                    UserId:User.iduser,
+                    total: 600,
+                    direccion:user.address,
+                    telefono: user.phone,
+                    pais:user.country,
+                    carrito:cartCantidad
+                })
+                console.log(paymentMethod)
+                elements.getElement(CardElement).clear()
+                console.log(data)
+                if(data.error){
+                    alert("La Operación fallo!!")
+                }else{
+                    alert("Se realizo la compra Correctamente!!")
+                }
+
+            } catch (error) {
+                console.log(error)
+            }
+
+        }
     }
 
     return <div className="m-10">
@@ -28,24 +86,33 @@ export default function FormOrder() {
             <form className="flex flex-row justify-center justify-items-center" m-20>
                 <fieldset className="bg-[#a3a3a3] text-white container mx-auto flex flex-col justify-center justify-items-center p-20">
                     <label>Nombre:</label>
-                    <input type="text" className="text-[#075985]" name="name" value={user.name} onChange={handleChange} />
+                    <input type="text" className="text-[#075985]" name="name" value={user.name} onChange={(e)=>handleChange(e)} />
                     <label>Apellidos</label>
-                    <input type="text" className="text-[#075985]" name="lastName" value={user.lastName} onChange={handleChange} />
+                    <input type="text" className="text-[#075985]" name="lastName" value={user.lastName} onChange={(e)=>handleChange(e)} />
                     <label>Direccion de correo:</label>
-                    <input type="text" className="text-[#075985]" name="email" value={user.email} onChange={handleChange} />
+                    <input type="text" className="text-[#075985]" name="email" value={user.email} onChange={(e)=>handleChange(e)} />
                     <label>Telefono:</label>
-                    <input type="text" className="text-[#075985]" name="email" value={user.phone} onChange={handleChange} />
+                    <input type="text" className="text-[#075985]" name="phone" value={user.phone} onChange={(e)=>handleChange(e)} />
                     <label>Direccion de Envio </label>
-                    <input type="text" className="text-[#075985]" name="address" value={user.address} onChange={handleChange} />
+                    <input type="text" className="text-[#075985]" name="address" value={user.address} onChange={(e)=>handleChange(e)} />
                     <label>Pais:</label>
-                    <input type="text" className="text-[#075985]" name="email" value={user.country} onChange={handleChange} />
+                    <input type="text" className="text-[#075985]" name="country" value={user.country} onChange={(e)=>handleChange(e)} />
                     <br />
                     <span>Ingrese los datos de su tarjeta</span>
                     <div><br />
-                    <FormPayment />
-                    </div>         
+
+                    <div className="bg-[#a3a3a3] flex flex-col justify-left">
+                            
+                            <CardElement />
+                            <br />
+                            <button onClick={hanledSubmit} className="border-1 border-rose-500 rounded w-max mx-auto px-3 py-2 bg-button text-white" disabled={!stripe}>
+                               Procesar compra
+                            </button>
+                    </div >
+
+                    </div>
                 </ fieldset >
-               
+
                 <fieldset className="bg-[#a3a3a3] text-white container mx-auto flex flex-col justify-center justify-items-center p-20">
                     Resumen de Pedido
                     <h3>Total::{cart.reduce((ac,e)=>{
@@ -88,5 +155,13 @@ export default function FormOrder() {
             })}
         </div>
     </div>
+}
+
+export default function FormOrder() {
+    return (
+        <Elements stripe={stripePromise}>
+            <CheckoutForm />
+        </Elements>
+    )
 
 }

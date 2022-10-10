@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { login, loginWithGoogle } from "../redux/actions";
+import { login, loginWithGoogle,userId } from "../redux/actions";
 import { GoogleLogin } from "@react-oauth/google";
 
 export const Login = () => {
@@ -22,6 +22,7 @@ export const Login = () => {
     e.preventDefault();
     if (data.email.length > 5 && data.password.length >= 4) {
       dispatch(login(data));
+      
       setData(initialInputs);
       navigate("/");
     } else {
