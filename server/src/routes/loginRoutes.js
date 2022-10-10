@@ -17,14 +17,16 @@ router.post('/login',[
     check('email','Formato de mail inválido').isEmail(),
 ], loginController.loginUser);
 //modificar campos del usuario
-router.put('/:id',[check('id').custom( thereIsUserById )],loginController.putUser)
+router.put('/:id',[check('id').custom( thereIsUserById )],loginController.putUser);
 //obtener todos los usuarios
 router.get('/allUsers',loginController.getAllUsers);
 //borrado logico del usuario 
 router.delete('/:id',[check('id').custom( thereIsUserById )],loginController.deleteUser);
 //google sign in 
 router.post('/google',[check('id_token','Falta token').not().isEmpty(),
-check('email','Formato de mail inválido').isEmail(),],loginController.googleSignIn)
+check('email','Formato de mail inválido').isEmail(),],loginController.googleSignIn);
+//obtener libros favoritos
+router.get('/favorites/:id', loginController.getFavorites);
 //revalidar token 
-router.get('/renew',jwtValidator,loginController.tokenRevalidate)
+router.get('/renew',jwtValidator,loginController.tokenRevalidate);
 module.exports = router;
