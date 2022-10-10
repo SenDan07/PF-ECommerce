@@ -5,7 +5,9 @@ import { addCart } from "../redux/actions";
 
 export default function CartItem({ book }) {
     const dispatch=useDispatch()
+    const cantidad=[1,2,3,4,5,6,7,8,9]
 
+    //Elimina libro
     function handleClick(e){
         
         let cart=JSON.parse(localStorage.getItem("bookDetail"))
@@ -17,8 +19,7 @@ export default function CartItem({ book }) {
         alert("se Elimina Libro")
         dispatch(addCart(cart))
         cart=JSON.stringify(cart)
-        localStorage.setItem("bookDetail",cart)  
-        
+        localStorage.setItem("bookDetail",cart)          
     }
 
     return <div className="flex flex-row m-5">
@@ -44,7 +45,12 @@ export default function CartItem({ book }) {
             </div>
         </div>
         <div className="flex flex-col justify-center m-20">
-            <span>Cantidad:<input type="number" min="1" max="9" ></input></span>
+            <span>Cantidad:<select>
+                {cantidad.map((i)=>{
+                    return <option value={i}>{i}</option>
+                })                  
+                }      
+            </select></span>
         </div>
         <div className="flex flex-col justify-center m-20">
            <button onClick={handleClick}>Eliminar</button> 

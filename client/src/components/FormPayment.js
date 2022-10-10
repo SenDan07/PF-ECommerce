@@ -33,18 +33,13 @@ function CheckoutForm() {
         }
     }
 
-    return <div className="bg-[#ff99ff] flex justify-center mx-56 my-5">
-        <form className="flex flex-col justify-center" onSubmit={hanledSubmit}>
-            < h1> Pasarela de Pagos</h1 >
-            <img className="w-64 h-80" src="https://res.cloudinary.com/dzcpdipdg/image/upload/v1664824207/samples/400x600/1-min_wzgipv.jpg" />
-            <h3>Price: 100$</h3>
+    return <div className="bg-[#a3a3a3] flex flex-col justify-left">
+                            
             <CardElement />
             <br />
-            <button className="bg-[#606020] w-32 h-12" disabled={!stripe}>
-                Buy
+            <button onSubmit={hanledSubmit} className="border-1 border-rose-500 rounded w-max mx-auto px-3 py-2 bg-button text-white" disabled={!stripe}>
+               Procesar compra
             </button>
-
-        </form >
     </div >
 }
 
