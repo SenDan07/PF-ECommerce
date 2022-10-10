@@ -28,6 +28,7 @@ const bookscargados = async () => {
       ISBN: el.ISBN,
       imageLinks: el.imageLinks,
       description: el.description,
+      stock:Math.floor((Math.random()*(20-2))+2),
       price: el.price
     });
 
