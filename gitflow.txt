@@ -13,14 +13,14 @@ Reglas para manejarse con Git durante el proyecto:
 
 - Traer todos los cambios mergeados el dia anterior a esta rama:
 
-    `git pull origin main`
+    `git pull origin develop`
 
 
 - Crear nueva rama con nombre en el siguiente formato: `<tipoDeTareaARealizar>/<descripciónDeLaTarea>`
 
 	bug --> rama creada para solucionar un bug específico ej: "bug/book-image-cropping-issue", "bug/admin-login-issue"
 
-	wip --> Work in Progress, en esta rama se trabaja sobre algún feature o tarea que no será terminada en un futuro inmediato ej: "wip/database-deployment", "wip/user authentication"
+	wip --> Work in Progress, en esta rama se trabaja sobre algún feature o tarea que no será terminada en un futuro inmediato ej: "wi t", "wip/user authentication"
 
 	feature --> rama creada para añadir una nueva característica al proyecto ej: "feature/navbar-user", "feature/admin-getAllBooks-route"
 
@@ -28,7 +28,7 @@ Reglas para manejarse con Git durante el proyecto:
 
 
 - Trabajar sobre esa rama
-
+   
 
 - Usar buenas practicas en el codigo
 

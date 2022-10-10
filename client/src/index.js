@@ -4,15 +4,28 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 import { Provider } from "react-redux";
-import { store } from "./redux/store";
+import { store, Persistor } from "./redux/store";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { PersistGate } from "redux-persist/integration/react";
+//import dotenv from "dotenv";
+//dotenv.config();
+
+// require("dotenv").config();
+
+const { CLIENT_ID } = process.env;
+console.log(CLIENT_ID);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </Provider>
+  <GoogleOAuthProvider clientId="359778256290-m4jop4som96e368ak8tgpsp0dev5qpq8.apps.googleusercontent.com">
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={Persistor}>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </PersistGate>
+    </Provider>
+  </GoogleOAuthProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
