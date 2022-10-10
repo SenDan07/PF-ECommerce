@@ -115,7 +115,9 @@ function CheckoutForm() {
 
                 <fieldset className="bg-[#a3a3a3] text-white container mx-auto flex flex-col justify-center justify-items-center p-20">
                     Resumen de Pedido
-                    <h3>Total: S/120</h3>
+                    <h3>Total::{cart.reduce((ac,e)=>{
+                return ac+e.price*e.quantity
+                 },0)}</h3>
                 </fieldset>
 
             </form>
@@ -147,7 +149,7 @@ function CheckoutForm() {
                         </div>
                     </div>
                     <div className="flex flex-col justify-center m-20">
-                        <span>Cantidad:</span>
+                        <span>{book.quantity}:</span>
                     </div>
                 </div>
             })}

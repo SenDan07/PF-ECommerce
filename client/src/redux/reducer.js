@@ -42,7 +42,10 @@ const initialState = {
   inactiveUsers: [],
   cart: [],
   user: {},
+
   };
+
+
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
