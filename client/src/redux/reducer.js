@@ -42,6 +42,8 @@ const initialState = {
   inactiveUsers: [],
   cart: [],
   user: {},
+  order:{},
+  detail:[]
 };
 
 function rootReducer(state = initialState, action) {

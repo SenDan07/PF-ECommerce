@@ -21,7 +21,9 @@ export default function Cart(){
          </div>
          <div className="mt-20">
             Resumen de Pedido
-            <h3>Total: S/120</h3>
+            <h3>Total:{cart.reduce((ac,e)=>{
+                return ac+e.price*e.quantity
+                 },0)}</h3>
         <Link to="/order">
         <button className="border-1 border-rose-500 rounded w-max mx-auto px-3 py-2 bg-button text-white">Procesar Compra</button>
         </Link> 

@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addCart } from "../redux/actions";
 
 export default function CartItem({ book }) {
     const dispatch=useDispatch()
-    const cantidad=[1,2,3,4,5,6,7,8,9]
-
+    const cantidad=[2,3,4,5,6,7,8,9]
+    
     //Elimina libro
     function handleClick(e){
         
@@ -20,6 +20,21 @@ export default function CartItem({ book }) {
         dispatch(addCart(cart))
         cart=JSON.stringify(cart)
         localStorage.setItem("bookDetail",cart)          
+    }
+
+    function handleSelect(e){
+        
+        let cart=JSON.parse(localStorage.getItem("bookDetail"))
+        
+        let item=cart.find((c)=>{
+            return c.id==book.id
+        })
+        alert(e.target.value)
+        item.quantity=e.target.value
+
+        dispatch(addCart(cart))
+        cart=JSON.stringify(cart)
+        localStorage.setItem("bookDetail",cart)
     }
 
     return <div className="flex flex-row m-5">
@@ -45,7 +60,8 @@ export default function CartItem({ book }) {
             </div>
         </div>
         <div className="flex flex-col justify-center m-20">
-            <span>Cantidad:<select>
+            <span>Cantidad:<select onChange={(e)=>handleSelect(e)} value={book.quantity}>
+            <option value="1">1</option>
                 {cantidad.map((i)=>{
                     return <option value={i}>{i}</option>
                 })                  
