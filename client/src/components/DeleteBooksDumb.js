@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { deleteBook, getBooks } from "../redux/actions";
 
-export default function DeleteBooksDumb({ title, activado, idBook }) {
+export default function DeleteBooksDumb({ title, activado, idBook, author }) {
     let status = activado ? "disponible" : "eliminado"
     const dispatch = useDispatch();
 
@@ -15,7 +15,8 @@ export default function DeleteBooksDumb({ title, activado, idBook }) {
 
     return (
         <div className="hover:text-white hover:bgItems flex justify-between border text-xl">
-            <h2 className="border w-3/4">{title}</h2>
+            <h2 className="border w-2/4">{title}</h2>
+            <h2 className="border w-1/4">{author}</h2>
             <div className="flex w-1/4">
                 <div className="w-1/2 border">
                     <h2 className="text-center">{status}</h2>

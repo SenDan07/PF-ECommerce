@@ -23,13 +23,18 @@ import {
   DELETE_CATEGORY,
   RESET_USER,
   LOGIN_WITH_GOOGLE,
-  ADD_CART
-  } from "./types";
+  ADD_CART,
+  ORDER_DELETE_BOOK,
+  SEARCH_DELETE_BOOK,
+  RESET_DELETE_BOOKS
+} from "./types";
 
 const initialState = {
   books: [],
   detail: {},
   booksFilter: [],
+  booksDeleteAdmin: [],
+  booksDeleteAdminFilter: [],
   categories: [],
   mostPopulars: [],
   booksBySearch: [],
@@ -42,8 +47,7 @@ const initialState = {
   inactiveUsers: [],
   cart: [],
   user: {},
-
-  };
+};
 
 
 
@@ -55,6 +59,8 @@ function rootReducer(state = initialState, action) {
         ...state,
         books: [...action.payload],
         booksFilter: auxBookFilter,
+        booksDeleteAdmin: [...action.payload],
+        booksDeleteAdminFilter: [...action.payload]
       };
 
     case GET_DETAIL_BOOK:
@@ -83,7 +89,6 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_ALL_CATEGORIES:
-      // console.log(action.payload  )
       return {
         ...state,
         categories: action.payload,
@@ -91,7 +96,6 @@ function rootReducer(state = initialState, action) {
 
     case ORDER_NAME:
       let orderAuxName = [...state.booksByPrice];
-
       let orderBookName = orderAuxName.sort((a, b) => {
         if (a.title <= b.title) {
           return action.payload === "AZ" ? -1 : 1;
@@ -105,6 +109,34 @@ function rootReducer(state = initialState, action) {
         ...state,
         booksByPrice: orderBookName,
       };
+
+    case ORDER_DELETE_BOOK:
+      let orderAuxBookDelete = [...state.booksDeleteAdminFilter]
+      let orderBookDelete = orderAuxBookDelete.sort((a, b) => {
+        if (a.title <= b.title) {
+          return action.payload === "AZ" ? -1 : 1;
+        }
+        if (a.title > b.title) {
+          return action.payload === "ZA" ? -1 : 1;
+        }
+      });
+      return {
+        ...state,
+        booksDeleteAdminFilter: orderBookDelete,
+      };
+
+
+    case SEARCH_DELETE_BOOK:
+      let auxDeleteBookAuthor = [...state.booksDeleteAdmin]
+      auxDeleteBookAuthor = auxDeleteBookAuthor.filter(book => book.authors.toLowerCase().includes(action.payload.toLowerCase()))
+      let auxDeleteBookTitle = [...state.booksDeleteAdmin]
+      auxDeleteBookTitle = auxDeleteBookTitle.filter(book => book.title.toLowerCase().includes(action.payload.toLowerCase()))
+      let resultDeleteSearch = [...auxDeleteBookTitle, ...auxDeleteBookAuthor]
+      return {
+        ...state,
+        booksDeleteAdminFilter: resultDeleteSearch
+      }
+
 
     case ORDER_PRICE:
       let orderAuxPrice = [...state.booksByPrice];
@@ -122,6 +154,7 @@ function rootReducer(state = initialState, action) {
         booksByPrice: orderBookPrice,
       };
 
+
     case FILTER_PRICE:
       state.booksByPrice = [...state.booksByCategory];
       let filterAuxPrice = [...state.booksByPrice];
@@ -133,8 +166,8 @@ function rootReducer(state = initialState, action) {
       first === 0
         ? (filterPrice = [...filterAuxPrice])
         : first === 100
-        ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
-        : (filterPrice = filterAuxPrice.filter(
+          ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
+          : (filterPrice = filterAuxPrice.filter(
             (e) => e.price >= first && e.price <= last
           ));
 
@@ -150,10 +183,10 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         booksByCategory: auxBookCategoryFilter,
-        // booksByPrice: state.booksByCategory,
         booksByPrice: auxBookCategoryFilter,
       };
 
+      
     case RESET_CATEGORY_BOOKS:
       return {
         ...state,
@@ -161,22 +194,35 @@ function rootReducer(state = initialState, action) {
         booksByPrice: [],
       };
 
+
+      case RESET_DELETE_BOOKS:
+        let auxResetDeleteBooks = [...state.books]
+        return{
+          ...state,
+          booksDeleteAdminFilter: [...auxResetDeleteBooks]
+        }
+
+
     case SEARCH_BOOK:
       return {
         ...state,
         booksBySearch: [...action.payload],
       };
 
+
     case RESET_SEARCH_BOOK:
       return {
         ...state,
         booksBySearch: [],
       };
+
+
     case SET_STATUS:
       return {
         ...state,
         loading: action.payload,
       };
+
 
     case LOGIN:
       console.log(action.payload.user);
@@ -276,7 +322,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         cart: action.payload,
       };
-      
+
     default:
       return state;
   }
