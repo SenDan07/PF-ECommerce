@@ -85,7 +85,7 @@ export default function NavAdmin() {
           </Link>
         </div>
 
-        <div className="mb-10 flex justify-center">
+        {/* <div className="mb-10 flex justify-center">
           <Link>
             <div className="cursor-pointer hover:text-white">
               Editar Carrusel
@@ -97,7 +97,7 @@ export default function NavAdmin() {
           <Link>
             <div className="cursor-pointer hover:text-white">Editar Libros</div>
           </Link>
-        </div>
+        </div> */}
 
         <div className="mb-10 flex justify-center">
           <Link to="/deletebook">

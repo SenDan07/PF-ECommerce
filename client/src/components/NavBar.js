@@ -32,6 +32,8 @@ export default function NavBar() {
   //   );
   // }, [LOGIN, ROLE]);
 
+  let cart = JSON.parse(localStorage.getItem("bookDetail"));
+
   function logout() {
     dispatch(logoutUser());
     navigate("/");
@@ -84,7 +86,7 @@ export default function NavBar() {
               />
             </svg>
 
-            <span className="bg-black px-2 py-1 rounded">0</span>
+            <span className="bg-black px-2 py-1 rounded">{cart.length}</span>
           </Link>
         )}
       </div>

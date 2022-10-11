@@ -119,24 +119,24 @@ export default function FormUser() {
     <div>
       <form
         onSubmit={(e) => handleSubmit(e)}
-        className="bg-[#a3a3a3] text-white container mx-auto p-20 m-20 rounded-3xl w-1/2"
+        className="bg-[#0d151b] text-white container mx-auto p-20 m-20 rounded-xl w-1/2"
       >
-        <h2 className="text-center text-xl text-[30px] text-black">
+        <h2 className="text-center text-xl text-[30px] text-white">
           REGISTRO DE USUARIOS
         </h2>
         <br />
-        <fieldset className="columns-2 text-[18px] m-2">
+        <fieldset className="columns-2 text-[16px] m-2">
           <label className="block">NOMBRE: </label>
           <input
             type="text"
             className={
               errors.name
-                ? "text-[#dc2626] rounded-lg"
-                : "text-[#075985] rounded-lg"
+                ? "text-[#dc2626] rounded italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
             }
             name="name"
             value={input.name}
-            placeholder="Ingrese el Nombre de Usuario"
+            placeholder="Ingrese su Nombre"
             onChange={(e) => handleChange(e)}
             autoFocus
           />
@@ -148,12 +148,12 @@ export default function FormUser() {
             type="text"
             className={
               errors.lastName
-                ? "text-[#dc2626] rounded-lg"
-                : "text-[#075985] rounded-lg"
+                ? "text-[#dc2626] rounded italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
             }
             name="lastName"
             value={input.lastName}
-            placeholder="Ingrese el Apellido de Usuario"
+            placeholder="Ingrese su Apellido"
             onChange={(e) => handleChange(e)}
           />
           <br />
@@ -166,12 +166,12 @@ export default function FormUser() {
             type="password"
             className={
               errors.password
-                ? "text-[#dc2626] rounded-lg"
-                : "text-[#075985] rounded-lg"
+                ? "text-[#dc2626] rounded italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
             }
             name="password"
             value={input.password}
-            placeholder="Password"
+            placeholder="Contraseña"
             onChange={(e) => handleChange(e)}
           />
           <br />
@@ -184,12 +184,12 @@ export default function FormUser() {
             type="email"
             className={
               errors.email
-                ? "text-[#dc2626] rounded-lg"
-                : "text-[#075985] rounded-lg"
+                ? "text-[#dc2626] rounded italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
             }
             name="email"
             value={input.email}
-            placeholder="Email"
+            placeholder="Correo"
             onChange={(e) => handleChange(e)}
           />
           <br />
@@ -213,8 +213,8 @@ export default function FormUser() {
             type="submit"
             className={
               Object.keys(errors).length
-                ? "bg-[#94a3b8] p-5 m-2 cursor-pointer rounded-3xl"
-                : "bg-[#9a3412] p-5 m-2 cursor-pointer rounded-3xl"
+                ? "bg-[#94a3b8] p-2 cursor-no-drop rounded"
+                : "bg-[#9a3412] p-2 cursor-pointer rounded"
             }
             id="enviar"
             disabled={Object.keys(errors).length ? true : false}
@@ -224,7 +224,7 @@ export default function FormUser() {
           <Link to="/">
             <input
               type="button"
-              className="bg-[#9a3412] p-5 cursor-pointer rounded-3xl"
+              className="bg-[#9a3412] p-2 w-36 cursor-pointer rounded transition-colors duration-200 hover:bg-[#70240a] ml-3"
               value="Regresar"
             />
           </Link>
