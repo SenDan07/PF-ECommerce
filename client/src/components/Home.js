@@ -7,6 +7,11 @@ import Slider from "./Carousel/Slider";
 import OrderPriece from "./OrderPriece" */
 
 export default function Home() {
+/*   let flag = localStorage.getItem("bookDetail")
+  if (flag.length) {
+    localStorage.setItem("bookDetail", "[]")
+    //flag = localStorage.getItem("bookDetail")
+  } */
   return (
     <div className="bg-bgHome">
       <NavBar />

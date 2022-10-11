@@ -23,6 +23,9 @@ import {
   RESET_USER,
   LOGIN_WITH_GOOGLE,
   ADD_CART,
+  ORDER_DELETE_BOOK,
+  SEARCH_DELETE_BOOK,
+  RESET_DELETE_BOOKS
 } from "./types.js";
 import axios from "axios";
 
@@ -102,6 +105,13 @@ export function orderPrice(order) {
   };
 }
 
+export function OrderDeleteBook(order) {
+  return {
+    type: ORDER_DELETE_BOOK,
+    payload: order
+  }
+}
+
 export function filterPrice(price) {
   return {
     type: FILTER_PRICE,
@@ -159,6 +169,13 @@ export function deleteBook(idBook) {
   };
 }
 
+export function searchDeleteBook(search) {
+  return {
+    type: SEARCH_DELETE_BOOK,
+    payload: search
+  }
+}
+
 export function register(body) {
   console.log(body);
   return async (dispatch) => {
@@ -184,6 +201,13 @@ export function setStatus(mensaje) {
   };
 }
 
+
+export function resetDeleteBooks(){
+  return {
+    type: RESET_DELETE_BOOKS, 
+  }
+}
+
 export const resetSearchBook = () => ({ type: RESET_SEARCH_BOOK });
 
 export const logoutUser = () => {
@@ -203,14 +227,14 @@ export const getUsers = () => async (dispatch) => {
 
 export const deleteUser =
   (idUser, data = { isActive: "false" }) =>
-  async (dispatch) => {
-    let usersActive = await axios.put(`${direction}/users/${idUser}`, data);
+    async (dispatch) => {
+      let usersActive = await axios.put(`${direction}/users/${idUser}`, data);
 
-    return dispatch({
-      type: DELETE_USER,
-      payload: usersActive.data,
-    });
-  };
+      return dispatch({
+        type: DELETE_USER,
+        payload: usersActive.data,
+      });
+    };
 
 export function deleteCategory(idCategory) {
   return async (dispatch) => {
@@ -226,14 +250,14 @@ export function deleteCategory(idCategory) {
 
 export const resetUser =
   (idUser, data = { isActive: "true" }) =>
-  async (dispatch) => {
-    let users = await axios.put(`${direction}/users/${idUser}`, data);
+    async (dispatch) => {
+      let users = await axios.put(`${direction}/users/${idUser}`, data);
 
-    return dispatch({
-      type: RESET_USER,
-      payload: users.data,
-    });
-  };
+      return dispatch({
+        type: RESET_USER,
+        payload: users.data,
+      });
+    };
 
 export function loginWithGoogle(info) {
   return async (dispatch) => {

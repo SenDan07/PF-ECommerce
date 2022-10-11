@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { resetSearchBook } from "../redux/actions";
 
 export default function SearchBarSmart() {
-  const busqueda = useSelector((state) => state.booksBySearch);
+  const busqueda = useSelector((state) => state.booksDeleteAdminFilter);
 
   const dispatch = useDispatch();
 
