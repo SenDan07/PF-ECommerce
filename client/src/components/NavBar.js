@@ -1,7 +1,7 @@
 // import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { logoutUser } from "../redux/actions";
+import { logoutUser,addCart } from "../redux/actions";
 import SearchBar from "./SearchBar";
 
 export default function NavBar() {
@@ -32,10 +32,13 @@ export default function NavBar() {
   //   );
   // }, [LOGIN, ROLE]);
 
-  let cart = JSON.parse(localStorage.getItem("bookDetail"));
+  let cart = JSON.parse( localStorage.getItem("bookDetail")) || [];
 
   function logout() {
     dispatch(logoutUser());
+    //Eliminas el Cart
+    localStorage.setItem("bookDetail",JSON.stringify([]))
+    dispatch(addCart([]));
     navigate("/");
   }
 
