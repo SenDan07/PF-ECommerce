@@ -23,6 +23,8 @@ import {
   RESET_USER,
   LOGIN_WITH_GOOGLE,
   ADD_CART,
+  POST_CART,
+  GET_CART
 } from "./types.js";
 import axios from "axios";
 
@@ -250,6 +252,29 @@ export function addCart(book) {
   return {
     type: ADD_CART,
     payload: book,
+  };
+}
+export function postCart(cart){
+  return async (dispatch) => {
+    try {
+      
+      var res = await axios.post(`${direction}/cart/cartUser`, cart);
+      return dispatch({
+        type: POST_CART,
+        payload: res.data,
+      });
+    } catch (e) {
+      dispatch(setStatus("Datos no se guardaron correctamente"));
+    }
+  };
+}
+export function getCart(email) {
+  return async (dispatch) => {
+    let res = await axios.get(`${direction}/cart/cartUser?${email}`);
+    return dispatch({
+      type: GET_CART,
+      payload: res.data,
+    });
   };
 }
 

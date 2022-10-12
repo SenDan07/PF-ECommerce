@@ -23,5 +23,7 @@ export const DELETE_CATEGORY = "DELETE_CATEGORY";
 export const RESET_USER = "RESET_USER";
 export const LOGIN_WITH_GOOGLE = "LOGIN_WITH_GOOGLE";
 export const ADD_CART="ADD_CART";
+export const POST_CART="POST_CART";
+export const GET_CART="GET_CART";
 
 

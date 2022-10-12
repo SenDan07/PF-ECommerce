@@ -23,7 +23,9 @@ import {
   DELETE_CATEGORY,
   RESET_USER,
   LOGIN_WITH_GOOGLE,
-  ADD_CART
+  ADD_CART,
+  POST_CART,
+  GET_CART
   } from "./types";
 
 const initialState = {
@@ -276,7 +278,15 @@ function rootReducer(state = initialState, action) {
         ...state,
         cart: action.payload,
       };
-      
+    case GET_CART:
+      return{
+        ...state,
+        cart:action.payload
+      }
+    case POST_CART:
+      return{
+        ...state
+      }
     default:
       return state;
   }
