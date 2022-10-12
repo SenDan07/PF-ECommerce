@@ -6,6 +6,7 @@ import DeleteBooksDumb from "./DeleteBooksDumb";
 import OrderDeleteBooks from "./OrderDeleteBooks";
 import SearchDeleteBooks from "./SearchDeleteBooks"
 import ResetDeleteBooks from "./ResetDeleteBooks"
+import FilterDisponibility from "./FilterDisponibility";
 
 export default function DeleteBooksSmart() {
     const dispatch = useDispatch();
@@ -28,6 +29,7 @@ export default function DeleteBooksSmart() {
             <div className="flex justify-center gap-5">
                 <OrderDeleteBooks />
                 <SearchDeleteBooks />
+                <FilterDisponibility/>
                 <ResetDeleteBooks />
             </div>
 
