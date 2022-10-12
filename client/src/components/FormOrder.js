@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector,useDispatch } from "react-redux";
 //import CartItem from "./CartItem"
 import { Link } from "react-router-dom";
 //import FormPayment from "./FormPayment";
@@ -11,6 +11,7 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import axios from "axios";
+import { postCart } from "../redux/actions";
 
 // const stripePromise = loadStripe(process.env.REACT_APP_CLAVE_PUBLICA_STRIPE)
 const stripePromise = loadStripe(
@@ -88,13 +89,19 @@ function CheckoutForm() {
         if (data.error) {
           alert("La Operación fallo!!");
         } else {
+          //Si se realizo la compra, borra el contenido de LocalStore
           alert("Se realizo la compra Correctamente!!");
+          localStorage.clear()
         }
       } catch (error) {
         console.log(error);
       }
     }
   }
+const dispatch=useDispatch()
+useEffect(()=>{
+  dispatch(postCart({email:User.email,cart}))
+},[])
 
   return (
     <div className="">

@@ -11,7 +11,7 @@ const setHeader = require("../server/src/util/middleware/setHeader");
 const errorHandler = require("../server/src/util/middleware/errorHandler");
 
 const app = express();
-
+const cartRoutes = require('../server/src/routes/cartRoutes');
 const adminRoutes = require("./src/routes/adminRoutes");
 const shopRoutes = require("./src/routes/shopRoutes");
 
@@ -33,7 +33,7 @@ app.use("/admin", adminRoutes);
 app.use("/shop", shopRoutes);
 app.use('/users', loginRoutes)
 app.use('/checkout', orderRoutes)
-
+app.use('/cart',cartRoutes)
 app.use(errorHandler);
 
 module.exports = app;

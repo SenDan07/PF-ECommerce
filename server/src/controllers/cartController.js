@@ -1,3 +1,6 @@
+
+const { Pedido, User } = require("../db");
+
 const cart = [
   {
     idCustomer: 1,
@@ -22,7 +25,7 @@ const cart = [
           "Cox H. J."
         ],
         publisher: "Random Lengths Publications",
-        ISBN: 1884311091,     
+        ISBN: 1884311091,
         categories: " Literatura y Estudios Literarios",
         imageLinks: "http://books.google.com/books/content?id=TnUqAQAAMAAJ&printsec=frontcover&img=1&zoom=5&imgtk=AFLRE721hWzO62cGKn_Y-hFBOesuIhy9MYITFWsKxRKST7itjY4ufysldSkDedWsfDY2hrT65Posps6KkvAKuOeCQBvPFmi7XUYkKuRadJtWpTJMjKid7yxe0bS9660Lk3D8UumPXP5V&source=gbs_api",
         description: "Tanto que , cuando se hallaba dividido por una diferencia de intereses , uno de los bandos normalmente solicitaba la ayuda de Roderick <b>Random</b> ( nombre por el cual era yo conocido ) para inclinar la balanza y mantener el bando opuesto&nbsp;...",
@@ -48,7 +51,7 @@ const cart = [
         ],
         imageLinks: "http://books.google.com/books/content?id=b9hlvMO06sQC&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE71W5SFEJO6YzRc6ztAOjqS_Ydb69S6IrLBdTiM054u7cvUkaFAfwID2mw-rJpliF28HxlwTHSX3Hb1Egrue2DPElX_0Qux9Kvr_q_YlU_q0whVs8jO8EBRNmU9zkl1Om1SHtigo&source=gbs_api",
         description: "EXPLORA TODO LO QUE TIENE QUE VER CON LA CIENCIA; DESDE LOS ÁTOMOS MÁS PEQUEÑOS HASTA LA INMENSIDAD DEL ESPACIO, PASANDO POR LAS PROFUNDIDADES MARINAS Y LOS LÍMITES DE LA MATERIA.Descubre datos sorprendentes sobre los terremotos, la electricidad, los elementos y todo lo que siempre quisiste saber sobre la ciencia.Déjate cautivar por científicos geniales y sus asombrosos descubrimientos.Pon a prueba tus conocimientos con experimentos divertidos.Disfruta de las fotografías a todo color que muestran los secretos del cuerpo humano, la biodiversidad de nuestro planeta y los misterios del universo.",
-        price: 105.00 
+        price: 105.00
       },
       {
         id: 17,
@@ -58,7 +61,7 @@ const cart = [
           "Angel Luis Miranda Barreras"
         ],
         publisher: "Marcombo",
-        ISBN: 9788426715319, 
+        ISBN: 9788426715319,
         categories: [
           "Ciencias"
         ],
@@ -109,7 +112,7 @@ const cart = [
         ],
         imageLinks: "http://books.google.com/books/content?id=adDYdZlP2ywC&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE71yudxWanSHxXh6X2HVJyIy-pBAfkWOV0JIFpuDa7yTGUVHsm0hRvVGhYCx4n9usf8CXx4GdceAWgBoJ6Sau9cUy7zTwdnbOV6Lg8MdAX8gNVcn4y1h-C9fkR50KM4iHNk004rc&source=gbs_api",
         description: "Por primera vez en español se presenta una amplia muestra de la poesía coreana contemporánea. Un cuerpo poético íntimamente vinculado a la naturaleza, cuyo predominio temático con la soledad, la meditación, la contemplación de los misterios de lo cotidiano y del mundo.El poeta extrae de su propia vida y de la Naturaleza su mundo poético, el cual constituye esa ventana que lo eleva al cielo, a las estrellas, al viento y a la poesía.",
-        price: 15.00  
+        price: 15.00
       }
     ]
   },
@@ -124,11 +127,93 @@ const cartController = {
       const shoop = cart?.find((c) => c.idCustomer === Number(idCustomer));
       if (!shoop) res.status(404).send("No tiene una compra asociada");
       const totalPrice = parseFloat(shoop.products?.reduce((acc, prod) => acc + prod.price, 0).toFixed(2));
-      return res.send({...shoop, totalPrice});
+      return res.send({ ...shoop, totalPrice });
     } catch (error) {
       res.status(400).send(error);
     }
   },
+
+
+  postCartUser: async (req, res, next) => {
+
+    const { cart, email } = req.body
+
+
+    cart.forEach(async (element) => {
+      try {
+        const carrito = await Pedido.create({
+          price: element.price,
+          title: element.title,
+          quantity: element.quantity,
+          imageLink: element.imageLink,
+          email: email
+  
+        })
+      } catch (error) {
+        console.log(error)
+      }
+
+     
+
+    });
+
+    res.status(200).json({
+      status: 1,
+      message: 'Carrito creado correctamente',
+      data: ''
+    });
+  },
+  getCartUser: async (req, res, next) => {// por query
+
+    const { email } = req.query
+
+    try {
+      const carrito = await Pedido.findAll({
+        where: {
+          email: email
+        }
+      })
+  
+  
+      res.send({
+        status: 1,
+        message: 'Get realizado',
+        data: carrito
+      });
+    } catch (error) {
+      console.log(error)
+    }
+    
+  },
+  deleteCartUser: async(req,res,next) => {
+    
+    const { email }=req.query;
+
+    try {
+  
+      const borrados = await Pedido.findAll({
+        where:{
+          email:email
+        }
+      });
+
+      const destroy = await Pedido.destroy({
+        where:{
+          email:email
+        }
+      });
+
+      res.send({
+        status:1,
+        message:'Borrado del carrito con éxito',
+        deleted: borrados
+      })
+      
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
 }
 
 module.exports = cartController

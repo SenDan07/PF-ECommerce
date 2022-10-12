@@ -54,6 +54,12 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const { Books, Categories, Order, Detalle, User, Favorite } = sequelize.models;
 
+// User.hasOne(Cart);
+// Cart.belongsTo(User)// columna  UserId
+
+// Cart.hasMany(Books)
+// Books.belongsTo(Cart)
+
 Books.belongsToMany(Categories, {
   as: "categories",
   through: "Books_Categories",

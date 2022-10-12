@@ -1,7 +1,7 @@
 // import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { logoutUser } from "../redux/actions";
+import { logoutUser,addCart } from "../redux/actions";
 import SearchBar from "./SearchBar";
 
 export default function NavBar() {
@@ -32,10 +32,13 @@ export default function NavBar() {
   //   );
   // }, [LOGIN, ROLE]);
 
-  let cart = JSON.parse(localStorage.getItem("bookDetail"));
+  let cart = JSON.parse( localStorage.getItem("bookDetail")) || [];
 
   function logout() {
     dispatch(logoutUser());
+    //Eliminas el Cart
+    localStorage.setItem("bookDetail",JSON.stringify([]))
+    dispatch(addCart([]));
     navigate("/");
   }
 
@@ -93,17 +96,23 @@ export default function NavBar() {
 
       <div className="flex items-center">
         {LOGIN === 1 && ROLE === "USER" ? (
-          <Link
-            to="/favorites"
-            className="mr-10 cursor-pointer hover:text-hoverMenu"
-          >
-            FAVORITOS
-          </Link>
+          <div className="flex gap-8">
+            <Link
+              to="/favorites"
+              className="mr-10 cursor-pointer hover:text-hoverMenu">
+              FAVORITOS
+            </Link>
+
+            <Link
+              to="/pedidos"
+              className="mr-10 cursor-pointer hover:text-hoverMenu">
+              PEDIDOS
+            </Link>
+          </div>
         ) : LOGIN === 1 && ROLE === "ADMIN" ? (
           <Link
             to="/admin"
-            className="mx-3 cursor-pointer hover:text-hoverMenu"
-          >
+            className="mx-3 cursor-pointer hover:text-hoverMenu">
             ADMINISTRAR
           </Link>
         ) : null}
@@ -180,4 +189,19 @@ export default function NavBar() {
                     COMPRAS
                 </Link>
             </div>
+*/
+
+
+/* 
+        {LOGIN === 1 && ROLE === "USER" ? (
+          <div>
+            <Link
+              to="/favorites"
+              className="mr-10 cursor-pointer hover:text-hoverMenu">
+              FAVORITOS
+            </Link>
+
+            <Link>v</Link>
+          </div>
+
 */

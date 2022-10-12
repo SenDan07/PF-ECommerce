@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { login, loginWithGoogle,userId } from "../redux/actions";
+import { getCart,addCart, login, loginWithGoogle,userId } from "../redux/actions";
 import { GoogleLogin } from "@react-oauth/google";
 
 export const Login = () => {
@@ -18,11 +18,26 @@ export const Login = () => {
 
   const [data, setData] = useState(initialInputs);
 
+  async function fill_cart(){
+    let cart = JSON.parse(localStorage.getItem("bookDetail")) || [];
+    //Traemos lo que tiene guardado en su cuenta  
+    const cart_User=await dispatch(getCart(data.email))
+      //cart=[...cart,cart_User];
+      if(cart_User){
+        cart=[...cart_User]
+      }
+      alert(cart)
+      dispatch(addCart(cart));
+      cart = JSON.stringify(cart);
+      localStorage.setItem("bookDetail", cart);
+  }
+
   function onSubmit(e) {
     e.preventDefault();
     if (data.email.length > 5 && data.password.length >= 4) {
       dispatch(login(data));
-      
+      //Llenar carrito
+      fill_cart()
       setData(initialInputs);
       navigate("/");
     } else {
@@ -161,6 +176,8 @@ export const Login = () => {
             onSuccess={(credentialResponse) => {
               // console.log(credentialResponse);
               dispatch(loginWithGoogle(credentialResponse));
+               //LLeno el carrito
+               fill_cart()
               navigate("/");
             }}
             onError={() => {

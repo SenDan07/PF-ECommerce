@@ -23,5 +23,12 @@ export const DELETE_CATEGORY = "DELETE_CATEGORY";
 export const RESET_USER = "RESET_USER";
 export const LOGIN_WITH_GOOGLE = "LOGIN_WITH_GOOGLE";
 export const ADD_CART="ADD_CART";
+export const POST_CART="POST_CART";
+export const GET_CART="GET_CART";
+export const ORDER_DELETE_BOOK = "ORDER_DELETE_BOOK";
+export const SEARCH_DELETE_BOOK = "SEARCH_DELETE_BOOK";
+export const RESET_DELETE_BOOKS = "RESET_DELETE_BOOKS";
+export const RECORD_ORDERS = "RECORD_ORDERS";
+
 
 
