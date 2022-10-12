@@ -8,9 +8,10 @@ export default function DeleteBooksDumb({ title, activado, idBook, author }) {
     const dispatch = useDispatch();
 
 
-    async function handleClick(e) {
+    async function handleSubmit(e) {
+        e.preventDefault()
         await dispatch(deleteBook(idBook))
-        await dispatch(getBooks())
+        await dispatch(getBooks()) 
     }
 
     return (
@@ -23,7 +24,8 @@ export default function DeleteBooksDumb({ title, activado, idBook, author }) {
                 </div>
 
                 <div className="w-1/2 border text-center">
-                    <button className="w-max hover:cursor-pointer text-center hover:bg-hoverMenu p-1 rounded bg-bgItems" onClick={() => handleClick()}>
+                    <form onSubmit={handleSubmit}>
+                        <input type="submit" className="w-max hover:cursor-pointer text-center hover:bg-hoverMenu p-1 rounded bg-bgItems" />
                         {
                             status === "disponible" ?
                                 (
@@ -36,7 +38,8 @@ export default function DeleteBooksDumb({ title, activado, idBook, author }) {
                                     </svg>
                                 )
                         }
-                    </button>
+
+                    </form>
                 </div>
             </div>
         </div>

@@ -25,7 +25,7 @@ import {
   LOGIN_WITH_GOOGLE,
   ADD_CART,
   POST_CART,
-  GET_CART
+  GET_CART,
   ORDER_DELETE_BOOK,
   SEARCH_DELETE_BOOK,
   RESET_DELETE_BOOKS,
@@ -189,7 +189,7 @@ function rootReducer(state = initialState, action) {
         booksByPrice: auxBookCategoryFilter,
       };
 
-      
+
     case RESET_CATEGORY_BOOKS:
       return {
         ...state,
@@ -198,18 +198,21 @@ function rootReducer(state = initialState, action) {
       };
 
 
-      case RESET_DELETE_BOOKS:
-        let auxResetDeleteBooks = [...state.books]
-        return{
-          ...state,
-          booksDeleteAdminFilter: [...auxResetDeleteBooks]
-        }
+    case RESET_DELETE_BOOKS:
+      let auxResetDeleteBooks = [...state.books]
+      return {
+        ...state,
+        booksDeleteAdminFilter: [...auxResetDeleteBooks]
+      }
 
 
     case SEARCH_BOOK:
+      let auxBooksBySearch = [...action.payload]
+      let BooksBySearch = auxBooksBySearch.filter(book => book.activado === true)
+      //console.log("action.payload: ", action.payload)
       return {
         ...state,
-        booksBySearch: [...action.payload],
+        booksBySearch: [...BooksBySearch],
       };
 
 
@@ -306,7 +309,7 @@ function rootReducer(state = initialState, action) {
       let bookDeleted = auxBookDeleted.filter(
         (book) => !!book.activado === true
       );
-      console.log("bookDeleted: ", bookDeleted);
+      //console.log("action.payload: ", action.payload);
       return {
         ...state,
         booksFilter: [...bookDeleted],
@@ -327,12 +330,12 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_CART:
-      return{
+      return {
         ...state,
-        cart:action.payload
+        cart: action.payload
       }
     case POST_CART:
-      return{
+      return {
         ...state
       }
 
