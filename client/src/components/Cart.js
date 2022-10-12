@@ -22,7 +22,7 @@ export default function Cart() {
       </Link>
       <div className="m-10">
         {cart?.map((c) => {
-          return <CartItem book={c} />;
+          return <CartItem key={c.id} book={c} />;
         })}
       </div>
       <div className="mt-20 text-lg font-medium pr-4">
