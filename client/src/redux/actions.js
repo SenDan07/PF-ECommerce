@@ -27,8 +27,8 @@ import {
   GET_CART,
   ORDER_DELETE_BOOK,
   SEARCH_DELETE_BOOK,
-  RESET_DELETE_BOOKS
-
+  RESET_DELETE_BOOKS,
+  RECORD_ORDERS,
 } from "./types.js";
 import axios from "axios";
 
