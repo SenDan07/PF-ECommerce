@@ -140,15 +140,20 @@ const cartController = {
 
 
     cart.forEach(async (element) => {
+      try {
+        const carrito = await Pedido.create({
+          price: element.price,
+          title: element.title,
+          quantity: element.quantity,
+          imageLink: element.imageLink,
+          email: email
+  
+        })
+      } catch (error) {
+        console.log(error)
+      }
 
-      const carrito = await Pedido.create({
-        price: element.price,
-        title: element.title,
-        quantity: element.quantity,
-        imageLink: element.imageLink,
-        email: email
-
-      })
+     
 
     });
 
@@ -162,19 +167,52 @@ const cartController = {
 
     const { email } = req.query
 
+    try {
+      const carrito = await Pedido.findAll({
+        where: {
+          email: email
+        }
+      })
+  
+  
+      res.send({
+        status: 1,
+        message: 'Get realizado',
+        data: carrito
+      });
+    } catch (error) {
+      console.log(error)
+    }
+    
+  },
+  deleteCartUser: async(req,res,next) => {
+    
+    const { email }=req.query;
 
-    const carrito = await Pedido.findAll({
-      where: {
-        email: email
-      }
-    })
+    try {
+  
+      const borrados = await Pedido.findAll({
+        where:{
+          email:email
+        }
+      });
 
+      const destroy = await Pedido.destroy({
+        where:{
+          email:email
+        }
+      });
 
-    res.send({
-      status: 1,
-      message: 'Get realizado',
-      data: carrito
-    });
+      res.send({
+        status:1,
+        message:'Borrado del carrito con éxito',
+        deleted: borrados
+      })
+      
+    } catch (error) {
+      console.log(error)
+    }
+
   }
 }
 
