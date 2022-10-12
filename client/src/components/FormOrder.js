@@ -202,7 +202,7 @@ useEffect(()=>{
         </span>
         {cart?.map((book) => {
           return (
-            <div className="flex flex-row m-5">
+            <div key={book.id} className="flex flex-row m-5">
               <div className="mb-1 relative hover:rotate-1">
                 <img
                   src={book.imageLinks}

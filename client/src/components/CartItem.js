@@ -62,8 +62,8 @@ export default function CartItem({ book }) {
         <div className="flex flex-col justify-center m-20">
             <span>Cantidad:<select onChange={(e)=>handleSelect(e)} value={book.quantity}>
             <option value="1">1</option>
-                {cantidad.map((i)=>{
-                    return <option value={i}>{i}</option>
+                {cantidad.map((i, idx)=>{
+                    return <option key={idx} value={i}>{i}</option>
                 })                  
                 }      
             </select></span>
