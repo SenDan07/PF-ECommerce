@@ -138,43 +138,76 @@ const cartController = {
 
     const { cart, email } = req.body
 
+try {
+  cart.forEach(async (element) => {
 
-    cart.forEach(async (element) => {
+    const carrito = await Pedido.create({
+      price: element.price,
+      title: element.title,
+      quantity: element.quantity,
+      imageLink: element.imageLink,
+      email: email
 
-      const carrito = await Pedido.create({
-        price: element.price,
-        title: element.title,
-        quantity: element.quantity,
-        imageLink: element.imageLink,
-        email: email
+    })
 
-      })
+  });
 
-    });
-
-    res.status(200).json({
-      status: 1,
-      message: 'Carrito creado correctamente',
-      data: ''
-    });
+  res.status(200).json({
+    status: 1,
+    message: 'Carrito creado correctamente',
+    data: ''
+  });
+} catch (error) {
+  console.log(error)
+}
+  
   },
   getCartUser: async (req, res, next) => {// por query
 
     const { email } = req.query
+    try {
+      const carrito = await Pedido.findAll({
+        where: {
+          email: email
+        }
+      })
+      res.send({
+        status: 1,
+        message: 'Get realizado',
+        data: carrito
+      });
+    } catch (error) {
+      console.log(error)
+    } 
+  },
 
+  deleteCartUser: async(req,res,next) => {
+    const { email } = req.query;
+ 
+    try {
+      const cart = await Pedido.findAll({
+        where:{
+         email: email
+        }
+       })
+        const deleted = await Pedido.destroy({
+        where:{
+         email:email
+        }
+        })
+    console.log(cart)
+       res.status(200).json({
+         status:1,
+         message:'Carrito borrado correctamente',
+         deleted:cart
+       })
+   
+      
+    } catch (error) {
+      console.log(error)
+    }
 
-    const carrito = await Pedido.findAll({
-      where: {
-        email: email
-      }
-    })
-
-
-    res.send({
-      status: 1,
-      message: 'Get realizado',
-      data: carrito
-    });
+     
   }
 }
 
