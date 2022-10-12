@@ -10,7 +10,7 @@ export default function DeleteBooksDumb({ idOrder, direction, date, price, idBoo
 
     async function handleClick(e) {
         await dispatch(deleteBook(idBook))
-        await dispatch(getBooks())
+        await dispatch(getUsers())
     }
 
     return (

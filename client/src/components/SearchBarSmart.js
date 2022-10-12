@@ -3,16 +3,16 @@ import { Book } from "./Book";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { resetSearchBook } from "../redux/actions";
+import { resetDeleteBooks } from "../redux/actions";
 
 export default function SearchBarSmart() {
-  const busqueda = useSelector((state) => state.booksDeleteAdminFilter);
+  const busqueda = useSelector((state) => state.booksBySearch);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     return () => {
-      dispatch(resetSearchBook());
+      dispatch(resetDeleteBooks());
     };
   }, []);
   return (

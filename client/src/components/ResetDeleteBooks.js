@@ -7,7 +7,7 @@ export default function ResetDeleteBooks() {
 
     function handleClick(e) {
         e.preventDefault()
-        console.log("aprete el boton")
+        //console.log("aprete el boton")
         dispatch(resetDeleteBooks())
     }
     return (
