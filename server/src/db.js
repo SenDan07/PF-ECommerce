@@ -1,6 +1,6 @@
+require("dotenv").config();
 const { Sequelize, Op } = require("sequelize");
 const fs = require("fs");
-require("dotenv").config();
 const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
@@ -52,8 +52,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 
-const { Books, Categories,Order,Detalle,User,Cart } = sequelize.models;
-
+const { Books, Categories, Order, Detalle, User, Favorite } = sequelize.models;
 
 // User.hasOne(Cart);
 // Cart.belongsTo(User)// columna  UserId
@@ -70,22 +69,14 @@ Categories.belongsToMany(Books, {
   through: "Books_Categories",
 });
 
-
 Order.belongsToMany(Books, { through: Detalle });
 Books.belongsToMany(Order, { through: Detalle });
-
 
 User.hasMany(Order);
 Order.belongsTo(User);
 
-User.belongsToMany(Books, {
-  as: "favorites",
-  through: "User_Books",
-});
-Books.belongsToMany(User, {
-  as: "favorites",
-  through: "User_Books",
-});
+User.belongsToMany(Favorite, { through: "User_Favorite" });
+Favorite.belongsToMany(User, { through: "User_Favorite" });
 
 
 module.exports = {
