@@ -9,4 +9,6 @@ router.post("/cartUser",cartController.postCartUser);
 router.get("/cartUser",cartController.getCartUser);
 
 router.get("/:idCustomer", cartController.getCartByCustomer);
+
+router.put("/cartUser",cartController.deleteCartUser)
 module.exports = router
