@@ -57,6 +57,20 @@ const loginController = {
           //token: token
         };
 
+        if (userCreated) {
+          await axios.post("http://localhost:3001/alert/email", {
+            emails: email,
+            subject: "Registro exitoso",
+            content: `
+            <div>
+              <h1>Libreria PF</h1>
+              <h5>Registro de usuario</h5>
+              <p>Sr. ${name + " " + lastName}, le informamos que su cuenta ha sido creada satisfactoriamente. Lo invitamos a que visite nuestra página y mire las opciones de libros que tenemos disponibles.</p>
+            </div>
+            `,
+          })
+        };
+
         return res.status(200).json({
           status: 1,
           msg: "User registered successfully",
