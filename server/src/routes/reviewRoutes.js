@@ -14,6 +14,9 @@ router.get("/:bookId/all-reviews", reviewControllers.fetchReviewsByBook);
 
 router.get("/:userId/your-reviews", reviewControllers.fetchReviewsByUser);
 
-router.post("/add-review/:bookId/:userId", reviewControllers.postNewReview);
+router.post(
+  "/add-review/:bookId/:userId/:userName",
+  reviewControllers.postNewReview
+);
 
 module.exports = router;

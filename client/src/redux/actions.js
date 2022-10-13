@@ -32,6 +32,9 @@ import {
   FILTER_DISPONIBILITY,
   GET_BOOK_REVIEWS,
   POST_BOOK_REVIEW,
+  RESET_BOOK_REVIEWS,
+  GET_USERS_REVIEWS,
+  RESET_USERS_REVIEWS,
 } from "./types.js";
 import axios from "axios";
 
@@ -229,11 +232,11 @@ export const logoutUser = () => {
 };
 
 export const getUsers = () => async (dispatch) => {
-  let dataBooks = await axios(`${direction}/users/allUsers`);
+  let dataUsers = await axios(`${direction}/users/allUsers`);
 
   return dispatch({
     type: GET_USERS,
-    payload: dataBooks.data,
+    payload: dataUsers.data,
   });
 };
 
@@ -304,7 +307,7 @@ export function postCart(cart) {
 export function getCart(email) {
   return async (dispatch) => {
     let res = await axios.get(`${direction}/cart/cartUser?email=${email}`);
-    console.log("lee carro", res.data.data)
+    console.log("lee carro", res.data.data);
     return dispatch({
       type: GET_CART,
       payload: res.data.data,
@@ -330,7 +333,7 @@ export function postReview(data) {
   return async (dispatch) => {
     try {
       var res = await axios.post(
-        `${direction}/reviews/add-review/${data.bookId}/${data.userId}`,
+        `${direction}/reviews/add-review/${data.bookId}/${data.userId}/${data.userName}`,
         { comment: data.commentUser, score: data.score }
       );
       return dispatch({
@@ -342,6 +345,19 @@ export function postReview(data) {
     }
   };
 }
+
+export const resetBookReviews = () => ({ type: RESET_BOOK_REVIEWS });
+
+export const getUsersReviews = () => async (dispatch) => {
+  let dataUsers = await axios(`${direction}/users/allUsers`);
+
+  return dispatch({
+    type: GET_USERS_REVIEWS,
+    payload: dataUsers.data,
+  });
+};
+
+export const resetUsersReviews = () => ({ type: RESET_USERS_REVIEWS });
 
 // export function orderName(value) {
 //   return async (dispatch) => {
