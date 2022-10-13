@@ -33,6 +33,9 @@ import {
   FILTER_DISPONIBILITY,
   GET_BOOK_REVIEWS,
   POST_BOOK_REVIEW,
+  RESET_BOOK_REVIEWS,
+  GET_USERS_REVIEWS,
+  RESET_USERS_REVIEWS,
 } from "./types";
 
 const initialState = {
@@ -54,6 +57,7 @@ const initialState = {
   cart: [],
   user: {},
   bookReviews: [],
+  usersReviews: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -331,7 +335,6 @@ function rootReducer(state = initialState, action) {
       };
 
     case LOGIN_WITH_GOOGLE:
-      
       return {
         ...state,
         user: action.payload.user,
@@ -345,7 +348,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_CART:
-      console.log("Reducer llena carro",action.payload)
+      console.log("Reducer llena carro", action.payload);
       return {
         ...state,
         cart: action.payload,
@@ -355,10 +358,36 @@ function rootReducer(state = initialState, action) {
         ...state,
       };
 
-    case POST_BOOK_REVIEW:
-      console.log(action.payload);
+    case GET_BOOK_REVIEWS:
+      // console.log(action.payload);
       return {
         ...state,
+        bookReviews: action.payload.reverse(),
+      };
+
+    case POST_BOOK_REVIEW:
+      // console.log(action.payload);
+      return {
+        ...state,
+      };
+
+    case RESET_BOOK_REVIEWS:
+      return {
+        ...state,
+        bookReviews: [],
+      };
+
+    case GET_USERS_REVIEWS:
+      // console.log(action.payload);
+      return {
+        ...state,
+        usersReviews: action.payload.activeRegData.map((user) => user.id),
+      };
+
+    case RESET_USERS_REVIEWS:
+      return {
+        ...state,
+        usersReviews: [],
       };
 
     default:

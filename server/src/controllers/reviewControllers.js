@@ -58,7 +58,7 @@ const reviewControllers = {
 
   postNewReview: async (req, res, next) => {
     const { score, comment } = req.body;
-    const { userId, bookId } = req.params;
+    const { userId, bookId, userName } = req.params;
     try {
       if (!score || !comment) {
         const error = new HttpError(
@@ -67,16 +67,15 @@ const reviewControllers = {
         );
         return next(error);
       }
-      
-    
 
       const createReview = await Review.create({
         score,
         comment,
-        BookId:bookId,
-        UserId:userId
+        userName: userName,
+        BookId: bookId,
+        UserId: userId,
       });
-      
+
       return res.status(201).send(createReview);
     } catch (err) {
       const error = new HttpError(
