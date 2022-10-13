@@ -72,7 +72,7 @@ const reviewControllers = {
         comment,
         userId,
         bookId,
-        //where id: userId
+        // where id: userId
       });
       const linkUser = await User.findOne({
         where: {
