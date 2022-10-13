@@ -30,11 +30,6 @@ export function validate(input) {
             errors.ISBN = "ISBN debe ser numerico"
         }
     }
-    if (input.description) {
-        if (!expLetras_Num.test(input.description)) {
-            errors.description = "Descripcion es invalida"
-        }
-    }
     if (!input.price) {
         errors.price = 'precio es requerido';
     }
@@ -44,6 +39,14 @@ export function validate(input) {
         }
     }
 
+    if (!input.stock) {
+        errors.stock = 'Stock es requerido';
+    }
+    else if (input.stock) {
+        if (input.stock < 0 || !/^[0-9]+([0-9]+)?$/.test(input.stock)) {
+            errors.stock = "Stock no valido"
+        }
+    }
     return errors;
 }
 
@@ -53,14 +56,15 @@ export default function FormBook() {
     let loading=useSelector(state=>state.loading)
    
     const [input, setInput] = React.useState({
-        title:'',//texto
-        authors:'',//arreglo
-        publisher: '',//texto
-        ISBN:'',//integer
-        categories: [],//string
-        imageLinks: '',//string
-        description:'',//string
-        price: '',//float
+        title:'',
+        authors:'',
+        publisher: '',
+        ISBN:'',
+        categories: [],
+        imageLinks: '',
+        description:'',
+        price: '',
+        stock:''
     })
     const [errors, setErrors] = React.useState({});
 
@@ -105,6 +109,7 @@ export default function FormBook() {
             imageLinks: '',
             description:'',
             price:'',
+            stock:''
         })
         e.target.title.focus()
         //  let boton= document.getElementById('enviar')
@@ -167,24 +172,29 @@ export default function FormBook() {
                 <label className="block">PRECIO: </label>
                 <input type='text' className={errors.price ? 'text-[#dc2626] rounded-lg' : 'text-[#075985] rounded-lg'} name='price' value={input.price} placeholder='Ingrese el precio' onChange={(e) => handleChange(e)} /><br />
                 {errors.price ? <p className="text-[#dc2626]">{errors.price}</p> : null}<br />
+                <label className="block">STOCK: </label>
+                <input type='text' className={errors.stock ? 'text-[#dc2626] rounded-lg' : 'text-[#075985] rounded-lg'} name='stock' value={input.stock} placeholder='Ingrese el Stock' onChange={(e) => handleChange(e)} /><br />
+                {errors.stock ? <p className="text-[#dc2626]">{errors.stock}</p> : null}<br />
                 <label className="block">IMAGEN: </label>
                 <input type='file' name='imageLinks' className="w-64" accept="image/png, image/jpeg" onChange={(e) => uploadImage(e)} />
                 <img src={input.imageLinks} alt="imagen" className="h-10 w-16" />
                 <label className="block">CATEGORIA:</label>           
                 <select name="categories" value={input.categories} placeholder='categoria' onClick={handleSelect} className={errors.categories ? 'text-[#dc2626]' : 'text-[#075985]'} multiple>
+                   
                     {categories.map(category=>{
                          return <option value={category.name}>{category.name}</option>
                     })}
                 </select>
                 {errors.categories ? <p className="text-[#dc2626]">{errors.categories}</p> : null}<br />
+                {input.categories.length?<span>Categorias :</span>:null}
                 {input.categories.map(cat => {
                     return <span>{cat},</span>
                 })}
+                <br /><br />
             </fieldset>
             <fieldset className="text-center">
                 <legend>DESCRIPCION:</legend>
                 <textarea className="w-full text-[#075985] rounded-lg" name="description" value={input.description} onChange={(e) => handleChange(e)} />
-                {errors.description ? <p className="text-[#dc2626]">{errors.description}</p> : null}<br />
                 <br />
                 {loading?<p>{loading}</p>:null}
                 <input type='submit' className={(Object.keys(errors).length) ? "bg-[#94a3b8] p-5 m-2 cursor-pointer rounded-3xl" : "bg-[#9a3412] p-5 m-2 cursor-pointer rounded-3xl"} id='enviar' disabled={(Object.keys(errors).length) ? true : false} value='Guardar' />
