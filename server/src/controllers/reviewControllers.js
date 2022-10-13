@@ -1,5 +1,5 @@
 const HttpError = require("../errors/http-error");
-const { Review } = require("../db");
+const { Books, User, Review } = require("../db");
 
 const reviewControllers = {
   fetchallReviews: async (req, res, next) => {
@@ -72,7 +72,19 @@ const reviewControllers = {
         comment,
         userId,
         bookId,
+        //where id: userId
       });
+      const linkUser = await User.findOne({
+        where: {
+          id: userId,
+        },
+      });
+      const linkBook = await Books.findOne({
+        where: {
+          id: bookId,
+        },
+      });
+      createReview.addUser(linkUser).addBooks(linkBook);
       return res.status(201).send(createReview);
     } catch (err) {
       const error = new HttpError(

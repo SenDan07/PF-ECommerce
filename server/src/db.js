@@ -67,26 +67,13 @@ Categories.belongsToMany(Books, {
 Order.belongsToMany(Books, { through: Detalle });
 Books.belongsToMany(Order, { through: Detalle });
 
-// Books.hasMany(Review, {
-//   foreignKey: "bookId",
-//   sourceKey: "id",
-// });
 Review.belongsToMany(Books, {
   through: "book_reviews",
-  foreignKey: "bookId",
-  targetKey: "id",
 });
-
-// User.hasMany(Review, {
-//   through: "user_reviews",
-//   foreignKey: "userId",
-//   sourceKey: "id",
-// });
 Review.belongsToMany(User, {
   through: "user_reviews",
-  foreignKey: "userId",
-  targetKey: "id",
 });
+
 User.hasMany(Order);
 Order.belongsTo(User);
 
