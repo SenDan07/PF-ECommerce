@@ -69,13 +69,14 @@ function CheckoutForm() {
           }, 0)
           .toFixed(2);
         //El monto se multiplica por 100
+        
         const { data } = await axios.post(
           "http://localhost:3001/checkout/create",
           {
             id,
             UserId: User.iduser,
+            total: total,
             nombreCompleto: user.name + " " + user.lastName,
-            total: total * 100,
             email: user.email,
             direccion: user.address,
             telefono: user.phone,
