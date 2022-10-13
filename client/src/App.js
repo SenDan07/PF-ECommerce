@@ -84,7 +84,9 @@ function App() {
 
           {LOGIN === 1 && ROLE === "USER" ? (
             <Route excat path="/order" element={<FormOrder />} />
-          ) : null}
+          ) : (
+            <Route excat path="/order" element={<ErrorNotFound />} />
+          )}
 
           {LOGIN === 1 && ROLE === "ADMIN" ? (
             <Route exact path="/deletebook" element={<DeleteBooksSmart />} />

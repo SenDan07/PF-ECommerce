@@ -23,11 +23,20 @@ import {
   RESET_USER,
   LOGIN_WITH_GOOGLE,
   ADD_CART,
-  } from "./types.js";
+  POST_CART,
+  GET_CART,
+  ORDER_DELETE_BOOK,
+  SEARCH_DELETE_BOOK,
+  RESET_DELETE_BOOKS,
+  RECORD_ORDERS,
+  FILTER_DISPONIBILITY,
+} from "./types.js";
 import axios from "axios";
 
+const direction = "http://localhost:3001" || "http://api.pfecommerce.ddns.net";
+
 export const getBooks = () => async (dispatch) => {
-  let dataBooks = await axios(`http://localhost:3001/shop/books`);
+  let dataBooks = await axios(`${direction}/shop/books`);
 
   return dispatch({
     type: GET_BOOKS,
@@ -36,7 +45,7 @@ export const getBooks = () => async (dispatch) => {
 };
 
 export const getDetailBook = (id) => async (dispatch) => {
-  let bookDetail = await axios(`http://localhost:3001/shop//book/${id}`);
+  let bookDetail = await axios(`${direction}/shop//book/${id}`);
 
   return dispatch({
     type: GET_DETAIL_BOOK,
@@ -48,7 +57,7 @@ export const resetDetail = () => ({ type: RESET_DETAIL });
 
 export function getAllCategories() {
   return async (dispatch) => {
-    let res = await axios.get(`http://localhost:3001/shop/categories`);
+    let res = await axios.get(`${direction}/shop/categories`);
     return dispatch({
       type: GET_ALL_CATEGORIES,
       payload: res.data,
@@ -60,10 +69,7 @@ export function postCreateBook(input) {
   return async (dispatch) => {
     try {
       dispatch(setStatus("Guardando"));
-      var res = await axios.post(
-        `http://localhost:3001/admin/create-book`,
-        input
-      );
+      var res = await axios.post(`${direction}/admin/create-book`, input);
       return dispatch({
         type: POST_CREATE_BOOK,
         payload: res.data,
@@ -78,10 +84,7 @@ export function postCreateCategory(input) {
   return async (dispatch) => {
     try {
       dispatch(setStatus("Guardando"));
-      var res = await axios.post(
-        `http://localhost:3001/admin/create-category`,
-        input
-      );
+      var res = await axios.post(`${direction}/admin/create-category`, input);
       return dispatch({
         type: POST_CREATE_CATEGORY,
         payload: res.data,
@@ -106,6 +109,13 @@ export function orderPrice(order) {
   };
 }
 
+export function OrderDeleteBook(order) {
+  return {
+    type: ORDER_DELETE_BOOK,
+    payload: order
+  }
+}
+
 export function filterPrice(price) {
   return {
     type: FILTER_PRICE,
@@ -116,7 +126,7 @@ export function filterPrice(price) {
 export function categoryBooks(category) {
   return async (dispatch) => {
     let res = await axios.get(
-      `http://localhost:3001/shop/booksCategory?name=${category}`
+      `${direction}/shop/booksCategory?name=${category}`
     );
     return dispatch({
       type: CATEGORY_BOOKS,
@@ -131,9 +141,7 @@ export function searchBook(book) {
   return async (dispatch) => {
     try {
       dispatch(setStatus("Cargando"));
-      var res = await axios.get(
-        `http://localhost:3001/shop/books/filter?value=${book}`
-      );
+      var res = await axios.get(`${direction}/shop/books/filter?value=${book}`);
       return dispatch({
         type: SEARCH_BOOK,
         payload: res.data,
@@ -146,7 +154,7 @@ export function searchBook(book) {
 
 export function login(body) {
   return async (dispatch) => {
-    let res = await axios.post(`http://localhost:3001/users/login`, body);
+    let res = await axios.post(`${direction}/users/login`, body);
 
     return dispatch({
       type: LOGIN,
@@ -155,11 +163,9 @@ export function login(body) {
   };
 }
 
-
-
 export function deleteBook(idBook) {
   return async (dispatch) => {
-    let res = await axios.delete(`http://localhost:3001/admin/books/${idBook}`);
+    let res = await axios.delete(`${direction}/admin/books/${idBook}`);
     return dispatch({
       type: DELETE_BOOKS,
       payload: res.data,
@@ -167,12 +173,19 @@ export function deleteBook(idBook) {
   };
 }
 
+export function searchDeleteBook(search) {
+  return {
+    type: SEARCH_DELETE_BOOK,
+    payload: search
+  }
+}
+
 export function register(body) {
   console.log(body);
   return async (dispatch) => {
     try {
       dispatch(setStatus("Guardando"));
-      let res = await axios.post("http://localhost:3001/users/register", body);
+      let res = await axios.post(`${direction}/users/register`, body);
 
       return dispatch({
         type: REGISTER,
@@ -192,6 +205,21 @@ export function setStatus(mensaje) {
   };
 }
 
+
+export function filterDisponibility (disponibility){
+  return{
+    type: FILTER_DISPONIBILITY,
+    payload: disponibility
+  }
+}
+
+
+export function resetDeleteBooks(){
+  return {
+    type: RESET_DELETE_BOOKS, 
+  }
+}
+
 export const resetSearchBook = () => ({ type: RESET_SEARCH_BOOK });
 
 export const logoutUser = () => {
@@ -201,7 +229,7 @@ export const logoutUser = () => {
 };
 
 export const getUsers = () => async (dispatch) => {
-  let dataBooks = await axios(`http://localhost:3001/users/allUsers`);
+  let dataBooks = await axios(`${direction}/users/allUsers`);
 
   return dispatch({
     type: GET_USERS,
@@ -211,23 +239,18 @@ export const getUsers = () => async (dispatch) => {
 
 export const deleteUser =
   (idUser, data = { isActive: "false" }) =>
-  async (dispatch) => {
-    let usersActive = await axios.put(
-      `http://localhost:3001/users/${idUser}`,
-      data
-    );
+    async (dispatch) => {
+      let usersActive = await axios.put(`${direction}/users/${idUser}`, data);
 
-    return dispatch({
-      type: DELETE_USER,
-      payload: usersActive.data,
-    });
-  };
+      return dispatch({
+        type: DELETE_USER,
+        payload: usersActive.data,
+      });
+    };
 
 export function deleteCategory(idCategory) {
   return async (dispatch) => {
-    const res = await axios.delete(
-      `http://localhost:3001/admin/category/${idCategory}`
-    );
+    const res = await axios.delete(`${direction}/admin/category/${idCategory}`);
 
     return dispatch({
       type: DELETE_CATEGORY,
@@ -239,21 +262,18 @@ export function deleteCategory(idCategory) {
 
 export const resetUser =
   (idUser, data = { isActive: "true" }) =>
-  async (dispatch) => {
-    let users = await axios.put(`http://localhost:3001/users/${idUser}`, data);
+    async (dispatch) => {
+      let users = await axios.put(`${direction}/users/${idUser}`, data);
 
-    return dispatch({
-      type: RESET_USER,
-      payload: users.data,
-    });
-  };
+      return dispatch({
+        type: RESET_USER,
+        payload: users.data,
+      });
+    };
 
 export function loginWithGoogle(info) {
   return async (dispatch) => {
-    const response = await axios.post(
-      `http://localhost:3001/users/google`,
-      info
-    );
+    const response = await axios.post(`${direction}/users/google`, info);
 
     return dispatch({
       type: LOGIN_WITH_GOOGLE,
@@ -262,11 +282,34 @@ export function loginWithGoogle(info) {
   };
 }
 
-export function addCart(book){
+export function addCart(book) {
   return {
-    type:ADD_CART,
-    payload:book
-  }
+    type: ADD_CART,
+    payload: book,
+  };
+}
+export function postCart(cart){
+  return async (dispatch) => {
+    try {
+      
+      var res = await axios.post(`${direction}/cart/cartUser`, cart);
+      return dispatch({
+        type: POST_CART,
+        payload: res.data,
+      });
+    } catch (e) {
+      dispatch(setStatus("Datos no se guardaron correctamente"));
+    }
+  };
+}
+export function getCart(email) {
+  return async (dispatch) => {
+    let res = await axios.get(`${direction}/cart/cartUser?${email}`);
+    return dispatch({
+      type: GET_CART,
+      payload: res.data,
+    });
+  };
 }
 
 // export function orderName(value) {

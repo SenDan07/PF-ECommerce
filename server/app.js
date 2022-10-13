@@ -11,12 +11,12 @@ const setHeader = require("../server/src/util/middleware/setHeader");
 const errorHandler = require("../server/src/util/middleware/errorHandler");
 
 const app = express();
-
+const cartRoutes = require("../server/src/routes/cartRoutes");
 const adminRoutes = require("./src/routes/adminRoutes");
 const shopRoutes = require("./src/routes/shopRoutes");
-
-const loginRoutes = require('./src/routes/loginRoutes');
-const orderRoutes = require('./src/routes/orderRoutes');
+const reviewRoutes = require("./src/routes/reviewRoutes");
+const loginRoutes = require("./src/routes/loginRoutes");
+const orderRoutes = require("./src/routes/orderRoutes");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -31,9 +31,10 @@ dotenv.config();
 
 app.use("/admin", adminRoutes);
 app.use("/shop", shopRoutes);
-app.use('/users', loginRoutes)
-app.use('/checkout', orderRoutes)
-
+app.use("/reviews", reviewRoutes);
+app.use("/users", loginRoutes);
+app.use("/checkout", orderRoutes);
+app.use("/cart", cartRoutes);
 app.use(errorHandler);
 
 module.exports = app;

@@ -1,5 +1,5 @@
-
 const HttpError = require("../errors/http-error");
+
 
 const { Categories, Books,Order,Detalle,User } = require("../db");
 const Stripe=require('stripe');
@@ -81,18 +81,7 @@ const orderControllers = {
      getOrders:async(req,res)=>{
       const { idUser }=req.params;
 
-     /* const orders=await Order.findAll({
-         where:{
-           UserId:idUser
-         },
-         include: [
-           {
-             model: Detalle,
-             include: [Books]
-           }
-           
-         ]
-       })*/
+     
 
       const orders=await Order.findAll({
          where:{UserId:idUser},
@@ -120,6 +109,7 @@ const orderControllers = {
        res.status(200).json(refactorOrder)
 
      }
+
 };
 
 module.exports = orderControllers;

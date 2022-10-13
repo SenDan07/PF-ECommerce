@@ -9,3 +9,21 @@ html {
 .sombra {
   box-shadow: -8px 8px 3px #333;
 }
+
+.scrollCustomStyle::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+.scrollCustomStyle::-webkit-scrollbar:vertical {
+  width: 9px;
+}
+
+.scrollCustomStyle::-webkit-scrollbar-thumb {
+  background-color: #5f6d79;
+  border-radius: 5px;
+  border: 1px solid #46701e;
+}
+
+.scrollCustomStyle::-webkit-scrollbar-track {
+  border-radius: 10px;
+}

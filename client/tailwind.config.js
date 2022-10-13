@@ -12,7 +12,10 @@ module.exports = {
       'black': '#000000',
       'bgItems': '#a3a3a3',
       'hoverButton': '#2D682A',
-      'table': '#60805C'
+      'table': '#60805C',
+      'green': '#28A019',
+      'red': '#D03323',
+      'blue': '#143459'
     },
     extend: {
       height: {
