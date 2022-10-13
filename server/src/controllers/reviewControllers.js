@@ -55,7 +55,7 @@ const reviewControllers = {
       return next(error);
     }
   },
-  
+
   postNewReview: async (req, res, next) => {
     const { score, comment } = req.body;
     const { userId, bookId } = req.params;
@@ -83,3 +83,5 @@ const reviewControllers = {
     }
   },
 };
+
+module.exports = reviewControllers;
