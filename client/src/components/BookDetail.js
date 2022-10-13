@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetailBook, resetDetail } from "../redux/actions";
+import { getDetailBook, postReview, resetDetail } from "../redux/actions";
 import { useEffect } from "react";
 import { addCart } from "../redux/actions";
 
@@ -64,12 +64,26 @@ const BookDetail = () => {
   };
 
   const submitReview = () => {
-    console.log({
-      userId: USER.iduser,
-      bookId: bookDetail.id,
-      score: currentValue,
-      commentUser: comment,
-    });
+    if (currentValue === 0 || comment.length < 5) {
+      alert("Completa bien la reseña\nSelecciona al menos una estrella");
+    } else {
+      // console.log({
+      //   userId: USER.iduser,
+      //   bookId: bookDetail.id,
+      //   score: currentValue,
+      //   commentUser: comment,
+      // });
+      dispatch(
+        postReview({
+          userId: USER.iduser,
+          bookId: bookDetail.id,
+          score: currentValue,
+          commentUser: comment,
+        })
+      );
+      setComment("");
+      setCurrentValue(0);
+    }
   };
 
   const reviews = [
@@ -126,8 +140,8 @@ const BookDetail = () => {
           </h3>
         </Link>
       </div>
-      <div className="m-auto mt-10">
-        <h2 className="text-center text-3xl font-bold uppercase font-serif text-[#19203a]">
+      <div className="m-auto mt-10 border-t-2 w-[75%] rounded border-[#555555]">
+        <h2 className="text-center text-3xl font-bold uppercase font-serif text-[#19203a] pt-3">
           {bookDetail.title}
         </h2>
       </div>
@@ -221,8 +235,10 @@ const BookDetail = () => {
           </div>
           <div className="mt-8">
             <h3 className="text-white text-2xl">Descripción</h3>
-            <p className="font-medium italic text-xl mt-5 p-2 pr-10 bg-[#292828] rounded-lg mr-3 text-[#bbb]">
-              {bookDetail.description}
+            <p className="font-medium italic text-xl mt-5 p-2 pr-10 bg-[#292828] rounded-lg mr-3 text-[#bbb] pb-10">
+              {bookDetail.description && bookDetail.description.length > 515
+                ? `${bookDetail.description.slice(0, 515)}...`
+                : `${bookDetail.description}`}
             </p>
           </div>
         </div>
@@ -230,30 +246,55 @@ const BookDetail = () => {
           <h3 className="text-center mt-3 text-white font-medium border-b-2 border-[#777777] w-[95%] m-auto">
             RESEÑAS
           </h3>
-          <div className="h-[500px]  overflow-y-auto scrollCustomStyle border border-[#555555] p-1 w-[95%] m-auto rounded mt-2 bg-[#030407]">
-            {reviews?.map((review) => {
-              return (
-                <div className="w-[95%] m-auto rounded p-1 mb-1">
-                  <div className="flex justify-between">
-                    <div>
-                      <h4 className="bg-[#808027] text-black font-medium italic px-2 rounded">
-                        {review.userName}
-                      </h4>
+          <div className="h-[525px]  overflow-y-auto scrollCustomStyle border border-[#555555] p-1 w-[95%] m-auto rounded mt-2 bg-[#030407]">
+            {reviews.length ? (
+              reviews.map((review) => {
+                return (
+                  <div className="w-[95%] m-auto rounded p-1 mb-1">
+                    <div className="flex justify-between">
+                      <div>
+                        <h4 className="bg-[#808027] text-black font-medium italic px-2 rounded">
+                          {review.userName}
+                        </h4>
+                      </div>
+                      <div>
+                        <h5 className="pr-3 font-bold text-white">
+                          {score.slice(0, review.score).join("")}
+                        </h5>
+                      </div>
                     </div>
                     <div>
-                      <h5 className="pr-3 font-bold text-white">
-                        {score.slice(0, review.score).join("")}
-                      </h5>
+                      <p className="bg-[#979393] p-1 rounded-sm mt-1">
+                        {review.comment}
+                      </p>
                     </div>
                   </div>
-                  <div>
-                    <p className="bg-[#979393] p-1 rounded-sm mt-1">
-                      {review.comment}
-                    </p>
-                  </div>
+                );
+              })
+            ) : (
+              <div className="text-[#999999] h-[450px] flex flex-col items-center justify-center">
+                <div>
+                  <h4>Aun no hay reseñas de este libro</h4>
                 </div>
-              );
-            })}
+                <div className="flex gap-3">
+                  <h4>Sé el primero en comentar</h4>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 12.75l3 3m0 0l3-3m-3 3v-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            )}
           </div>
           {LOGIN === 1 && ROLE === "USER" ? (
             <div>
@@ -296,17 +337,20 @@ const BookDetail = () => {
                     );
                   })}
                 </div>
-                <div>
+                <div
+                  className="flex px-1 rounded bg-[#19588b] hover:cursor-pointer hover:bg-[#10436d]"
+                  onClick={() => submitReview()}
+                >
+                  <h4 className="text-white">Agregar</h4>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="#ffffff"
                     viewBox="0 0 24 24"
-                    strokeWidth={1.5}
+                    strokeWidth={1}
                     stroke="currentColor"
-                    className="hover:cursor-pointer hover:fill-[#bbbbbb]"
+                    className=""
                     width="25px"
                     height="25px"
-                    onClick={() => submitReview()}
                   >
                     <path
                       strokeLinecap="round"
@@ -317,7 +361,18 @@ const BookDetail = () => {
                 </div>
               </div>
             </div>
-          ) : null}
+          ) : (
+            <div className="mt-5 text-[#cccccc] flex flex-col justify-center items-center text-lg">
+              <div>
+                <h4>Para poder dejar tu reseña</h4>
+              </div>
+              <div>
+                <Link to="/login">
+                  <h4 className="underline hover:text-white">Inicia Sesión</h4>
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
