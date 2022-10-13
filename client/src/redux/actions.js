@@ -30,6 +30,8 @@ import {
   RESET_DELETE_BOOKS,
   RECORD_ORDERS,
   FILTER_DISPONIBILITY,
+  GET_BOOK_REVIEWS,
+  POST_BOOK_REVIEW,
 } from "./types.js";
 import axios from "axios";
 
@@ -112,8 +114,8 @@ export function orderPrice(order) {
 export function OrderDeleteBook(order) {
   return {
     type: ORDER_DELETE_BOOK,
-    payload: order
-  }
+    payload: order,
+  };
 }
 
 export function filterPrice(price) {
@@ -176,8 +178,8 @@ export function deleteBook(idBook) {
 export function searchDeleteBook(search) {
   return {
     type: SEARCH_DELETE_BOOK,
-    payload: search
-  }
+    payload: search,
+  };
 }
 
 export function register(body) {
@@ -205,19 +207,17 @@ export function setStatus(mensaje) {
   };
 }
 
-
-export function filterDisponibility (disponibility){
-  return{
+export function filterDisponibility(disponibility) {
+  return {
     type: FILTER_DISPONIBILITY,
-    payload: disponibility
-  }
+    payload: disponibility,
+  };
 }
 
-
-export function resetDeleteBooks(){
+export function resetDeleteBooks() {
   return {
-    type: RESET_DELETE_BOOKS, 
-  }
+    type: RESET_DELETE_BOOKS,
+  };
 }
 
 export const resetSearchBook = () => ({ type: RESET_SEARCH_BOOK });
@@ -239,14 +239,14 @@ export const getUsers = () => async (dispatch) => {
 
 export const deleteUser =
   (idUser, data = { isActive: "false" }) =>
-    async (dispatch) => {
-      let usersActive = await axios.put(`${direction}/users/${idUser}`, data);
+  async (dispatch) => {
+    let usersActive = await axios.put(`${direction}/users/${idUser}`, data);
 
-      return dispatch({
-        type: DELETE_USER,
-        payload: usersActive.data,
-      });
-    };
+    return dispatch({
+      type: DELETE_USER,
+      payload: usersActive.data,
+    });
+  };
 
 export function deleteCategory(idCategory) {
   return async (dispatch) => {
@@ -262,14 +262,14 @@ export function deleteCategory(idCategory) {
 
 export const resetUser =
   (idUser, data = { isActive: "true" }) =>
-    async (dispatch) => {
-      let users = await axios.put(`${direction}/users/${idUser}`, data);
+  async (dispatch) => {
+    let users = await axios.put(`${direction}/users/${idUser}`, data);
 
-      return dispatch({
-        type: RESET_USER,
-        payload: users.data,
-      });
-    };
+    return dispatch({
+      type: RESET_USER,
+      payload: users.data,
+    });
+  };
 
 export function loginWithGoogle(info) {
   return async (dispatch) => {
@@ -288,10 +288,9 @@ export function addCart(book) {
     payload: book,
   };
 }
-export function postCart(cart){
+export function postCart(cart) {
   return async (dispatch) => {
     try {
-      
       var res = await axios.post(`${direction}/cart/cartUser`, cart);
       return dispatch({
         type: POST_CART,
@@ -310,6 +309,37 @@ export function getCart(email) {
       type: GET_CART,
       payload: res.data.data,
     });
+  };
+}
+
+export function getBookReviews(bookId) {
+  return async (dispatch) => {
+    try {
+      var res = await axios.get(`${direction}/reviews/${bookId}/all-reviews`);
+      return dispatch({
+        type: GET_BOOK_REVIEWS,
+        payload: res.data,
+      });
+    } catch (e) {
+      console.log("Error in bookId");
+    }
+  };
+}
+
+export function postReview(data) {
+  return async (dispatch) => {
+    try {
+      var res = await axios.post(
+        `${direction}/reviews/add-review/${data.bookId}/${data.userId}`,
+        { comment: data.commentUser, score: data.score }
+      );
+      return dispatch({
+        type: POST_BOOK_REVIEW,
+        payload: res.data,
+      });
+    } catch (e) {
+      console.log("Error in Data");
+    }
   };
 }
 
