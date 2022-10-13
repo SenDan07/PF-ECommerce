@@ -11,6 +11,7 @@ export default function Cart() {
   const ROLE = useSelector((state) => state.role);
   const User = useSelector((state) => state.user);
 
+  const cart1 = useSelector((state) => state.cart);
   let cart = JSON.parse(localStorage.getItem("bookDetail"));
   //Si esta logueado guardas el carrito al id del usuario
   
