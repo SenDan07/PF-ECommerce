@@ -67,12 +67,11 @@ Categories.belongsToMany(Books, {
 Order.belongsToMany(Books, { through: Detalle });
 Books.belongsToMany(Order, { through: Detalle });
 
-Review.belongsToMany(Books, {
-  through: "book_reviews",
-});
-Review.belongsToMany(User, {
-  through: "user_reviews",
-});
+Books.hasMany(Review)
+Review.belongsTo(Books)
+
+User.hasMany(Review)
+Review.belongsTo(User)
 
 User.hasMany(Order);
 Order.belongsTo(User);
