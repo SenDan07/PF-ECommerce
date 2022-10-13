@@ -21,7 +21,6 @@ export default function SearchBar() {
   }
   function onInputChange(e) {
     e.preventDefault();
-
     setSearch(e.target.value);
   }
   return (

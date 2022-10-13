@@ -1,6 +1,6 @@
+require("dotenv").config();
 const { Sequelize, Op } = require("sequelize");
 const fs = require("fs");
-require("dotenv").config();
 const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
@@ -83,18 +83,11 @@ Review.belongsToMany(User, {
   foreignKey: "userId",
   targetKey: "id",
 });
-
 User.hasMany(Order);
 Order.belongsTo(User);
 
-User.belongsToMany(Books, {
-  as: "favorites",
-  through: "User_Books",
-});
-Books.belongsToMany(User, {
-  as: "favorites",
-  through: "User_Books",
-});
+User.belongsToMany(Favorite, { through: "User_Favorite" });
+Favorite.belongsToMany(User, { through: "User_Favorite" });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

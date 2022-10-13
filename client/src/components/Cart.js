@@ -10,6 +10,8 @@ export default function Cart() {
 
   const cart1 = useSelector((state) => state.cart);
   let cart = JSON.parse(localStorage.getItem("bookDetail"));
+  //Si esta logueado guardas el carrito al id del usuario
+  
   console.log("Carrito", cart);
   return (
     <div className="flex flex-row">
@@ -20,7 +22,7 @@ export default function Cart() {
       </Link>
       <div className="m-10">
         {cart?.map((c) => {
-          return <CartItem book={c} />;
+          return <CartItem key={c.id} book={c} />;
         })}
       </div>
       <div className="mt-20 text-lg font-medium pr-4">
@@ -29,8 +31,7 @@ export default function Cart() {
           Total:{" "}
           <span className="text-black font-bold">
             $
-            {cart
-              .reduce((ac, e) => {
+            {cart?.reduce((ac, e) => {
                 return ac + e.price * e.quantity;
               }, 0)
               .toFixed(2)}
