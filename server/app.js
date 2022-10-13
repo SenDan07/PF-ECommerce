@@ -17,7 +17,7 @@ const shopRoutes = require("./src/routes/shopRoutes");
 const reviewRoutes = require("./src/routes/reviewRoutes");
 const loginRoutes = require("./src/routes/loginRoutes");
 const orderRoutes = require("./src/routes/orderRoutes");
-const alertRoutes = require('./src/routes/alertRoute');
+const alertRoutes = require('./src/routes/alertRoutes');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
