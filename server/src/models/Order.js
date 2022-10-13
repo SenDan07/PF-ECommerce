@@ -18,6 +18,6 @@ module.exports=(sequelize)=>{
 			type: DataTypes.FLOAT,
 		}
 	 },{
-        timestamps:false,
+        timestamps:true,
     });
 } 
