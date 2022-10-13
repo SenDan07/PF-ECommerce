@@ -12,17 +12,16 @@ const orderControllers = {
            const { UserId,direccion, total,telefono,pais,carrito,id} = req.body;
   
   const stripe= new Stripe(process.env.CLAVE_SECRETA_STRIPE)
-           
+           let totalFormat=Math.ceil(parseFloat(total)*100);
   console.log({ UserId,direccion, total,telefono,pais,carrito,id})
       const payment=await stripe.paymentIntents.create({
-          amount:total,
+          amount:totalFormat,
           currency:"USD",
           description:"Books",
           payment_method:id,
           confirm:true
       })
-      console.log(payment)
-  
+        
            const order = await Order.create({
               UserId,
               direccion,
@@ -34,8 +33,7 @@ const orderControllers = {
 
            let namesBooks = carrito.map(el => el.title)
            const books = await Books.findAll({ where: { title: namesBooks } });
-           console.log(books)
-           //pedido.addProduct(products,{ through: { cantidad: 5 } });
+           
            books.sort(function (a, b) {
             if (a.title > b.title) {
               return 1;
@@ -90,10 +88,11 @@ const orderControllers = {
 
        let refactorOrder=orders.map(el=>{
          return {
+            id:el.id,
             direccion:el.direccion,
             telefono:el.telefono,
             pais:el.pais,
-            total:el.total/100,
+            total:el.total,
             fecha:el.createdAt,
             detalle:el.Books.map(el=>{
                return {
