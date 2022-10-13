@@ -9,8 +9,8 @@ export default function OrderDeleteBooks() {
   }
 
   return (
-    <select name="orderABC" onChange={onSelectChange}>
-      <option value={false}>LIBROS</option>
+    <select name="orderABC" onChange={onSelectChange} className="rounded bg-bgSearch text-white hover:cursor-pointer outline-none">
+      <option value={false}>ORDENAR</option>
       <option value="AZ">A - Z</option>
       <option value="ZA">Z - A</option>
     </select>
