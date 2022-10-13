@@ -1,7 +1,7 @@
 // import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { logoutUser,addCart } from "../redux/actions";
+import { logoutUser, addCart } from "../redux/actions";
 import SearchBar from "./SearchBar";
 
 export default function NavBar() {
@@ -11,7 +11,6 @@ export default function NavBar() {
   const ROLE = useSelector((state) => state.role);
   const USER = useSelector((state) => state.user);
 
- 
   // console.log(ROLE);
 
   // if (LOGIN && ROLE.length) {
@@ -33,22 +32,23 @@ export default function NavBar() {
   //     })
   //   );
   // }, [LOGIN, ROLE]);
-  let cart_User=useSelector((state) => state.cart)
-  console.log("Estado de Cart ",cart_User)
+  let cart_User = useSelector((state) => state.cart);
+  console.log("Estado de Cart ", cart_User);
 
-  cart_User = JSON.parse( localStorage.getItem("bookDetail"))? 
-              JSON.parse( localStorage.getItem("bookDetail")).length?
-              JSON.parse( localStorage.getItem("bookDetail")):cart_User
-              :[]
-  console.log(cart_User)
+  cart_User = JSON.parse(localStorage.getItem("bookDetail"))
+    ? JSON.parse(localStorage.getItem("bookDetail")).length
+      ? JSON.parse(localStorage.getItem("bookDetail"))
+      : cart_User
+    : [];
+  console.log(cart_User);
 
-  localStorage.setItem("bookDetail", JSON.stringify(cart_User))
-  
+  localStorage.setItem("bookDetail", JSON.stringify(cart_User));
+
   async function logout() {
-    alert("Ingrese a cerrar sesion")
+    // alert("Ingrese a cerrar sesion")
     await dispatch(logoutUser());
     //Eliminas el Cart
-    localStorage.setItem("bookDetail",JSON.stringify([]))
+    localStorage.setItem("bookDetail", JSON.stringify([]));
     await dispatch(addCart([]));
     navigate("/");
   }
@@ -100,7 +100,9 @@ export default function NavBar() {
               />
             </svg>
 
-            <span className="bg-black px-2 py-1 rounded">{cart_User.length}</span>
+            <span className="bg-black px-2 py-1 rounded">
+              {cart_User.length}
+            </span>
           </Link>
         )}
       </div>
@@ -110,20 +112,23 @@ export default function NavBar() {
           <div className="flex gap-8">
             <Link
               to="/favorites"
-              className="mr-10 cursor-pointer hover:text-hoverMenu">
+              className="mr-10 cursor-pointer hover:text-hoverMenu"
+            >
               FAVORITOS
             </Link>
 
             <Link
               to="/pedidos"
-              className="mr-10 cursor-pointer hover:text-hoverMenu">
+              className="mr-10 cursor-pointer hover:text-hoverMenu"
+            >
               PEDIDOS
             </Link>
           </div>
         ) : LOGIN === 1 && ROLE === "ADMIN" ? (
           <Link
             to="/admin"
-            className="mx-3 cursor-pointer hover:text-hoverMenu">
+            className="mx-3 cursor-pointer hover:text-hoverMenu"
+          >
             ADMINISTRAR
           </Link>
         ) : null}
@@ -201,7 +206,6 @@ export default function NavBar() {
                 </Link>
             </div>
 */
-
 
 /* 
         {LOGIN === 1 && ROLE === "USER" ? (

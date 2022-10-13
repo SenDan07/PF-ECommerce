@@ -87,48 +87,48 @@ const BookDetail = () => {
   };
 
   const reviews = [
-    // {
-    //   userName: "Danny",
-    //   comment:
-    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-    //   score: 2,
-    // },
-    // {
-    //   userName: "William",
-    //   comment:
-    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.",
-    //   score: 0,
-    // },
-    // {
-    //   userName: "Rodrigo",
-    //   comment:
-    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    //   score: 5,
-    // },
-    // {
-    //   userName: "Gabriel",
-    //   comment:
-    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-    //   score: 2,
-    // },
-    // {
-    //   userName: "Ricardo",
-    //   comment:
-    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.",
-    //   score: 1,
-    // },
-    // {
-    //   userName: "Brayan",
-    //   comment:
-    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    //   score: 4,
-    // },
-    // {
-    //   userName: "Diego",
-    //   comment:
-    //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    //   score: 3,
-    // },
+    {
+      userName: "Danny",
+      comment:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+      score: 2,
+    },
+    {
+      userName: "William",
+      comment:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.",
+      score: 0,
+    },
+    {
+      userName: "Rodrigo",
+      comment:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      score: 5,
+    },
+    {
+      userName: "Gabriel",
+      comment:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+      score: 2,
+    },
+    {
+      userName: "Ricardo",
+      comment:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.",
+      score: 1,
+    },
+    {
+      userName: "Brayan",
+      comment:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      score: 4,
+    },
+    {
+      userName: "Diego",
+      comment:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      score: 3,
+    },
   ];
 
   return (
