@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCart,addCart, login, loginWithGoogle,userId } from "../redux/actions";
 import { GoogleLogin } from "@react-oauth/google";
 
 export const Login = () => {
+ 
   const navigate = useNavigate();
   let dispatch = useDispatch();
-
+ 
   //   let regexEmail =
   //     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -18,18 +19,13 @@ export const Login = () => {
 
   const [data, setData] = useState(initialInputs);
 
-  async function fill_cart(){
+  function fill_cart(){
     let cart = JSON.parse(localStorage.getItem("bookDetail")) || [];
     //Traemos lo que tiene guardado en su cuenta  
-    const cart_User=await dispatch(getCart(data.email))
-      //cart=[...cart,cart_User];
-      if(cart_User){
-        cart=[...cart_User]
-      }
-      alert(cart)
-      dispatch(addCart(cart));
-      cart = JSON.stringify(cart);
-      localStorage.setItem("bookDetail", cart);
+    
+    dispatch(getCart(data.email))
+     //cart=[...cart,cart_User]; 
+      console.log("Debio llenar el estado Cart")     
   }
 
   function onSubmit(e) {

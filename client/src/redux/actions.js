@@ -286,7 +286,7 @@ export function postCart(cart){
       var res = await axios.post(`${direction}/cart/cartUser`, cart);
       return dispatch({
         type: POST_CART,
-        payload: res.data,
+        payload: res.data.data,
       });
     } catch (e) {
       dispatch(setStatus("Datos no se guardaron correctamente"));
@@ -295,10 +295,11 @@ export function postCart(cart){
 }
 export function getCart(email) {
   return async (dispatch) => {
-    let res = await axios.get(`${direction}/cart/cartUser?${email}`);
+    let res = await axios.get(`${direction}/cart/cartUser?email=${email}`);
+    console.log("lee carro", res.data.data)
     return dispatch({
       type: GET_CART,
-      payload: res.data,
+      payload: res.data.data,
     });
   };
 }
