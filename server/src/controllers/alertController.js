@@ -30,8 +30,26 @@ const alertController = {
         },
       });
       let htmlContent = `
-        <h1>Informe de envío</h1>
-        <p>${content}</p>
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+          h1, h3, h5 {
+            font-family: "Arial";
+          }
+          h5 {
+            color: "#808080";
+          }
+        </style>
+        <title>Librería PF</title>
+      </head>
+      <body>
+      ${content}
+      </body>
+      </html>
       `;
       const mailDetails = {
         from: "'e-Commerce PF-G8' <sigl.system@gmail.com>",

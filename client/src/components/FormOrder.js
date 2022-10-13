@@ -74,7 +74,9 @@ function CheckoutForm() {
           {
             id,
             UserId: User.iduser,
+            nombreCompleto: user.name + " " + user.lastName,
             total: total * 100,
+            email: user.email,
             direccion: user.address,
             telefono: user.phone,
             pais: user.country,
