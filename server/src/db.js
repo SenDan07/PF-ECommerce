@@ -70,6 +70,7 @@ Order.belongsToMany(Books, { through: Detalle });
 Books.belongsToMany(Order, { through: Detalle });
 
 
+
 User.hasMany(Order);
 Order.belongsTo(User);
 
@@ -81,6 +82,8 @@ Books.belongsToMany(User, {
   as: "favorites",
   through: "User_Books",
 });
+
+
 
 
 module.exports = {

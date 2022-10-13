@@ -54,7 +54,7 @@ function CheckoutForm() {
                 let cartNuevo=cart.map(el=>{
                     return {
                         title:el.title,
-                        cantidad:el.quantity
+                        cantidad:parseInt(el.quantity)
                     }
                 })
                                
@@ -72,7 +72,7 @@ function CheckoutForm() {
                     carrito:cartNuevo
                 })
                 console.log(total)
-                console.log(cart)
+                console.log(cartNuevo)
                 console.log(paymentMethod)
                 elements.getElement(CardElement).clear()
                 //console.log(data)
