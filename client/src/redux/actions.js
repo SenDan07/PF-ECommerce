@@ -29,6 +29,7 @@ import {
   SEARCH_DELETE_BOOK,
   RESET_DELETE_BOOKS,
   RECORD_ORDERS,
+  FILTER_DISPONIBILITY,
 } from "./types.js";
 import axios from "axios";
 
@@ -202,6 +203,14 @@ export function setStatus(mensaje) {
     type: SET_STATUS,
     payload: mensaje,
   };
+}
+
+
+export function filterDisponibility (disponibility){
+  return{
+    type: FILTER_DISPONIBILITY,
+    payload: disponibility
+  }
 }
 
 

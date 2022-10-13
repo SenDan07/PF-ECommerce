@@ -19,6 +19,7 @@ const stripePromise = loadStripe(
 );
 
 function CheckoutForm() {
+
   const stripe = useStripe();
   const elements = useElements();
 
@@ -59,7 +60,7 @@ function CheckoutForm() {
         let cartNuevo = cart.map((el) => {
           return {
             title: el.title,
-            cantidad: el.quantity,
+            cantidad: parseInt(el.quantity),
           };
         });
 
@@ -92,6 +93,7 @@ function CheckoutForm() {
           //Si se realizo la compra, borra el contenido de LocalStore
           alert("Se realizo la compra Correctamente!!");
           localStorage.clear()
+
         }
       } catch (error) {
         console.log(error);

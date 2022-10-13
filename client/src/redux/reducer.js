@@ -30,6 +30,7 @@ import {
   SEARCH_DELETE_BOOK,
   RESET_DELETE_BOOKS,
   RECORD_ORDERS,
+  FILTER_DISPONIBILITY,
 } from "./types";
 
 const initialState = {
@@ -127,6 +128,20 @@ function rootReducer(state = initialState, action) {
         ...state,
         booksDeleteAdminFilter: orderBookDelete,
       };
+
+
+    case FILTER_DISPONIBILITY:
+      let auxFilterDisponibility = [...state.booksDeleteAdmin]
+      if (action.payload === "si") {
+        auxFilterDisponibility = auxFilterDisponibility.filter(book => book.activado === true)
+      }
+      if (action.payload === "no") {
+        auxFilterDisponibility = auxFilterDisponibility.filter(book => book.activado === false)
+      }
+      return{
+        ...state,
+        booksDeleteAdminFilter: auxFilterDisponibility
+      }
 
 
     case SEARCH_DELETE_BOOK:
@@ -267,7 +282,6 @@ function rootReducer(state = initialState, action) {
       const usersActive = state.activeUsers.filter(
         (user) => user.id !== idUserDelete
       );
-
       const usersInactive = [...state.inactiveUsers, action.payload.data];
 
       return {
@@ -304,6 +318,7 @@ function rootReducer(state = initialState, action) {
         inactiveUsers: inactiveUsersReset,
       };
 
+
     case DELETE_BOOKS:
       let auxBookDeleted = [...state.books];
       let bookDeleted = auxBookDeleted.filter(
@@ -314,6 +329,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         booksFilter: [...bookDeleted],
       };
+
 
     case LOGIN_WITH_GOOGLE:
       console.log(action.payload.user);
@@ -328,6 +344,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         cart: action.payload,
       };
+
 
     case GET_CART:
       return {
