@@ -332,7 +332,7 @@ function rootReducer(state = initialState, action) {
 
 
     case LOGIN_WITH_GOOGLE:
-      console.log(action.payload.user);
+      
       return {
         ...state,
         user: action.payload.user,
@@ -347,6 +347,7 @@ function rootReducer(state = initialState, action) {
 
 
     case GET_CART:
+      console.log("Reducer llena carro",action.payload)
       return {
         ...state,
         cart: action.payload

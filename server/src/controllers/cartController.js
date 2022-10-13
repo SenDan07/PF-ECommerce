@@ -145,7 +145,7 @@ const cartController = {
           price: element.price,
           title: element.title,
           quantity: element.quantity,
-          imageLink: element.imageLink,
+          imageLinks: element.imageLinks,
           email: email
   
         })

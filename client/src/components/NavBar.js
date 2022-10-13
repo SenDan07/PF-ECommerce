@@ -10,6 +10,8 @@ export default function NavBar() {
   const LOGIN = useSelector((state) => state.login);
   const ROLE = useSelector((state) => state.role);
   const USER = useSelector((state) => state.user);
+
+ 
   // console.log(ROLE);
 
   // if (LOGIN && ROLE.length) {
@@ -31,14 +33,23 @@ export default function NavBar() {
   //     })
   //   );
   // }, [LOGIN, ROLE]);
+  let cart_User=useSelector((state) => state.cart)
+  console.log("Estado de Cart ",cart_User)
 
-  let cart = JSON.parse( localStorage.getItem("bookDetail")) || [];
+  cart_User = JSON.parse( localStorage.getItem("bookDetail"))? 
+              JSON.parse( localStorage.getItem("bookDetail")).length?
+              JSON.parse( localStorage.getItem("bookDetail")):cart_User
+              :[]
+  console.log(cart_User)
 
-  function logout() {
-    dispatch(logoutUser());
+  localStorage.setItem("bookDetail", JSON.stringify(cart_User))
+  
+  async function logout() {
+    alert("Ingrese a cerrar sesion")
+    await dispatch(logoutUser());
     //Eliminas el Cart
     localStorage.setItem("bookDetail",JSON.stringify([]))
-    dispatch(addCart([]));
+    await dispatch(addCart([]));
     navigate("/");
   }
 
@@ -89,7 +100,7 @@ export default function NavBar() {
               />
             </svg>
 
-            <span className="bg-black px-2 py-1 rounded">{cart.length}</span>
+            <span className="bg-black px-2 py-1 rounded">{cart_User.length}</span>
           </Link>
         )}
       </div>

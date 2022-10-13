@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useSelector,useDispatch } from "react-redux";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 //import CartItem from "./CartItem"
 import { Link } from "react-router-dom";
 //import FormPayment from "./FormPayment";
@@ -11,7 +11,6 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import axios from "axios";
-import { postCart } from "../redux/actions";
 
 // const stripePromise = loadStripe(process.env.REACT_APP_CLAVE_PUBLICA_STRIPE)
 const stripePromise = loadStripe(
@@ -100,10 +99,6 @@ function CheckoutForm() {
       }
     }
   }
-const dispatch=useDispatch()
-useEffect(()=>{
-  dispatch(postCart({email:User.email,cart}))
-},[])
 
   return (
     <div className="">
@@ -220,7 +215,7 @@ useEffect(()=>{
                 <div>
                   <h3 className="text-center text-xl font-bold text-black">
                     <span className="font-medium text-white">Price: </span>$
-                    {book.price.toFixed(2)}
+                    {book.price}
                   </h3>
                 </div>
               </div>

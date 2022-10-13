@@ -55,7 +55,7 @@ export default function CartItem({ book }) {
             <div>
                 <h3 className="text-center text-xl font-bold text-black">
                     <span className="font-medium text-white">Price: </span>$
-                    {book.price.toFixed(2)}
+                    {book.price}
                 </h3>
             </div>
         </div>
