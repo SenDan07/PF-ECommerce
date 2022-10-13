@@ -1,16 +1,17 @@
 const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
 const HttpError = require("../errors/http-error");
-const {
-  CLIENT_ID,
-  CLIENT_SECRET,
-  REFRESH_TOKEN,
-  REDIRECT_URI
-} = process.env;
+// const {
+//   CLIENT_ID,
+//   CLIENT_SECRET,
+//   REFRESH_TOKEN,
+//   REDIRECT_URI
+// } = process.env;
 
 const alertController = {
   sendEmail: async (req, res, next) => {
     const { emails, subject, content } = req.body;
+
     try {
       const oAuthsClient = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
       oAuthsClient.setCredentials({ refresh_token: REFRESH_TOKEN });
@@ -65,6 +66,7 @@ const alertController = {
       }
       return next(error);
     }
+
   },
 };
 
