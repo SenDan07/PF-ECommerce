@@ -70,9 +70,6 @@ const reviewControllers = {
       const createReview = await Review.create({
         score,
         comment,
-        userId,
-        bookId,
-        // where id: userId
       });
       const linkUser = await User.findOne({
         where: {
@@ -84,7 +81,8 @@ const reviewControllers = {
           id: bookId,
         },
       });
-      createReview.addUser(linkUser).addBooks(linkBook);
+      createReview.addUser(linkUser)
+      createReview.addBooks(linkBook);
       return res.status(201).send(createReview);
     } catch (err) {
       const error = new HttpError(
