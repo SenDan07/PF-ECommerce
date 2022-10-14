@@ -13,9 +13,9 @@ import {
 import axios from "axios";
 
 const stripePromise = loadStripe(process.env.REACT_APP_CLAVE_PUBLICA_STRIPE)
-/*const stripePromise = loadStripe(
-  "pk_test_51Lqo7BI6MI9cBxDwmOF2bJyO8occyT3DuZi2qPsJid7lVFRUoXqWB3iM4d52JhZ2msloet7KeIgMgFhmpXSTOwl800xsUjU1yr"
-);*/
+/* const stripePromise = loadStripe(
+  "pk_test_51LsWoOFrokjF5UMqf7U8cohybCbbQWRPY1EZPntmfC8r0O5prM1K2QCHxL6Ws0Gfon8eAf1uAyQcO97LhPDK6HgY00ACNEMSaz"
+); */
 
 function CheckoutForm() {
 
