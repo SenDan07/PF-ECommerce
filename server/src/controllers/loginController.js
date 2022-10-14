@@ -6,6 +6,7 @@ const { generateToken } = require("../util/helpers/jwt-generator");
 const models = require("../db");
 const { User } = require("../db");
 const jwt_decode = require("jwt-decode");
+const axios = require("axios");
 
 const loginController = {
   registerUser: async (req, res, next) => {
@@ -65,11 +66,13 @@ const loginController = {
             <div>
               <h1>Libreria PF</h1>
               <h5>Registro de usuario</h5>
-              <p>Sr. ${name + " " + lastName}, le informamos que su cuenta ha sido creada satisfactoriamente. Lo invitamos a que visite nuestra página y mire las opciones de libros que tenemos disponibles.</p>
+              <p>Sr. ${
+                name + " " + lastName
+              }, le informamos que su cuenta ha sido creada satisfactoriamente. Lo invitamos a que visite nuestra página y mire las opciones de libros que tenemos disponibles.</p>
             </div>
             `,
-          })
-        };
+          });
+        }
 
         return res.status(200).json({
           status: 1,
@@ -104,7 +107,7 @@ const loginController = {
             email: user.email,
             isGoogle: user.isGoogle,
             picture: user.picture,
-            iduser:user.id
+            iduser: user.id,
           };
           return res.status(200).json({
             status: 1,
@@ -247,7 +250,7 @@ const loginController = {
           isGoogle,
           email,
           picture,
-          iduser:userCreated.id
+          iduser: userCreated.id,
         };
 
         return res.status(200).json({
@@ -279,7 +282,7 @@ const loginController = {
         email,
         isGoogle,
         picture,
-        iduser:user.id
+        iduser: user.id,
       };
 
       res.status(200).json({
