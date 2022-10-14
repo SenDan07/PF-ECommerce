@@ -6,6 +6,7 @@ const { generateToken } = require("../util/helpers/jwt-generator");
 const models = require("../db");
 const { User } = require("../db");
 const jwt_decode = require("jwt-decode");
+const axios = require("axios")
 
 const loginController = {
   registerUser: async (req, res, next) => {
