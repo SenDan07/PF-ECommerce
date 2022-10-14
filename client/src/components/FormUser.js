@@ -96,6 +96,7 @@ export default function FormUser() {
       allowEscapeKey: false,
       allowOutsideClick: false,
     });
+
   };
 
   const showLoadingRegister = async () => {
@@ -164,6 +165,12 @@ export default function FormUser() {
     } else {
       await showAlertError();
     }
+
+    //e.target.name.focus();
+    let boton= document.getElementById('enviar')
+    boton.disabled = true;
+    //setTimeout(() => dispatch(setStatus("")), 10000);
+
   }
 
   function handleChange(e) {

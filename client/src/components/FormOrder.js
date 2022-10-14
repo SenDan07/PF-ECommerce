@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch ,useSelector } from "react-redux";
 //import CartItem from "./CartItem"
 import { Link } from "react-router-dom";
 //import FormPayment from "./FormPayment";
 import { loadStripe } from "@stripe/stripe-js";
+import { addCart, deleteCart } from "../redux/actions";
+import { useNavigate } from "react-router-dom";
 import {
   Elements,
   CardElement,
@@ -22,6 +24,8 @@ function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
 
+  const dispatch=useDispatch()
+  const navigate=useNavigate()
   const User = useSelector((state) => state.user);
   let cart = JSON.parse(localStorage.getItem("bookDetail"));
 
@@ -52,8 +56,7 @@ function CheckoutForm() {
       console.log(paymentMethod);
 
       const { id } = paymentMethod;
-      console.log("user despues de stripe");
-      console.log(user);
+      console.log("user despues de stripe",user);
       try {
         let cart = JSON.parse(localStorage.getItem("bookDetail"));
         let cartNuevo = cart.map((el) => {
@@ -84,9 +87,7 @@ function CheckoutForm() {
             carrito: cartNuevo,
           }
         );
-        console.log(total);
-        console.log(cart);
-        console.log(paymentMethod);
+       
         elements.getElement(CardElement).clear();
         //console.log(data)
         if (data.error) {
@@ -95,10 +96,12 @@ function CheckoutForm() {
           //Si se realizo la compra, borra el contenido de LocalStore
           alert("Se realizo la compra Correctamente!!");
           localStorage.clear()
-
+          await dispatch(addCart([]));
+          await dispatch(deleteCart(User.email))
+          navigate("/")
         }
       } catch (error) {
-        console.log(error);
+        alert("No Se pudo realizar el pago Correctamente!!");
       }
     }
   }
