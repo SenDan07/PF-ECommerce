@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import RecordDetailsDumb from "./RecordDetailsDumb"
 import { getRecordOrders } from "../redux/actions"
+import NavBar from "./NavBar";
 
 
 export default function RecordDetailsSmart() {
@@ -20,6 +21,7 @@ export default function RecordDetailsSmart() {
 
     return (
         <div>
+            <NavBar/>
             <div className="flex justify-start">
                 <Link to={`/historyorder/${idUser}`}>
                     <h3 className="border-1 border-rose-500 rounded mx-auto px-5 py-2 bg-button text-black hover:text-white mt-5 mx-10">

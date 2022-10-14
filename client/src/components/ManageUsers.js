@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteUser, resetUser, getUsers } from "../redux/actions";
+import NavBar from "./NavBar";
 
 export const ManageUsers = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ export const ManageUsers = () => {
 
   return (
     <div>
+      <NavBar/>
       <div className="mt-5 ml-10 flex justify-start w-max">
         <Link to="/admin">
           <h3 className="border-1 border-rose-500 rounded px-5 py-2 bg-button text-black hover:text-white">

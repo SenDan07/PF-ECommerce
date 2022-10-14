@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getBooks } from "../redux/actions";
 import { Book } from "./Book";
+import NavBar from "./NavBar";
 
 const Favorites = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const Favorites = () => {
 
   return (
     <div>
+      <NavBar/>
       <div className="w-max">
         <Link to="/">
           <h3 className="border-1 border-rose-500 rounded ml-10 mt-8 px-3 py-2 w-max bg-button text-white">
