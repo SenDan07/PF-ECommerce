@@ -8,6 +8,7 @@ const { User } = require("../db");
 const jwt_decode = require("jwt-decode");
 const axios = require("axios");
 
+
 const loginController = {
   registerUser: async (req, res, next) => {
     //verifico los campos del req

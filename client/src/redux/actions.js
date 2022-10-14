@@ -385,7 +385,7 @@ export function postReview(data) {
 }
 
 
-/* export function getRecordOrders(idUser){
+ export function getRecordOrders(idUser){
   return async(dispatch) => {
     let res = await axios.get(`${direction}/checkout/orders/${idUser}`)
     return dispatch ({
@@ -393,7 +393,7 @@ export function postReview(data) {
       payload: res.data
     })
   }
-} */
+} 
 
 
 export const resetBookReviews = () => ({ type: RESET_BOOK_REVIEWS });

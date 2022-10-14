@@ -59,6 +59,7 @@ const initialState = {
   user: {},
   bookReviews: [],
   usersReviews: [],
+  recordOrders: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -394,6 +395,13 @@ function rootReducer(state = initialState, action) {
         ...state,
         usersReviews: [],
       };
+
+
+      case GET_RECORD_ORDERS:
+        return {
+          ...state,
+          recordOrders: action.payload
+        }
 
     default:
       return state;

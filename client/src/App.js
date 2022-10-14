@@ -26,6 +26,7 @@ import "boxicons";
 // import FormPayment from "./components/FormPayment";
 import { ErrorNotFound } from "./components/ErrorNotFound";
 import RecordOrderSmart from "./components/RecordOrderSmart"
+import RecordOrderDetails from "./components/RecordDetailsSmart"
 
 function App() {
   // const dispatch = useDispatch();
@@ -95,6 +96,14 @@ function App() {
           ) : (
             <Route excat path="/historyorder/:id" element={<ErrorNotFound />} />
           )}
+
+
+          {LOGIN === 1 && ROLE === "USER" ? (
+            <Route excat path="/historyorder/:id/:idOrder" element={<RecordOrderDetails />} />
+          ) : (
+            <Route excat path="/historyorder/:id/:idOrder" element={<ErrorNotFound />} />
+          )}
+
 
           {LOGIN === 1 && ROLE === "ADMIN" ? (
             <Route exact path="/deletebook" element={<DeleteBooksSmart />} />
