@@ -96,7 +96,6 @@ export default function FormUser() {
       allowEscapeKey: false,
       allowOutsideClick: false,
     });
-
   };
 
   const showLoadingRegister = async () => {
@@ -167,10 +166,9 @@ export default function FormUser() {
     }
 
     //e.target.name.focus();
-    let boton= document.getElementById('enviar')
-    boton.disabled = true;
+    //let boton = document.getElementById("enviar");
+    //boton.disabled = true;
     //setTimeout(() => dispatch(setStatus("")), 10000);
-
   }
 
   function handleChange(e) {
@@ -291,7 +289,7 @@ export default function FormUser() {
           <input
             type="submit"
             className={`text-xl ${
-              Object.keys(errors).length || !input.name.length
+              Object.keys(errors).length
                 ? "bg-[#94a3b8] p-2 cursor-no-drop rounded"
                 : "bg-[#124d9a] p-2 px-8 m-2 rounded cursor-pointer transition-colors duration-200 hover:bg-[#0e3f7e]"
             }`}
