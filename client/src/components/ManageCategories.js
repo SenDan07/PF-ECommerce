@@ -31,7 +31,7 @@ export const ManageCategories = () => {
             <div className="mb-40">
 
                 <div className="m-auto flex justify-start ">
-                    <Link to="/">
+                    <Link to="/admin">
                         <h3 className="border-1 border-rose-500 rounded mx-auto px-5 py-2 bg-button text-black hover:text-white mt-5 mx-10">
                             &#129044; Regresar
                         </h3>

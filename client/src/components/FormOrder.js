@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 //import FormPayment from "./FormPayment";
 import { loadStripe } from "@stripe/stripe-js";
 import { addCart, deleteCart } from "../redux/actions";
+import { useNavigate } from "react-router-dom";
 import {
   Elements,
   CardElement,
@@ -24,6 +25,7 @@ function CheckoutForm() {
   const elements = useElements();
 
   const dispatch=useDispatch()
+  const navigate=useNavigate()
   const User = useSelector((state) => state.user);
   let cart = JSON.parse(localStorage.getItem("bookDetail"));
 
@@ -96,6 +98,7 @@ function CheckoutForm() {
           localStorage.clear()
           await dispatch(addCart([]));
           await dispatch(deleteCart(User.email))
+          navigate("/")
         }
       } catch (error) {
         alert("No Se pudo realizar el pago Correctamente!!");
