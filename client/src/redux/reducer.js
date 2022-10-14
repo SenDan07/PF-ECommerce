@@ -337,6 +337,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case LOGIN_WITH_GOOGLE:
+      console.log(action.payload);
       return {
         ...state,
         user: action.payload.user,
@@ -361,9 +362,9 @@ function rootReducer(state = initialState, action) {
       };
 
     case DELETE_CART:
-      return{
+      return {
         ...state,
-      }
+      };
     case GET_BOOK_REVIEWS:
       // console.log(action.payload);
       return {
@@ -396,12 +397,11 @@ function rootReducer(state = initialState, action) {
         usersReviews: [],
       };
 
-
-      case GET_RECORD_ORDERS:
-        return {
-          ...state,
-          recordOrders: action.payload
-        }
+    case GET_RECORD_ORDERS:
+      return {
+        ...state,
+        recordOrders: action.payload,
+      };
 
     default:
       return state;
