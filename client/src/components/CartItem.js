@@ -28,8 +28,6 @@ export default function CartItem({ book }) {
         let item=cart.find((c)=>{
             return c.id==book.id
         })
-        console.log("item del carro despues",item)
-        alert(e.target.value)
         item.quantity=e.target.value
         dispatch(addCart(cart))
         cart=JSON.stringify(cart)

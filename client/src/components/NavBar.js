@@ -33,7 +33,6 @@ export default function NavBar() {
   //   );
   // }, [LOGIN, ROLE]);
   let cart_User = useSelector((state) => state.cart);
-  console.log("Estado de Cart ", cart_User);
 
   cart_User = JSON.parse(localStorage.getItem("bookDetail"))
     ? JSON.parse(localStorage.getItem("bookDetail")).length
@@ -80,8 +79,8 @@ export default function NavBar() {
 
       <div>
         {LOGIN === 1 && ROLE === "ADMIN" ? null : (
-          <Link
-            to="/car"
+          <Link 
+            to={cart_User.length?"/car":"/"}
             className="text-xl text-[#888888] flex items-center gap-2 border rounded pl-2"
           >
             {/* <box-icon name="cart" className="text-white"></box-icon> */}
