@@ -7,11 +7,12 @@ import { getRecordOrders } from "../redux/actions"
 
 export default function RecordOrderSmart() {
     const dispatch = useDispatch();
-/*     const idUser = useSelector((state) => state.user.iduser)
-    useEffect(() => { dispatch(getRecordOrders(idUser)); }, []); */
-    //const record = useSelector((state) => state.record)
+    const idUser = useSelector((state) => state.user.iduser)
+    useEffect(() => { dispatch(getRecordOrders(idUser)); }, []);
+    const records = useSelector((state) => state.recordOrders)
 
-    let testing = [1, 2, 3, 4, 5, 6]
+    //console.log("records[0].detalle: ", records[0].detalle)
+
     return (
         <div>
             <div className="flex justify-start">
@@ -45,9 +46,15 @@ export default function RecordOrderSmart() {
 
             </div>
             <div className="mb-3 mx-32">
-                {testing.map((e) => {
+                {records.map((e) => {
                     return (
-                        <RecordOrderDumb />
+                        <RecordOrderDumb
+                            direction={e.direccion}
+                            country={e.pais}
+                            price={e.total}
+                            key={e.id}
+                            idOrder={e.id}
+                            date={e.fecha} />
                     )
                 })}
             </div>

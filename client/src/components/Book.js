@@ -18,11 +18,11 @@ export const Book = ({ name, image, price, id }) => {
       prueba.setAttribute("fill", "#ffffff");
     }
 
-    console.log(
+/*     console.log(
       `Book ${id} Favorite: ${prueba.getAttribute("favorite")}, userId: ${
         USER.iduser
       }`
-    );
+    ); */
   };
 
   // useEffect(() => {
