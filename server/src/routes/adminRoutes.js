@@ -21,5 +21,14 @@ router.put('/category/:idCategory',adminControllers.updateCategory);
 
 router.delete('/category/:idCategory',adminControllers.deleteCategory);
 
+/**----------------RUTAS DE USUARIOS-------------------------------- */
+
+router.get("/userByEmail", adminControllers.getUserByEmail);
+
+router.get("/allUsers",adminControllers.getAllUsers);
+
+router.get("/userById/:idUser",adminControllers.getUserById);
+
+
 
 module.exports = router;

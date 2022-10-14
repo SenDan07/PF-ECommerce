@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetailBook, postReview, resetDetail } from "../redux/actions";
+import {
+  getBookReviews,
+  getDetailBook,
+  postReview,
+  resetDetail,
+  resetBookReviews,
+  getUsersReviews,
+  resetUsersReviews,
+} from "../redux/actions";
 import { useEffect } from "react";
 import { addCart } from "../redux/actions";
 
@@ -11,9 +19,13 @@ const BookDetail = () => {
 
   useEffect(() => {
     dispatch(getDetailBook(bookId));
+    dispatch(getBookReviews(bookId));
+    dispatch(getUsersReviews());
 
-    return () => {
-      dispatch(resetDetail());
+    return async () => {
+      await dispatch(resetDetail());
+      await dispatch(resetBookReviews());
+      await dispatch(resetUsersReviews());
     };
   }, []);
 
@@ -63,7 +75,7 @@ const BookDetail = () => {
     }
   };
 
-  const submitReview = () => {
+  const submitReview = async () => {
     if (currentValue === 0 || comment.length < 5) {
       alert("Completa bien la reseña\nSelecciona al menos una estrella");
     } else {
@@ -73,63 +85,27 @@ const BookDetail = () => {
       //   score: currentValue,
       //   commentUser: comment,
       // });
-      dispatch(
+      await dispatch(
         postReview({
           userId: USER.iduser,
           bookId: bookDetail.id,
+          userName: USER.name,
           score: currentValue,
           commentUser: comment,
         })
       );
+      await dispatch(getBookReviews(bookId));
       setComment("");
       setCurrentValue(0);
     }
   };
 
-  const reviews = [
-    {
-      userName: "Danny",
-      comment:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-      score: 2,
-    },
-    {
-      userName: "William",
-      comment:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.",
-      score: 0,
-    },
-    {
-      userName: "Rodrigo",
-      comment:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      score: 5,
-    },
-    {
-      userName: "Gabriel",
-      comment:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
-      score: 2,
-    },
-    {
-      userName: "Ricardo",
-      comment:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.",
-      score: 1,
-    },
-    {
-      userName: "Brayan",
-      comment:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      score: 4,
-    },
-    {
-      userName: "Diego",
-      comment:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      score: 3,
-    },
-  ];
+  const reviews = useSelector((state) => state.bookReviews);
+  const activeUsers = useSelector((state) => state.usersReviews);
+
+  const activeUsersReviews = reviews.filter((user) =>
+    activeUsers.includes(user.UserId)
+  );
 
   return (
     <div className="bg-bgHome min-h-screen pb-20">
@@ -247,8 +223,8 @@ const BookDetail = () => {
             RESEÑAS
           </h3>
           <div className="h-[525px]  overflow-y-auto scrollCustomStyle border border-[#555555] p-1 w-[95%] m-auto rounded mt-2 bg-[#030407]">
-            {reviews.length ? (
-              reviews.map((review) => {
+            {activeUsersReviews.length ? (
+              activeUsersReviews.map((review) => {
                 return (
                   <div className="w-[95%] m-auto rounded p-1 mb-1">
                     <div className="flex justify-between">
@@ -297,7 +273,7 @@ const BookDetail = () => {
             )}
           </div>
           {LOGIN === 1 && ROLE === "USER" ? (
-            <div>
+            <div className="pb-5">
               <div className="w-[93%] m-auto mt-2">
                 <div className="">
                   <textarea
@@ -364,7 +340,7 @@ const BookDetail = () => {
           ) : (
             <div className="mt-5 text-[#cccccc] flex flex-col justify-center items-center text-lg">
               <div>
-                <h4>Para poder dejar tu reseña</h4>
+                <h4>Para dejar tu reseña</h4>
               </div>
               <div>
                 <Link to="/login">
