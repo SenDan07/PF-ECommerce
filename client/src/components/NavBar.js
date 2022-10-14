@@ -110,25 +110,19 @@ export default function NavBar() {
       <div className="flex items-center">
         {LOGIN === 1 && ROLE === "USER" ? (
           <div className="flex gap-8">
-            <Link
-              to="/favorites"
-              className="mr-10 cursor-pointer hover:text-hoverMenu"
-            >
+            <Link to="/favorites"
+              className="mr-10 cursor-pointer hover:text-hoverMenu">
               FAVORITOS
             </Link>
 
-            <Link
-              to="/pedidos"
-              className="mr-10 cursor-pointer hover:text-hoverMenu"
-            >
+            <Link to={`/historyorder/${USER.iduser}`}
+              className="mr-10 cursor-pointer hover:text-hoverMenu">
               PEDIDOS
             </Link>
           </div>
         ) : LOGIN === 1 && ROLE === "ADMIN" ? (
-          <Link
-            to="/admin"
-            className="mx-3 cursor-pointer hover:text-hoverMenu"
-          >
+          <Link to="/admin"
+            className="mx-3 cursor-pointer hover:text-hoverMenu">
             ADMINISTRAR
           </Link>
         ) : null}

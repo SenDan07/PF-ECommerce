@@ -28,7 +28,7 @@ import {
   ORDER_DELETE_BOOK,
   SEARCH_DELETE_BOOK,
   RESET_DELETE_BOOKS,
-  RECORD_ORDERS,
+  GET_RECORD_ORDERS,
   FILTER_DISPONIBILITY,
   GET_BOOK_REVIEWS,
   POST_BOOK_REVIEW,
@@ -42,15 +42,16 @@ const direction = "http://localhost:3001" || "http://api.pfecommerce.ddns.net";
 
 export const getBooks = () => async (dispatch) => {
   let dataBooks = await axios(`${direction}/shop/books`);
-
   return dispatch({
     type: GET_BOOKS,
     payload: dataBooks.data,
   });
 };
 
+
 export const getDetailBook = (id) => async (dispatch) => {
   let bookDetail = await axios(`${direction}/shop//book/${id}`);
+
 
   return dispatch({
     type: GET_DETAIL_BOOK,
@@ -58,7 +59,9 @@ export const getDetailBook = (id) => async (dispatch) => {
   });
 };
 
+
 export const resetDetail = () => ({ type: RESET_DETAIL });
+
 
 export function getAllCategories() {
   return async (dispatch) => {
@@ -69,6 +72,7 @@ export function getAllCategories() {
     });
   };
 }
+
 
 export function postCreateBook(input) {
   return async (dispatch) => {
@@ -85,6 +89,7 @@ export function postCreateBook(input) {
   };
 }
 
+
 export function postCreateCategory(input) {
   return async (dispatch) => {
     try {
@@ -100,12 +105,14 @@ export function postCreateCategory(input) {
   };
 }
 
+
 export function orderName(order) {
   return {
     type: ORDER_NAME,
     payload: order,
   };
 }
+
 
 export function orderPrice(order) {
   return {
@@ -114,6 +121,7 @@ export function orderPrice(order) {
   };
 }
 
+
 export function OrderDeleteBook(order) {
   return {
     type: ORDER_DELETE_BOOK,
@@ -121,12 +129,14 @@ export function OrderDeleteBook(order) {
   };
 }
 
+
 export function filterPrice(price) {
   return {
     type: FILTER_PRICE,
     payload: price,
   };
 }
+
 
 export function categoryBooks(category) {
   return async (dispatch) => {
@@ -140,7 +150,9 @@ export function categoryBooks(category) {
   };
 }
 
+
 export const resetCategoryBooks = () => ({ type: RESET_CATEGORY_BOOKS });
+
 
 export function searchBook(book) {
   return async (dispatch) => {
@@ -157,6 +169,7 @@ export function searchBook(book) {
   };
 }
 
+
 export function login(body) {
   return async (dispatch) => {
     let res = await axios.post(`${direction}/users/login`, body);
@@ -168,6 +181,7 @@ export function login(body) {
   };
 }
 
+
 export function deleteBook(idBook) {
   return async (dispatch) => {
     let res = await axios.delete(`${direction}/admin/books/${idBook}`);
@@ -178,6 +192,7 @@ export function deleteBook(idBook) {
   };
 }
 
+
 export function searchDeleteBook(search) {
   return {
     type: SEARCH_DELETE_BOOK,
@@ -185,13 +200,13 @@ export function searchDeleteBook(search) {
   };
 }
 
+
 export function register(body) {
   console.log(body);
   return async (dispatch) => {
     try {
       dispatch(setStatus("Guardando"));
       let res = await axios.post(`${direction}/users/register`, body);
-
       return dispatch({
         type: REGISTER,
         payload: res.data.status
@@ -203,12 +218,15 @@ export function register(body) {
     }
   };
 }
+
+
 export function setStatus(mensaje) {
   return {
     type: SET_STATUS,
     payload: mensaje,
   };
 }
+
 
 export function filterDisponibility(disponibility) {
   return {
@@ -217,13 +235,16 @@ export function filterDisponibility(disponibility) {
   };
 }
 
+
 export function resetDeleteBooks() {
   return {
     type: RESET_DELETE_BOOKS,
   };
 }
 
+
 export const resetSearchBook = () => ({ type: RESET_SEARCH_BOOK });
+
 
 export const logoutUser = () => {
   return {
@@ -231,30 +252,30 @@ export const logoutUser = () => {
   };
 };
 
+
 export const getUsers = () => async (dispatch) => {
   let dataUsers = await axios(`${direction}/users/allUsers`);
-
   return dispatch({
     type: GET_USERS,
     payload: dataUsers.data,
   });
 };
 
+
 export const deleteUser =
   (idUser, data = { isActive: "false" }) =>
-  async (dispatch) => {
-    let usersActive = await axios.put(`${direction}/users/${idUser}`, data);
+    async (dispatch) => {
+      let usersActive = await axios.put(`${direction}/users/${idUser}`, data);
+      return dispatch({
+        type: DELETE_USER,
+        payload: usersActive.data,
+      });
+    };
 
-    return dispatch({
-      type: DELETE_USER,
-      payload: usersActive.data,
-    });
-  };
 
 export function deleteCategory(idCategory) {
   return async (dispatch) => {
     const res = await axios.delete(`${direction}/admin/category/${idCategory}`);
-
     return dispatch({
       type: DELETE_CATEGORY,
       payload: res.data,
@@ -265,14 +286,14 @@ export function deleteCategory(idCategory) {
 
 export const resetUser =
   (idUser, data = { isActive: "true" }) =>
-  async (dispatch) => {
-    let users = await axios.put(`${direction}/users/${idUser}`, data);
+    async (dispatch) => {
+      let users = await axios.put(`${direction}/users/${idUser}`, data);
+      return dispatch({
+        type: RESET_USER,
+        payload: users.data,
+      });
+    };
 
-    return dispatch({
-      type: RESET_USER,
-      payload: users.data,
-    });
-  };
 
 export function loginWithGoogle(info) {
   return async (dispatch) => {
@@ -285,12 +306,15 @@ export function loginWithGoogle(info) {
   };
 }
 
+
 export function addCart(book) {
   return {
     type: ADD_CART,
     payload: book,
   };
 }
+
+
 export function postCart(cart) {
   return async (dispatch) => {
     try {
@@ -304,6 +328,8 @@ export function postCart(cart) {
     }
   };
 }
+
+
 export function getCart(email) {
   return async (dispatch) => {
     let res = await axios.get(`${direction}/cart/cartUser?email=${email}`);
@@ -314,6 +340,7 @@ export function getCart(email) {
     });
   };
 }
+
 
 export function getBookReviews(bookId) {
   return async (dispatch) => {
@@ -328,6 +355,7 @@ export function getBookReviews(bookId) {
     }
   };
 }
+
 
 export function postReview(data) {
   return async (dispatch) => {
@@ -346,18 +374,31 @@ export function postReview(data) {
   };
 }
 
+
+/* export function getRecordOrders(idUser){
+  return async(dispatch) => {
+    let res = await axios.get(`${direction}/checkout/orders/${idUser}`)
+    return dispatch ({
+      type: GET_RECORD_ORDERS,
+      payload: res.data
+    })
+  }
+} */
+
+
 export const resetBookReviews = () => ({ type: RESET_BOOK_REVIEWS });
 
 export const getUsersReviews = () => async (dispatch) => {
   let dataUsers = await axios(`${direction}/users/allUsers`);
-
   return dispatch({
     type: GET_USERS_REVIEWS,
     payload: dataUsers.data,
   });
 };
 
+
 export const resetUsersReviews = () => ({ type: RESET_USERS_REVIEWS });
+
 
 // export function orderName(value) {
 //   return async (dispatch) => {
