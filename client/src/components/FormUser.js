@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { register, setStatus } from "../redux/actions";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login, register } from "../redux/actions";
+import Swal from "sweetalert2";
 
 let boton;
 export function validate(input) {
@@ -25,7 +26,7 @@ export function validate(input) {
   }
   if (!input.role) {
     errors.role = "Rol es requerido";
-  } else if (!input.role == "ADMIN" || !input.role == "USER") {
+  } else if (input.role !== "USER") {
     errors.role = "Rol es invalido";
   }
   if (!input.email) {
@@ -39,7 +40,7 @@ export function validate(input) {
 export default function FormUser() {
   const dispatch = useDispatch();
 
-  let loading = useSelector((state) => state.loading);
+  // let loading = useSelector((state) => state.loading);
 
   const [input, setInput] = React.useState({
     name: "",
@@ -77,21 +78,99 @@ export default function FormUser() {
     
     }*/
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    dispatch(register(input));
+  // useEffect(() => {
+  //   // showLoadingRegister();
+  //   // showAlertSuccess();
+  //   // showAlertError();
+  // }, []);
 
-    setInput({
-      name: "",
-      lastName: "",
-      password: "",
-      role: "USER",
-      email: "",
+  const navigate = useNavigate();
+
+  const showAlertError = async () => {
+    await Swal.fire({
+      icon: "error",
+      title: "Oops, Hubo un Error en el Registro!!",
+      footer: "Intenta nuevamente con datos válidos o un correo distinto.",
+      color: "#fff",
+      background: "#333",
+      allowEscapeKey: false,
+      allowOutsideClick: false,
     });
-    e.target.name.focus();
-    //  let boton= document.getElementById('enviar')
+
+  };
+
+  const showLoadingRegister = async () => {
+    Swal.fire({
+      title: "Registrando Usuario",
+      text: "Espere unos segundos",
+      timer: 30000,
+      background: "#333",
+      color: "#fff",
+      imageUrl:
+        "https://res.cloudinary.com/dzcpdipdg/image/upload/v1665758602/samples/loaders/black-book-loader-unscreen_kiwrc8.gif",
+      showCancelButton: false,
+      showConfirmButton: false,
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+    }).then(
+      function () {},
+      // handling the promise rejection
+      function (dismiss) {
+        if (dismiss === "timer") {
+          //console.log('I was closed by the timer')
+        }
+      }
+    );
+  };
+
+  const showAlertSuccess = async () => {
+    await Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Registro Exitoso!!",
+      text: "Te hemos enviado una notificación a tu correo.",
+      background: "#333",
+      color: "#fff",
+      showConfirmButton: false,
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      timer: 2500,
+    });
+
+    navigate("/");
+  };
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    showLoadingRegister();
+
+    const valor = await dispatch(register(input));
+
+    if (valor) {
+      await showAlertSuccess();
+      await dispatch(login({ email: input.email, password: input.password }));
+
+      // setInput({
+      //   name: "",
+      //   lastName: "",
+      //   password: "",
+      //   role: "USER",
+      //   email: "",
+      // });
+      // e.target.name.focus();
+      //  let boton= document.getElementById('enviar')
+      // boton.disabled = true;
+      // setTimeout(() => dispatch(setStatus("")), 5000);
+      // alert("Registro exitoso!!");
+    } else {
+      await showAlertError();
+    }
+
+    //e.target.name.focus();
+    let boton= document.getElementById('enviar')
     boton.disabled = true;
-    setTimeout(() => dispatch(setStatus("")), 10000);
+    //setTimeout(() => dispatch(setStatus("")), 10000);
+
   }
 
   function handleChange(e) {
@@ -112,14 +191,14 @@ export default function FormUser() {
 
     //dispatch(getAllCategories())
     boton.disabled = true;
-    boton.className = "bg-[#94a3b8] p-5 m-2";
+    boton.className = "bg-[#94a3b8] p-2 px-8 m-2 rounded text-xl";
   }, []);
   //let categories=useSelector(state=>state.categories)
   return (
     <div>
       <form
         onSubmit={(e) => handleSubmit(e)}
-        className="bg-[#0d151b] text-white container mx-auto p-20 m-20 rounded-xl w-1/2"
+        className="bg-[#0d151b] text-white container mx-auto p-20 m-20 rounded-lg w-1/2"
       >
         <h2 className="text-center text-xl text-[30px] text-white">
           REGISTRO DE USUARIOS
@@ -131,8 +210,8 @@ export default function FormUser() {
             type="text"
             className={
               errors.name
-                ? "text-[#dc2626] rounded italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
-                : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 mb-6"
             }
             name="name"
             value={input.name}
@@ -148,8 +227,8 @@ export default function FormUser() {
             type="text"
             className={
               errors.lastName
-                ? "text-[#dc2626] rounded italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
-                : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 mb-6"
             }
             name="lastName"
             value={input.lastName}
@@ -166,8 +245,8 @@ export default function FormUser() {
             type="password"
             className={
               errors.password
-                ? "text-[#dc2626] rounded italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
-                : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 mb-6"
             }
             name="password"
             value={input.password}
@@ -184,8 +263,8 @@ export default function FormUser() {
             type="email"
             className={
               errors.email
-                ? "text-[#dc2626] rounded italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
-                : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 mb-6"
             }
             name="email"
             value={input.email}
@@ -208,14 +287,14 @@ export default function FormUser() {
           <br />
         </fieldset>
         <fieldset className="text-center">
-          {loading ? <p>{loading}</p> : null}
+          {/* {loading ? <p>{loading}</p> : null} */}
           <input
             type="submit"
-            className={
-              Object.keys(errors).length
+            className={`text-xl ${
+              Object.keys(errors).length || !input.name.length
                 ? "bg-[#94a3b8] p-2 cursor-no-drop rounded"
-                : "bg-[#9a3412] p-2 cursor-pointer rounded"
-            }
+                : "bg-[#124d9a] p-2 px-8 m-2 rounded cursor-pointer transition-colors duration-200 hover:bg-[#0e3f7e]"
+            }`}
             id="enviar"
             disabled={Object.keys(errors).length ? true : false}
             value="Guardar"
@@ -224,7 +303,7 @@ export default function FormUser() {
           <Link to="/">
             <input
               type="button"
-              className="bg-[#9a3412] p-2 w-36 cursor-pointer rounded transition-colors duration-200 hover:bg-[#70240a] ml-3"
+              className="bg-[#9a3412] p-2 w-36 cursor-pointer rounded transition-colors duration-200 hover:bg-[#70240a] ml-3 text-lg"
               value="Regresar"
             />
           </Link>
