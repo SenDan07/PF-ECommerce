@@ -5,7 +5,11 @@ import { addCart } from "../redux/actions";
 
 export default function CartItem({ book }) {
     const dispatch=useDispatch()
-    const cantidad=[2,3,4,5,6,7,8,9]
+    
+    const cantidad=[]
+    for(let i=1;i<=book.stock;i++){
+        cantidad[i]=i
+    }
     
     //Elimina libro
     function handleClick(e){
