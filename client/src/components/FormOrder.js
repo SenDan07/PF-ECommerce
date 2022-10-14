@@ -19,6 +19,39 @@ const stripePromise = loadStripe(process.env.REACT_APP_CLAVE_PUBLICA_STRIPE)
   "pk_test_51LsWoOFrokjF5UMqf7U8cohybCbbQWRPY1EZPntmfC8r0O5prM1K2QCHxL6Ws0Gfon8eAf1uAyQcO97LhPDK6HgY00ACNEMSaz"
 ); */
 
+export function validate(input) {
+  let errors = {};
+  let expLetras = /^[A-Za-z]+[A-Za-z\s]*[A-Za-z]$/;
+  let email =
+    /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+  if (!input.name) {
+    errors.name = "Nombre es requerido";
+  } else if (!expLetras.test(input.name)) {
+    errors.name = "Nombre es invalido";
+  }
+  if (!input.lastName) {
+    errors.lastName = "Apellido es requerido";
+  } else if (!expLetras.test(input.lastName)) {
+    errors.lastName = "Apellido es invalido";
+  }
+  if (!input.email) {
+    errors.email = "Email es requerido";
+  } else if (!email.test(input.email)) {
+    errors.email = "Email es invalido";
+  }
+  if (!input.phone) {
+    errors.phone = "Telefono es requerido";
+  }
+  if (!input.address) {
+    errors.address = "Direccion es requerido";
+  }
+  if (!input.country) {
+    errors.country = "Pais es requerido";
+  }
+  return errors;
+}
+
 function CheckoutForm() {
 
   const stripe = useStripe();
@@ -37,11 +70,19 @@ function CheckoutForm() {
     address: "",
     country: "",
   });
+  const [errors, setErrors] = useState({});
+
   function handleChange(e) {
     setUser({
       ...user,
       [e.target.name]: e.target.value,
     });
+    setErrors(
+      validate({
+        ...user,
+        [e.target.name]: e.target.value,
+      })
+    );
   }
 
   async function hanledSubmit(e) {
@@ -116,56 +157,96 @@ function CheckoutForm() {
         </Link>
       </div>
       <div className="m-5 rounded">
-        <form className="flex flex-row justify-center justify-items-center rounded">
+         <form className="flex flex-row justify-center justify-items-center rounded-3xl p-5 mx-20">
           <fieldset className="bg-[#a3a3a3] text-white container mx-auto flex flex-col justify-center justify-items-center p-20">
             <label>Nombre:</label>
             <input
               type="text"
-              className="text-[#075985]"
+              className={
+                errors.name
+                  ? "text-[#dc2626] rounded italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                  : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+              }
               name="name"
               value={user.name}
               onChange={(e) => handleChange(e)}
             />
+            {errors.name ? <p className="text-[#dc2626]">{errors.name}</p> : null}
             <label>Apellidos</label>
             <input
               type="text"
-              className="text-[#075985]"
+              className={
+                errors.lastName
+                  ? "text-[#dc2626] rounded italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                  : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+              }
               name="lastName"
               value={user.lastName}
               onChange={(e) => handleChange(e)}
             />
+            {errors.lastName ? (
+            <p className="text-[#dc2626]">{errors.lastName}</p>
+          ) : null}
             <label>Direccion de correo:</label>
             <input
               type="text"
-              className="text-[#075985]"
+              className={
+                errors.email
+                  ? "text-[#dc2626] rounded italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                  : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+              }
               name="email"
               value={user.email}
               onChange={(e) => handleChange(e)}
             />
+            {errors.email ? (
+            <p className="text-[#dc2626]">{errors.email}</p>
+          ) : null}
             <label>Telefono:</label>
             <input
               type="text"
-              className="text-[#075985]"
+              className={
+                errors.phone
+                  ? "text-[#dc2626] rounded italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                  : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+              }
               name="phone"
               value={user.phone}
               onChange={(e) => handleChange(e)}
             />
+            {errors.phone ? (
+            <p className="text-[#dc2626]">{errors.phone}</p>
+          ) : null}
             <label>Direccion de Envio </label>
             <input
               type="text"
-              className="text-[#075985]"
+              className={
+                errors.address
+                  ? "text-[#dc2626] rounded italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                  : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+              }
               name="address"
               value={user.address}
               onChange={(e) => handleChange(e)}
             />
+             {errors.address ? (
+            <p className="text-[#dc2626]">{errors.address}</p>
+          ) : null}
             <label>Pais:</label>
             <input
               type="text"
-              className="text-[#075985]"
+              className={
+                errors.country
+                  ? "text-[#dc2626] rounded italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                  : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+              }
               name="country"
               value={user.country}
               onChange={(e) => handleChange(e)}
             />
+             {errors.country ? (
+            <p className="text-[#dc2626]">{errors.country}</p>
+          ) : null}
             <br />
             <span>Ingrese los datos de su tarjeta</span>
             <div>
