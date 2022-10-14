@@ -1,3 +1,5 @@
+import { ErrorResponse } from "@remix-run/router";
+
 export const GET_BOOKS = "GET_BOOKS";
 export const GET_DETAIL_BOOK = "GET_DETAIL_BOOK";
 export const POST_CREATE_BOOK = "POST_CREATE_BOOK";
@@ -35,4 +37,4 @@ export const POST_BOOK_REVIEW = "POST_BOOK_REVIEW";
 export const RESET_BOOK_REVIEWS = "RESET_BOOK_REVIEWS";
 export const GET_USERS_REVIEWS = "GET_USERS_REVIEWS";
 export const RESET_USERS_REVIEWS = "RESET_USERS_REVIEWS";
-
+export const DELETE_CART="DELETE_CART"

@@ -8,5 +8,3 @@ conn.sync({ force: false }).then(() => {
     console.log(`Servidor escuchando en el puerto ${app.get("port")}`); // eslint-disable-line no-console
   });
 });
-
-

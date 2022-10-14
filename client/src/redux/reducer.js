@@ -26,6 +26,7 @@ import {
   ADD_CART,
   POST_CART,
   GET_CART,
+  DELETE_CART,
   ORDER_DELETE_BOOK,
   SEARCH_DELETE_BOOK,
   RESET_DELETE_BOOKS,
@@ -359,6 +360,10 @@ function rootReducer(state = initialState, action) {
         ...state,
       };
 
+    case DELETE_CART:
+      return{
+        ...state,
+      }
     case GET_BOOK_REVIEWS:
       // console.log(action.payload);
       return {
