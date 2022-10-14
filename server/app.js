@@ -17,7 +17,7 @@ const shopRoutes = require("./src/routes/shopRoutes");
 const reviewRoutes = require("./src/routes/reviewRoutes");
 const loginRoutes = require("./src/routes/loginRoutes");
 const orderRoutes = require("./src/routes/orderRoutes");
-//const alertRoutes = require('./src/routes/alertRoutes');
+const alertRoutes = require('./src/routes/alertRoutes');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -36,7 +36,7 @@ app.use("/reviews", reviewRoutes);
 app.use("/users", loginRoutes);  
 app.use("/checkout", orderRoutes);
 app.use("/cart", cartRoutes);
-//app.use("/alert", alertRoutes);
+app.use("/alert", alertRoutes);
 app.use(errorHandler);
 
 module.exports = app;

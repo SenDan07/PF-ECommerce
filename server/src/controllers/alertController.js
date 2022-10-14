@@ -1,12 +1,12 @@
 const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
 const HttpError = require("../errors/http-error");
-// const {
-//   CLIENT_ID,
-//   CLIENT_SECRET,
-//   REFRESH_TOKEN,
-//   REDIRECT_URI
-// } = process.env;
+ const {
+  CLIENT_ID,
+  CLIENT_SECRET,
+   REFRESH_TOKEN,
+  REDIRECT_URI
+ } = process.env;
 
 const alertController = {
   sendEmail: async (req, res, next) => {
