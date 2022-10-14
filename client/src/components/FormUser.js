@@ -91,7 +91,7 @@ export default function FormUser() {
     e.target.name.focus();
     //  let boton= document.getElementById('enviar')
     boton.disabled = true;
-    setTimeout(() => dispatch(setStatus("")), 5000);
+    setTimeout(() => dispatch(setStatus("")), 10000);
   }
 
   function handleChange(e) {
