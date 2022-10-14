@@ -314,7 +314,7 @@ const loginController = {
           {
             model: Books,
             as: "favorites",
-            through: {
+            through: { 
               attributes: [],
             },
           },
