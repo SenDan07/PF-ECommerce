@@ -16,7 +16,7 @@ export default function Cart() {
   //Si esta logueado guardas el carrito al id del usuario
   
   async function handleClick(){
-    if(LOGIN){
+    if(LOGIN && cart.length){
       await dispatch(postCart({email:User.email,cart}))
     }
   

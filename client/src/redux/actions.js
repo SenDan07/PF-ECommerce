@@ -25,6 +25,7 @@ import {
   ADD_CART,
   POST_CART,
   GET_CART,
+  DELETE_CART,
   ORDER_DELETE_BOOK,
   SEARCH_DELETE_BOOK,
   RESET_DELETE_BOOKS,
@@ -333,7 +334,7 @@ export function postCart(cart) {
 export function getCart(email) {
   return async (dispatch) => {
     let res = await axios.get(`${direction}/cart/cartUser?email=${email}`);
-    console.log("lee carro", res.data.data);
+    
     return dispatch({
       type: GET_CART,
       payload: res.data.data,
@@ -341,6 +342,15 @@ export function getCart(email) {
   };
 }
 
+export function deleteCart(email) {
+  return async (dispatch) => {
+    let res = await axios.put(`${direction}/cart/cartUser?email=${email}`);
+    
+    return dispatch({
+      type: DELETE_CART
+    });
+  };
+}
 
 export function getBookReviews(bookId) {
   return async (dispatch) => {
