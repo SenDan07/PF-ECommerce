@@ -32,8 +32,6 @@ export default function CategoriesBooks() {
 
   const booksFilter = useSelector((state) => state.booksByPrice);
 
-  // const booksFilter = useSelector((state) => state.books);
-  // console.log("booksFilter: ", booksFilter);
   return (
     <div className="bg-bgHome min-h-screen">
       <NavBar />

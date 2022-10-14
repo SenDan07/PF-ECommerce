@@ -104,10 +104,17 @@ function App() {
             <Route excat path="/historyorder/:id/:idOrder" element={<ErrorNotFound />} />
           )}
 
-
           {LOGIN === 1 && ROLE === "ADMIN" ? (
             <Route exact path="/deletebook" element={<DeleteBooksSmart />} />
+
           ) : null}
+
+
+          {LOGIN === 1 && ROLE === "ADMIN" ? (
+            <Route excat path="edit/:id" element={<FormBook />} />
+          ) : null}
+
+
           {LOGIN === 1 && ROLE === "ADMIN" ? (
             <Route exact path="/adminuser" element={<ManageUsers />} />
           ) : null}

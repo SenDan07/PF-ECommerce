@@ -51,8 +51,7 @@ export const getBooks = () => async (dispatch) => {
 
 
 export const getDetailBook = (id) => async (dispatch) => {
-  let bookDetail = await axios(`${direction}/shop//book/${id}`);
-
+  let bookDetail = await axios(`${direction}/shop/book/${id}`);
 
   return dispatch({
     type: GET_DETAIL_BOOK,
