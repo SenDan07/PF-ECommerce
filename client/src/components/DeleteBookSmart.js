@@ -7,6 +7,7 @@ import OrderDeleteBooks from "./OrderDeleteBooks";
 import SearchDeleteBooks from "./SearchDeleteBooks"
 import ResetDeleteBooks from "./ResetDeleteBooks"
 import FilterDisponibility from "./FilterDisponibility";
+import NavBar from "./NavBar";
 
 export default function DeleteBooksSmart() {
     const dispatch = useDispatch();
@@ -14,6 +15,7 @@ export default function DeleteBooksSmart() {
     const allBoks = useSelector((state) => state.booksDeleteAdminFilter)
     return (
         <div>
+            <NavBar/>
             <div className="flex justify-start">
                 <Link to="/admin">
                     <h3 className="border-1 border-rose-500 rounded mx-auto px-5 py-2 bg-button text-black hover:text-white mt-5 mx-10">

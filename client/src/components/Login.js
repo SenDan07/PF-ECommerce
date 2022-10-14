@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCart,addCart, login, loginWithGoogle,userId } from "../redux/actions";
+import { getCart, addCart, login, loginWithGoogle, userId } from "../redux/actions";
 import { GoogleLogin } from "@react-oauth/google";
+import NavBar from "./NavBar";
 
 export const Login = () => {
- 
+
   const navigate = useNavigate();
   let dispatch = useDispatch();
- 
+
   //   let regexEmail =
   //     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -19,13 +20,13 @@ export const Login = () => {
 
   const [data, setData] = useState(initialInputs);
 
-  function fill_cart(){
+  function fill_cart() {
     let cart = JSON.parse(localStorage.getItem("bookDetail")) || [];
     //Traemos lo que tiene guardado en su cuenta  
-    
+
     dispatch(getCart(data.email))
-     //cart=[...cart,cart_User]; 
-      console.log("Debio llenar el estado Cart")     
+    //cart=[...cart,cart_User]; 
+    console.log("Debio llenar el estado Cart")
   }
 
   function onSubmit(e) {
@@ -78,65 +79,67 @@ export const Login = () => {
   // });
 
   return (
-    <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
-      <Link to="/">
-        <h3 className="border-1 border-rose-500 rounded w-max mx-auto px-3 py-2 bg-button text-black hover:text-white absolute mt-[2%] ml-[3%]">
-          &#129044; Regresar
-        </h3>
-      </Link>
-      <div className="w-1/2 p-6 m-auto bg-[#0d151b] rounded-md shadow-xl lg:max-w-xl sombra border border-[#888888]">
-        <h1 className="text-3xl font-semibold text-center text-white uppercase">
-          LOGIN
-        </h1>
-        <form className="mt-6" onSubmit={onSubmit}>
-          <div className="mb-2">
-            <label
-              htmlFor="email"
-              className="block text-lg font-semibold text-white"
-            >
-              Correo
-            </label>
-            <input
-              type="email"
-              name="email"
-              value={data.email}
-              placeholder="Email"
-              onChange={onInputChange}
-              className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-[#4eec10] focus:outline-none focus:ring focus:ring-opacity-40 italic"
-            />
-          </div>
-          <div className="mb-2">
-            <label
-              htmlFor="password"
-              className="block text-lg font-semibold text-white"
-            >
-              Contraseña
-            </label>
-            <input
-              type="password"
-              name="password"
-              value={data.password}
-              placeholder="Password"
-              onChange={onInputChange}
-              className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-[#4eec10] focus:outline-none focus:ring focus:ring-opacity-40 italic"
-            />
-          </div>
+    <div>
+      <NavBar/>
+      <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
+        <Link to="/">
+          <h3 className="border-1 border-rose-500 rounded w-max mx-auto px-3 py-2 bg-button text-black hover:text-white absolute mt-[2%] ml-[3%]">
+            &#129044; Regresar
+          </h3>
+        </Link>
+        <div className="w-1/2 p-6 m-auto bg-[#0d151b] rounded-md shadow-xl lg:max-w-xl sombra border border-[#888888]">
+          <h1 className="text-3xl font-semibold text-center text-white uppercase">
+            LOGIN
+          </h1>
+          <form className="mt-6" onSubmit={onSubmit}>
+            <div className="mb-2">
+              <label
+                htmlFor="email"
+                className="block text-lg font-semibold text-white"
+              >
+                Correo
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={data.email}
+                placeholder="Email"
+                onChange={onInputChange}
+                className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-[#4eec10] focus:outline-none focus:ring focus:ring-opacity-40 italic"
+              />
+            </div>
+            <div className="mb-2">
+              <label
+                htmlFor="password"
+                className="block text-lg font-semibold text-white"
+              >
+                Contraseña
+              </label>
+              <input
+                type="password"
+                name="password"
+                value={data.password}
+                placeholder="Password"
+                onChange={onInputChange}
+                className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-[#4eec10] focus:outline-none focus:ring focus:ring-opacity-40 italic"
+              />
+            </div>
 
-          {/* <Link to="/" className="text-sm text-[#cccccc] hover:underline">
+            {/* <Link to="/" className="text-sm text-[#cccccc] hover:underline">
             Olvidaste tu contraseña ?
           </Link> */}
-          <div className="mt-6 flex justify-center">
-            <button
-              type="submit"
-              className="w-3/4 px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-[#365496] rounded-md hover:bg-[#292f81] focus:outline-none focus:bg-purple-600 text-lg"
-            >
-              Iniciar Sesión
-            </button>
-          </div>
-        </form>
-        <div className="relative flex items-center justify-center w-4/5 mt-6 border border-[#aaaaaa] m-auto"></div>
-        <div className="flex mt-4 justify-center">
-          {/* <button
+            <div className="mt-6 flex justify-center">
+              <button
+                type="submit"
+                className="w-3/4 px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-[#365496] rounded-md hover:bg-[#292f81] focus:outline-none focus:bg-purple-600 text-lg"
+              >
+                Iniciar Sesión
+              </button>
+            </div>
+          </form>
+          <div className="relative flex items-center justify-center w-4/5 mt-6 border border-[#aaaaaa] m-auto"></div>
+          <div className="flex mt-4 justify-center">
+            {/* <button
             type="button"
             className="flex items-center justify-around w-1/2 m-auto p-2 border border-[#888888] rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-violet-600 text-white bg-[#22463d] text-lg hover:bg-NavBar"
             onClick={loginGoogle}
@@ -168,27 +171,28 @@ export const Login = () => {
             </svg>
             Inicia sesión con Google
           </button> */}
-          <GoogleLogin
-            onSuccess={(credentialResponse) => {
-              // console.log(credentialResponse);
-              dispatch(loginWithGoogle(credentialResponse));
-               //LLeno el carrito
-               fill_cart()
-              navigate("/");
-            }}
-            onError={() => {
-              console.log("Login Failed");
-            }}
-          />
-        </div>
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                // console.log(credentialResponse);
+                dispatch(loginWithGoogle(credentialResponse));
+                //LLeno el carrito
+                fill_cart()
+                navigate("/");
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
+          </div>
 
-        <p className="mt-8 text-lg font-light text-center text-[#cccccc]">
-          {" "}
-          No tienes una cuenta?{" "}
-          <Link to="/register" className="font-medium hover:underline">
-            Registrate
-          </Link>
-        </p>
+          <p className="mt-8 text-lg font-light text-center text-[#cccccc]">
+            {" "}
+            No tienes una cuenta?{" "}
+            <Link to="/register" className="font-medium hover:underline">
+              Registrate
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

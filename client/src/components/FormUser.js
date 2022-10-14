@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login, register } from "../redux/actions";
 import Swal from "sweetalert2";
+import NavBar from "./NavBar";
 
 let boton;
 export function validate(input) {
@@ -194,6 +195,7 @@ export default function FormUser() {
   //let categories=useSelector(state=>state.categories)
   return (
     <div>
+      <NavBar/>
       <form
         onSubmit={(e) => handleSubmit(e)}
         className="bg-[#0d151b] text-white container mx-auto p-20 m-20 rounded-lg w-1/2"

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteCategory, getAllCategories } from "../redux/actions";
+import NavBar from "./NavBar";
 
 export const ManageCategories = () => {
     const dispatch = useDispatch();
@@ -28,6 +29,7 @@ export const ManageCategories = () => {
 
     return (
         <div>
+            <NavBar />
             <div className="mb-40">
 
                 <div className="m-auto flex justify-start ">
