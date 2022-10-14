@@ -5,7 +5,7 @@ import { addCart } from "../redux/actions";
 
 export default function CartItem({ book }) {
     const dispatch=useDispatch()
-    
+
     const cantidad=[]
     for(let i=1;i<=book.stock;i++){
         cantidad[i]=i
@@ -61,8 +61,8 @@ export default function CartItem({ book }) {
             </div>
         </div>
         <div className="flex flex-col justify-center m-20">
-            <span>Cantidad:<select onChange={(e)=>handleSelect(e)} value={book.quantity} >
-            <option value="1">1</option>
+            <span>Cantidad:<select onChange={(e)=>handleSelect(e)} value={cantidad<=book.quantity?book.quantity:cantidad} >
+           
                 {cantidad.map((i, idx)=>{
                     return <option key={idx} value={i}>{i}</option>
                 })                  

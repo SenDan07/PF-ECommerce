@@ -136,9 +136,9 @@ function CheckoutForm() {
         } else {
           //Si se realizo la compra, borra el contenido de LocalStore
           alert("Se realizo la compra Correctamente!!");
-          localStorage.clear()
-          await dispatch(addCart([]));
-          await dispatch(deleteCart(User.email))
+          localStorage.clear()//Limpia LocalStorage
+          await dispatch(addCart([]));//Resetea el Reducer
+          await dispatch(deleteCart(User.email))//Elimina carrito
           navigate("/")
         }
       } catch (error) {
