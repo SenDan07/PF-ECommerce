@@ -71,7 +71,9 @@ export default function CartItem({ book }) {
         </div>
         <div className="flex flex-col justify-center m-10 mb-5 w-1/2">
           <h2 className="font-medium text-center text-2xl text-NavBar italic">
-            {book.title.toUpperCase()}
+            {book.title.length > 31
+              ? `${book.title.toUpperCase().slice(0, 31)}...`
+              : `${book.title.toUpperCase()}`}
           </h2>
 
           <div className="bg-[#333333] mt-2 pb-1 px-2 rounded w-max mx-auto">
