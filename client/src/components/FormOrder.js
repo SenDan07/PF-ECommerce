@@ -142,7 +142,7 @@ function CheckoutForm() {
       title: "Procesando Su Pago",
       text: "Espere unos segundos",
       footer: "No cierre ni recarge la página",
-      timer: 90000,
+      timer: 120000,
       background: "#333",
       color: "#fff",
       imageUrl:
@@ -184,17 +184,17 @@ function CheckoutForm() {
 
   async function hanledSubmit(e) {
     e.preventDefault();
-    showLoadingPayment();
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement),
     });
 
     if (!error) {
-      console.log(paymentMethod);
+      // console.log(paymentMethod);
+      showLoadingPayment();
 
       const { id } = paymentMethod;
-      console.log("user despues de stripe", user);
+      // console.log("user despues de stripe", user);
       try {
         let cart = JSON.parse(localStorage.getItem("bookDetail"));
         let cartNuevo = cart.map((el) => {
