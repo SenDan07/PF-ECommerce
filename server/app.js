@@ -28,12 +28,12 @@ app.use(logger("dev"));
 
 app.use(setHeader);
 
-dotenv.config();
+dotenv.config(); 
 
 app.use("/admin", adminRoutes);
 app.use("/shop", shopRoutes);
 app.use("/reviews", reviewRoutes);
-app.use("/users", loginRoutes);
+app.use("/users", loginRoutes);  
 app.use("/checkout", orderRoutes);
 app.use("/cart", cartRoutes);
 app.use("/alert", alertRoutes);

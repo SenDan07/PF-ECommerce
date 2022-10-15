@@ -1,6 +1,10 @@
 const HttpError = require("../errors/http-error");
 const libros = require("../../data/dataBook.json");
-const { Categories, Books } = require("../db");
+const { Categories, Books, User, Order } = require("../db");
+const {
+  thereIsUserById,
+  thereIsEmail,
+} = require("../util/helpers/db-validators");
 
 const adminControllers = {
   createBook: async (req, res, next) => {
@@ -187,6 +191,147 @@ const adminControllers = {
       res.status(400).json(error);
     }
   },
+  //OPERACIONES DE USUARIOS ADMIN
+  getUserByEmail: async (req, res, next) => {
+    const { email } = req.body;
+
+    try {
+      const user = await thereIsEmail(email);
+
+      res.status(200).json({
+        status: 1,
+        message: "Usuario por email",
+        data: user,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        status: 0,
+        message: "No se pudo realizar la operación",
+      });
+    }
+  },
+  getUserById: async (req, res, next) => {
+    const { idUser } = req.params;
+    console.log(idUser);
+
+    try {
+      const user = await thereIsUserById(idUser);
+
+      res.status(200).json({
+        status: 1,
+        message: "Usuario por id es",
+        data: user,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        status: 0,
+        message: "No se pudo realizar la operación",
+      });
+    }
+  },
+  getAllUsers: async (req, res, next) => {
+    try {
+      const user = await User.findAll();
+
+      res.status(200).json({
+        status: 1,
+        message: "Usuarios obtenidos",
+        data: user,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        status: 0,
+        message: "No se pudo realizar la operación",
+      });
+    }
+  },
+  // OPERACIONES DE ORDENES
+  getOrderByUser: async (req, res) => {
+    const { email } = req.query;
+    try {
+      const user = await thereIsEmail(email);
+
+      if (!user) {
+        return res.status(404).json({
+          status: 0,
+          message: "Usuario no encontrado",
+        });
+      }
+
+          const orders = await Order.findAll({
+        where: { UserId: user.id },
+        include: Books,
+      });;
+
+      let refactorOrder = orders.map((el) => {
+        return {
+          id: el.id,
+          direccion: el.direccion,
+          telefono: el.telefono,
+          pais: el.pais,
+          total: el.total,
+          fecha: el.createdAt,
+          detalle: el.Books.map((el) => {
+            return {
+              title: el.title,
+              price: el.price,
+              cantidad: el.detalle.cantidad,
+              sutTotal: el.detalle.cantidad * el.price,
+            };
+          }),
+        };
+      });
+      res.status(200).json({
+        status: 1,
+        message: "Ordenes de usuario",
+        data: refactorOrder,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        status: 0,
+        message: "No se pudo realizar la operación",
+      });
+    }
+  },
+  getAllOrders: async (req, res) => {
+    try {
+      const orders = await Order.findAll({ include: Books });
+
+      let refactorOrder = orders.map((el) => {
+        return {
+          id: el.id,
+          direccion: el.direccion,
+          telefono: el.telefono,
+          pais: el.pais,
+          total: el.total,
+          fecha: el.createdAt,
+          detalle: el.Books.map((el) => {
+            return {
+              title: el.title,
+              price: el.price,
+              cantidad: el.detalle.cantidad,
+              sutTotal: el.detalle.cantidad * el.price,
+            };
+          }),
+        };
+      });
+      res.status(200).json({
+        status: 1,
+        message: "Todas las ordes",
+        data: refactorOrder,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        status: 0,
+        message: "No se pudo realizar la operación",
+      });
+    }
+  }
 };
 
 module.exports = adminControllers;

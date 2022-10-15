@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
-import { getAllCategories, postCreateBook, setStatus } from "../redux/actions"
-import NavBar from "./NavBar";
-import Menu from "./Menu";
+import { getAllCategories, putEditBook, setStatus } from "../redux/actions"
+
 
 let boton
+
 export function validate(input) {
 
     let errors = {};
@@ -51,24 +51,24 @@ export function validate(input) {
     return errors;
 }
 
-export default function FormBook() {
-    const dispatch = useDispatch()
- 
-    let loading=useSelector(state=>state.loading)
-   
-    const [input, setInput] = React.useState({
-        title:'',
-        authors:'',
-        publisher: '',
-        ISBN:'',
-        categories: [],
-        imageLinks: '',
-        description:'',
-        price: '',
-        stock:''
-    })
-    const [errors, setErrors] = React.useState({});
+export default function FormBookEdit() {
 
+    const dispatch = useDispatch()
+    const id=useParams().id
+    let book=useSelector(state=>state.detail)
+    const [errors, setErrors] = useState({});   
+
+    const [input, setInput] = useState({
+        title:book.title,
+        authors: book.authors,
+        publisher: book.publisher,
+        ISBN: book.ISBN,
+        categories: book.categories?.map((c)=>{return c.name}),
+        imageLinks: book.imageLinks,
+        description:book.description,
+        price: book.price,
+        stock:book.stock
+    })
     const uploadImage= async (e)=>{
         
      try{
@@ -97,8 +97,10 @@ export default function FormBook() {
     }
 
     function handleSubmit(e) {
+
         e.preventDefault()
-        dispatch(postCreateBook(input))
+        dispatch(putEditBook(id,input))
+       
         setInput({
             title:'',
             authors: '',
@@ -110,7 +112,7 @@ export default function FormBook() {
             price:'',
             stock:''
         })
-        e.target.title.focus()
+       // e.target.title.focus()
         //  let boton= document.getElementById('enviar')
         boton.disabled = true
         setTimeout(()=>dispatch(setStatus('')),5000)
@@ -125,6 +127,7 @@ export default function FormBook() {
             ...input, [e.target.name]: e.target.value
         }))
     }
+
     function handleSelect(e) {
         if (input.categories.includes(e.target.value)) {
             setInput({
@@ -141,21 +144,21 @@ export default function FormBook() {
         }
 
     }
-
+ 
     useEffect(() => {
-        
         boton = document.getElementById('enviar')
-
         dispatch(getAllCategories())
-        boton.disabled = true
-        boton.className="bg-[#94a3b8] p-5 m-2"
+       console.log("input",input)
+       
     }, [])
     let categories=useSelector(state=>state.categories)
+    
+    let loading=useSelector(state=>state.loading)
+
     return <div>
-        <NavBar/>
-        <Menu/>
+
         <form onSubmit={(e) => handleSubmit(e)} className="bg-[#a3a3a3] text-white container mx-auto p-20 m-20 rounded-3xl w-1/2">
-            <h2 className="text-center text-xl text-[30px] text-black">REGISTRO DE NUEVO LIBRO</h2><br />
+            <h2 className="text-center text-xl text-[30px] text-black">EDICION DE LIBRO</h2><br />
             <fieldset className="columns-2 text-[18px]">
                 <label className="block">TITULO: </label>
                 <input type='text' className={errors.title ? 'text-[#dc2626] rounded-lg' : 'text-[#075985] rounded-lg'} name='title' value={input.title} placeholder='Ingrese el Titulo del libro' onChange={(e) => handleChange(e)} autoFocus /><br />
@@ -186,8 +189,8 @@ export default function FormBook() {
                     })}
                 </select>
                 {errors.categories ? <p className="text-[#dc2626]">{errors.categories}</p> : null}<br />
-                {input.categories.length?<span>Categorias :</span>:null}
-                {input.categories.map(cat => {
+               
+                {input.categories?.map(cat => {
                     return <span>{cat},</span>
                 })}
                 <br /><br />
@@ -197,9 +200,9 @@ export default function FormBook() {
                 <textarea className="w-full text-[#075985] rounded-lg" name="description" value={input.description} onChange={(e) => handleChange(e)} />
                 <br />
                 {loading?<p>{loading}</p>:null}
-                <input type='submit' className={(Object.keys(errors).length) ? "bg-[#94a3b8] p-5 m-2 cursor-pointer rounded-3xl" : "bg-[#9a3412] p-5 m-2 cursor-pointer rounded-3xl"} id='enviar' disabled={(Object.keys(errors).length) ? true : false} value='Guardar' />
+                <input type='submit' className={(Object.keys(errors).length) ? "bg-[#94a3b8] p-5 m-2 cursor-pointer rounded-3xl" : "bg-[#9a3412] p-5 m-2 cursor-pointer rounded-3xl"} id='enviar' disabled={(Object.keys(errors).length) ? true : false} value='Actualizar' />
 
-                <Link to="/deletebook">
+                <Link to="/admin">
                     <input type='button' className="bg-[#9a3412] p-5 cursor-pointer rounded-3xl" value='Regresar' />
                 </Link>
             </fieldset>

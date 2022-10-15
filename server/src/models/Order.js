@@ -1,4 +1,4 @@
-const { DataTypes }=require('sequelize');
+const { DataTypes } = require("sequelize");
 
 module.exports=(sequelize)=>{
     sequelize.define('order',{
@@ -21,3 +21,4 @@ module.exports=(sequelize)=>{
         timestamps:true,
     });
 } 
+

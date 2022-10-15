@@ -3,6 +3,7 @@ import {
   GET_DETAIL_BOOK,
   POST_CREATE_BOOK,
   POST_CREATE_CATEGORY,
+  PUT_EDIT_BOOK,
   RESET_DETAIL,
   ORDER_NAME,
   SEARCH_BOOK,
@@ -26,13 +27,17 @@ import {
   ADD_CART,
   POST_CART,
   GET_CART,
+  DELETE_CART,
   ORDER_DELETE_BOOK,
   SEARCH_DELETE_BOOK,
   RESET_DELETE_BOOKS,
-  RECORD_ORDERS,
+  GET_RECORD_ORDERS,
   FILTER_DISPONIBILITY,
   GET_BOOK_REVIEWS,
   POST_BOOK_REVIEW,
+  RESET_BOOK_REVIEWS,
+  GET_USERS_REVIEWS,
+  RESET_USERS_REVIEWS,
 } from "./types";
 
 const initialState = {
@@ -54,6 +59,8 @@ const initialState = {
   cart: [],
   user: {},
   bookReviews: [],
+  usersReviews: [],
+  recordOrders: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -87,6 +94,12 @@ function rootReducer(state = initialState, action) {
         loading: action.payload,
       };
 
+      case PUT_EDIT_BOOK:
+        return{
+          ...state,
+          loading: action.payload?"Datos editados con exito":"No se pudo realizar la actualizacion"
+        }
+
     case RESET_DETAIL:
       return {
         ...state,
@@ -102,12 +115,18 @@ function rootReducer(state = initialState, action) {
     case ORDER_NAME:
       let orderAuxName = [...state.booksByPrice];
       let orderBookName = orderAuxName.sort((a, b) => {
-        if (a.title <= b.title) {
-          return action.payload === "AZ" ? -1 : 1;
+        /*         if (a.title.toLowerCase() <= b.title.toLowerCase()) {
+                  return action.payload === "AZ" ? -1 : 1;
+                }
+        
+                if (a.title.toLowerCase() > b.title.toLowerCase()) {
+                  return action.payload === "ZA" ? -1 : 1;
+                } */
+        if (action.payload === "AZ") {
+          return a.title.localeCompare(b.title);
         }
-
-        if (a.title > b.title) {
-          return action.payload === "ZA" ? -1 : 1;
+        if (action.payload === "ZA") {
+          return b.title.localeCompare(a.title);
         }
       });
       return {
@@ -118,11 +137,17 @@ function rootReducer(state = initialState, action) {
     case ORDER_DELETE_BOOK:
       let orderAuxBookDelete = [...state.booksDeleteAdminFilter];
       let orderBookDelete = orderAuxBookDelete.sort((a, b) => {
-        if (a.title <= b.title) {
-          return action.payload === "AZ" ? -1 : 1;
+        /*         if (a.title.toLowerCase() <= b.title.toLowerCase()) {
+                  return action.payload === "AZ" ? -1 : 1;
+                }
+                if (a.title.toLowerCase() > b.title.toLowerCase()) {
+                  return action.payload === "ZA" ? -1 : 1;
+                } */
+        if (action.payload === "AZ") {
+          return a.title.localeCompare(b.title);
         }
-        if (a.title > b.title) {
-          return action.payload === "ZA" ? -1 : 1;
+        if (action.payload === "ZA") {
+          return b.title.localeCompare(a.title);
         }
       });
       return {
@@ -189,8 +214,8 @@ function rootReducer(state = initialState, action) {
       first === 0
         ? (filterPrice = [...filterAuxPrice])
         : first === 100
-        ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
-        : (filterPrice = filterAuxPrice.filter(
+          ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
+          : (filterPrice = filterAuxPrice.filter(
             (e) => e.price >= first && e.price <= last
           ));
 
@@ -331,7 +356,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case LOGIN_WITH_GOOGLE:
-      
+      console.log(action.payload);
       return {
         ...state,
         user: action.payload.user,
@@ -345,7 +370,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_CART:
-      console.log("Reducer llena carro",action.payload)
+      console.log("Reducer llena carro", action.payload);
       return {
         ...state,
         cart: action.payload,
@@ -355,10 +380,46 @@ function rootReducer(state = initialState, action) {
         ...state,
       };
 
-    case POST_BOOK_REVIEW:
-      console.log(action.payload);
+    case DELETE_CART:
       return {
         ...state,
+      };
+    case GET_BOOK_REVIEWS:
+      // console.log(action.payload);
+      return {
+        ...state,
+        bookReviews: action.payload.reverse(),
+      };
+
+    case POST_BOOK_REVIEW:
+      // console.log(action.payload);
+      return {
+        ...state,
+      };
+
+    case RESET_BOOK_REVIEWS:
+      return {
+        ...state,
+        bookReviews: [],
+      };
+
+    case GET_USERS_REVIEWS:
+      // console.log(action.payload);
+      return {
+        ...state,
+        usersReviews: action.payload.activeRegData.map((user) => user.id),
+      };
+
+    case RESET_USERS_REVIEWS:
+      return {
+        ...state,
+        usersReviews: [],
+      };
+
+    case GET_RECORD_ORDERS:
+      return {
+        ...state,
+        recordOrders: action.payload,
       };
 
     default:

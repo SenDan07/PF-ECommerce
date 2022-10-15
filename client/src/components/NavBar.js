@@ -33,14 +33,13 @@ export default function NavBar() {
   //   );
   // }, [LOGIN, ROLE]);
   let cart_User = useSelector((state) => state.cart);
-  console.log("Estado de Cart ", cart_User);
 
   cart_User = JSON.parse(localStorage.getItem("bookDetail"))
     ? JSON.parse(localStorage.getItem("bookDetail")).length
       ? JSON.parse(localStorage.getItem("bookDetail"))
       : cart_User
     : [];
-  console.log(cart_User);
+  // console.log(cart_User);
 
   localStorage.setItem("bookDetail", JSON.stringify(cart_User));
 
@@ -54,7 +53,7 @@ export default function NavBar() {
   }
 
   return (
-    <div className="bg-NavBar text-2xl text-white flex justify-between items-center px-7 py-3 fixed left-0 right-0 z-50">
+    <div className="bg-NavBar text-2xl text-white flex justify-between items-center px-7 py-3 left-0 right-0 z-50">
       <div className="flex items-center gap-20">
         <div>
           <h6 className="text-5xl">LIBRERIA</h6>
@@ -69,7 +68,7 @@ export default function NavBar() {
             to="/categories"
             className="mx-3 cursor-pointer hover:text-hoverMenu"
           >
-            CATEGORIAS
+            LIBROS
           </Link>
         </div>
       </div>
@@ -81,7 +80,7 @@ export default function NavBar() {
       <div>
         {LOGIN === 1 && ROLE === "ADMIN" ? null : (
           <Link
-            to="/car"
+            to={cart_User.length ? "/car" : "/"}
             className="text-xl text-[#888888] flex items-center gap-2 border rounded pl-2"
           >
             {/* <box-icon name="cart" className="text-white"></box-icon> */}
@@ -118,7 +117,7 @@ export default function NavBar() {
             </Link>
 
             <Link
-              to="/pedidos"
+              to={`/historyorder/${USER.iduser}`}
               className="mr-10 cursor-pointer hover:text-hoverMenu"
             >
               PEDIDOS

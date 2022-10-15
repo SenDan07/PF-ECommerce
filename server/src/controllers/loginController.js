@@ -6,6 +6,8 @@ const { generateToken } = require("../util/helpers/jwt-generator");
 const models = require("../db");
 const { User } = require("../db");
 const jwt_decode = require("jwt-decode");
+const axios = require("axios");
+
 
 const loginController = {
   registerUser: async (req, res, next) => {
@@ -57,6 +59,23 @@ const loginController = {
           //token: token
         };
 
+        if (userCreated) {
+          await axios.post("http://localhost:3001/alert/email", {
+            emails: email,
+            subject: "Registro exitoso",
+            content: `
+            <div>
+              <h1>Libreria PF</h1>
+              <h3>Registro de usuario</h3>
+              <p>Sr. ${
+                name + " " + lastName
+              }, le informamos que su cuenta ha sido creada satisfactoriamente. Lo invitamos a que visite nuestra página y mire las opciones de libros que tenemos disponibles.</p>
+              <!-- <a href="http://frontend.pfecommerce.ddns.net/" target="blanck">Ir a la página</a> -->
+            </div>
+            `,
+          });
+        }
+
         return res.status(200).json({
           status: 1,
           msg: "User registered successfully",
@@ -90,7 +109,7 @@ const loginController = {
             email: user.email,
             isGoogle: user.isGoogle,
             picture: user.picture,
-            iduser:user.id
+            iduser: user.id,
           };
           return res.status(200).json({
             status: 1,
@@ -233,7 +252,7 @@ const loginController = {
           isGoogle,
           email,
           picture,
-          iduser:userCreated.id
+          iduser: userCreated.id,
         };
 
         return res.status(200).json({
@@ -265,7 +284,7 @@ const loginController = {
         email,
         isGoogle,
         picture,
-        iduser:user.id
+        iduser: user.id,
       };
 
       res.status(200).json({
@@ -296,7 +315,7 @@ const loginController = {
           {
             model: Books,
             as: "favorites",
-            through: {
+            through: { 
               attributes: [],
             },
           },

@@ -1,7 +1,10 @@
+import { ErrorResponse } from "@remix-run/router";
+
 export const GET_BOOKS = "GET_BOOKS";
 export const GET_DETAIL_BOOK = "GET_DETAIL_BOOK";
 export const POST_CREATE_BOOK = "POST_CREATE_BOOK";
 export const POST_CREATE_CATEGORY = "POST_CREATE_CATEGORY";
+export const PUT_EDIT_BOOK="PUT_EDIT_BOOK";
 export const RESET_DETAIL = "RESET_DETAIL";
 export const ORDER_NAME = "ORDER_NAME";
 export const SEARCH_BOOK = "SEARCH_BOOK";
@@ -28,7 +31,11 @@ export const GET_CART = "GET_CART";
 export const ORDER_DELETE_BOOK = "ORDER_DELETE_BOOK";
 export const SEARCH_DELETE_BOOK = "SEARCH_DELETE_BOOK";
 export const RESET_DELETE_BOOKS = "RESET_DELETE_BOOKS";
-export const RECORD_ORDERS = "RECORD_ORDERS";
+export const GET_RECORD_ORDERS = "GET_RECORD_ORDERS";
 export const FILTER_DISPONIBILITY = "FILTER_DISPONIBILITY";
 export const GET_BOOK_REVIEWS = "GET_BOOK_REVIEWS";
 export const POST_BOOK_REVIEW = "POST_BOOK_REVIEW";
+export const RESET_BOOK_REVIEWS = "RESET_BOOK_REVIEWS";
+export const GET_USERS_REVIEWS = "GET_USERS_REVIEWS";
+export const RESET_USERS_REVIEWS = "RESET_USERS_REVIEWS";
+export const DELETE_CART="DELETE_CART"

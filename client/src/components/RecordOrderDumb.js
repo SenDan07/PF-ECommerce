@@ -1,25 +1,24 @@
-/* import React from "react";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { deleteBook, getBooks } from "../redux/actions";
+import React from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+/* import { useEffect } from "react";
+import { deleteBook, getBooks } from "../redux/actions"; */
 
 
-export default function DeleteBooksDumb({ idOrder, direction, date, price, idBook }) {
-    //let status = activado ? "disponible" : "eliminado"
-    const dispatch = useDispatch();
-
-    async function handleClick(e) {
-        await dispatch(deleteBook(idBook))
-        await dispatch(getUsers())
-    }
+export default function RecordOrderDumb({ idOrder, direction, date, price, country }) {
+    //const dispatch = useDispatch();
+    const idUser = useSelector((state) => state.user.iduser)
 
     return (
-        <div className="hover:text-white hover:bgItems flex justify-between border text-xl">
-            <h5 className="border w-1/4">{idOrder}</h5>
-            <h5 className="border w-1/4">{direction}</h5>
-            <h5 className="border w-1/4">{date}</h5>
-            <h5 className="border w-1/4">{price}</h5>
+        <div className="hover:text-white hover:bgItems flex justify-between border text-xl bg-contTable">
+            <h5 className="border w-20 flex justify-center">{idOrder}</h5>
+            <Link className="border w-1/4 flex justify-center " to={`/historyorder/${idUser}/${idOrder}`}>
+                <h5 className=" flex justify-center text-blue hover:cursor-pointer hover:text-hoverMenu">Ir a detalle de Boleta</h5>
+            </Link>
+            <h5 className="border w-1/4 flex justify-center">{direction} - {country}</h5>
+            <h5 className="border w-1/4 flex justify-center">{date}</h5>
+            <h5 className="border w-1/4 flex justify-center">{price}</h5>
         </div>
     )
 }
- */
+

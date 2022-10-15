@@ -25,6 +25,13 @@ import "boxicons";
 // import { FormUserTwo } from "../src/components/FormUserTwo";
 // import FormPayment from "./components/FormPayment";
 import { ErrorNotFound } from "./components/ErrorNotFound";
+import RecordOrderSmart from "./components/RecordOrderSmart"
+import RecordOrderDetails from "./components/RecordDetailsSmart"
+
+import Footer from "./Footer";
+
+import FormBookEdit from "./components/FormBookEdit"
+
 
 function App() {
   // const dispatch = useDispatch();
@@ -55,7 +62,7 @@ function App() {
             <Route exact path="/favorites" element={<Favorites />} />
           ) : (
             <Route exact path="/favorites" element={<ErrorNotFound />} />
-          )}
+          )} 
           <Route exact path="/books/:id" element={<BookDetail />} />
           <Route exact path="/searchbar" element={<SearchBarSmart />} />
           <Route
@@ -88,14 +95,37 @@ function App() {
             <Route excat path="/order" element={<ErrorNotFound />} />
           )}
 
+
+          {LOGIN === 1 && ROLE === "USER" ? (
+            <Route excat path="/historyorder/:id" element={<RecordOrderSmart />} />
+          ) : (
+            <Route excat path="/historyorder/:id" element={<ErrorNotFound />} />
+          )}
+
+
+          {LOGIN === 1 && ROLE === "USER" ? (
+            <Route excat path="/historyorder/:id/:idOrder" element={<RecordOrderDetails />} />
+          ) : (
+            <Route excat path="/historyorder/:id/:idOrder" element={<ErrorNotFound />} />
+          )}
+
           {LOGIN === 1 && ROLE === "ADMIN" ? (
             <Route exact path="/deletebook" element={<DeleteBooksSmart />} />
+
           ) : null}
+
+
+          {LOGIN === 1 && ROLE === "ADMIN" ? (
+            <Route excat path="edit/:id" element={<FormBookEdit />} />
+          ) : null}
+
+
           {LOGIN === 1 && ROLE === "ADMIN" ? (
             <Route exact path="/adminuser" element={<ManageUsers />} />
           ) : null}
         </Routes>
       </BrowserRouter>
+      <Footer/>
     </div>
   );
 }

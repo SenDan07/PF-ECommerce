@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteCategory, getAllCategories } from "../redux/actions";
+import NavBar from "./NavBar";
+import Menu from "./Menu";
 
 export const ManageCategories = () => {
     const dispatch = useDispatch();
@@ -28,15 +30,17 @@ export const ManageCategories = () => {
 
     return (
         <div>
+            <NavBar />
+            <Menu/>
             <div className="mb-40">
 
-                <div className="m-auto flex justify-start ">
-                    <Link to="/">
-                        <h3 className="border-1 border-rose-500 rounded mx-auto px-5 py-2 bg-button text-black hover:text-white mt-5 mx-10">
-                            &#129044; Regresar
-                        </h3>
-                    </Link>
-                </div>
+            <div className="flex justify-start">
+                <Link to="/createcategory">
+                    <h3  className="border-1 border-rose-500 bg-blueOscuro hover:bg-bluemasoscuro rounded mx-auto px-5 py-2 bg-button text-white hover:text-white mt-5 mx-10 transition-colors duration-200">
+                        Agregar
+                    </h3>
+                </Link>
+            </div>
 
                 <h1 className="text-center text-2xl font-bold mt-10">
                     Registro Categorias:{" "}
@@ -56,7 +60,7 @@ export const ManageCategories = () => {
                         <h3>Estado</h3>
                     </div>
                     <div className="border-black w-40 text-center text-white text-xl">
-                        <h3>Acción</h3>
+                        <h3>Acciones</h3>
                     </div>
 
                 </div>
@@ -66,7 +70,7 @@ export const ManageCategories = () => {
                         return (
                             <div
                                 key={id + 1}
-                                className="flex border w-max m-auto bg-[#999999]"
+                                className="flex border w-max m-auto bg-contTable"
                             >
                                 <div className="border w-20 text-center text-xl font-medium">
                                     <h3>{id + 1}</h3>

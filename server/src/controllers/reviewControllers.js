@@ -21,7 +21,7 @@ const reviewControllers = {
       }
       const bookRevs = await Review.findAll({
         where: {
-          bookId: bookId,
+          BookId: bookId,
         },
       });
       return res.status(200).send(bookRevs);
@@ -43,7 +43,7 @@ const reviewControllers = {
       }
       const userRevs = await Review.findAll({
         where: {
-          userId: userId,
+          UserId: userId,
         },
       });
       return res.status(200).send(userRevs);
@@ -58,7 +58,7 @@ const reviewControllers = {
 
   postNewReview: async (req, res, next) => {
     const { score, comment } = req.body;
-    const { userId, bookId } = req.params;
+    const { userId, bookId, userName } = req.params;
     try {
       if (!score || !comment) {
         const error = new HttpError(
@@ -67,24 +67,15 @@ const reviewControllers = {
         );
         return next(error);
       }
+
       const createReview = await Review.create({
         score,
         comment,
-        userId,
-        bookId,
-        // where id: userId
+        userName: userName,
+        BookId: bookId,
+        UserId: userId,
       });
-      const linkUser = await User.findOne({
-        where: {
-          id: userId,
-        },
-      });
-      const linkBook = await Books.findOne({
-        where: {
-          id: bookId,
-        },
-      });
-      createReview.addUser(linkUser).addBooks(linkBook);
+
       return res.status(201).send(createReview);
     } catch (err) {
       const error = new HttpError(
