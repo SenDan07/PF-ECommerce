@@ -14,7 +14,7 @@ export default function RecordOrderSmart() {
 
     return (
         <div>
-            <NavBar/>
+            <NavBar />
             <div className="flex justify-start">
                 <Link to="/">
                     <h3 className="border-1 border-rose-500 rounded mx-auto px-5 py-2 bg-button text-black hover:text-white mt-5 mx-10">
@@ -27,21 +27,25 @@ export default function RecordOrderSmart() {
                 <h5 className="">HISTORIAL DE COMPRAS</h5>
             </div>
 
-            <div className="border flex mx-32 bg-black text-white mt-10">
-                <div className="border w-1/4">
-                    <h3 className="text-center text-2xl">N° DE ORDEN / VER DETALLE</h3>
+            <div className="flex mx-32 bg-[#333] text-white mt-10">
+                <div className="w-20">
+                    <h3 className="text-center text-2xl">Orden</h3>
                 </div>
 
-                <div className="border w-1/4">
-                    <h3 className="text-center text-2xl">DIRECCION</h3>
+                <div className="w-1/4">
+                    <h3 className="text-center text-2xl">Detalle</h3>
                 </div>
 
-                <div className="border w-1/4">
-                    <h3 className="text-center text-2xl">FECHA</h3>
+                <div className="w-1/4">
+                    <h3 className="text-center text-2xl">Dirección</h3>
                 </div>
 
-                <div className="border w-1/4">
-                    <h3 className="text-center text-2xl">PRECIO TOTAL</h3>
+                <div className="w-1/4">
+                    <h3 className="text-center text-2xl">Fecha</h3>
+                </div>
+
+                <div className="w-1/4">
+                    <h3 className="text-center text-2xl">Precio Total</h3>
                 </div>
 
             </div>
