@@ -27,3 +27,42 @@ html {
 .scrollCustomStyle::-webkit-scrollbar-track {
   border-radius: 10px;
 }
+
+.StripeElement {
+  background-color: rgb(255, 255, 255);
+  border-radius: 3px;
+  /* color: #fff; */
+  font-style: italic;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  /* transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; */
+  padding: 5px;
+  width: 500px;
+}
+
+/* .StripeElement::placeholder {
+  color: #ff0;
+}
+
+.card-element-disabled {
+  color: #ddc809;
+  opacity: 1;
+}
+#card-element {
+  display: flex;
+  align-items: center;
+}
+#card-element div {
+  flex-grow: 1;
+}
+#card-element-error {
+  color: #ff0000;
+} */
+
+/*
+.card-number,
+#card-cvc,
+#card-exp {
+  display: inline-block;
+  color: #fff;
+} */
