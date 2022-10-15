@@ -66,10 +66,11 @@ const loginController = {
             content: `
             <div>
               <h1>Libreria PF</h1>
-              <h5>Registro de usuario</h5>
+              <h3>Registro de usuario</h3>
               <p>Sr. ${
                 name + " " + lastName
               }, le informamos que su cuenta ha sido creada satisfactoriamente. Lo invitamos a que visite nuestra página y mire las opciones de libros que tenemos disponibles.</p>
+              <!-- <a href="http://frontend.pfecommerce.ddns.net/" target="blanck">Ir a la página</a> -->
             </div>
             `,
           });
