@@ -1,19 +1,23 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { deleteBook, getBooks } from "../redux/actions";
-import { Link } from "react-router-dom";
+import { deleteBook, getBooks , getDetailBook} from "../redux/actions";
+import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 export default function DeleteBooksDumb({ title, activado, idBook, author }) {
     let status = activado ? "disponible" : "eliminado"
     const dispatch = useDispatch();
     const params = useParams()
-
+    const navigate=useNavigate()
     async function handleSubmit() {
         await dispatch(deleteBook(idBook))
         await dispatch(getBooks())
     }
 
+    async function handleCick(){
+        await dispatch(getDetailBook(idBook))
+        navigate(`/edit/${idBook}`)
+    }
     return (
         <div className="hover:text-white hover:bgItems flex justify-between border text-xl bg-contTable">
             <h2 className="border w-2/4">{title}</h2>
@@ -68,9 +72,9 @@ export default function DeleteBooksDumb({ title, activado, idBook, author }) {
                         }
                     </div>
 
-                    <Link to={`/edit/${idBook}`}>
                         <div
-                            className="text-center text-xl font-medium hover:cursor-pointer hover:bg-black hover:font-normal">
+                            className="text-center text-xl font-medium hover:cursor-pointer hover:bg-black hover:font-normal" onClick={handleCick} >
+                            
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -84,7 +88,6 @@ export default function DeleteBooksDumb({ title, activado, idBook, author }) {
                                     d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                             </svg>
                         </div>
-                    </Link>
                 </div>
             </div>
         </div >
