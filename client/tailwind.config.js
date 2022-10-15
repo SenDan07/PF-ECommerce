@@ -14,9 +14,14 @@ module.exports = {
       'hoverButton': '#2D682A',
       'table': '#60805C',
       'green': '#28A019',
+      'red': '#D03323',
+      'blue': '#143459',
+      'blueOscuro':'#223648',
+      'bluemasoscuro':'#05101a'
       'red': '#A81807',
       'blue': '#143459',
       'contTable': '#999999'
+
     },
     extend: {
       height: {

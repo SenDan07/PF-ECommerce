@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
 import { postCreateCategory, setStatus } from "../redux/actions"
 import NavBar from "./NavBar";
+import Menu from "./Menu";
 
 let boton
 export function validate(input) {
@@ -93,7 +94,7 @@ export default function FormBook() {
    
     return <div>
         <NavBar/>
-
+        <Menu/>
         <form onSubmit={(e) => handleSubmit(e)} className="bg-[#a3a3a3] text-white container mx-auto p-20 m-20 rounded-3xl w-1/2">
             <h2 className="text-center text-xl text-[30px] text-black">REGISTRO DE CATEGORIA</h2><br />
             <fieldset className="columns-2 text-[18px]">

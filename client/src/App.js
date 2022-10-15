@@ -27,7 +27,11 @@ import "boxicons";
 import { ErrorNotFound } from "./components/ErrorNotFound";
 import RecordOrderSmart from "./components/RecordOrderSmart"
 import RecordOrderDetails from "./components/RecordDetailsSmart"
+
+import Footer from "./Footer";
+
 import FormBookEdit from "./components/FormBookEdit"
+
 
 function App() {
   // const dispatch = useDispatch();
@@ -58,7 +62,7 @@ function App() {
             <Route exact path="/favorites" element={<Favorites />} />
           ) : (
             <Route exact path="/favorites" element={<ErrorNotFound />} />
-          )}
+          )} 
           <Route exact path="/books/:id" element={<BookDetail />} />
           <Route exact path="/searchbar" element={<SearchBarSmart />} />
           <Route
@@ -121,6 +125,7 @@ function App() {
           ) : null}
         </Routes>
       </BrowserRouter>
+      <Footer/>
     </div>
   );
 }
