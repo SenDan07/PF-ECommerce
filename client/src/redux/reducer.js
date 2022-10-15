@@ -115,12 +115,18 @@ function rootReducer(state = initialState, action) {
     case ORDER_NAME:
       let orderAuxName = [...state.booksByPrice];
       let orderBookName = orderAuxName.sort((a, b) => {
-        if (a.title <= b.title) {
-          return action.payload === "AZ" ? -1 : 1;
+        /*         if (a.title.toLowerCase() <= b.title.toLowerCase()) {
+                  return action.payload === "AZ" ? -1 : 1;
+                }
+        
+                if (a.title.toLowerCase() > b.title.toLowerCase()) {
+                  return action.payload === "ZA" ? -1 : 1;
+                } */
+        if (action.payload === "AZ") {
+          return a.title.localeCompare(b.title);
         }
-
-        if (a.title > b.title) {
-          return action.payload === "ZA" ? -1 : 1;
+        if (action.payload === "ZA") {
+          return b.title.localeCompare(a.title);
         }
       });
       return {
@@ -131,11 +137,17 @@ function rootReducer(state = initialState, action) {
     case ORDER_DELETE_BOOK:
       let orderAuxBookDelete = [...state.booksDeleteAdminFilter];
       let orderBookDelete = orderAuxBookDelete.sort((a, b) => {
-        if (a.title <= b.title) {
-          return action.payload === "AZ" ? -1 : 1;
+        /*         if (a.title.toLowerCase() <= b.title.toLowerCase()) {
+                  return action.payload === "AZ" ? -1 : 1;
+                }
+                if (a.title.toLowerCase() > b.title.toLowerCase()) {
+                  return action.payload === "ZA" ? -1 : 1;
+                } */
+        if (action.payload === "AZ") {
+          return a.title.localeCompare(b.title);
         }
-        if (a.title > b.title) {
-          return action.payload === "ZA" ? -1 : 1;
+        if (action.payload === "ZA") {
+          return b.title.localeCompare(a.title);
         }
       });
       return {
@@ -202,8 +214,8 @@ function rootReducer(state = initialState, action) {
       first === 0
         ? (filterPrice = [...filterAuxPrice])
         : first === 100
-        ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
-        : (filterPrice = filterAuxPrice.filter(
+          ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
+          : (filterPrice = filterAuxPrice.filter(
             (e) => e.price >= first && e.price <= last
           ));
 

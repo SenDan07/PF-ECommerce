@@ -97,10 +97,8 @@ export default function FormBook() {
     }
 
     function handleSubmit(e) {
-
         e.preventDefault()
         dispatch(postCreateBook(input))
-       
         setInput({
             title:'',
             authors: '',
