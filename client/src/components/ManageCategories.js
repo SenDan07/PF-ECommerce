@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteCategory, getAllCategories } from "../redux/actions";
 import NavBar from "./NavBar";
+import Menu from "./Menu";
 
 export const ManageCategories = () => {
     const dispatch = useDispatch();
@@ -30,15 +31,16 @@ export const ManageCategories = () => {
     return (
         <div>
             <NavBar />
+            <Menu/>
             <div className="mb-40">
 
-                <div className="m-auto flex justify-start ">
-                    <Link to="/admin">
-                        <h3 className="border-1 border-rose-500 rounded mx-auto px-5 py-2 bg-button text-black hover:text-white mt-5 mx-10">
-                            &#129044; Regresar
-                        </h3>
-                    </Link>
-                </div>
+            <div className="flex justify-start">
+                <Link to="/createcategory">
+                    <h3  className="border-1 border-rose-500 bg-blueOscuro hover:bg-bluemasoscuro rounded mx-auto px-5 py-2 bg-button text-white hover:text-white mt-5 mx-10 transition-colors duration-200">
+                        Agregar
+                    </h3>
+                </Link>
+            </div>
 
                 <h1 className="text-center text-2xl font-bold mt-10">
                     Registro Categorias:{" "}

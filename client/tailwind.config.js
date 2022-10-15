@@ -15,7 +15,9 @@ module.exports = {
       'table': '#60805C',
       'green': '#28A019',
       'red': '#D03323',
-      'blue': '#143459'
+      'blue': '#143459',
+      'blueOscuro':'#223648',
+      'bluemasoscuro':'#05101a'
     },
     extend: {
       height: {

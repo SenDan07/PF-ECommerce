@@ -5,7 +5,10 @@
 html {
   background-color: #71717a;
 }
-
+/*body{
+  background-image: url(https://cdn.businessinsider.es/sites/navi.axelspringer.es/public/styles/bi_1752/public/media/image/2022/03/libros-antiguos-2644117.jpg?itok=HS1bG2hG);
+  
+}*/
 .sombra {
   box-shadow: -8px 8px 3px #333;
 }
@@ -26,4 +29,17 @@ html {
 
 .scrollCustomStyle::-webkit-scrollbar-track {
   border-radius: 10px;
+}
+
+.footer{
+  background-color: #223648;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-top: 1rem;
+}
+.grupo{
+  margin-left: 4px;
 }

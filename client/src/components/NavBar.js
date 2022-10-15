@@ -68,7 +68,7 @@ export default function NavBar() {
             to="/categories"
             className="mx-3 cursor-pointer hover:text-hoverMenu"
           >
-            CATEGORIAS
+            LIBROS
           </Link>
         </div>
       </div>
