@@ -18,13 +18,14 @@ const loginController = {
       return res.status(400).json(errors);
     }
     // tomo los datos desde el body
-    let name = req.body.name;
-    let isActive = req.body.isActive;
-    let email = req.body.email;
-    let role = req.body.role;
-    let lastName = req.body.lastName;
-    let password = bcrypt.hashSync(req.body.password, 10);
-    let picture = req.body.picture;
+    const name = req.body.name;
+    const isActive = req.body.isActive;
+    const email = req.body.email;
+    const role = req.body.role;
+    const lastName = req.body.lastName;
+    const password = bcrypt.hashSync(req.body.password, 10);
+    const picture = req.body.picture;
+    const secretWord= req.body.secretWord;
     //compruebo si el email ya existe
     try {
       const user = await thereIsEmail(email);
@@ -46,6 +47,7 @@ const loginController = {
           email,
           role,
           picture,
+          secretWord
         });
 
         const data = {
@@ -96,6 +98,13 @@ const loginController = {
     try {
       // funcion validadora de email
       const user = await thereIsEmail(req.body.email);
+
+      if(user.isActive === false){
+       return res.json({
+          status:0,
+          message:'Usuario bloquedo comuníquese con el adminitrador'
+        })
+      }
 
       if (user) {
         if (bcrypt.compareSync(req.body.password, user.password)) {
@@ -174,8 +183,10 @@ const loginController = {
     });
   },
   getAllUsers: async (req, res, next) => {
-    const p1 = models.User.findAndCountAll({ where: { isActive: true } });
-    const p2 = models.User.findAndCountAll({ where: { isActive: false } });
+    const p1 = models.User.findAndCountAll({ where: { isActive: true,
+      role: "USER"}  });
+    const p2 = models.User.findAndCountAll({ where: { isActive: false,
+      role: "USER" } });
     const p3 = models.User.count();
 
     const [activeUser, inactiveUsers, quantity] = await Promise.all([
