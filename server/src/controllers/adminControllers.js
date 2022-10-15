@@ -247,7 +247,7 @@ const adminControllers = {
     }
   },
   // OPERACIONES DE ORDENES
-  getOrderByEmail: async (req, res) => {
+  getOrderByUser: async (req, res) => {
     const { email } = req.query;
     try {
       const user = await thereIsEmail(email);
@@ -295,7 +295,7 @@ const adminControllers = {
       });
     }
   },
-  getAllOrdes: async (req, res) => {
+  getAllOrders: async (req, res) => {
     try {
       const orders = await Order.findAll({ include: Books });
 

@@ -30,7 +30,7 @@ router.get("/allUsers",adminControllers.getAllUsers);
 router.get("/userById/:idUser",adminControllers.getUserById);
 /**----------------RUTAS DE ORDENES-------------------------------- */
 
-router.get("/orderByUser", adminControllers.geOrderByUser);
+router.get("/orderByUser", adminControllers.getOrderByUser);
 
 router.get("/allOrders",adminControllers.getAllOrders);
 
