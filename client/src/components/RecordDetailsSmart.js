@@ -21,7 +21,7 @@ export default function RecordDetailsSmart() {
 
     return (
         <div>
-            <NavBar/>
+            <NavBar />
             <div className="flex justify-start">
                 <Link to={`/historyorder/${idUser}`}>
                     <h3 className="border-1 border-rose-500 rounded mx-auto px-5 py-2 bg-button text-black hover:text-white mt-5 mx-10">
@@ -34,21 +34,21 @@ export default function RecordDetailsSmart() {
                 <h5 className="">DETALLES DE COMPRAS</h5>
             </div>
 
-            <div className="border flex mx-32 bg-black text-white mt-10">
-                <div className="border w-1/4">
-                    <h3 className="text-center text-2xl">LIBROS</h3>
+            <div className="flex mx-32 bg-[#333] text-white mt-10">
+                <div className="w-1/4">
+                    <h3 className="text-center text-2xl">Título</h3>
                 </div>
 
-                <div className="border w-1/4">
-                    <h3 className="text-center text-2xl">CANTIDAD</h3>
+                <div className="w-1/4">
+                    <h3 className="text-center text-2xl">Cantidad</h3>
                 </div>
 
-                <div className="border w-1/4">
-                    <h3 className="text-center text-2xl">PRECIO UNITARIO</h3>
+                <div className="w-1/4">
+                    <h3 className="text-center text-2xl">Precio Unitario</h3>
                 </div>
 
-                <div className="border w-1/4">
-                    <h3 className="text-center text-2xl">SUBTOTAL</h3>
+                <div className="w-1/4">
+                    <h3 className="text-center text-2xl">Subtotal</h3>
                 </div>
 
             </div>
@@ -64,12 +64,11 @@ export default function RecordDetailsSmart() {
                         />
                     )
                 })}
-                <div className="flex justify-end text-xl ">
-                    <h3 className="">TOTAL COMPRA: {suma}</h3>
+                <div className="w-128 border-4  flex justify-center text-3xl bg-contTable">
+                    <h3 className="">Costo Total de la Compra: ${suma}</h3>
                 </div>
 
             </div>
         </div>
     )
 }
-

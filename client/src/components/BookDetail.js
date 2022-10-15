@@ -13,6 +13,7 @@ import {
 import { useEffect } from "react";
 import { addCart } from "../redux/actions";
 import NavBar from "./NavBar";
+import Swal from "sweetalert2";
 
 const BookDetail = () => {
   const dispatch = useDispatch();
@@ -33,16 +34,65 @@ const BookDetail = () => {
   const bookDetail = useSelector((state) => state.detail);
   bookDetail.quantity = 1;
 
+  // useEffect(() => {
+  //   // showAlertOk();
+  //   // showAlertInfo();
+  //   // showAlertReview();
+  // }, []);
+
+  const showAlertOk = async () => {
+    await Swal.fire({
+      position: "center",
+      title: "Libro Agregado al carrito!! 👍",
+      background: "#333",
+      color: "#fff",
+      showConfirmButton: false,
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      timer: 1200,
+    });
+  };
+
+  const showAlertInfo = async () => {
+    await Swal.fire({
+      position: "center",
+      icon: "info",
+      title: "El libro ya está en el carrito!!",
+      background: "#333",
+      color: "#fff",
+      showConfirmButton: false,
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      timer: 1700,
+    });
+  };
+
+  const showAlertReview = async () => {
+    await Swal.fire({
+      position: "center",
+      icon: "warning",
+      title: "Completa bien la reseña!!",
+      text: "Y selecciona al menos una estrella",
+      background: "#333",
+      color: "#fff",
+      showConfirmButton: true,
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+    });
+  };
+
   function handleClick(e) {
     let cart = JSON.parse(localStorage.getItem("bookDetail")) || [];
 
     let repeatBook = cart.filter((book) => book.id === bookDetail.id);
 
     if (repeatBook.length) {
-      alert("El libro ya está agregado al carrito");
+      // alert("El libro ya está agregado al carrito");
+      showAlertInfo();
     } else {
       cart.push(bookDetail);
-      alert("Libro agregado al carrito");
+      // alert("Libro agregado al carrito");
+      showAlertOk();
       dispatch(addCart(cart));
       cart = JSON.stringify(cart);
       localStorage.setItem("bookDetail", cart);
@@ -78,7 +128,8 @@ const BookDetail = () => {
 
   const submitReview = async () => {
     if (currentValue === 0 || comment.length < 5) {
-      alert("Completa bien la reseña\nSelecciona al menos una estrella");
+      // alert("Completa bien la reseña\nSelecciona al menos una estrella");
+      showAlertReview();
     } else {
       // console.log({
       //   userId: USER.iduser,
@@ -108,9 +159,9 @@ const BookDetail = () => {
     activeUsers.includes(user.UserId)
   );
 
-  if (activeUsers.length) {
-    console.log(activeUsersReviews);
-  }
+  // if (activeUsers.length) {
+  //   console.log(activeUsersReviews);
+  // }
 
   return (
     <div>
@@ -136,8 +187,8 @@ const BookDetail = () => {
                   <div>
                     <div>
                       <h3 className="text-center text-3xl mb-1 font-bold text-[#1b1b47] border-b-2 w-4/5 m-auto">
-                        <span className="text-white font-normal">Precio: </span>$
-                        {Number(bookDetail.price).toFixed(2)}
+                        <span className="text-white font-normal">Precio: </span>
+                        ${Number(bookDetail.price).toFixed(2)}
                       </h3>
                     </div>
                     <div>
@@ -229,7 +280,8 @@ const BookDetail = () => {
                 <div className="mt-8">
                   <h3 className="text-white text-2xl">Descripción</h3>
                   <p className="font-medium italic text-xl mt-5 p-2 pr-10 bg-[#292828] rounded-lg mr-3 text-[#bbb] pb-10">
-                    {bookDetail.description && bookDetail.description.length > 515
+                    {bookDetail.description &&
+                    bookDetail.description.length > 515
                       ? `${bookDetail.description.slice(0, 515)}...`
                       : `${bookDetail.description}`}
                   </p>

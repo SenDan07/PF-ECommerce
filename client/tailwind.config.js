@@ -18,6 +18,10 @@ module.exports = {
       'blue': '#143459',
       'blueOscuro':'#223648',
       'bluemasoscuro':'#05101a'
+      'red': '#A81807',
+      'blue': '#143459',
+      'contTable': '#999999'
+
     },
     extend: {
       height: {

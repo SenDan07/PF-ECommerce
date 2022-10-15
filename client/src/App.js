@@ -27,7 +27,11 @@ import "boxicons";
 import { ErrorNotFound } from "./components/ErrorNotFound";
 import RecordOrderSmart from "./components/RecordOrderSmart"
 import RecordOrderDetails from "./components/RecordDetailsSmart"
+
 import Footer from "./Footer";
+
+import FormBookEdit from "./components/FormBookEdit"
+
 
 function App() {
   // const dispatch = useDispatch();
@@ -112,7 +116,7 @@ function App() {
 
 
           {LOGIN === 1 && ROLE === "ADMIN" ? (
-            <Route excat path="edit/:id" element={<FormBook />} />
+            <Route excat path="edit/:id" element={<FormBookEdit />} />
           ) : null}
 
 

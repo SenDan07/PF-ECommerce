@@ -10,9 +10,10 @@ export default function RecordOrderDumb({ idOrder, direction, date, price, count
     const idUser = useSelector((state) => state.user.iduser)
 
     return (
-        <div className="hover:text-white hover:bgItems flex justify-between border text-xl">
+        <div className="hover:text-white hover:bgItems flex justify-between border text-xl bg-contTable">
+            <h5 className="border w-20 flex justify-center">{idOrder}</h5>
             <Link className="border w-1/4 flex justify-center " to={`/historyorder/${idUser}/${idOrder}`}>
-                <h5 className=" flex justify-center text-blue hover:cursor-pointer hover:text-hoverMenu">{idOrder}</h5>
+                <h5 className=" flex justify-center text-blue hover:cursor-pointer hover:text-hoverMenu">Ir a detalle de Boleta</h5>
             </Link>
             <h5 className="border w-1/4 flex justify-center">{direction} - {country}</h5>
             <h5 className="border w-1/4 flex justify-center">{date}</h5>
