@@ -81,7 +81,7 @@ const orderControllers = {
               content: `
               <div>
                 <h1>Libreria PF</h1>
-                <h5>ORDEN ID:${id}</h5>
+                <h4>ORDEN ID:${id}</h4>
                 <h3>Gracias por tu compra!</h3>
                 <p>Hola ${nombreCompleto}, estamos preparando su pedido para ser enviado. Le notificaremos cuando se haya enviado.</p>
               </div>
