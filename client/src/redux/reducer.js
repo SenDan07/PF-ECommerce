@@ -3,6 +3,7 @@ import {
   GET_DETAIL_BOOK,
   POST_CREATE_BOOK,
   POST_CREATE_CATEGORY,
+  PUT_EDIT_BOOK,
   RESET_DETAIL,
   ORDER_NAME,
   SEARCH_BOOK,
@@ -92,6 +93,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         loading: action.payload,
       };
+
+      case PUT_EDIT_BOOK:
+        return{
+          ...state,
+          loading: action.payload?"Datos editados con exito":"No se pudo realizar la actualizacion"
+        }
 
     case RESET_DETAIL:
       return {

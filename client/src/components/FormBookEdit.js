@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
-import { getAllCategories, getDetailBook, postCreateBook, setStatus } from "../redux/actions"
+import { getAllCategories, putEditBook, setStatus } from "../redux/actions"
 
 
 let boton
+
 export function validate(input) {
 
     let errors = {};
@@ -50,27 +51,24 @@ export function validate(input) {
     return errors;
 }
 
-export default function FormBook() {
+export default function FormBookEdit() {
+
     const dispatch = useDispatch()
     const id=useParams().id
-    console.log("Id de params",id)
-    let loading=useSelector(state=>state.loading)
     let book=useSelector(state=>state.detail)
-    console.log("libro",book)
-  
-    const [input, setInput] = React.useState({
+    const [errors, setErrors] = useState({});   
+
+    const [input, setInput] = useState({
         title:book.title,
         authors: book.authors,
         publisher: book.publisher,
         ISBN: book.ISBN,
-       categories: book.categories?.map((c)=>{return c.name}) ,
+        categories: book.categories?.map((c)=>{return c.name}),
         imageLinks: book.imageLinks,
         description:book.description,
         price: book.price,
         stock:book.stock
     })
-    const [errors, setErrors] = React.useState({});
-   
     const uploadImage= async (e)=>{
         
      try{
@@ -101,7 +99,7 @@ export default function FormBook() {
     function handleSubmit(e) {
 
         e.preventDefault()
-        dispatch(postCreateBook(input))
+        dispatch(putEditBook(id,input))
        
         setInput({
             title:'',
@@ -114,7 +112,7 @@ export default function FormBook() {
             price:'',
             stock:''
         })
-        e.target.title.focus()
+       // e.target.title.focus()
         //  let boton= document.getElementById('enviar')
         boton.disabled = true
         setTimeout(()=>dispatch(setStatus('')),5000)
@@ -146,14 +144,16 @@ export default function FormBook() {
         }
 
     }
-
+ 
     useEffect(() => {
-        
         boton = document.getElementById('enviar')
-        dispatch(getDetailBook(id))
         dispatch(getAllCategories())
+       console.log("input",input)
+       
     }, [])
     let categories=useSelector(state=>state.categories)
+    
+    let loading=useSelector(state=>state.loading)
 
     return <div>
 
