@@ -49,7 +49,7 @@ const BookDetail = () => {
       showConfirmButton: false,
       allowEscapeKey: false,
       allowOutsideClick: false,
-      timer: 1500,
+      timer: 1200,
     });
   };
 
@@ -63,7 +63,7 @@ const BookDetail = () => {
       showConfirmButton: false,
       allowEscapeKey: false,
       allowOutsideClick: false,
-      timer: 2000,
+      timer: 1700,
     });
   };
 
