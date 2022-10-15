@@ -3,10 +3,12 @@ import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
 import { postCart } from "../redux/actions";
 import { useEffect } from "react";
+import NavBar from "./NavBar";
 
 export default function Cart() {
   //Mapeo de Productos Seleccionados
   const dispatch = useDispatch();
+
 
   const LOGIN = useSelector((state) => state.login);
   const ROLE = useSelector((state) => state.role);
@@ -19,12 +21,14 @@ export default function Cart() {
 
   async function handleClick() {
     if (LOGIN && cart.length) {
+
       await dispatch(postCart({ email: User.email, cart }));
     }
   }
 
   return (
-    <div className="flex flex-col">
+     <div className="flex flex-col">
+      <NavBar />
       <div className="w-max">
         <Link to="/">
           <h3 className="border-1 border-rose-500 rounded ml-10 mt-8 px-3 py-2 w-max bg-button hover:bg-[#03553e] transition-colors duration-200 text-white">
@@ -84,5 +88,6 @@ export default function Cart() {
         </div>
       </div>
     </div>
+    
   );
 }
