@@ -58,7 +58,7 @@ export const ManageCategories = () => {
                         <h3>Estado</h3>
                     </div>
                     <div className="border-black w-40 text-center text-white text-xl">
-                        <h3>Acción</h3>
+                        <h3>Acciones</h3>
                     </div>
 
                 </div>
@@ -68,7 +68,7 @@ export const ManageCategories = () => {
                         return (
                             <div
                                 key={id + 1}
-                                className="flex border w-max m-auto bg-[#999999]"
+                                className="flex border w-max m-auto bg-contTable"
                             >
                                 <div className="border w-20 text-center text-xl font-medium">
                                     <h3>{id + 1}</h3>
