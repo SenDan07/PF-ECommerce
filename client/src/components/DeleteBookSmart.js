@@ -7,7 +7,6 @@ import OrderDeleteBooks from "./OrderDeleteBooks";
 import SearchDeleteBooks from "./SearchDeleteBooks"
 import ResetDeleteBooks from "./ResetDeleteBooks"
 import FilterDisponibility from "./FilterDisponibility";
-import NavBar from "./NavBar";
 
 export default function DeleteBooksSmart() {
     const dispatch = useDispatch();
@@ -15,7 +14,6 @@ export default function DeleteBooksSmart() {
     const allBoks = useSelector((state) => state.booksDeleteAdminFilter)
     return (
         <div>
-            <NavBar/>
             <div className="flex justify-start">
                 <Link to="/admin">
                     <h3 className="border-1 border-rose-500 rounded mx-auto px-5 py-2 bg-button text-black hover:text-white mt-5 mx-10">
@@ -35,27 +33,26 @@ export default function DeleteBooksSmart() {
                 <ResetDeleteBooks />
             </div>
 
-            <div className="border flex mx-32 bg-black text-white mt-10">
-                <div className="border w-2/4">
-                    <h3 className="text-center text-2xl">TITULO</h3>
+            <div className="flex mx-32 bg-[#333] text-white mt-10">
+                <div className="w-2/4">
+                    <h3 className="text-center text-2xl">Titulo</h3>
                 </div>
 
-                <div className="border w-1/4">
-                    <h3 className="text-center text-2xl">AUTORES</h3>
+                <div className="w-1/4">
+                    <h3 className="text-center text-2xl">Autores</h3>
                 </div>
 
                 <div className="w-1/4 flex">
-                    <div className="border w-1/2">
-                        <h3 className="text-center text-2xl">ESTADO</h3>
+                    <div className="w-1/2">
+                        <h3 className="text-center text-2xl">Estado</h3>
                     </div>
 
-                    <div className="border w-1/2">
-                        <h3 className="text-center text-2xl">ACCION</h3>
+                    <div className="w-1/2">
+                        <h3 className="text-center text-2xl">Eliminar - Editar</h3>
                     </div>
                 </div>
-
-
             </div>
+
             <div className="mb-3 mx-32">
                 {allBoks.map((e) => {
                     return (
@@ -71,20 +68,3 @@ export default function DeleteBooksSmart() {
         </div>
     )
 }
-
-
-/* 
-            <div className="border flex mx-32 bg-black text-white mt-10">
-                <div className="border w-3/4">
-                    <h3 className="text-center text-2xl">TITULO</h3>
-                </div>
-                <div className="w-1/4 flex">
-                    <div className="border w-1/2">
-                        <h3 className="text-center text-2xl">ESTADO</h3>
-                    </div>
-
-                    <div className="border w-1/2">
-                        <h3 className="text-center text-2xl">ACCION</h3>
-                    </div>
-                </div>
-*/
