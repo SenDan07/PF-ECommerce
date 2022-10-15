@@ -39,7 +39,7 @@ export default function NavBar() {
       ? JSON.parse(localStorage.getItem("bookDetail"))
       : cart_User
     : [];
-  console.log(cart_User);
+  // console.log(cart_User);
 
   localStorage.setItem("bookDetail", JSON.stringify(cart_User));
 
@@ -79,8 +79,8 @@ export default function NavBar() {
 
       <div>
         {LOGIN === 1 && ROLE === "ADMIN" ? null : (
-          <Link 
-            to={cart_User.length?"/car":"/"}
+          <Link
+            to={cart_User.length ? "/car" : "/"}
             className="text-xl text-[#888888] flex items-center gap-2 border rounded pl-2"
           >
             {/* <box-icon name="cart" className="text-white"></box-icon> */}
@@ -109,19 +109,25 @@ export default function NavBar() {
       <div className="flex items-center">
         {LOGIN === 1 && ROLE === "USER" ? (
           <div className="flex gap-8">
-            <Link to="/favorites"
-              className="mr-10 cursor-pointer hover:text-hoverMenu">
+            <Link
+              to="/favorites"
+              className="mr-10 cursor-pointer hover:text-hoverMenu"
+            >
               FAVORITOS
             </Link>
 
-            <Link to={`/historyorder/${USER.iduser}`}
-              className="mr-10 cursor-pointer hover:text-hoverMenu">
+            <Link
+              to={`/historyorder/${USER.iduser}`}
+              className="mr-10 cursor-pointer hover:text-hoverMenu"
+            >
               PEDIDOS
             </Link>
           </div>
         ) : LOGIN === 1 && ROLE === "ADMIN" ? (
-          <Link to="/admin"
-            className="mx-3 cursor-pointer hover:text-hoverMenu">
+          <Link
+            to="/admin"
+            className="mx-3 cursor-pointer hover:text-hoverMenu"
+          >
             ADMINISTRAR
           </Link>
         ) : null}

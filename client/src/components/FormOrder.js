@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //import CartItem from "./CartItem"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 //import FormPayment from "./FormPayment";
 import { loadStripe } from "@stripe/stripe-js";
 import { addCart, deleteCart } from "../redux/actions";
-import { useNavigate } from "react-router-dom";
 import {
   Elements,
   CardElement,
@@ -13,6 +12,7 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const stripePromise = loadStripe(process.env.REACT_APP_CLAVE_PUBLICA_STRIPE);
 /* const stripePromise = loadStripe(
@@ -84,9 +84,107 @@ function CheckoutForm() {
     );
   }
 
+  // useEffect(() => {
+  //   // showLoadingPayment();
+  //   // showAlertSuccess();
+  //   // showAlertError();
+  // }, []);
+
+  // const showAlertConfirm = Swal.mixin({
+  //   customClass: {
+  //     confirmButton: "btn btn-success",
+  //     cancelButton: "btn btn-danger",
+  //   },
+  //   buttonsStyling: false,
+  // });
+
+  // showAlertConfirm.fire({
+  //   title: 'Are you sure?',
+  //   text: "You won't be able to revert this!",
+  //   icon: 'warning',
+  //   showCancelButton: true,
+  //   confirmButtonText: 'Yes, delete it!',
+  //   cancelButtonText: 'No, cancel!',
+  //   reverseButtons: true
+  // }).then((result) => {
+  //   if (result.isConfirmed) {
+  //     showAlertConfirm.fire(
+  //       'Deleted!',
+  //       'Your file has been deleted.',
+  //       'success'
+  //     )
+  //   } else if (
+  //     /* Read more about handling dismissals below */
+  //     result.dismiss === Swal.DismissReason.cancel
+  //   ) {
+  //     showAlertConfirm.fire(
+  //       'Cancelled',
+  //       'Your imaginary file is safe :)',
+  //       'error'
+  //     )
+  //   }
+  // })
+
+  const showAlertError = async () => {
+    await Swal.fire({
+      icon: "error",
+      title: "Oops, Hubo un Error en el Pago!!",
+      footer: "Intenta nuevamente, verifica los números de la tarjeta",
+      color: "#fff",
+      background: "#333",
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+    });
+  };
+
+  const showLoadingPayment = async () => {
+    Swal.fire({
+      title: "Procesando Su Pago",
+      text: "Espere unos segundos",
+      footer: "No cierre ni recarge la página",
+      timer: 90000,
+      background: "#333",
+      color: "#fff",
+      imageUrl:
+        "https://res.cloudinary.com/dzcpdipdg/image/upload/v1665789748/samples/loaders/loader-spynner-2-1--unscreen_jrttzf.gif",
+      imageWidth: 90,
+      imageHeight: 85,
+      showCancelButton: false,
+      showConfirmButton: false,
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+    }).then(
+      function () {},
+      // handling the promise rejection
+      function (dismiss) {
+        if (dismiss === "timer") {
+          //console.log('I was closed by the timer')
+        }
+      }
+    );
+  };
+
+  const showAlertSuccess = async () => {
+    await Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Gracias Por Tu Compra!!😊",
+      text: "El Pago se realizó Exitosamente!!",
+      footer: "Te hemos enviado una notificación a tu correo.",
+      background: "#333",
+      color: "#fff",
+      showConfirmButton: false,
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      timer: 2500,
+    });
+
+    navigate("/");
+  };
+
   async function hanledSubmit(e) {
     e.preventDefault();
-
+    showLoadingPayment();
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement),
@@ -131,17 +229,20 @@ function CheckoutForm() {
         elements.getElement(CardElement).clear();
         //console.log(data)
         if (data.error) {
-          alert("La Operación fallo!!");
+          // alert("La Operación fallo!!");
+          showAlertError();
         } else {
           //Si se realizo la compra, borra el contenido de LocalStore
-          alert("Se realizo la compra Correctamente!!");
+          // alert("Se realizo la compra Correctamente!!");
+          await showAlertSuccess();
           localStorage.clear(); //Limpia LocalStorage
           await dispatch(addCart([])); //Resetea el Reducer
           await dispatch(deleteCart(User.email)); //Elimina carrito
           navigate("/");
         }
       } catch (error) {
-        alert("No Se pudo realizar el pago Correctamente!!");
+        // alert("No Se pudo realizar el pago Correctamente!!");
+        showAlertError();
       }
     }
   }
@@ -231,12 +332,12 @@ function CheckoutForm() {
                   );
                 })}
               </div>
-              <div className="h-1/5 bg-[#0b4122] w-4/5 mx-auto flex items-center rounded">
+              <div className="h-1/5 bg-[#000000] w-4/5 mx-auto flex items-center rounded">
                 <fieldset className="container mx-auto flex flex-col justify-center items-center">
-                  <h2 className="font-bold text-xl text-white">
+                  <h2 className="font-bold text-3xl text-white font-mono">
                     VALOR TOTAL DE TU COMPRA
                   </h2>
-                  <h3 className="font-bold text-2xl text-[#ff0]">
+                  <h3 className="font-bold text-4xl text-[#ff0] font-mono">
                     $
                     {cart
                       .reduce((ac, e) => {
