@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { deleteUser, resetUser, getUsers } from "../redux/actions";
 import NavBar from "./NavBar";
 import Menu from "./Menu";
+import OrderUsers from "./OrderUsers"
+import SearchUsers from "./SearchUsers"
+import ResetAllUsers from "./ResetAllUsers"
 
 export const ManageUsers = () => {
   const dispatch = useDispatch();
@@ -25,15 +28,22 @@ export const ManageUsers = () => {
 
   return (
     <div>
-      <NavBar/>
-      <Menu/>
+      <NavBar />
+      <Menu />
+      <div className="flex justify-center gap-5">
+        <OrderUsers />
+        <SearchUsers />
+        <ResetAllUsers />
+      </div>
+
       <div className="flex justify-start">
-                <Link to="/admin">
-                    <h3  className="border-1 border-rose-500 bg-blueOscuro hover:bg-bluemasoscuro rounded mx-auto px-5 py-2 bg-button text-white hover:text-white mt-5 mx-10 transition-colors duration-200">
-                        Agregar
-                    </h3>
-                </Link>
-            </div>
+        <Link to="/admin">
+          <h3 className="border-1 border-rose-500 bg-blueOscuro hover:bg-bluemasoscuro rounded mx-auto px-5 py-2 bg-button text-white hover:text-white mt-5 mx-10 transition-colors duration-200">
+            Agregar
+          </h3>
+        </Link>
+
+      </div>
       <div className="mb-40">
         <h1 className="text-center text-2xl font-bold mt-10">
           Registro usuarios activos:{" "}

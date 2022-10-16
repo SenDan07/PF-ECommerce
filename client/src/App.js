@@ -26,10 +26,8 @@ import "boxicons";
 // import FormPayment from "./components/FormPayment";
 import { ErrorNotFound } from "./components/ErrorNotFound";
 import RecordOrderSmart from "./components/RecordOrderSmart"
-import RecordOrderDetails from "./components/RecordDetailsSmart"
-
-import Footer from "./Footer";
-
+import RecordDetailsSmart from "./components/RecordDetailsSmart"
+import Footer from "./components/Footer";
 import FormBookEdit from "./components/FormBookEdit"
 
 
@@ -104,7 +102,7 @@ function App() {
 
 
           {LOGIN === 1 && ROLE === "USER" ? (
-            <Route excat path="/historyorder/:id/:idOrder" element={<RecordOrderDetails />} />
+            <Route excat path="/historyorder/:id/:idOrder" element={<RecordDetailsSmart />} />
           ) : (
             <Route excat path="/historyorder/:id/:idOrder" element={<ErrorNotFound />} />
           )}
@@ -131,7 +129,4 @@ function App() {
 }
 
 export default App;
-/* 
 
-            <Route exact path="/deletebook" element={<DeleteBooksSmart/>}/>
-*/

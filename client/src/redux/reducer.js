@@ -38,6 +38,8 @@ import {
   RESET_BOOK_REVIEWS,
   GET_USERS_REVIEWS,
   RESET_USERS_REVIEWS,
+  ORDER_USERS,
+  SEARCH_USERS,
 } from "./types";
 
 const initialState = {
@@ -209,10 +211,8 @@ function rootReducer(state = initialState, action) {
       state.booksByPrice = [...state.booksByCategory];
       let filterAuxPrice = [...state.booksByPrice];
       let filterPrice;
-
       let first = action.payload.split("-")[0] * 1;
       let last = action.payload.split("-")[1] * 1;
-
       first === 0
         ? (filterPrice = [...filterAuxPrice])
         : first === 100
@@ -220,11 +220,11 @@ function rootReducer(state = initialState, action) {
         : (filterPrice = filterAuxPrice.filter(
             (e) => e.price >= first && e.price <= last
           ));
-
       return {
         ...state,
         booksByPrice: filterPrice,
       };
+
 
     case CATEGORY_BOOKS:
       let auxBookCategoryFilter = action.payload.filter(
@@ -236,12 +236,14 @@ function rootReducer(state = initialState, action) {
         booksByPrice: auxBookCategoryFilter,
       };
 
+
     case RESET_CATEGORY_BOOKS:
       return {
         ...state,
         booksByCategory: [],
         booksByPrice: [],
       };
+
 
     case RESET_DELETE_BOOKS:
       let auxResetDeleteBooks = [...state.books];
@@ -250,16 +252,17 @@ function rootReducer(state = initialState, action) {
         booksDeleteAdminFilter: [...auxResetDeleteBooks],
       };
 
+
     case SEARCH_BOOK:
       let auxBooksBySearch = [...action.payload];
       let BooksBySearch = auxBooksBySearch.filter(
         (book) => book.activado === true
       );
-      //console.log("action.payload: ", action.payload)
       return {
         ...state,
         booksBySearch: [...BooksBySearch],
       };
+
 
     case RESET_SEARCH_BOOK:
       return {
@@ -267,11 +270,13 @@ function rootReducer(state = initialState, action) {
         booksBySearch: [],
       };
 
+
     case SET_STATUS:
       return {
         ...state,
         loading: action.payload,
       };
+
 
     case LOGIN:
       console.log(action.payload.user);
@@ -282,12 +287,14 @@ function rootReducer(state = initialState, action) {
         user: action.payload.user,
       };
 
+
     case REGISTER:
       console.log(action.payload);
       return {
         ...state,
         loading: action.payload,
       };
+
 
     case LOGOUT:
       return {
@@ -297,6 +304,7 @@ function rootReducer(state = initialState, action) {
         user: {},
       };
 
+
     case GET_USERS:
       return {
         ...state,
@@ -304,19 +312,19 @@ function rootReducer(state = initialState, action) {
         inactiveUsers: action.payload.inactiveRegData,
       };
 
+
     case DELETE_USER:
       const idUserDelete = action.payload.data.id;
-
       const usersActive = state.activeUsers.filter(
         (user) => user.id !== idUserDelete
       );
       const usersInactive = [...state.inactiveUsers, action.payload.data];
-
       return {
         ...state,
         activeUsers: usersActive,
         inactiveUsers: usersInactive,
       };
+
 
     case DELETE_CATEGORY:
       console.log(action.payload);
@@ -339,23 +347,23 @@ function rootReducer(state = initialState, action) {
       const inactiveUsersReset = state.inactiveUsers.filter(
         (user) => user.id !== idUserReset
       );
-
       return {
         ...state,
         activeUsers: activeUsersReset,
         inactiveUsers: inactiveUsersReset,
       };
 
+
     case DELETE_BOOKS:
       let auxBookDeleted = [...state.books];
       let bookDeleted = auxBookDeleted.filter(
         (book) => !!book.activado === true
       );
-      //console.log("action.payload: ", action.payload);
       return {
         ...state,
         booksFilter: [...bookDeleted],
       };
+
 
     case LOGIN_WITH_GOOGLE:
       // console.log(action.payload);
@@ -365,11 +373,14 @@ function rootReducer(state = initialState, action) {
         login: action.payload.user.isActive ? 1 : 0,
         role: action.payload.user.role,
       };
+
+
     case ADD_CART:
       return {
         ...state,
         cart: action.payload,
       };
+
 
     case GET_CART:
       // console.log("Reducer llena carro", action.payload);
@@ -377,27 +388,29 @@ function rootReducer(state = initialState, action) {
         ...state,
         cart: action.payload,
       };
+
+
     case POST_CART:
       return {
         ...state,
       };
+
 
     case DELETE_CART:
       return {
         ...state,
       };
     case GET_BOOK_REVIEWS:
-      // console.log(action.payload);
       return {
         ...state,
         bookReviews: action.payload.reverse(),
       };
 
     case POST_BOOK_REVIEW:
-      // console.log(action.payload);
       return {
         ...state,
       };
+
 
     case RESET_BOOK_REVIEWS:
       return {
@@ -405,12 +418,13 @@ function rootReducer(state = initialState, action) {
         bookReviews: [],
       };
 
+
     case GET_USERS_REVIEWS:
-      // console.log(action.payload);
       return {
         ...state,
         usersReviews: action.payload.activeRegData.map((user) => user.id),
       };
+
 
     case RESET_USERS_REVIEWS:
       return {
@@ -424,59 +438,85 @@ function rootReducer(state = initialState, action) {
         recordOrders: action.payload,
       };
 
+    case ORDER_USERS:
+      let auxActiveUsers = [...state.activeUsers];
+      auxActiveUsers = auxActiveUsers.sort((a, b) => {
+        if (action.payload === "AZNAME") {
+          return a.name.localeCompare(b.name);
+        }
+        if (action.payload === "ZANAME") {
+          return b.name.localeCompare(a.name);
+        }
+        if (action.payload === "AZAPE") {
+          return a.lastName.localeCompare(b.lastName)
+        }
+        if (action.payload === "ZAAPE") {
+          return b.lastName.localeCompare(a.lastName)
+        }
+      });
+      let auxInactiveUsers = [...state.inactiveUsers]
+      auxInactiveUsers = auxInactiveUsers.sort((a, b) => {
+        if (action.payload === "AZNAME") {
+          return a.name.localeCompare(b.name);
+        }
+        if (action.payload === "ZANAME") {
+          return b.name.localeCompare(a.name);
+        }
+        if (action.payload === "AZAPE") {
+          return a.lastName.localeCompare(b.lastName)
+        }
+        if (action.payload === "ZAAPE") {
+          return b.lastName.localeCompare(a.lastName)
+        }
+      });
+      return {
+        ...state,
+        activeUsers: auxActiveUsers,
+        inactiveUsers: auxInactiveUsers
+      };
+
+
+    case SEARCH_USERS:
+      let auxSearchActiveName = [...state.activeUsers];
+      auxSearchActiveName = auxSearchActiveName.filter((user) =>
+        user.name.toLowerCase().includes(action.payload.toLowerCase())
+      );
+      let auxSearchActiveLastname = [...state.activeUsers];
+      auxSearchActiveLastname = auxSearchActiveLastname.filter((user) =>
+        user.lastName.toLowerCase().includes(action.payload.toLowerCase())
+      );
+      let auxSearchActiveEmail = [...state.activeUsers];
+      auxSearchActiveEmail = auxSearchActiveEmail.filter((user) =>
+        user.email.toLowerCase().includes(action.payload.toLowerCase())
+      );
+      let auxSearchInactiveName = [...state.inactiveUsers];
+      auxSearchInactiveName = auxSearchInactiveName.filter((user) =>
+        user.name.toLowerCase().includes(action.payload.toLowerCase())
+      );
+      let auxSearchInactiveLastname = [...state.inactiveUsers];
+      auxSearchInactiveLastname = auxSearchInactiveLastname.filter((user) =>
+        user.lastName.toLowerCase().includes(action.payload.toLowerCase())
+      );
+      let auxSearchInactiveEmail = [...state.inactiveUsers];
+      auxSearchInactiveEmail = auxSearchInactiveEmail.filter((user) =>
+        user.email.toLowerCase().includes(action.payload.toLowerCase())
+      );
+      let resultActiveSearch = [...auxSearchActiveName, ...auxSearchActiveLastname, ...auxSearchActiveEmail];
+      let resultInactiveSearch = [...auxSearchInactiveName, ...auxSearchInactiveLastname, ...auxSearchInactiveEmail]
+      let setActivos = [... new Set(resultActiveSearch)]
+      let setInactivos = [... new Set(resultInactiveSearch)]
+      return {
+        ...state,
+        activeUsers: setActivos,
+        inactiveUsers: setInactivos
+      };
+
+      
     default:
       return state;
   }
 }
 
+
 export default rootReducer;
 
-/*
-case ORDER_NAME:
-  let orderAuxName = [...state.booksFilter];
-  let orderBookName = orderAuxName.sort((a, b) => {
-    if (a.title <= b.name) {
-      return action.payload === "asc" ? -1 : 1;
-    }
-
-    if (a.title > b.title) {
-      return action.payload === "des" ? -1 : 1;
-    }
-  });
-  return {
-    ...state,
-    booksFilter: orderBookName,
-  };
-
-  case SEARCH_BOOK:
-    let searchBook = [...state.books]
-    searchBook = searchBook.filter(e => e.title.toLowerCase().includes(action.payload.toLowerCase()))
-    if(searchBook.length === 0){
-      searchBook = [...state.books]
-      alert("Libro no encontrado")
-    }
-    return {
-      ...state,
-      booksFilter: searchBook
-    }
-
-*/
-
-// case CATEGORY_BOOKS:
-//   return {
-//     ...state,
-//     books: action.payload,
-//   };
-
-// case ORDER_PRIECE:
-//   console.log("action.payload: ", action.payload);
-//   return {
-//     ...state,
-//     books: action.payload.items,
-//   };
-
-// case ORDER_NAME:
-//   return {
-//     ...state,
-//     books: action.payload,
-//   };
