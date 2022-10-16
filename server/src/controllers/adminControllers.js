@@ -287,7 +287,7 @@ const adminControllers = {
       res.status(200).json({
         status: 1,
         message: "Ordenes de usuario",
-        data: refactorOrder,
+        data: {user, orders: refactorOrder},
       });
     } catch (error) {
       console.log(error);
@@ -301,23 +301,27 @@ const adminControllers = {
     try {
       const orders = await Order.findAll({ include: Books });
 
-      let refactorOrder = orders.map((el) => {
+      let refactorOrder = orders.map(async (el) => {
+        const user = await User.getByPk(el.UserId);
         return {
-          id: el.id,
-          direccion: el.direccion,
-          telefono: el.telefono,
-          pais: el.pais,
-          total: el.total,
-          fecha: el.createdAt,
-          detalle: el.Books.map((el) => {
-            return {
-              title: el.title,
-              price: el.price,
-              cantidad: el.detalle.cantidad,
-              sutTotal: el.detalle.cantidad * el.price,
-            };
-          }),
-        };
+          user,
+          order: {
+            id: el.id,
+            direccion: el.direccion,
+            telefono: el.telefono,
+            pais: el.pais,
+            total: el.total,
+            fecha: el.createdAt,
+            detalle: el.Books.map((el) => {
+              return {
+                title: el.title,
+                price: el.price,
+                cantidad: el.detalle.cantidad,
+                sutTotal: el.detalle.cantidad * el.price,
+              };
+            }),
+          }
+        }
       });
       res.status(200).json({
         status: 1,
