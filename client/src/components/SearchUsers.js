@@ -25,12 +25,12 @@ export default function SearchUsers() {
 
           <div>
             <input
-              className="text-xl py-1 rounded bg-bgSearch text-white outline-none pl-3 italic"
+              className="text-xl py-1 rounded bg-bgSearch text-white outline-none pl-5 italic w-64"
               type="text"
               onChange={onInputChange}
               name="search"
               value={search}
-              placeholder="Titulo o Autor"
+              placeholder="Nombre, Apellido o Email"
             />
           </div>
   
