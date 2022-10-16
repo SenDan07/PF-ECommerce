@@ -43,16 +43,16 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       picture: {
-        type: DataTypes.STRING,  
+        type: DataTypes.STRING,
         allowNull: true,
         defaultValue:
           "https://res.cloudinary.com/dzcpdipdg/image/upload/v1665265607/samples/icons/img-perfil-default_krpmpp.jpg",
       },
-      secretWord:{
-         type:DataTypes.TEXT,
-         allowNull:false,
-
-       }
+      secretWord: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+        defaultValue: "isGoogle",
+      },
     },
 
     {

@@ -8,7 +8,6 @@ const { User } = require("../db");
 const jwt_decode = require("jwt-decode");
 const axios = require("axios");
 
-
 const loginController = {
   registerUser: async (req, res, next) => {
     //verifico los campos del req
@@ -25,7 +24,7 @@ const loginController = {
     const lastName = req.body.lastName;
     const password = bcrypt.hashSync(req.body.password, 10);
     const picture = req.body.picture;
-    const secretWord= req.body.secretWord;
+    const secretWord = req.body.secretWord;
     //compruebo si el email ya existe
     try {
       const user = await thereIsEmail(email);
@@ -47,7 +46,7 @@ const loginController = {
           email,
           role,
           picture,
-          secretWord
+          secretWord,
         });
 
         const data = {
@@ -89,7 +88,6 @@ const loginController = {
     }
   },
   loginUser: async (req, res, next) => {
-
     const errors = validationResult(req);
     //console.log(res.headers);
     if (!errors.isEmpty()) {
@@ -100,11 +98,18 @@ const loginController = {
       // funcion validadora de email
       const user = await thereIsEmail(req.body.email);
 
-      if(user.isActive === false){
-       return res.json({
-          status:0,
-          message:'Usuario bloquedo comuníquese con el adminitrador'
-        })
+      if (!user) {
+        return res.status(401).json({
+          status: 0,
+          message: "Usuario no existe!!",
+        });
+      }
+
+      if (user.isActive === false) {
+        return res.json({
+          status: 0,
+          message: "Usuario bloquedo comuníquese con el adminitrador",
+        });
       }
 
       if (user) {
@@ -161,7 +166,6 @@ const loginController = {
     res.json(user);
   },
   putUser: async (req, res, next) => {
-    
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -185,10 +189,12 @@ const loginController = {
     });
   },
   getAllUsers: async (req, res, next) => {
-    const p1 = models.User.findAndCountAll({ where: { isActive: true,
-      role: "USER"}  });
-    const p2 = models.User.findAndCountAll({ where: { isActive: false,
-      role: "USER" } });
+    const p1 = models.User.findAndCountAll({
+      where: { isActive: true, role: "USER" },
+    });
+    const p2 = models.User.findAndCountAll({
+      where: { isActive: false, role: "USER" },
+    });
     const p3 = models.User.count();
 
     const [activeUser, inactiveUsers, quantity] = await Promise.all([
@@ -328,7 +334,7 @@ const loginController = {
           {
             model: Books,
             as: "favorites",
-            through: { 
+            through: {
               attributes: [],
             },
           },
@@ -343,45 +349,39 @@ const loginController = {
       return next(error);
     }
   },
-  resetPassword: async(req,res,next) => {
-     
-    const { secretWord,email,newPassword }= req.body;
-   
-
+  resetPassword: async (req, res, next) => {
+    const { secretWord, email, newPassword } = req.body;
 
     const found = await User.findOne({
-      where:{
-        email:email,
-        secretWord:secretWord
-      }
-    })
-
-    if( !found ){
-       return res.status(404).json({ 
-        status:0,
-        message:'Datos inválidos'
-       });
-    };
-    const password = bcrypt.hashSync(newPassword, 10);
-
-    const change = await User.update({password}, {
       where: {
-        id:found.id
+        email: email,
+        secretWord: secretWord,
       },
     });
 
+    if (!found) {
+      return res.status(404).json({
+        status: 0,
+        message: "Datos inválidos",
+      });
+    }
+    const password = bcrypt.hashSync(newPassword, 10);
 
-    
+    const change = await User.update(
+      { password },
+      {
+        where: {
+          id: found.id,
+        },
+      }
+    );
 
-     return res.status(200).json({
-      status:1,
-      message:'Contraseña reestablecida correctamente',
+    return res.status(200).json({
+      status: 1,
+      message: "Contraseña reestablecida correctamente",
       //data: password
     });
-
-
-
-  }
+  },
 };
 
 module.exports = loginController;

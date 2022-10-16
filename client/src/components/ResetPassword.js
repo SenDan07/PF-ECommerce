@@ -12,7 +12,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import NavBar from "./NavBar";
 import Swal from "sweetalert2";
 
-export const Login = () => {
+export const ResetPassword = () => {
   const navigate = useNavigate();
   let dispatch = useDispatch();
 
@@ -157,7 +157,7 @@ export const Login = () => {
       <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
         <div className="w-1/2 p-6 m-auto bg-[#121f2b] rounded-md shadow-xl lg:max-w-xl">
           <h1 className="text-3xl font-semibold text-center text-[#c0c077] uppercase">
-            LOGIN
+            RESET PASSWORD
           </h1>
           <form className="mt-6" onSubmit={onSubmit}>
             <div className="mb-2">
@@ -181,18 +181,41 @@ export const Login = () => {
                 ) : null}
               </div>
             </div>
+
+            <div className="">
+              <label
+                htmlFor="secretWord"
+                className="block text-lg font-semibold text-white pl-2"
+              >
+                Palabra Secreta
+              </label>
+              <input
+                type="text"
+                name="secretWord"
+                value={data.secretWord}
+                placeholder="Palabra Secreta"
+                onChange={onInputChange}
+                className="block w-full px-4 py-2 mt-1 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-[#4eec10] focus:outline-none focus:ring focus:ring-opacity-40 italic"
+              />
+              <div className="h-[30px]">
+                {errors.secretWord ? (
+                  <p className="text-[#d15c5c] pl-1">{errors.secretWor}</p>
+                ) : null}
+              </div>
+            </div>
+
             <div className="">
               <label
                 htmlFor="password"
                 className="block text-lg font-semibold text-white pl-2"
               >
-                Contraseña
+                Establezca Nueva Contraseña
               </label>
               <input
                 type="password"
                 name="password"
                 value={data.password}
-                placeholder="Password"
+                placeholder="New Password"
                 onChange={onInputChange}
                 className="block w-full px-4 py-2 mt-1 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-[#4eec10] focus:outline-none focus:ring focus:ring-opacity-40 italic"
               />
@@ -203,20 +226,12 @@ export const Login = () => {
               </div>
             </div>
 
-            <div className="flex justify-end">
-              <Link
-                to="/reset-password"
-                className="text-sm text-[#cccccc] hover:underline"
-              >
-                Olvidaste tu contraseña ?
-              </Link>
-            </div>
             <div className="mt-6 flex justify-center">
               <button
                 type="submit"
                 className="w-3/4 px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-[#365496] rounded-md hover:bg-[#292f81] focus:outline-none focus:bg-purple-600 text-lg"
               >
-                Iniciar Sesión
+                Enviar
               </button>
             </div>
           </form>
