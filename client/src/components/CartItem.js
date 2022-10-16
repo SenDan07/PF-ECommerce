@@ -6,9 +6,9 @@ import Swal from "sweetalert2";
 
 export default function CartItem({ book }) {
   const dispatch = useDispatch();
-
-  const cantidad = [];
-  for (let i = 1; i <= book.stock; i++) {
+  console.log("Libro",book)
+  const cantidad = [];//
+  for (let i = 1; i <= parseInt(book.stock); i++) {
     cantidad[i] = i;
   }
 
@@ -81,7 +81,7 @@ export default function CartItem({ book }) {
               <span className="font-medium text-[#dddddd]">
                 Precio unitario:
               </span>
-              <br />${book.price.toFixed(2)}
+              <br />${Number.parseFloat(book.price).toFixed(2)}
             </h3>
           </div>
         </div>
@@ -89,11 +89,11 @@ export default function CartItem({ book }) {
       <div className="flex justify-center items-center w-1/2">
         <div>
           <div className="flex justify-center items-center gap-2">
-            <span className="font-medium text-lg">Cantidad:</span>
+            <span className="font-medium text-lg">Cantidad:{cantidad}</span>
             <select
               onChange={(e) => handleSelect(e)}
-              value={cantidad <= book.quantity ? book.quantity : cantidad}
-              className="rounded w-12 h-7 outline-none hover:cursor-pointer font-bold"
+              value={book.quantity}
+             // className="rounded w-12 h-7 outline-none hover:cursor-pointer font-bold"
             >
               {cantidad.map((i, idx) => {
                 return (
