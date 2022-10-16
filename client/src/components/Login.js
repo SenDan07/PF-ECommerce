@@ -160,8 +160,8 @@ export const Login = () => {
             &#129044; Regresar
           </h3>
         </Link>
-        <div className="w-1/2 p-6 m-auto bg-[#0d151b] rounded-md shadow-xl lg:max-w-xl">
-          <h1 className="text-3xl font-semibold text-center text-white uppercase">
+        <div className="w-1/2 p-6 m-auto bg-[#121f2b] rounded-md shadow-xl lg:max-w-xl">
+          <h1 className="text-3xl font-semibold text-center text-[#c0c077] uppercase">
             LOGIN
           </h1>
           <form className="mt-6" onSubmit={onSubmit}>
