@@ -179,7 +179,7 @@ export default function FormBook() {
                   ? input.imageLinks
                   : `https://res.cloudinary.com/dzcpdipdg/image/upload/v1665902861/samples/icons/select-picture-2_zf2pt2.jpg`
               }
-              alt=""
+              alt="img-category"
               className="h-[170px] w-full rounded"
             />
           </div>
