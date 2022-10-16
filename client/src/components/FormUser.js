@@ -199,7 +199,7 @@ export default function FormUser() {
   //let categories=useSelector(state=>state.categories)
   return (
     <div>
-      <NavBar/>
+      <NavBar />
       <form
         onSubmit={(e) => handleSubmit(e)}
         className="bg-[#0d151b] text-white container mx-auto p-20 m-20 rounded-lg w-1/2"
