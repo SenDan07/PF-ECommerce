@@ -35,6 +35,9 @@ export function validate(input) {
   } else if (!email.test(input.email)) {
     errors.email = "Email es invalido";
   }
+  if (!input.secretWord) {
+    errors.secretWord = "Palabra secreta es requerido";
+  }
   return errors;
 }
 
@@ -49,6 +52,7 @@ export default function FormUser() {
     password: "",
     role: "USER",
     email: "",
+    secretWord:""
   });
   const [errors, setErrors] = React.useState({});
 
@@ -239,7 +243,20 @@ export default function FormUser() {
           {errors.lastName ? (
             <p className="text-[#dc2626]">{errors.lastName}</p>
           ) : null}
-          <br />
+          
+          <label className="block">PALABRA SECRETA: </label>
+          <input
+            type="text"
+            className={
+              errors.secretWord
+                ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 mb-6"
+            }
+            name="secretWord"
+            value={input.secretWord}
+            placeholder="Palabra secreta"
+            onChange={(e) => handleChange(e)}
+          />
           <label className="block">PASSWORD: </label>
           <input
             type="password"
