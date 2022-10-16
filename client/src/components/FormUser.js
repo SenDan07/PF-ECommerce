@@ -33,10 +33,10 @@ export function validate(input) {
   if (!input.email) {
     errors.email = "Email es requerido";
   } else if (!email.test(input.email)) {
-    errors.email = "Email es invalido";
+    errors.email = "Email es inválido";
   }
-  if (!input.secretWord) {
-    errors.secretWord = "Palabra secreta es requerido";
+  if (!input.secretWord.trim() && input.secretWord.trim().length < 5) {
+    errors.secretWord = "Palabra secreta es requerida (min 5 caracteres)";
   }
   return errors;
 }
@@ -52,7 +52,7 @@ export default function FormUser() {
     password: "",
     role: "USER",
     email: "",
-    secretWord:"",
+    secretWord: "",
   });
   const [errors, setErrors] = React.useState({});
 
@@ -202,96 +202,126 @@ export default function FormUser() {
       <NavBar />
       <form
         onSubmit={(e) => handleSubmit(e)}
-        className="bg-[#0d151b] text-white container mx-auto p-20 m-20 rounded-lg w-1/2"
+        className="bg-[#14222e] text-white container mx-auto p-20 m-20 rounded-lg w-1/2"
       >
-        <h2 className="text-center text-xl text-[30px] text-white">
+        <h2 className="text-center text-xl text-[30px] text-[#c0c077]">
           REGISTRO DE USUARIOS
         </h2>
         <br />
-        <fieldset className="columns-2 text-[16px] m-2">
-          <label className="block">NOMBRE: </label>
-          <input
-            type="text"
-            className={
-              errors.name
-                ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
-                : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 mb-6"
-            }
-            name="name"
-            value={input.name}
-            placeholder="Ingrese su Nombre"
-            onChange={(e) => handleChange(e)}
-            autoFocus
-          />
-          <br />
-          {errors.name ? <p className="text-[#dc2626]">{errors.name}</p> : null}
-          <br />
-          <label className="block">APELLIDO: </label>
-          <input
-            type="text"
-            className={
-              errors.lastName
-                ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
-                : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 mb-6"
-            }
-            name="lastName"
-            value={input.lastName}
-            placeholder="Ingrese su Apellido"
-            onChange={(e) => handleChange(e)}
-          />
-          <br />
-          {errors.lastName ? (
-            <p className="text-[#dc2626]">{errors.lastName}</p>
-          ) : null}
-          
-          <label className="block">PALABRA SECRETA: </label>
-          <input
-            type="text"
-            className={
-              errors.secretWord
-                ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
-                : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 mb-6"
-            }
-            name="secretWord"
-            value={input.secretWord}
-            placeholder="Palabra secreta"
-            onChange={(e) => handleChange(e)}
-          />
-          <label className="block">PASSWORD: </label>
-          <input
-            type="password"
-            className={
-              errors.password
-                ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
-                : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 mb-6"
-            }
-            name="password"
-            value={input.password}
-            placeholder="Contraseña"
-            onChange={(e) => handleChange(e)}
-          />
-          <br />
-          {errors.password ? (
-            <p className="text-[#dc2626]">{errors.password}</p>
-          ) : null}
-          <br />
-          <label className="block">EMAIL: </label>
-          <input
-            type="email"
-            className={
-              errors.email
-                ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
-                : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 mb-6"
-            }
-            name="email"
-            value={input.email}
-            placeholder="Correo"
-            onChange={(e) => handleChange(e)}
-          />
-          <br />
-          {errors.email ? (
-            <p className="text-[#dc2626]">{errors.email}</p>
-          ) : null}
+        <fieldset className="columns-2 text-[16px] m-2 flex flex-col">
+          <div className="flex">
+            <div className="w-1/2">
+              <div className="flex flex-col">
+                <label className="">NOMBRE: </label>
+                <input
+                  type="text"
+                  className={
+                    errors.name
+                      ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                      : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                  }
+                  name="name"
+                  value={input.name}
+                  placeholder="Ingrese su Nombre"
+                  onChange={(e) => handleChange(e)}
+                  autoFocus
+                />
+                <div className="h-[30px]">
+                  {errors.name ? (
+                    <p className="text-[#dc2626]">{errors.name}</p>
+                  ) : null}
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <label className="">APELLIDO: </label>
+                <input
+                  type="text"
+                  className={
+                    errors.lastName
+                      ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                      : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                  }
+                  name="lastName"
+                  value={input.lastName}
+                  placeholder="Ingrese su Apellido"
+                  onChange={(e) => handleChange(e)}
+                />
+
+                <div className="h-[30px]">
+                  {errors.lastName ? (
+                    <p className="text-[#dc2626]">{errors.lastName}</p>
+                  ) : null}
+                </div>
+              </div>
+            </div>
+
+            <div className="w-1/2">
+              <div className="flex flex-col">
+                <label className="">PASSWORD: </label>
+                <input
+                  type="password"
+                  className={
+                    errors.password
+                      ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                      : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                  }
+                  name="password"
+                  value={input.password}
+                  placeholder="Contraseña"
+                  onChange={(e) => handleChange(e)}
+                />
+
+                <div className="h-[30px]">
+                  {errors.password ? (
+                    <p className="text-[#dc2626]">{errors.password}</p>
+                  ) : null}
+                </div>
+              </div>
+
+              <div className="flex flex-col">
+                <label className="">EMAIL: </label>
+                <input
+                  type="email"
+                  className={
+                    errors.email
+                      ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                      : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                  }
+                  name="email"
+                  value={input.email}
+                  placeholder="Correo"
+                  onChange={(e) => handleChange(e)}
+                />
+
+                <div className="h-[30px]">
+                  {errors.email ? (
+                    <p className="text-[#dc2626]">{errors.email}</p>
+                  ) : null}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="w-3/4">
+            <label className="block">PALABRA SECRETA: </label>
+            <input
+              type="text"
+              className={
+                errors.secretWord
+                  ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                  : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+              }
+              name="secretWord"
+              value={input.secretWord}
+              placeholder="Utlizala para recuperar tu cuenta (min 5 char)"
+              onChange={(e) => handleChange(e)}
+            />
+            <div className="h-[30px]">
+              {errors.secretWord ? (
+                <p className="text-[#dc2626]">{errors.secretWord}</p>
+              ) : null}
+            </div>
+          </div>
 
           {/*<label className="block">IMAGEN: </label>
                 <input type='file' name='imageLinks' className="w-64" accept="image/png, image/jpeg" onChange={(e) => uploadImage(e)} />
@@ -309,7 +339,7 @@ export default function FormUser() {
             type="submit"
             className={`text-xl ${
               Object.keys(errors).length
-                ? "bg-[#94a3b8] p-2 cursor-no-drop rounded"
+                ? "bg-[#94a3b8] p-2 px-8 m-2 cursor-no-drop rounded"
                 : "bg-[#124d9a] p-2 px-8 m-2 rounded cursor-pointer transition-colors duration-200 hover:bg-[#0e3f7e]"
             }`}
             id="enviar"
@@ -321,7 +351,7 @@ export default function FormUser() {
             <input
               type="button"
               className="bg-[#9a3412] p-2 w-36 cursor-pointer rounded transition-colors duration-200 hover:bg-[#70240a] ml-3 text-lg"
-              value="Regresar"
+              value="Cancelar"
             />
           </Link>
         </fieldset>
