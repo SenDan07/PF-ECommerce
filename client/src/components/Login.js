@@ -180,9 +180,11 @@ export const Login = () => {
                 onChange={onInputChange}
                 className="block w-full px-4 py-2 mt-1 bg-white border rounded-md focus:border-purple-400 focus:ring-[#4eec10] focus:outline-none focus:ring focus:ring-opacity-40 italic"
               />
-              {errors.email ? (
-                <p className="text-[#d15c5c] pl-1">{errors.email}</p>
-              ) : null}
+              <div className="h-[30px]">
+                {errors.email ? (
+                  <p className="text-[#d15c5c] pl-1">{errors.email}</p>
+                ) : null}
+              </div>
             </div>
             <div className="">
               <label
@@ -199,9 +201,11 @@ export const Login = () => {
                 onChange={onInputChange}
                 className="block w-full px-4 py-2 mt-1 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-[#4eec10] focus:outline-none focus:ring focus:ring-opacity-40 italic"
               />
-              {errors.password ? (
-                <p className="text-[#d15c5c] pl-1">{errors.password}</p>
-              ) : null}
+              <div className="h-[30px]">
+                {errors.password ? (
+                  <p className="text-[#d15c5c] pl-1">{errors.password}</p>
+                ) : null}
+              </div>
             </div>
 
             <div className="flex justify-end">
