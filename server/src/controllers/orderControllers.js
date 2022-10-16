@@ -19,6 +19,13 @@ const orderControllers = {
         id,
       } = req.body;
 
+      for(item of carrito){
+        if(item.quantity > item.stock){
+          const error = new HttpError(`No hay suficientes copias del libro ${item.title} para cubrir el pedido. Se ha cancelado la orden.`)
+          return next(error)
+        }
+      }
+
       const stripe = new Stripe(process.env.CLAVE_SECRETA_STRIPE);
 
       let totalFormat = Math.ceil(parseFloat(total) * 100);
