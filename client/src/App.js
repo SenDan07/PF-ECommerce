@@ -54,13 +54,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/createbook" element={<FormBook />} />
-          <Route exact path="/createcategory" element={<FormCategory />} />
+
           {LOGIN === 1 && ROLE === "USER" ? (
             <Route exact path="/favorites" element={<Favorites />} />
           ) : (
             <Route exact path="/favorites" element={<ErrorNotFound />} />
-          )} 
+          )}
           <Route exact path="/books/:id" element={<BookDetail />} />
           <Route exact path="/searchbar" element={<SearchBarSmart />} />
           <Route
@@ -109,7 +108,6 @@ function App() {
 
           {LOGIN === 1 && ROLE === "ADMIN" ? (
             <Route exact path="/deletebook" element={<DeleteBooksSmart />} />
-
           ) : null}
 
 
@@ -121,12 +119,28 @@ function App() {
           {LOGIN === 1 && ROLE === "ADMIN" ? (
             <Route exact path="/adminuser" element={<ManageUsers />} />
           ) : null}
+
+
+          {LOGIN === 1 && ROLE === "ADMIN" ? (
+            <Route exact path="/createbook" element={<FormBook />} />
+          ) : null}
+
+          {LOGIN === 1 && ROLE === "ADMIN" ? (
+            <Route exact path="/createcategory" element={<FormCategory />} />
+          ) : null}
+
+
+
         </Routes>
       </BrowserRouter>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
 
 export default App;
 
+
+/* 
+
+*/

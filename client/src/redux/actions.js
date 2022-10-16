@@ -38,7 +38,8 @@ import {
   GET_USERS_REVIEWS,
   RESET_USERS_REVIEWS,
   ORDER_USERS,
-  SEARCH_USERS
+  SEARCH_USERS,
+  GET_ALL_RECORD_ORDERS,
 } from "./types.js";
 import axios from "axios";
 
@@ -54,7 +55,7 @@ export const getBooks = () => async (dispatch) => {
 
 
 export const getDetailBook = (id) => async (dispatch) => {
-  
+
   let bookDetail = await axios(`${direction}/shop/book/${id}`);
 
   return dispatch({
@@ -109,7 +110,7 @@ export function postCreateCategory(input) {
   };
 }
 
-export function putEditBook(idBook,input) {
+export function putEditBook(idBook, input) {
   return async (dispatch) => {
     try {
       dispatch(setStatus("Guardando"));
@@ -433,33 +434,21 @@ export function orderUsers(order) {
 }
 
 
-export function searchUsers(search){
+export function searchUsers(search) {
   return {
     type: SEARCH_USERS,
     payload: search
   }
 }
 
-// export function orderName(value) {
-//   return async (dispatch) => {
-//     let res = await axios.get(
-//       `http://localhost:3001/shop/books/order?type=${value}`
-//     );
-//     return dispatch({
-//       type: ORDER_NAME,
-//       payload: res.data,
-//     });
-//   };
-// }
 
-// export function orderPriece(value) {
-//   return async (dispatch) => {
-//     let res = await axios.get(
-//       `http://localhost:3001/shop/books/orderprice?type=${value}`
-//     );
-//     return dispatch({
-//       type: ORDER_PRIECE,
-//       payload: res.data,
-//     });
-//   };
-// }
+export function getAllRecordOrders() {
+  return async (dispatch) => {
+    let res = await axios.get(`${direction}/allOrders`)
+    return dispatch({
+      type: GET_ALL_RECORD_ORDERS,
+      payload: res.data
+    })
+  }
+}
+

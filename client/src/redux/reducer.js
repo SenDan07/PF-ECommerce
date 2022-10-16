@@ -40,6 +40,7 @@ import {
   RESET_USERS_REVIEWS,
   ORDER_USERS,
   SEARCH_USERS,
+  GET_ALL_RECORD_ORDERS,
 } from "./types";
 
 const initialState = {
@@ -63,6 +64,7 @@ const initialState = {
   bookReviews: [],
   usersReviews: [],
   recordOrders: [],
+  allRecordOrders: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -216,8 +218,8 @@ function rootReducer(state = initialState, action) {
       first === 0
         ? (filterPrice = [...filterAuxPrice])
         : first === 100
-        ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
-        : (filterPrice = filterAuxPrice.filter(
+          ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
+          : (filterPrice = filterAuxPrice.filter(
             (e) => e.price >= first && e.price <= last
           ));
       return {
@@ -511,7 +513,13 @@ function rootReducer(state = initialState, action) {
         inactiveUsers: setInactivos
       };
 
-      
+
+    case GET_ALL_RECORD_ORDERS:
+      return {
+        ...state,
+        allRecordOrders: action.payload
+      }
+
     default:
       return state;
   }
