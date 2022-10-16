@@ -36,6 +36,8 @@ import {
   RESET_BOOK_REVIEWS,
   GET_USERS_REVIEWS,
   RESET_USERS_REVIEWS,
+  ORDER_USERS,
+  SEARCH_USERS
 } from "./types.js";
 import axios from "axios";
 
@@ -333,7 +335,6 @@ export function postCart(cart) {
 export function getCart(email) {
   return async (dispatch) => {
     let res = await axios.get(`${direction}/cart/cartUser?email=${email}`);
-    
     return dispatch({
       type: GET_CART,
       payload: res.data.data,
@@ -344,7 +345,6 @@ export function getCart(email) {
 export function deleteCart(email) {
   return async (dispatch) => {
     let res = await axios.put(`${direction}/cart/cartUser?email=${email}`);
-    
     return dispatch({
       type: DELETE_CART
     });
@@ -384,15 +384,15 @@ export function postReview(data) {
 }
 
 
- export function getRecordOrders(idUser){
-  return async(dispatch) => {
+export function getRecordOrders(idUser) {
+  return async (dispatch) => {
     let res = await axios.get(`${direction}/checkout/orders/${idUser}`)
-    return dispatch ({
+    return dispatch({
       type: GET_RECORD_ORDERS,
       payload: res.data
     })
   }
-} 
+}
 
 
 export const resetBookReviews = () => ({ type: RESET_BOOK_REVIEWS });
@@ -408,6 +408,21 @@ export const getUsersReviews = () => async (dispatch) => {
 
 export const resetUsersReviews = () => ({ type: RESET_USERS_REVIEWS });
 
+
+export function orderUsers(order) {
+  return {
+    type: ORDER_USERS,
+    payload: order,
+  };
+}
+
+
+export function searchUsers(search){
+  return {
+    type: SEARCH_USERS,
+    payload: search
+  }
+}
 
 // export function orderName(value) {
 //   return async (dispatch) => {

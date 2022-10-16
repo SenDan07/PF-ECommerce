@@ -57,15 +57,15 @@ export default function RecordDetailsSmart() {
                     return (
                         <RecordDetailsDumb
                             title={e.title}
-                            uprice={e.price}
-                            key={e.id}
+                            uprice={e.price.toFixed(2)}
+                            key={e.id+"aa"}
                             cantidad={e.cantidad}
-                            subtotal={e.sutTotal}
+                            subtotal={e.sutTotal.toFixed(2)}
                         />
                     )
                 })}
                 <div className="w-128 border-4  flex justify-center text-3xl bg-contTable">
-                    <h3 className="">Costo Total de la Compra: ${suma}</h3>
+                    <h3 className="">Costo Total de la Compra: ${suma.toFixed(2)}</h3>
                 </div>
 
             </div>

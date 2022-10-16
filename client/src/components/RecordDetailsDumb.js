@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 /* import { useEffect } from "react";
 import { deleteBook, getBooks } from "../redux/actions"; */
 
-export default function RecordOrderDumb({ title, cantidad, subtotal, uprice, suma }) {
+export default function RecordOrderDumb({ title, cantidad, subtotal, uprice }) {
     /*     const dispatch = useDispatch();
         const idUser = useSelector((state) => state.user.iduser) */
 

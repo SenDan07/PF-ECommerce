@@ -29,7 +29,11 @@ export default function RecordOrderSmart() {
 
             <div className="flex mx-32 bg-[#333] text-white mt-10">
                 <div className="w-20">
-                    <h3 className="text-center text-2xl">Orden</h3>
+                    <h3 className="text-center text-2xl">#</h3>
+                </div>
+
+                <div className="w-32">
+                    <h3 className="text-center text-2xl">N° Orden</h3>
                 </div>
 
                 <div className="w-1/4">
@@ -50,15 +54,17 @@ export default function RecordOrderSmart() {
 
             </div>
             <div className="mb-3 mx-32">
-                {records.map((e) => {
+                {records.map((e, index) => {
                     return (
                         <RecordOrderDumb
                             direction={e.direccion}
                             country={e.pais}
                             price={e.total}
                             key={e.id}
+                            numeral={index+1}
+                            date={e.fecha} 
                             idOrder={e.id}
-                            date={e.fecha} />
+                            />
                     )
                 })}
             </div>

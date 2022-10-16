@@ -273,6 +273,15 @@ const BookDetail = () => {
                             <h3 className="mb-7 pl-7">{bookDetail.ISBN}</h3>
                           </div>
                         </div>
+
+                        <div className="flex gap-5">
+                          <div className="w-1/4">
+                            <h3 className="mb-7 font-bold text-NavBar">STOCK</h3>
+                          </div>
+                          <div className="w-3/4">
+                            <h3 className="mb-7 pl-7">{bookDetail.stock}</h3>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
