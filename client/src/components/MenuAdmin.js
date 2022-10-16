@@ -52,7 +52,7 @@ export default function NavAdmin() {
       </div>
 {/*https://storage.googleapis.com/librio-media/media/cache/content_section/95/8d/ad25ed4e50601bb5ab97690e69f1.png*/}
       <Menu/>
-      <img src="https://verssus.com/wp-content/uploads/2020/10/montaje_libros_verssus.png" style={{width:900}} className="mx-auto mt-8" alt="" />
+      <img src="https://storage.googleapis.com/librio-media/media/cache/content_section/95/8d/ad25ed4e50601bb5ab97690e69f1.png" style={{width:700}} className="mx-auto mt-8" alt="" />
     </div>
   );
 }

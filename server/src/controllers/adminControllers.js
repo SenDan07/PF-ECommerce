@@ -83,6 +83,7 @@ const adminControllers = {
         ISBN,
         imageLinks,
         description,
+        stock,
         price,
         categories,
       } = req.body;
@@ -104,6 +105,7 @@ const adminControllers = {
             ISBN,
             imageLinks,
             description,
+            stock,
             price,
           },
           { where: { id: idBook } }
@@ -259,10 +261,10 @@ const adminControllers = {
         });
       }
 
-      const orders = await Order.findAll({
+          const orders = await Order.findAll({
         where: { UserId: user.id },
         include: Books,
-      });
+      });;
 
       let refactorOrder = orders.map((el) => {
         return {

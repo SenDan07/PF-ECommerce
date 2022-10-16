@@ -199,7 +199,7 @@ export default function FormBook() {
                 {loading?<p>{loading}</p>:null}
                 <input type='submit' className={(Object.keys(errors).length) ? "bg-[#94a3b8] p-5 m-2 cursor-pointer rounded-3xl" : "bg-[#9a3412] p-5 m-2 cursor-pointer rounded-3xl"} id='enviar' disabled={(Object.keys(errors).length) ? true : false} value='Guardar' />
 
-                <Link to="/admin">
+                <Link to="/deletebook">
                     <input type='button' className="bg-[#9a3412] p-5 cursor-pointer rounded-3xl" value='Regresar' />
                 </Link>
             </fieldset>

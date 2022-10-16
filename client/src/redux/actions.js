@@ -3,6 +3,7 @@ import {
   GET_DETAIL_BOOK,
   POST_CREATE_BOOK,
   POST_CREATE_CATEGORY,
+  PUT_EDIT_BOOK,
   ORDER_NAME,
   ORDER_PRICE,
   RESET_DETAIL,
@@ -53,6 +54,7 @@ export const getBooks = () => async (dispatch) => {
 
 
 export const getDetailBook = (id) => async (dispatch) => {
+  
   let bookDetail = await axios(`${direction}/shop/book/${id}`);
 
   return dispatch({
@@ -107,6 +109,20 @@ export function postCreateCategory(input) {
   };
 }
 
+export function putEditBook(idBook,input) {
+  return async (dispatch) => {
+    try {
+      dispatch(setStatus("Guardando"));
+      var res = await axios.put(`${direction}/admin/books/${idBook}`, input);
+      return dispatch({
+        type: PUT_EDIT_BOOK,
+        payload: res.data,
+      });
+    } catch (e) {
+      dispatch(setStatus("Datos no se guardaron correctamente"));
+    }
+  };
+}
 
 export function orderName(order) {
   return {

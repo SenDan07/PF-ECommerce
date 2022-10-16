@@ -1,122 +1,212 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom"
-import {useDispatch, useSelector} from "react-redux"
-import { postCreateCategory, setStatus } from "../redux/actions"
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { postCreateCategory, setStatus } from "../redux/actions";
 import NavBar from "./NavBar";
 import Menu from "./Menu";
+import Swal from "sweetalert2";
 
-let boton
+let boton;
 export function validate(input) {
+  let errors = {};
+  let expLetras = /^[A-Za-z]+[A-Za-z\s]*[A-Za-z]$/;
+  let expLetras_Num = /^[A-Za-z0-9]+[A-Za-z0-9\s]*[A-Za-z0-9]$/;
+  if (!input.name) {
+    errors.name = "Campo Categoria es requerido";
+  } else if (!expLetras.test(input.name)) {
+    errors.name = "Campo Categoria es inválido";
+  }
 
-    let errors = {};
-    let expLetras = /^[A-Za-z]+[A-Za-z\s]*[A-Za-z]$/
-    let expLetras_Num=/^[A-Za-z0-9]+[A-Za-z0-9\s]*[A-Za-z0-9]$/
-    if (!input.name) {
-        errors.name = 'Categoria es requerido';
-    } else if (!expLetras.test(input.name)) {
-        errors.name = 'Categoria es invalido'
-    }   
-
-    return errors;
+  return errors;
 }
 
 export default function FormBook() {
-    const dispatch = useDispatch()
- 
-    let loading=useSelector(state=>state.loading)
-   
-    const [input, setInput] = React.useState({
-        name:'',
-        imageLinks:'',
-    })
-    const [errors, setErrors] = React.useState({});
+  const dispatch = useDispatch();
 
-    const uploadImage= async (e)=>{
-        
-     try{
-        const files=e.target.files
-        const data=new FormData()
-        data.append('file',files[0])
-        data.append('upload_preset',"yweg8r9z")
-        const res=await fetch("https://api.cloudinary.com/v1_1/dl7pi3qek/image/upload",
-            {
-            method:"POST",
-            body:data
+  let loading = useSelector((state) => state.loading);
+
+  const [input, setInput] = React.useState({
+    name: "",
+    imageLinks: "",
+  });
+  const [errors, setErrors] = React.useState({});
+
+  const uploadImage = async (e) => {
+    try {
+      const files = e.target.files;
+      const data = new FormData();
+      data.append("file", files[0]);
+      data.append("upload_preset", "yweg8r9z");
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/dl7pi3qek/image/upload",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+      const file = await res.json();
+      setInput({
+        ...input,
+        [e.target.name]: file.secure_url,
+      });
+    } catch (e) {
+      setErrors({
+        ...errors,
+        imageLinks: "Imagen no se pudo cargar",
+      });
+    }
+  };
+
+  const showAlertError = async () => {
+    await Swal.fire({
+      icon: "info",
+      title: "Falta Información!!",
+      footer: "Coloque el nombre de Categoría y seleccione una imagen",
+      color: "#fff",
+      background: "#333",
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+    });
+  };
+
+  const showAlertSuccess = async () => {
+    await Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Categoría Registrada Exitosamente!!",
+      background: "#333",
+      color: "#fff",
+      showConfirmButton: false,
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      timer: 2500,
+    });
+  };
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (input.imageLinks && !errors.name) {
+      dispatch(postCreateCategory(input));
+
+      setInput({
+        name: "",
+        imageLinks: "",
+      });
+      e.target.name.focus();
+      showAlertSuccess();
+      //  let boton= document.getElementById('enviar')
+      boton.disabled = true;
+      // setTimeout(() => dispatch(setStatus("")), 5000);
+    } else {
+      showAlertError();
+    }
+  }
+
+  function handleChange(e) {
+    console.log("Ingresa en change");
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
+  }
+
+  useEffect(() => {
+    boton = document.getElementById("enviar");
+
+    boton.disabled = true;
+    boton.className = "bg-[#94a3b8] p-2 px-5 m-2 rounded hover:cursor-no-drop";
+  }, []);
+
+  return (
+    <div>
+      <NavBar />
+      <Menu />
+      <form
+        onSubmit={(e) => handleSubmit(e)}
+        className="bg-[#14222e] text-white container mx-auto p-20 m-20 pt-10 mt-10 rounded-lg w-1/2"
+      >
+        <h2 className="text-center text-3xl text-[#c0c077] mb-16 font-medium">
+          REGISTRO DE CATEGORIA
+        </h2>
+        <br />
+        <fieldset className="text-[18px] flex ">
+          <div className="w-3/4">
+            <div className="flex flex-col">
+              <label className="">CATEGORIA: </label>
+              <input
+                type="text"
+                className={
+                  errors.name
+                    ? "text-[#dc2626] rounded h-[35px] pl-2 italic focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 w-1/2"
+                    : "text-[#075985] rounded h-[35px] pl-2 italic focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 w-1/2"
+                }
+                name="name"
+                value={input.name}
+                placeholder="Nombre de la categoría"
+                onChange={(e) => handleChange(e)}
+                autoFocus
+              />
+
+              <div className="h-[30px]">
+                {errors.name ? (
+                  <p className="text-[#d43b3b] italic">{errors.name}</p>
+                ) : null}
+              </div>
+            </div>
+
+            <div className="mt-4">
+              <label className="block">IMAGEN: </label>
+              <input
+                type="file"
+                content="Imagen"
+                name="imageLinks"
+                className="w-full italic hover:cursor-pointer border border-[#555] focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 rounded"
+                accept="image/png, image/jpeg"
+                onChange={(e) => uploadImage(e)}
+              />
+            </div>
+          </div>
+          <div className="w-1/4 ml-2 rounded">
+            <img
+              src={
+                input.imageLinks
+                  ? input.imageLinks
+                  : `https://res.cloudinary.com/dzcpdipdg/image/upload/v1665902861/samples/icons/select-picture-2_zf2pt2.jpg`
+              }
+              alt=""
+              className="h-[170px] w-full rounded"
+            />
+          </div>
+        </fieldset>
+        <fieldset className="text-center mt-8">
+          {/* {loading ? <p>{loading}</p> : null} */}
+          <input
+            type="submit"
+            className={
+              Object.keys(errors).length
+                ? "bg-[#94a3b8] p-2 px-5 m-2 rounded hover:cursor-no-drop mr-2"
+                : "bg-[#12519a] p-2 px-5 m-2 cursor-pointer rounded hover:bg-[#0c417e] transition-colors duration-200 mr-2"
             }
-        )
-        const file=await res.json()
-        setInput({
-            ...input,
-            [e.target.name]:file.secure_url
-        })
-    }catch(e){
-        setErrors({
-            ...errors,
-            imageLinks:"Imagen no se pudo cargar"
-        })
-        }       
-    
-    }
+            id="enviar"
+            disabled={Object.keys(errors).length ? true : false}
+            value="Guardar"
+          />
 
-    function handleSubmit(e) {
-
-        e.preventDefault()
-        dispatch(postCreateCategory(input))
-       
-        setInput({
-            name:'',
-            imageLinks: ''
-        })
-        e.target.name.focus()
-        //  let boton= document.getElementById('enviar')
-        boton.disabled = true
-        setTimeout(()=>dispatch(setStatus('')),5000)
-    }
-
-    function handleChange(e) {
-        console.log("Ingresa en change")
-        setInput({
-            ...input,
-            [e.target.name]: e.target.value
-        })
-        setErrors(validate({
-            ...input, [e.target.name]: e.target.value
-        }))
-    }
-    
-    useEffect(() => {
-        
-        boton = document.getElementById('enviar')
-
-        boton.disabled = true
-        boton.className="bg-[#94a3b8] p-5 m-2"
-    }, [])
-   
-    return <div>
-        <NavBar/>
-        <Menu/>
-        <form onSubmit={(e) => handleSubmit(e)} className="bg-[#a3a3a3] text-white container mx-auto p-20 m-20 rounded-3xl w-1/2">
-            <h2 className="text-center text-xl text-[30px] text-black">REGISTRO DE CATEGORIA</h2><br />
-            <fieldset className="columns-2 text-[18px]">
-                <label className="block">CATEGORIA: </label>
-                <input type='text' className={errors.name ? 'text-[#dc2626] rounded-lg' : 'text-[#075985] rounded-lg'} name='name' value={input.name} placeholder='Ingrese el Titulo del libro' onChange={(e) => handleChange(e)} autoFocus /><br />
-                {errors.name ? <p className="text-[#dc2626]">{errors.name}</p> : null}<br />
-                
-                <label className="block">IMAGEN: </label>
-                <input type='file' name='imageLinks' className="w-64" accept="image/png, image/jpeg" onChange={(e) => uploadImage(e)} />
-                <img src={input.imageLinks} alt="imagen" className="h-10 w-16" />
-               
-            </fieldset>
-            <fieldset className="text-center">
-               
-                {loading?<p>{loading}</p>:null}
-                <input type='submit' className={(Object.keys(errors).length) ? "bg-[#94a3b8] p-5 m-2 cursor-pointer rounded-3xl" : "bg-[#9a3412] p-5 m-2 cursor-pointer rounded-3xl"} id='enviar' disabled={(Object.keys(errors).length) ? true : false} value='Guardar' />
-
-                <Link to="/admin">
-                    <input type='button' className="bg-[#9a3412] p-5 cursor-pointer rounded-3xl" value='Regresar' />
-                </Link>
-            </fieldset>
-        </form>
-
+          <Link to="/admicategory">
+            <input
+              type="button"
+              className="bg-[#9a3412] hover:bg-[#7c270b] transition-colors duration-200 p-2 px-5 cursor-pointer rounded ml-2"
+              value="Cancelar"
+            />
+          </Link>
+        </fieldset>
+      </form>
     </div>
+  );
 }

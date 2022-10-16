@@ -3,6 +3,7 @@ import {
   GET_DETAIL_BOOK,
   POST_CREATE_BOOK,
   POST_CREATE_CATEGORY,
+  PUT_EDIT_BOOK,
   RESET_DETAIL,
   ORDER_NAME,
   SEARCH_BOOK,
@@ -93,6 +94,14 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         loading: action.payload,
+      };
+
+    case PUT_EDIT_BOOK:
+      return {
+        ...state,
+        loading: action.payload
+          ? "Datos editados con exito"
+          : "No se pudo realizar la actualizacion",
       };
 
     case RESET_DETAIL:
@@ -207,8 +216,8 @@ function rootReducer(state = initialState, action) {
       first === 0
         ? (filterPrice = [...filterAuxPrice])
         : first === 100
-          ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
-          : (filterPrice = filterAuxPrice.filter(
+        ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
+        : (filterPrice = filterAuxPrice.filter(
             (e) => e.price >= first && e.price <= last
           ));
       return {
@@ -357,6 +366,7 @@ function rootReducer(state = initialState, action) {
 
 
     case LOGIN_WITH_GOOGLE:
+      // console.log(action.payload);
       return {
         ...state,
         user: action.payload.user,
@@ -373,7 +383,7 @@ function rootReducer(state = initialState, action) {
 
 
     case GET_CART:
-      console.log("Reducer llena carro", action.payload);
+      // console.log("Reducer llena carro", action.payload);
       return {
         ...state,
         cart: action.payload,

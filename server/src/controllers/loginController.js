@@ -8,7 +8,6 @@ const { User } = require("../db");
 const jwt_decode = require("jwt-decode");
 const axios = require("axios");
 
-
 const loginController = {
   registerUser: async (req, res, next) => {
     //verifico los campos del req
@@ -18,13 +17,14 @@ const loginController = {
       return res.status(400).json(errors);
     }
     // tomo los datos desde el body
-    let name = req.body.name;
-    let isActive = req.body.isActive;
-    let email = req.body.email;
-    let role = req.body.role;
-    let lastName = req.body.lastName;
-    let password = bcrypt.hashSync(req.body.password, 10);
-    let picture = req.body.picture;
+    const name = req.body.name;
+    const isActive = req.body.isActive;
+    const email = req.body.email;
+    const role = req.body.role;
+    const lastName = req.body.lastName;
+    const password = bcrypt.hashSync(req.body.password, 10);
+    const picture = req.body.picture;
+    const secretWord = req.body.secretWord;
     //compruebo si el email ya existe
     try {
       const user = await thereIsEmail(email);
@@ -46,6 +46,7 @@ const loginController = {
           email,
           role,
           picture,
+          secretWord,
         });
 
         const data = {
@@ -96,6 +97,13 @@ const loginController = {
     try {
       // funcion validadora de email
       const user = await thereIsEmail(req.body.email);
+
+      if (user.isActive === false) {
+        return res.status(401).json({
+          status: 0,
+          message: "Usuario bloquedo comuníquese con el adminitrador",
+        });
+      }
 
       if (user) {
         if (bcrypt.compareSync(req.body.password, user.password)) {
@@ -174,8 +182,12 @@ const loginController = {
     });
   },
   getAllUsers: async (req, res, next) => {
-    const p1 = models.User.findAndCountAll({ where: { isActive: true } });
-    const p2 = models.User.findAndCountAll({ where: { isActive: false } });
+    const p1 = models.User.findAndCountAll({
+      where: { isActive: true, role: "USER" },
+    });
+    const p2 = models.User.findAndCountAll({
+      where: { isActive: false, role: "USER" },
+    });
     const p3 = models.User.count();
 
     const [activeUser, inactiveUsers, quantity] = await Promise.all([
@@ -227,6 +239,7 @@ const loginController = {
           role: "USER",
           email: googleUser.email,
           picture: googleUser.picture,
+          secretWord: "holaMundo",
         };
 
         // console.log("Data: ", data);
@@ -240,9 +253,18 @@ const loginController = {
           email: data.email,
           role: data.role,
           picture: data.picture,
+          secretWord: data.secretWord,
         });
-        const { name, lastName, role, isActive, email, isGoogle, picture } =
-          userCreated;
+        const {
+          name,
+          lastName,
+          role,
+          isActive,
+          email,
+          isGoogle,
+          picture,
+          secretWord,
+        } = userCreated;
 
         const resp = {
           name,
@@ -253,6 +275,7 @@ const loginController = {
           email,
           picture,
           iduser: userCreated.id,
+          secretWord,
         };
 
         return res.status(200).json({
@@ -275,7 +298,16 @@ const loginController = {
 
       const token = await generateToken(user.id, user.name);
 
-      const { name, lastName, role, isActive, email, isGoogle, picture } = user;
+      const {
+        name,
+        lastName,
+        role,
+        isActive,
+        email,
+        isGoogle,
+        picture,
+        secretWord,
+      } = user;
       const resp2 = {
         name,
         lastName,
@@ -285,6 +317,7 @@ const loginController = {
         isGoogle,
         picture,
         iduser: user.id,
+        secretWord,
       };
 
       res.status(200).json({
@@ -315,7 +348,7 @@ const loginController = {
           {
             model: Books,
             as: "favorites",
-            through: { 
+            through: {
               attributes: [],
             },
           },
