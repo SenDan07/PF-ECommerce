@@ -94,11 +94,13 @@ function rootReducer(state = initialState, action) {
         loading: action.payload,
       };
 
-      case PUT_EDIT_BOOK:
-        return{
-          ...state,
-          loading: action.payload?"Datos editados con exito":"No se pudo realizar la actualizacion"
-        }
+    case PUT_EDIT_BOOK:
+      return {
+        ...state,
+        loading: action.payload
+          ? "Datos editados con exito"
+          : "No se pudo realizar la actualizacion",
+      };
 
     case RESET_DETAIL:
       return {
@@ -214,8 +216,8 @@ function rootReducer(state = initialState, action) {
       first === 0
         ? (filterPrice = [...filterAuxPrice])
         : first === 100
-          ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
-          : (filterPrice = filterAuxPrice.filter(
+        ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
+        : (filterPrice = filterAuxPrice.filter(
             (e) => e.price >= first && e.price <= last
           ));
 
@@ -356,7 +358,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case LOGIN_WITH_GOOGLE:
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         user: action.payload.user,
@@ -370,7 +372,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_CART:
-      console.log("Reducer llena carro", action.payload);
+      // console.log("Reducer llena carro", action.payload);
       return {
         ...state,
         cart: action.payload,

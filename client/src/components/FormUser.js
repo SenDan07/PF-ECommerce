@@ -52,7 +52,7 @@ export default function FormUser() {
     password: "",
     role: "USER",
     email: "",
-    secretWord:""
+    secretWord:"",
   });
   const [errors, setErrors] = React.useState({});
 
