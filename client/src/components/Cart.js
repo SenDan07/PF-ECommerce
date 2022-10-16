@@ -19,9 +19,11 @@ export default function Cart() {
   console.log(cart.length);
   //Si esta logueado guardas el carrito al id del usuario
 
+  console.log("carrito a renderizar",cart)
+
   async function handleClick() {
     if (LOGIN && cart.length) {
-
+      console.log("carrito a guardar",cart)
       await dispatch(postCart({ email: User.email, cart }));
     }
   }
