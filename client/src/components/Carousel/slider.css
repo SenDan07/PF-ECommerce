@@ -15,7 +15,7 @@
   margin: auto;
   /* overflow: hidden; */
   /* margin-top: 10px; */
-  padding-top: 5%;
+  padding-top: 0%;
 }
 
 .active {
@@ -37,6 +37,7 @@
   width: 80%;
   height: 100%;
   margin: auto;
+  opacity: 0.6;
   /* position: absolute;*/
   /* object-fit: cover; */
   /* opacity: 0.8; */
