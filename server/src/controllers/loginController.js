@@ -8,6 +8,7 @@ const { User } = require("../db");
 const jwt_decode = require("jwt-decode");
 const axios = require("axios");
 
+
 const loginController = {
   registerUser: async (req, res, next) => {
     //verifico los campos del req
@@ -24,7 +25,7 @@ const loginController = {
     const lastName = req.body.lastName;
     const password = bcrypt.hashSync(req.body.password, 10);
     const picture = req.body.picture;
-    const secretWord = req.body.secretWord;
+    const secretWord= req.body.secretWord;
     //compruebo si el email ya existe
     try {
       const user = await thereIsEmail(email);
@@ -46,7 +47,7 @@ const loginController = {
           email,
           role,
           picture,
-          secretWord,
+          secretWord
         });
 
         const data = {
@@ -60,22 +61,22 @@ const loginController = {
           //token: token
         };
 
-        if (userCreated) {
-          await axios.post("http://localhost:3001/alert/email", {
-            emails: email,
-            subject: "Registro exitoso",
-            content: `
-            <div>
-              <h1>Libreria PF</h1>
-              <h3>Registro de usuario</h3>
-              <p>Sr. ${
-                name + " " + lastName
-              }, le informamos que su cuenta ha sido creada satisfactoriamente. Lo invitamos a que visite nuestra página y mire las opciones de libros que tenemos disponibles.</p>
-              <!-- <a href="http://frontend.pfecommerce.ddns.net/" target="blanck">Ir a la página</a> -->
-            </div>
-            `,
-          });
-        }
+        // if (userCreated) {
+        //   await axios.post("http://localhost:3001/alert/email", {
+        //     emails: email,
+        //     subject: "Registro exitoso",
+        //     content: `
+        //     <div>
+        //       <h1>Libreria PF</h1>
+        //       <h3>Registro de usuario</h3>
+        //       <p>Sr. ${
+        //         name + " " + lastName
+        //       }, le informamos que su cuenta ha sido creada satisfactoriamente. Lo invitamos a que visite nuestra página y mire las opciones de libros que tenemos disponibles.</p>
+        //       <!-- <a href="http://frontend.pfecommerce.ddns.net/" target="blanck">Ir a la página</a> -->
+        //     </div>
+        //     `,
+        //   });
+        // }
 
         return res.status(200).json({
           status: 1,
@@ -88,6 +89,7 @@ const loginController = {
     }
   },
   loginUser: async (req, res, next) => {
+
     const errors = validationResult(req);
     //console.log(res.headers);
     if (!errors.isEmpty()) {
@@ -98,18 +100,11 @@ const loginController = {
       // funcion validadora de email
       const user = await thereIsEmail(req.body.email);
 
-      if (!user) {
-        return res.status(401).json({
-          status: 0,
-          message: "No existe el usuario",
-        });
-      }
-
-      if (user.isActive === false) {
-        return res.status(401).json({
-          status: 0,
-          message: "Usuario bloquedo comuníquese con el adminitrador",
-        });
+      if(user.isActive === false){
+       return res.json({
+          status:0,
+          message:'Usuario bloquedo comuníquese con el adminitrador'
+        })
       }
 
       if (user) {
@@ -166,6 +161,7 @@ const loginController = {
     res.json(user);
   },
   putUser: async (req, res, next) => {
+    
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -189,12 +185,10 @@ const loginController = {
     });
   },
   getAllUsers: async (req, res, next) => {
-    const p1 = models.User.findAndCountAll({
-      where: { isActive: true, role: "USER" },
-    });
-    const p2 = models.User.findAndCountAll({
-      where: { isActive: false, role: "USER" },
-    });
+    const p1 = models.User.findAndCountAll({ where: { isActive: true,
+      role: "USER"}  });
+    const p2 = models.User.findAndCountAll({ where: { isActive: false,
+      role: "USER" } });
     const p3 = models.User.count();
 
     const [activeUser, inactiveUsers, quantity] = await Promise.all([
@@ -246,7 +240,6 @@ const loginController = {
           role: "USER",
           email: googleUser.email,
           picture: googleUser.picture,
-          secretWord: "holaMundo",
         };
 
         // console.log("Data: ", data);
@@ -260,18 +253,9 @@ const loginController = {
           email: data.email,
           role: data.role,
           picture: data.picture,
-          secretWord: data.secretWord,
         });
-        const {
-          name,
-          lastName,
-          role,
-          isActive,
-          email,
-          isGoogle,
-          picture,
-          secretWord,
-        } = userCreated;
+        const { name, lastName, role, isActive, email, isGoogle, picture } =
+          userCreated;
 
         const resp = {
           name,
@@ -282,7 +266,6 @@ const loginController = {
           email,
           picture,
           iduser: userCreated.id,
-          secretWord,
         };
 
         return res.status(200).json({
@@ -305,16 +288,7 @@ const loginController = {
 
       const token = await generateToken(user.id, user.name);
 
-      const {
-        name,
-        lastName,
-        role,
-        isActive,
-        email,
-        isGoogle,
-        picture,
-        secretWord,
-      } = user;
+      const { name, lastName, role, isActive, email, isGoogle, picture } = user;
       const resp2 = {
         name,
         lastName,
@@ -324,7 +298,6 @@ const loginController = {
         isGoogle,
         picture,
         iduser: user.id,
-        secretWord,
       };
 
       res.status(200).json({
@@ -355,7 +328,7 @@ const loginController = {
           {
             model: Books,
             as: "favorites",
-            through: {
+            through: { 
               attributes: [],
             },
           },
@@ -370,6 +343,45 @@ const loginController = {
       return next(error);
     }
   },
+  resetPassword: async(req,res,next) => {
+     
+    const { secretWord,email,newPassword }= req.body;
+   
+
+
+    const found = await User.findOne({
+      where:{
+        email:email,
+        secretWord:secretWord
+      }
+    })
+
+    if( !found ){
+       return res.status(404).json({ 
+        status:0,
+        message:'Datos inválidos'
+       });
+    };
+    const password = bcrypt.hashSync(newPassword, 10);
+
+    const change = await User.update({password}, {
+      where: {
+        id:found.id
+      },
+    });
+
+
+    
+
+     return res.status(200).json({
+      status:1,
+      message:'Contraseña reestablecida correctamente',
+      //data: password
+    });
+
+
+
+  }
 };
 
 module.exports = loginController;
