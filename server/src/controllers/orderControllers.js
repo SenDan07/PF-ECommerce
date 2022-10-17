@@ -19,10 +19,12 @@ const orderControllers = {
         id,
       } = req.body;
 
-      for(item of carrito){
-        if(item.quantity > item.stock){
-          const error = new HttpError(`No hay suficientes copias del libro ${item.title} para cubrir el pedido. Se ha cancelado la orden.`)
-          return next(error)
+      for (item of carrito) {
+        if (item.quantity > item.stock) {
+          const error = new HttpError(
+            `No hay suficientes copias del libro ${item.title} para cubrir el pedido. Se ha cancelado la orden.`
+          );
+          return next(error);
         }
       }
 
@@ -85,6 +87,16 @@ const orderControllers = {
 
       books.forEach(async (element, index) => {
         console.log(carrito);
+        await Books.update(
+          {
+            stock: element.stock - element[index].quantity,
+          },
+          {
+            where: {
+              id: element.id,
+            },
+          }
+        );
 
         const det = await Detalle.create({
           BookId: element.id,
