@@ -102,6 +102,7 @@ const loginController = {
         });
       }
 
+
       if (user.isActive === false) {
         return res.status(401).json({
           status: 0,
