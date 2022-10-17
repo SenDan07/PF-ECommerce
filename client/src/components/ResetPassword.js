@@ -1,14 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {
-  getCart,
-  // addCart,
-  login,
-  loginWithGoogle,
-  // userId,
-} from "../redux/actions";
-import { GoogleLogin } from "@react-oauth/google";
+import { login, resetPassword } from "../redux/actions";
+
 import NavBar from "./NavBar";
 import Swal from "sweetalert2";
 
@@ -18,6 +12,7 @@ export const ResetPassword = () => {
 
   const validate = (input) => {
     const errors = {};
+    let regexSecretWord = /^[0-9a-zA-Z]+$/;
     const emailRegex =
       /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
@@ -29,6 +24,12 @@ export const ResetPassword = () => {
     if (!input.password) {
       errors.password = "Password es requerido";
     }
+    if (input.secretWord.trim().length < 4) {
+      errors.secretWord = "Palabra secreta es requerida (min 4 caracteres)";
+    } else if (!regexSecretWord.test(input.secretWord)) {
+      errors.secretWord =
+        "No se aceptan caracteres especiales, ni espacios en blanco";
+    }
     return errors;
   };
 
@@ -37,6 +38,7 @@ export const ResetPassword = () => {
   const initialInputs = {
     email: "",
     password: "",
+    secretWord: "",
   };
 
   const [data, setData] = useState(initialInputs);
@@ -46,7 +48,7 @@ export const ResetPassword = () => {
       icon: "error",
       title: "Oops, Hubo un Error!!",
       footer:
-        "Verifica el correo y contraseña o contactate con el administrador",
+        "Verifica el correo y la palabra secreta o contactate con el administrador",
       color: "#fff",
       background: "#333",
       allowEscapeKey: false,
@@ -68,25 +70,34 @@ export const ResetPassword = () => {
     });
   };
 
-  function fill_cart() {
-    // let cart = JSON.parse(localStorage.getItem("bookDetail")) || [];
-    //Traemos lo que tiene guardado en su cuenta
+  const showAlertSuccess = async () => {
+    await Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Nueva Contraseña Establecida Con Éxito!!",
+      text: "Se ha modificado tu contraseña",
+      background: "#333",
+      color: "#fff",
+      showConfirmButton: false,
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      timer: 2500,
+    });
 
-    dispatch(getCart(data.email));
-    //cart=[...cart,cart_User];
-    // console.log("Debio llenar el estado Cart");
-  }
+    navigate("/");
+  };
 
   async function onSubmit(e) {
     e.preventDefault();
-    if (!errors.email && !errors.password) {
+    if (!errors.email && !errors.password && !errors.secretWord) {
       try {
-        let response = await dispatch(login(data));
+        let response = await dispatch(resetPassword(data));
         console.log(response);
         //Llenar carrito
-        fill_cart();
+        // fill_cart();
         setData(initialInputs);
-        navigate("/");
+        await showAlertSuccess();
+        await dispatch(login({ email: data.email, password: data.password }));
       } catch (error) {
         console.log(error);
         showAlertError();
@@ -94,17 +105,6 @@ export const ResetPassword = () => {
     } else {
       // alert("Debe Completar los campos correctamente!!");
       showAlertInfo();
-    }
-  }
-
-  async function loginGoogle(credentialResponse) {
-    try {
-      await dispatch(loginWithGoogle(credentialResponse));
-      // console.log(dataUser);
-      navigate("/");
-    } catch (error) {
-      // console.log(error);
-      showAlertError();
     }
   }
 
@@ -123,33 +123,6 @@ export const ResetPassword = () => {
       })
     );
   }
-
-  // const loginGoogle = useGoogleLogin({
-  //   onSuccess: (tokenResponse) => dispatch(loginWithGoogle(tokenResponse)),
-  // });
-
-  // const loginGoogle = useGoogleLogin({
-  //   onSuccess: (tokenResponse) => console.log(tokenResponse),
-  // });
-
-  // const loginGoogle = useGoogleLogin({
-  //   onSuccess: async (response) => {
-  //     try {
-  //       const data = await axios.get(
-  //         `https://www.googleapis.com/oauth2/v3/userinfo`,
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${response.access_token}`,
-  //           },
-  //         }
-  //       );
-  //       console.log(data);
-  //       navigate("/");
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   },
-  // });
 
   return (
     <div>
@@ -193,13 +166,13 @@ export const ResetPassword = () => {
                 type="text"
                 name="secretWord"
                 value={data.secretWord}
-                placeholder="Palabra Secreta"
+                placeholder="Insert Secret Word"
                 onChange={onInputChange}
                 className="block w-full px-4 py-2 mt-1 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-[#4eec10] focus:outline-none focus:ring focus:ring-opacity-40 italic"
               />
               <div className="h-[30px]">
                 {errors.secretWord ? (
-                  <p className="text-[#d15c5c] pl-1">{errors.secretWor}</p>
+                  <p className="text-[#d15c5c] pl-1">{errors.secretWord}</p>
                 ) : null}
               </div>
             </div>
@@ -215,7 +188,7 @@ export const ResetPassword = () => {
                 type="password"
                 name="password"
                 value={data.password}
-                placeholder="New Password"
+                placeholder="Set New Password"
                 onChange={onInputChange}
                 className="block w-full px-4 py-2 mt-1 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-[#4eec10] focus:outline-none focus:ring focus:ring-opacity-40 italic"
               />
@@ -236,52 +209,6 @@ export const ResetPassword = () => {
             </div>
           </form>
           <div className="relative flex items-center justify-center w-4/5 mt-6 border border-[#aaaaaa] m-auto"></div>
-          <div className="flex mt-4 justify-center">
-            {/* <button
-            type="button"
-            className="flex items-center justify-around w-1/2 m-auto p-2 border border-[#888888] rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-violet-600 text-white bg-[#22463d] text-lg hover:bg-NavBar"
-            onClick={loginGoogle}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              width="24"
-              height="24"
-            >
-              <g transform="matrix(1, 0, 0, 1, 27.009001, -39.238998)">
-                <path
-                  fill="#4285F4"
-                  d="M -3.264 51.509 C -3.264 50.719 -3.334 49.969 -3.454 49.239 L -14.754 49.239 L -14.754 53.749 L -8.284 53.749 C -8.574 55.229 -9.424 56.479 -10.684 57.329 L -10.684 60.329 L -6.824 60.329 C -4.564 58.239 -3.264 55.159 -3.264 51.509 Z"
-                />
-                <path
-                  fill="#34A853"
-                  d="M -14.754 63.239 C -11.514 63.239 -8.804 62.159 -6.824 60.329 L -10.684 57.329 C -11.764 58.049 -13.134 58.489 -14.754 58.489 C -17.884 58.489 -20.534 56.379 -21.484 53.529 L -25.464 53.529 L -25.464 56.619 C -23.494 60.539 -19.444 63.239 -14.754 63.239 Z"
-                />
-                <path
-                  fill="#FBBC05"
-                  d="M -21.484 53.529 C -21.734 52.809 -21.864 52.039 -21.864 51.239 C -21.864 50.439 -21.724 49.669 -21.484 48.949 L -21.484 45.859 L -25.464 45.859 C -26.284 47.479 -26.754 49.299 -26.754 51.239 C -26.754 53.179 -26.284 54.999 -25.464 56.619 L -21.484 53.529 Z"
-                />
-                <path
-                  fill="#EA4335"
-                  d="M -14.754 43.989 C -12.984 43.989 -11.404 44.599 -10.154 45.789 L -6.734 42.369 C -8.804 40.429 -11.514 39.239 -14.754 39.239 C -19.444 39.239 -23.494 41.939 -25.464 45.859 L -21.484 48.949 C -20.534 46.099 -17.884 43.989 -14.754 43.989 Z"
-                />
-              </g>
-            </svg>
-            Inicia sesión con Google
-          </button> */}
-            <GoogleLogin
-              onSuccess={(credentialResponse) => {
-                // console.log(credentialResponse);
-                loginGoogle(credentialResponse);
-                //LLeno el carrito
-                fill_cart();
-                // navigate("/");
-              }}
-              onError={() => {
-                console.log("Login Failed");
-              }}
-            />
-          </div>
 
           <p className="mt-8 text-lg font-light text-center text-[#cccccc]">
             {" "}
