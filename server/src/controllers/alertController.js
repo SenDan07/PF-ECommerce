@@ -60,15 +60,18 @@ const alertController = {
             border: 2px solid #32bd5c;
           }
         </style>
-        <title>Librería PF</title>
+        <title>Don Quijote</title>
       </head>
       <body>
-      ${content}
+        <div>
+          <h1>Don Quijote</h1>
+          ${content}
+        </div>
       </body>
       </html>
       `;
       const mailDetails = {
-        from: "'e-Commerce PF-G8' <sigl.system@gmail.com>",
+        from: "'Don Quijote' <sigl.system@gmail.com>",
         to: emails,
         subject,
         html: htmlContent,
