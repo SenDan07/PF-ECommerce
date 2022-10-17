@@ -302,9 +302,14 @@ const adminControllers = {
       const orders = await Order.findAll({ include: Books });
 
       let refactorOrder = orders.map(async (el) => {
-        const user = await User.getByPk(el.UserId);
+        const {id, name, lastName, email} = await User.findByPk(el.UserId);
         return {
-          user,
+          user: {
+            id,
+            name,
+            lastName,
+            email,
+          },
           order: {
             id: el.id,
             direccion: el.direccion,
