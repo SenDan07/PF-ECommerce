@@ -43,6 +43,8 @@ import {
   SEARCH_USERS,
   GET_ALL_RECORD_ORDERS,
   RESET_PASSWORD,
+  GET_ORDER_DETAILS,
+  SEARCH_ORDERS,
 } from "./types";
 
 const initialState = {
@@ -67,7 +69,8 @@ const initialState = {
   usersReviews: [],
   recordOrders: [],
   allRecordOrders: [],
-  stock:0
+  recordDetails: [],
+  stock: 0
 };
 
 function rootReducer(state = initialState, action) {
@@ -221,8 +224,8 @@ function rootReducer(state = initialState, action) {
       first === 0
         ? (filterPrice = [...filterAuxPrice])
         : first === 100
-        ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
-        : (filterPrice = filterAuxPrice.filter(
+          ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
+          : (filterPrice = filterAuxPrice.filter(
             (e) => e.price >= first && e.price <= last
           ));
       return {
@@ -383,11 +386,11 @@ function rootReducer(state = initialState, action) {
         ...state,
       };
 
-     case GET_STOCK_CART:
-      console.log("stock",action.payload)
-      return{
+    case GET_STOCK_CART:
+      console.log("stock", action.payload)
+      return {
         ...state,
-        stock:action.payload
+        stock: action.payload
       }
 
     case DELETE_CART:
@@ -516,10 +519,39 @@ function rootReducer(state = initialState, action) {
       };
 
     case RESET_PASSWORD:
-      console.log(action.payload);
       return {
         ...state,
       };
+
+
+    case GET_ORDER_DETAILS:
+      let auxrecordDetails = []
+      let allorders = state.allRecordOrders.data
+      allorders.forEach(e => {
+        if (e.order.id == action.payload) {
+          auxrecordDetails.push(...e.order.detalle)
+        }
+      })
+      return {
+        ...state,
+        recordDetails: auxrecordDetails
+      }
+
+
+/*     case SEARCH_ORDERS:
+      let auxSearchOrders = [...state.allRecordOrders.data]
+             let auxSearchOrdersID = auxSearchOrders.filter(order => order.order == action.payload)
+            let auxSearchOrdersName = aux *
+      auxSearchOrders = auxSearchOrders.filter(e => {
+        e.order == action.payload ||
+        e.name.toLowerCase().includes(action.payload.toLowerCase()) ||
+        e.email.toLowerCase().includes(action.payload.toLowerCase())
+      })
+      return{
+        ...state,
+        allRecordOrders: auxSearchOrders
+      }
+ */
 
     default:
       return state;
