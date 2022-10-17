@@ -315,7 +315,7 @@ function CheckoutForm() {
                             <span className="font-medium text-[#ccc]">
                               Precio unitario:{" "}
                             </span>
-                            ${book.price.toFixed(2)}
+                            ${Number.parseFloat(book.price).toFixed(2)}
                           </h3>
                         </div>
                       </div>
