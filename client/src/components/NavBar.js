@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logoutUser, addCart } from "../redux/actions";
 import SearchBar from "./SearchBar";
-
-import donQuijote from "./img/gitbooks.png"
+import donQuijote from "./img/gitbooks.png";
+import DropdownComponent from "./DropdownUser";
 
 export default function NavBar() {
   const dispatch = useDispatch();
@@ -55,20 +55,27 @@ export default function NavBar() {
   }
 
   return (
-    <div className="bg-NavBar text-2xl text-white flex justify-between items-center px-7 py-3 left-0 right-0 z-50">
+    <div className="bg-NavBar text-xl text-white flex justify-between items-center px-7 py-3 left-0 right-0 z-50">
       <div className="flex items-center gap-20">
         <div>
-          <img src={donQuijote} alt="Don Quijote" style={{width:170}} />
+          <img
+            src={donQuijote}
+            alt="Don Quijote"
+            className="w-[120px] h-[70px]"
+          />
         </div>
 
         <div>
-          <Link to="/" className="mx-3 cursor-pointer hover:text-hoverMenu">
+          <Link
+            to="/"
+            className="mx-3 cursor-pointer hover:text-hoverMenu transition-colors duration-200"
+          >
             INICIO
           </Link>
 
           <Link
             to="/categories"
-            className="mx-3 cursor-pointer hover:text-hoverMenu"
+            className="mx-3 cursor-pointer hover:text-hoverMenu transition-colors duration-200"
           >
             LIBROS
           </Link>
@@ -109,82 +116,63 @@ export default function NavBar() {
       </div>
 
       <div className="flex items-center">
-        {LOGIN === 1 && ROLE === "USER" ? (
-          <div className="flex gap-8">
-            <Link
-              to="/favorites"
-              className="mr-10 cursor-pointer hover:text-hoverMenu"
-            >
-              FAVORITOS
-            </Link>
-
-            <Link
-              to={`/historyorder/${USER.iduser}`}
-              className="mr-10 cursor-pointer hover:text-hoverMenu"
-            >
-              PEDIDOS
-            </Link>
-          </div>
-        ) : LOGIN === 1 && ROLE === "ADMIN" ? (
-          <Link
-            to="/admin"
-            className="mx-3 cursor-pointer hover:text-hoverMenu"
-          >
-            ADMINISTRAR
-          </Link>
+        {LOGIN === 1 && ROLE === "USER" ? null : LOGIN === 1 && // </div> //   </Link> //     PEDIDOS //   > //     className="mr-10 cursor-pointer hover:text-hoverMenu transition-colors duration-200" //     to={`/historyorder/${USER.iduser}`} //   <Link //   </Link> //     FAVORITOS //   > //     className="mr-10 cursor-pointer hover:text-hoverMenu transition-colors duration-200" //     to="/favorites" //   <Link // <div className="flex gap-8">
+          ROLE === "ADMIN" ? (
+          <div className="mx-3 font-bold text-[#adad28]">ADMIN</div>
         ) : null}
 
         {(LOGIN === 0 || LOGIN.length === 0) && ROLE === "" ? (
           <div>
             <div className="ml-10 flex gap-5">
               <Link to="/login">
-                <h4 className="text-xl cursor-pointer hover:text-hoverMenu">
+                <h4 className="text-xl cursor-pointer hover:text-hoverMenu transition-colors duration-200">
                   LOGIN
                 </h4>
               </Link>
 
               <Link to="/register">
-                <h4 className="text-xl cursor-pointer hover:text-hoverMenu">
+                <h4 className="text-xl cursor-pointer hover:text-hoverMenu transition-colors duration-200">
                   REGISTRARSE
                 </h4>
               </Link>
             </div>
           </div>
         ) : (
-          <div className="flex gap-5 items-center">
-            <div className="flex gap-3 items-center border border-[#444444] pl-2 pr-1 py-1 rounded">
-              <div>
-                <h3 className="font-mono text-xl">{USER.name}</h3>
-              </div>
-              <div>
-                <img
-                  src={USER.picture}
-                  alt={`${USER.name}-img`}
-                  className="w-[40px] h-[40px] rounded"
-                />
-              </div>
-            </div>
-            <div
-              onClick={() => logout()}
-              className="flex items-center gap-1 border border-[#444444] bg-[#444444] text-xl rounded px-1 hover:cursor-pointer hover:bg-[#222222] duration-200"
-            >
-              <h4>Salir</h4>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-5 h-5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
-                />
-              </svg>
-            </div>
-          </div>
+          // <div className="flex gap-5 items-center">
+          //   <div className="flex gap-3 items-center border border-[#444444] pl-2 pr-1 py-1 rounded">
+          //     <div>
+          //       <h3 className="font-mono text-xl">{USER.name}</h3>
+          //     </div>
+          //     <div>
+          //       <img
+          //         src={USER.picture}
+          //         alt={`${USER.name}-img`}
+          //         className="w-[40px] h-[40px] rounded"
+          //       />
+          //     </div>
+          //   </div>
+          //   <div
+          //     onClick={() => logout()}
+          //     className="flex items-center gap-1 border border-[#444444] bg-[#444444] text-xl rounded px-1 hover:cursor-pointer hover:bg-[#222222] duration-200"
+          //   >
+          //     <h4>Salir</h4>
+          //     <svg
+          //       xmlns="http://www.w3.org/2000/svg"
+          //       fill="none"
+          //       viewBox="0 0 24 24"
+          //       strokeWidth="1.5"
+          //       stroke="currentColor"
+          //       className="w-5 h-5"
+          //     >
+          //       <path
+          //         strokeLinecap="round"
+          //         strokeLinejoin="round"
+          //         d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
+          //       />
+          //     </svg>
+          //   </div>
+          // </div>
+          <DropdownComponent />
         )}
       </div>
     </div>

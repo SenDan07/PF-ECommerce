@@ -31,8 +31,7 @@ html {
   border-radius: 10px;
 }
 
-
-.footer{
+.footer {
   background-color: #223648;
   height: 50px;
   display: flex;
@@ -41,7 +40,7 @@ html {
   color: white;
   margin-top: 1rem;
 }
-.grupo{
+.grupo {
   margin-left: 4px;
 }
 
@@ -56,31 +55,3 @@ html {
   padding: 5px;
   width: 500px;
 }
-
-/* .StripeElement::placeholder {
-  color: #ff0;
-}
-
-.card-element-disabled {
-  color: #ddc809;
-  opacity: 1;
-}
-#card-element {
-  display: flex;
-  align-items: center;
-}
-#card-element div {
-  flex-grow: 1;
-}
-#card-element-error {
-  color: #ff0000;
-} */
-
-/*
-.card-number,
-#card-cvc,
-#card-exp {
-  display: inline-block;
-  color: #fff;
-} */
-
