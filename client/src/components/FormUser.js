@@ -9,6 +9,9 @@ let boton;
 export function validate(input) {
   let errors = {};
   let expLetras = /^[A-Za-z]+[A-Za-z\s]*[A-Za-z]$/;
+  // let regexSecretWord = /[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü]/;
+  let regexSecretWord = /^[0-9a-zA-Z]+$/;
+
   let email =
     /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
@@ -35,9 +38,13 @@ export function validate(input) {
   } else if (!email.test(input.email)) {
     errors.email = "Email es inválido";
   }
-  if (!input.secretWord.trim() && input.secretWord.trim().length < 5) {
-    errors.secretWord = "Palabra secreta es requerida (min 5 caracteres)";
+  if (input.secretWord.trim().length < 4) {
+    errors.secretWord = "Palabra secreta es requerida (min 4 caracteres)";
+  } else if (!regexSecretWord.test(input.secretWord)) {
+    errors.secretWord =
+      "No se aceptan caracteres especiales, ni espacios en blanco";
   }
+
   return errors;
 }
 

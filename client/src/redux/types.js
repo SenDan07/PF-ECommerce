@@ -1,10 +1,10 @@
-import { ErrorResponse } from "@remix-run/router";
+// import { ErrorResponse } from "@remix-run/router";
 
 export const GET_BOOKS = "GET_BOOKS";
 export const GET_DETAIL_BOOK = "GET_DETAIL_BOOK";
 export const POST_CREATE_BOOK = "POST_CREATE_BOOK";
 export const POST_CREATE_CATEGORY = "POST_CREATE_CATEGORY";
-export const PUT_EDIT_BOOK="PUT_EDIT_BOOK";
+export const PUT_EDIT_BOOK = "PUT_EDIT_BOOK";
 export const RESET_DETAIL = "RESET_DETAIL";
 export const ORDER_NAME = "ORDER_NAME";
 export const SEARCH_BOOK = "SEARCH_BOOK";
@@ -41,4 +41,5 @@ export const RESET_USERS_REVIEWS = "RESET_USERS_REVIEWS";
 export const DELETE_CART = "DELETE_CART";
 export const ORDER_USERS = "ORDER_USERS";
 export const SEARCH_USERS = "SEARCH_USERS";
-export const GET_ALL_RECORD_ORDERS = "GET_ALL_RECORD_ORDERS"
+export const GET_ALL_RECORD_ORDERS = "GET_ALL_RECORD_ORDERS";
+export const RESET_PASSWORD = "RESET_PASSWORD";
