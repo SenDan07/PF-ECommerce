@@ -19,12 +19,14 @@ const orderControllers = {
         id,
       } = req.body;
 
-      for(item of carrito){
-        if(item.quantity > item.stock){
-          const error = new HttpError(`No hay suficientes copias del libro ${item.title} para cubrir el pedido. Se ha cancelado la orden.`)
-          return next(error)
+     /* for (item of carrito) {
+        if (item.cantidad > item.stock) {
+          const error = new HttpError(
+            `No hay suficientes copias del libro ${item.title} para cubrir el pedido. Se ha cancelado la orden.`
+          );
+          return next(error);
         }
-      }
+      }*/
 
       const stripe = new Stripe(process.env.CLAVE_SECRETA_STRIPE);
 
@@ -85,6 +87,17 @@ const orderControllers = {
 
       books.forEach(async (element, index) => {
         console.log(carrito);
+        console.log(books)
+        await Books.update(
+          {
+            stock:element.stock -carrito[index].cantidad,
+          },
+          {
+            where: {
+              id: element.id,
+            },
+          }
+        );
 
         const det = await Detalle.create({
           BookId: element.id,
@@ -99,13 +112,10 @@ const orderControllers = {
           emails: email,
           subject: `Orden ID:${id} confirmada`,
           content: `
-              <div>
-                <h1>Libreria PF</h1>
-                <h4>ORDEN ID:${id}</h4>
-                <h3>Gracias por tu compra!</h3>
-                <p>Hola ${nombreCompleto}, estamos preparando su pedido para ser enviado. Le notificaremos cuando se haya despachado.</p>
-              </div>
-              `,
+          <h4>ORDEN ID:${id}</h4>
+          <h3>Gracias por tu compra!</h3>
+          <p>Hola ${nombreCompleto}, estamos preparando su pedido para ser enviado. Le notificaremos cuando se haya despachado.</p>
+          `,
         });
       }
 

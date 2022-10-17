@@ -1,5 +1,6 @@
 
-const { Pedido, User } = require("../db");
+const { Pedido, User, Books } = require("../db");
+//const Books = require("../models/Books");
 
 const cart = [
   {
@@ -136,32 +137,68 @@ const cartController = {
 
   postCartUser: async (req, res, next) => {
 
-    const { cart, email } = req.body
+
+
+    const { cart, email } = req.body;
+
+    const hayCarrito = await Pedido.findOne({
+      where:{
+        email
+      }
+    });
+
+    if (  hayCarrito ){
+
+  const borrado = await Pedido.destroy({
+    where:{
+      email
+    }
+  })
+   
+      cart.forEach(async (element) => {
+
+          const carrito = await Pedido.create({ 
+            price: element.price,
+            title: element.title,
+            quantity: element.quantity, 
+            imageLinks: element.imageLinks,
+            email: email
+    
+          });
+       
+      });
+      return res.status(200).json({
+        status: 1,
+        message: 'Carrito actualizado correctamente',
+        data: borrado
+      });
+    
+
+    }else{
+
+    
 
 
     cart.forEach(async (element) => {
-      try {
+ 
         const carrito = await Pedido.create({
+          idBook:element.id,
           price: element.price,
           title: element.title,
           quantity: element.quantity,
           imageLinks: element.imageLinks,
           email: email
   
-        })
-      } catch (error) { 
-        console.log(error)
-      }
-
-     
-
-    });
-
-    res.status(200).json({
+        });
+       
+    }); 
+    return res.status(200).json({
       status: 1,
       message: 'Carrito creado correctamente',
       data: ''
     });
+
+  }
   },
   getCartUser: async (req, res, next) => {// por query
 
@@ -173,12 +210,11 @@ const cartController = {
           email: email
         }
       })
-  
-  
+      
       res.send({
         status: 1,
         message: 'Get realizado',
-        data: carrito
+        data: carrito,
       });
     } catch (error) {
       console.log(error)
@@ -213,6 +249,26 @@ const cartController = {
       console.log(error)
     }
 
+  },
+  getStockCart : async( req,res,next ) => {
+
+    const { title }= req.query;
+
+    const buscado = await Books.findOne({
+      where:{
+        title
+      }
+    });
+
+
+    return res.status(200).json({
+      status:1,
+      message:'libro encontrado',
+      stock: buscado.stock
+    })
+
+
+    
   }
 }
 

@@ -11,9 +11,9 @@ import { Route, BrowserRouter, Routes } from "react-router-dom";
 import MenuAdmin from "./components/MenuAdmin";
 import { Login } from "./components/Login";
 import FormUser from "./components/FormUser";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { logoutUser } from "./redux/actions";
+import { useSelector } from "react-redux";
+// import { useEffect } from "react";
+// import { logoutUser } from "./redux/actions";
 import DeleteBooksSmart from "./components/DeleteBookSmart";
 import { ManageUsers } from "./components/ManageUsers";
 import { ManageCategories } from "./components/ManageCategories";
@@ -25,11 +25,11 @@ import "boxicons";
 // import { FormUserTwo } from "../src/components/FormUserTwo";
 // import FormPayment from "./components/FormPayment";
 import { ErrorNotFound } from "./components/ErrorNotFound";
-import RecordOrderSmart from "./components/RecordOrderSmart"
-import RecordDetailsSmart from "./components/RecordDetailsSmart"
+import RecordOrderSmart from "./components/RecordOrderSmart";
+import RecordDetailsSmart from "./components/RecordDetailsSmart";
 import Footer from "./components/Footer";
-import FormBookEdit from "./components/FormBookEdit"
-
+import FormBookEdit from "./components/FormBookEdit";
+import { ResetPassword } from "./components/ResetPassword";
 
 function App() {
   // const dispatch = useDispatch();
@@ -92,34 +92,41 @@ function App() {
             <Route excat path="/order" element={<ErrorNotFound />} />
           )}
 
-
           {LOGIN === 1 && ROLE === "USER" ? (
-            <Route excat path="/historyorder/:id" element={<RecordOrderSmart />} />
+            <Route
+              excat
+              path="/historyorder/:id"
+              element={<RecordOrderSmart />}
+            />
           ) : (
             <Route excat path="/historyorder/:id" element={<ErrorNotFound />} />
           )}
 
-
           {LOGIN === 1 && ROLE === "USER" ? (
-            <Route excat path="/historyorder/:id/:idOrder" element={<RecordDetailsSmart />} />
+            <Route
+              excat
+              path="/historyorder/:id/:idOrder"
+              element={<RecordDetailsSmart />}
+            />
           ) : (
-            <Route excat path="/historyorder/:id/:idOrder" element={<ErrorNotFound />} />
+            <Route
+              excat
+              path="/historyorder/:id/:idOrder"
+              element={<ErrorNotFound />}
+            />
           )}
 
           {LOGIN === 1 && ROLE === "ADMIN" ? (
             <Route exact path="/deletebook" element={<DeleteBooksSmart />} />
           ) : null}
 
-
           {LOGIN === 1 && ROLE === "ADMIN" ? (
-            <Route excat path="edit/:id" element={<FormBookEdit />} />
+            <Route exact path="edit/:id" element={<FormBookEdit />} />
           ) : null}
-
 
           {LOGIN === 1 && ROLE === "ADMIN" ? (
             <Route exact path="/adminuser" element={<ManageUsers />} />
           ) : null}
-
 
           {LOGIN === 1 && ROLE === "ADMIN" ? (
             <Route exact path="/createbook" element={<FormBook />} />
@@ -129,8 +136,11 @@ function App() {
             <Route exact path="/createcategory" element={<FormCategory />} />
           ) : null}
 
-
-
+          {LOGIN === 1 ? (
+            <Route exact path="/reset-password" element={<ErrorNotFound />} />
+          ) : (
+            <Route exact path="/reset-password" element={<ResetPassword />} />
+          )}
         </Routes>
       </BrowserRouter>
       <Footer />
@@ -139,7 +149,6 @@ function App() {
 }
 
 export default App;
-
 
 /* 
 

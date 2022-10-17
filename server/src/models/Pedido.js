@@ -24,7 +24,8 @@ module.exports = (sequelize) => {
 		},
 		email:{
 			type: DataTypes.TEXT
-		}
+		},
+		
 		
 		
     }, {
