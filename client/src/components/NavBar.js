@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { logoutUser, addCart } from "../redux/actions";
 import SearchBar from "./SearchBar";
 
+import donQuijote from "./img/gitbooks.png"
+
 export default function NavBar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -56,7 +58,7 @@ export default function NavBar() {
     <div className="bg-NavBar text-2xl text-white flex justify-between items-center px-7 py-3 left-0 right-0 z-50">
       <div className="flex items-center gap-20">
         <div>
-          <h6 className="text-5xl">LIBRERIA</h6>
+          <img src={donQuijote} alt="Don Quijote" style={{width:170}} />
         </div>
 
         <div>

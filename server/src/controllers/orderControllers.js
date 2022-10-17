@@ -19,14 +19,14 @@ const orderControllers = {
         id,
       } = req.body;
 
-      for (item of carrito) {
-        if (item.quantity > item.stock) {
+     /* for (item of carrito) {
+        if (item.cantidad > item.stock) {
           const error = new HttpError(
             `No hay suficientes copias del libro ${item.title} para cubrir el pedido. Se ha cancelado la orden.`
           );
           return next(error);
         }
-      }
+      }*/
 
       const stripe = new Stripe(process.env.CLAVE_SECRETA_STRIPE);
 
@@ -87,9 +87,10 @@ const orderControllers = {
 
       books.forEach(async (element, index) => {
         console.log(carrito);
+        console.log(books)
         await Books.update(
           {
-            stock: element.stock - element[index].quantity,
+            stock:element.stock -carrito[index].cantidad,
           },
           {
             where: {
