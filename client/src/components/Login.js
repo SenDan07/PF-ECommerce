@@ -84,9 +84,9 @@ export const Login = () => {
         let response = await dispatch(login(data));
         console.log(response);
         //Llenar carrito
-        fill_cart();
         setData(initialInputs);
         navigate("/");
+        fill_cart();
       } catch (error) {
         console.log(error);
         showAlertError();

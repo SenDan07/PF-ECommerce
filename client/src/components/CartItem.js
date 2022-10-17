@@ -89,10 +89,10 @@ export default function CartItem({ book }) {
       <div className="flex justify-center items-center w-1/2">
         <div>
           <div className="flex justify-center items-center gap-2">
-            <span className="font-medium text-lg">Cantidad:{cantidad}</span>
+            <span className="font-medium text-lg">Cantidad:</span>
             <select
               onChange={(e) => handleSelect(e)}
-              value={book.quantity}
+              value={cantidad.length <= book.quantity ? book.quantity : cantidad.length}
              // className="rounded w-12 h-7 outline-none hover:cursor-pointer font-bold"
             >
               {cantidad.map((i, idx) => {

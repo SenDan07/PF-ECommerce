@@ -100,6 +100,13 @@ const loginController = {
       // funcion validadora de email
       const user = await thereIsEmail(req.body.email);
 
+      if (!user) {
+        return res.status(401).json({
+          status: 0,
+          message: "Usuario no existe!!",
+        });
+      }
+
       if(user.isActive === false){
        return res.json({
           status:0,
