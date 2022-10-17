@@ -17,15 +17,15 @@ export default function CategoriesBooks() {
     <div className="bg-bgHome min-h-screen">
       <NavBar />
 
-      <div className="m-auto flex justify-start pt-20">
+      {/* <div className="m-auto flex justify-start pt-20">
         <Link to="/">
-          <h3 className="border-1 border-rose-500 rounded mx-auto px-5 py-2 bg-button text-black hover:text-white mt-5 mx-10">
+          <h3 className="border-1 border-rose-500 rounded px-5 py-2 bg-button text-black hover:text-white mt-5 mx-10">
             &#129044; Regresar
           </h3>
         </Link>
-      </div>
+      </div> */}
 
-      <div className="mb-20 text-8xl">
+      <div className="mb-20 text-7xl font-medium mt-10 text-[#14143a]">
         <h5 className="flex justify-center">CATEGORIAS</h5>
       </div>
 
