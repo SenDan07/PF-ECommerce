@@ -261,7 +261,7 @@ const adminControllers = {
         });
       }
 
-          const orders = await Order.findAll({
+      const orders = await Order.findAll({
         where: { UserId: user.id },
         include: Books,
       });;
@@ -284,10 +284,21 @@ const adminControllers = {
           }),
         };
       });
+
+      const data = {
+        user: {
+          id: user.id,
+          name: user.name,
+          lastName: user.lastName,
+          email: user.email,
+        },
+        orders: refactorOrder,
+      }
+
       res.status(200).json({
         status: 1,
         message: "Ordenes de usuario",
-        data: {user, orders: refactorOrder},
+        data,
       });
     } catch (error) {
       console.log(error);
@@ -301,7 +312,7 @@ const adminControllers = {
     try {
       const orders = await Order.findAll({ include: Books });
 
-      let refactorOrder = orders.map(async (el) => {
+      let refactorOrder = await Promise.all(orders.map(async (el) => {
         const {id, name, lastName, email} = await User.findByPk(el.UserId);
         return {
           user: {
@@ -327,7 +338,7 @@ const adminControllers = {
             }),
           }
         }
-      });
+      }));
       res.status(200).json({
         status: 1,
         message: "Todas las ordes",
