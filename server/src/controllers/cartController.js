@@ -137,8 +137,6 @@ const cartController = {
 
   postCartUser: async (req, res, next) => {
 
-
-
     const { cart, email } = req.body;
 
     const hayCarrito = await Pedido.findOne({
@@ -161,6 +159,7 @@ const cartController = {
             price: element.price,
             title: element.title,
             quantity: element.quantity, 
+            stock:element.stock,
             imageLinks: element.imageLinks,
             email: email
     

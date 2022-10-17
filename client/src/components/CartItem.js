@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addCart } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { addCart, getStockCart } from "../redux/actions";
 import Swal from "sweetalert2";
 
 export default function CartItem({ book }) {
   const dispatch = useDispatch();
-  console.log("Libro",book)
+ 
   const cantidad = [];//
   for (let i = 1; i <= parseInt(book.stock); i++) {
     cantidad[i] = i;
   }
+  console.log("stock",book.stock)
 
   //   useEffect(() => {
   //     // showAlertBookDelete();
@@ -58,6 +59,9 @@ export default function CartItem({ book }) {
     cart = JSON.stringify(cart);
     localStorage.setItem("bookDetail", cart);
   }
+  useEffect(()=>{
+    dispatch(getStockCart(book.title))
+  },[])
 
   return (
     <div className="flex flex-row m-5 p-2 pl-4 rounded bg-[#b3c9d8]">
@@ -92,7 +96,7 @@ export default function CartItem({ book }) {
             <span className="font-medium text-lg">Cantidad:</span>
             <select
               onChange={(e) => handleSelect(e)}
-              value={cantidad.length <= book.quantity ? book.quantity : cantidad.length}
+              value={book.quantity}
              // className="rounded w-12 h-7 outline-none hover:cursor-pointer font-bold"
             >
               {cantidad.map((i, idx) => {

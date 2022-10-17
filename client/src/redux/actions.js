@@ -25,6 +25,7 @@ import {
   LOGIN_WITH_GOOGLE,
   ADD_CART,
   POST_CART,
+  GET_STOCK_CART,
   GET_CART,
   DELETE_CART,
   ORDER_DELETE_BOOK,
@@ -341,6 +342,17 @@ export function deleteCart(email) {
   };
 }
 
+export function getStockCart(title){
+  
+  return async (dispatch) => {
+    let res = await axios.get(`${direction}/cart/cartBookStock?title=${title}`);
+   
+    return dispatch({
+      type: GET_STOCK_CART,
+      payload:res.data.stock
+    });
+  };
+}
 export function getBookReviews(bookId) {
   return async (dispatch) => {
     try {

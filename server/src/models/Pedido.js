@@ -19,6 +19,9 @@ module.exports = (sequelize) => {
 			type: DataTypes.TEXT,
 			
 		},
+		stock:{
+			type:DataTypes.INTEGER
+		},
 		imageLinks: {
 			type: DataTypes.TEXT,
 		},

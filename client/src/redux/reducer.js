@@ -27,6 +27,7 @@ import {
   ADD_CART,
   POST_CART,
   GET_CART,
+  GET_STOCK_CART,
   DELETE_CART,
   ORDER_DELETE_BOOK,
   SEARCH_DELETE_BOOK,
@@ -66,6 +67,7 @@ const initialState = {
   usersReviews: [],
   recordOrders: [],
   allRecordOrders: [],
+  stock:0
 };
 
 function rootReducer(state = initialState, action) {
@@ -380,6 +382,13 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+
+     case GET_STOCK_CART:
+      console.log("stock",action.payload)
+      return{
+        ...state,
+        stock:action.payload
+      }
 
     case DELETE_CART:
       return {
