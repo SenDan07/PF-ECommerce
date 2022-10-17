@@ -65,14 +65,11 @@ const loginController = {
             emails: email,
             subject: "Registro exitoso",
             content: `
-            <div>
-              <h1>Libreria PF</h1>
-              <h3>Registro de usuario</h3>
-              <p>Sr. ${
-                name + " " + lastName
-              }, le informamos que su cuenta ha sido creada satisfactoriamente. Lo invitamos a que visite nuestra página y mire las opciones de libros que tenemos disponibles.</p>
-              <!-- <a href="http://frontend.pfecommerce.ddns.net/" target="blanck">Ir a la página</a> -->
-            </div>
+            <h3>Registro de usuario</h3>
+            <p>Sr. ${
+              name + " " + lastName
+            }, le informamos que su cuenta ha sido creada satisfactoriamente. Lo invitamos a que visite nuestra página y mire las opciones de libros que tenemos disponibles.</p>
+            <!-- <a href="http://frontend.pfecommerce.ddns.net/" target="blanck">Ir a la página</a> -->
             `,
           });
         }
