@@ -17,13 +17,23 @@ export default function Order() {
     <select
       name="orderAZ"
       onChange={onSelectChange}
-      className="rounded bg-bgSearch text-white hover:cursor-pointer outline-none"
+      className="rounded bg-[#222222] text-white hover:cursor-pointer outline-none p-1 hover:bg-[#112211] transition-colors duration-200 text-lg"
     >
-      <option value={false}>ORDEN</option>
-      <option value="AZ">A - Z</option>
-      <option value="ZA">Z - A</option>
-      <option value="menor">Precio Ascendente</option>
-      <option value="mayor">Precio Descendente</option>
+      <option className="p-1 pl-2" value={false}>
+        ORDEN
+      </option>
+      <option className="p-1 pl-2" value="AZ">
+        A - Z
+      </option>
+      <option className="p-1 pl-2" value="ZA">
+        Z - A
+      </option>
+      <option className="p-1 pl-2" value="menor">
+        Precio Ascendente
+      </option>
+      <option className="p-1 pl-2" value="mayor">
+        Precio Descendente
+      </option>
     </select>
   );
 }

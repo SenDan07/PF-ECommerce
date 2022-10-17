@@ -13,14 +13,27 @@ export default function FilterPrice() {
     <select
       name="orderAZ"
       onChange={onSelectChange}
-      className="rounded bg-bgSearch text-white hover:cursor-pointer outline-none"
+      className="rounded bg-[#222222] text-white hover:cursor-pointer outline-none p-1 hover:bg-[#112211] transition-colors duration-200 text-lg"
     >
-      <option value="0">TODOS LOS LIBROS</option>
-      <option value="1-25"> $0 - $25</option>
-      <option value="25-50">$25 - $50</option>
-      <option value="50-75">$50 - $75</option>
-      <option value="75-100">$75 - $100</option>
-      <option value="100">MAYORES A $100</option>
+      <option className="p-1 pl-2" value="0">
+        TODOS LOS LIBROS
+      </option>
+      <option className="p-1 pl-2" value="1-25">
+        {" "}
+        $0 - $25
+      </option>
+      <option className="p-1 pl-2" value="25-50">
+        $25 - $50
+      </option>
+      <option className="p-1 pl-2" value="50-75">
+        $50 - $75
+      </option>
+      <option className="p-1 pl-2" value="75-100">
+        $75 - $100
+      </option>
+      <option className="p-1 pl-2" value="100">
+        MAYORES A $100
+      </option>
     </select>
   );
 }
