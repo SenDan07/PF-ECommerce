@@ -12,19 +12,19 @@ export function validate(input) {
   let expLetras = /^[A-Za-z]+[A-Za-z\s]*[A-Za-z]$/;
   let expLetras_Num = /^[A-Za-z0-9]+[A-Za-z0-9\s]*[A-Za-z0-9]$/;
   if (!input.title) {
-    errors.title = "Titulo es requerido";
+    errors.title = "Título es requerido";
   } else if (!expLetras_Num.test(input.title)) {
-    errors.title = "Titulo es invalido";
+    errors.title = "Título es invalido";
   }
   if (!input.authors) {
     errors.authors = "Autor es requerido";
   } else if (!expLetras.test(input.authors)) {
-    errors.authors = "Autor es invalido";
+    errors.authors = "Autor es inválido";
   }
   if (!input.publisher) {
     errors.publisher = "Editorial es requerido";
   } else if (!expLetras_Num.test(input.publisher)) {
-    errors.publisher = "Editorial es invalida";
+    errors.publisher = "Editorial es inválida";
   }
   if (input.ISBN) {
     if (/\D/.test(input.ISBN)) {

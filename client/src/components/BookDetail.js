@@ -81,6 +81,19 @@ const BookDetail = () => {
     });
   };
 
+  const showAlertStock = async () => {
+    await Swal.fire({
+      position: "center",
+      icon: "warning",
+      title: "El libro no se encuentra disponible!!",
+      background: "#333",
+      color: "#fff",
+      showConfirmButton: true,
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+    });
+  };
+
   function handleClick(e) {
     let cart = JSON.parse(localStorage.getItem("bookDetail")) || [];
 
@@ -126,6 +139,10 @@ const BookDetail = () => {
     }
   };
 
+  const handleStock = () => {
+    showAlertStock();
+  };
+
   const submitReview = async () => {
     if (currentValue === 0 || comment.length < 5) {
       // alert("Completa bien la reseña\nSelecciona al menos una estrella");
@@ -167,13 +184,13 @@ const BookDetail = () => {
     <div>
       <NavBar />
       <div className="bg-bgHome min-h-screen pb-20">
-        <div className="w-max">
+        {/* <div className="w-max">
           <Link to="/">
             <h3 className="border-1 border-rose-500 rounded ml-10 mt-8 px-3 py-2 w-max bg-button text-white">
               &#129044; Regresar
             </h3>
           </Link>
-        </div>
+        </div> */}
         {bookDetail.imageLinks ? (
           <div>
             <div className="m-auto mt-10 border-t-2 w-[75%] rounded border-[#555555]">
@@ -203,8 +220,12 @@ const BookDetail = () => {
                     ) : (
                       <div className="flex mt-2">
                         <button
-                          className="border-1 border-rose-500 rounded w-max mx-auto px-3 py-2 mt-1 bg-button text-white flex justify-center gap-2 hover:bg-[#025634] transition-colors duration-200"
-                          onClick={handleClick}
+                          className={
+                            bookDetail.stock
+                              ? `border-1 border-rose-500 rounded w-max mx-auto px-3 py-2 mt-1 bg-button text-white flex justify-center gap-2 hover:bg-[#025634] transition-colors duration-200`
+                              : `border-1 border-rose-500 rounded w-max mx-auto px-3 py-2 mt-1 bg-[#888888] cursor-no-drop text-white flex justify-center gap-2`
+                          }
+                          onClick={bookDetail.stock ? handleClick : handleStock}
                         >
                           AGREGAR AL CARRITO
                           <svg
@@ -285,7 +306,9 @@ const BookDetail = () => {
                             </h3>
                           </div>
                           <div className="w-3/4">
-                            <h3 className="mb-7 pl-7">{bookDetail.stock}</h3>
+                            <h3 className="mb-7 pl-7 font-medium">
+                              {bookDetail.stock ? bookDetail.stock : `AGOTADO!`}
+                            </h3>
                           </div>
                         </div>
                       </div>
