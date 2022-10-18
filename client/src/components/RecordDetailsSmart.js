@@ -64,8 +64,8 @@ export default function RecordDetailsSmart() {
                         />
                     )
                 })}
-                <div className="w-128 border-4  flex justify-center text-3xl bg-contTable">
-                    <h3 className="">Costo Total de la Compra: ${suma.toFixed(2)}</h3>
+                <div className="w-128 border-4  flex justify-center text-3xl bg-contTable mt-32">
+                    <h3 className="">Total de la Compra: ${suma.toFixed(2)}</h3>
                 </div>
 
             </div>

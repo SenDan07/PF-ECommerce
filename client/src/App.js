@@ -30,6 +30,8 @@ import RecordDetailsSmart from "./components/RecordDetailsSmart";
 import Footer from "./components/Footer";
 import FormBookEdit from "./components/FormBookEdit";
 import { ResetPassword } from "./components/ResetPassword";
+import AllRecordSmart from "./components/AllRecordSmart"
+import AllRecordDetailsSmart from "./components/AllRecordDetailsSmart"
 
 function App() {
   // const dispatch = useDispatch();
@@ -135,6 +137,17 @@ function App() {
           {LOGIN === 1 && ROLE === "ADMIN" ? (
             <Route exact path="/createcategory" element={<FormCategory />} />
           ) : null}
+
+
+          {LOGIN === 1 && ROLE === "ADMIN" ? (
+            <Route exact path="/allorders" element={<AllRecordSmart />} />
+          ) : null}
+
+
+          {LOGIN === 1 && ROLE === "ADMIN" ? (
+            <Route exact path="/allorders/:idorder" element={<AllRecordDetailsSmart />} />
+          ) : null}
+
 
           {LOGIN === 1 ? (
             <Route exact path="/reset-password" element={<ErrorNotFound />} />

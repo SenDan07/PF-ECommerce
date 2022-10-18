@@ -10,7 +10,7 @@ export default function OrderName() {
 
   return (
     <select name="orderUsers" onChange={onSelectChange} className="rounded bg-bgSearch text-white hover:cursor-pointer outline-none">
-      <option value={false}>LIBROS</option>
+      <option value={false}>Usuarios</option>
       <option value="AZNAME">Nombres A - Z</option>
       <option value="ZANAME">Nombres Z - A</option>
       <option value="AZAPE">Apellidos A - Z</option>

@@ -1,13 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-/* import { useEffect } from "react";
-import { deleteBook, getBooks } from "../redux/actions"; */
+
 
 export default function RecordOrderDumb({ title, cantidad, subtotal, uprice }) {
-    /*     const dispatch = useDispatch();
-        const idUser = useSelector((state) => state.user.iduser) */
-
     return (
         <div>
             <div className="hover:text-white hover:bgItems flex justify-between border text-xl bg-contTable">
