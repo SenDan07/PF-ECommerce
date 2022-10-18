@@ -15,7 +15,9 @@ export default function DeleteBooksDumb({ title, activado, idBook, author }) {
   }
 
   async function handleCick() {
+    await dispatch(getDetailBook(idBook));
     navigate(`/edit/${idBook}`);
+    console.log(idBook)
   }
   return (
     <div className="hover:text-white hover:bgItems flex justify-between border text-xl bg-contTable">
