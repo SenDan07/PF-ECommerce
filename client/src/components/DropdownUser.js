@@ -35,9 +35,8 @@ export default function DropdownComponent() {
     navigate("/");
   }
 
-
-  async function handleClick(e){
-    navigate(`/user/edit/${USER.id}`)
+  function handleClick(e) {
+    navigate(`/user/edit/${USER.id}`);
   }
 
   console.log(USER.picture[USER.picture.length - 1]);
@@ -45,9 +44,13 @@ export default function DropdownComponent() {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-[#162531]  rounded shadow-sm hover:bg-gray-50 p-1 flex items-center gap-2">
+        <Menu.Button className="justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-[#162531]  rounded shadow-sm hover:bg-gray-50 p-1 flex items-center gap-3">
           <img
-            src={`${USER.picture}`}
+            src={
+              USER.picture
+                ? `${USER.picture}`
+                : `https://res.cloudinary.com/dzcpdipdg/image/upload/v1665265607/samples/icons/img-perfil-default_krpmpp.jpg`
+            }
             alt="img-user"
             className="w-10 h-10 rounded"
           />
@@ -111,7 +114,7 @@ export default function DropdownComponent() {
             </div>
             {LOGIN === 1 && ROLE === "USER" ? (
               <div>
-                <Menu.Item>
+                {/* <Menu.Item>
                   {({ active }) => (
                     <Link
                       to="/favorites"
@@ -134,7 +137,7 @@ export default function DropdownComponent() {
                       </svg>
                     </Link>
                   )}
-                </Menu.Item>
+                </Menu.Item> */}
                 <Menu.Item>
                   {({ active }) => (
                     <Link

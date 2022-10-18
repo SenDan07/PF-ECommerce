@@ -209,7 +209,7 @@ const cartController = {
           email: email
         }
       })
-      
+
       res.send({
         status: 1,
         message: 'Get realizado',
@@ -218,56 +218,56 @@ const cartController = {
     } catch (error) {
       console.log(error)
     }
-    
+
   },
-  deleteCartUser: async(req,res,next) => {
-    
-    const { email }=req.query;
+  deleteCartUser: async (req, res, next) => {
+
+    const { email } = req.query;
 
     try {
-  
+
       const borrados = await Pedido.findAll({
-        where:{
-          email:email
+        where: {
+          email: email
         }
       });
 
       const destroy = await Pedido.destroy({
-        where:{
-          email:email
+        where: {
+          email: email
         }
       });
 
       res.send({
-        status:1,
-        message:'Borrado del carrito con éxito',
+        status: 1,
+        message: 'Borrado del carrito con éxito',
         deleted: borrados
       })
-      
+
     } catch (error) {
       console.log(error)
     }
 
   },
-  getStockCart : async( req,res,next ) => {
+  getStockCart: async (req, res, next) => {
 
-    const { title }= req.query;
+    const { title } = req.query;
 
     const buscado = await Books.findOne({
-      where:{
+      where: {
         title
       }
     });
 
 
     return res.status(200).json({
-      status:1,
-      message:'libro encontrado',
+      status: 1,
+      message: 'libro encontrado',
       stock: buscado.stock
     })
 
 
-    
+
   }
 }
 

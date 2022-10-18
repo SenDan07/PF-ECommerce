@@ -60,19 +60,19 @@ const loginController = {
           //token: token
         };
 
-        if (userCreated) {
-          await axios.post("http://localhost:3001/alert/email", {
-            emails: email,
-            subject: "Registro exitoso",
-            content: `
-            <h3>Registro de usuario</h3>
-            <p>Sr. ${
-              name + " " + lastName
-            }, le informamos que su cuenta ha sido creada satisfactoriamente. Lo invitamos a que visite nuestra página y mire las opciones de libros que tenemos disponibles.</p>
-            <!-- <a href="http://frontend.pfecommerce.ddns.net/" target="blanck">Ir a la página</a> -->
-            `,
-          });
-        }
+        // if (userCreated) {
+        //   await axios.post("http://localhost:3001/alert/email", {
+        //     emails: email,
+        //     subject: "Registro exitoso",
+        //     content: `
+        //     <h3>Registro de usuario</h3>
+        //     <p>Sr. ${
+        //       name + " " + lastName
+        //     }, le informamos que su cuenta ha sido creada satisfactoriamente. Lo invitamos a que visite nuestra página y mire las opciones de libros que tenemos disponibles.</p>
+        //     <!-- <a href="http://frontend.pfecommerce.ddns.net/" target="blanck">Ir a la página</a> -->
+        //     `,
+        //   });
+        // }
 
         return res.status(200).json({
           status: 1,
@@ -169,12 +169,22 @@ const loginController = {
     if (!errors.isEmpty()) {
       return res.status(400).json(errors);
     }
-    req.body.password= bcrypt.hashSync(req.body.password, 10);
+
     const { id } = req.params; // saco el id
-    const modification = req.body; // los cambios que voy a realizar
+
+    const { password,...info} = req.body; // los cambios que voy a realizar
+    
+    const clave = bcrypt.hashSync(password, 10);
+      
+  let upDated={
+    ...info,
+    password:clave
+  }
+    
+
     const user = await thereIsEmail(req.body.email);
 
-    const change = await models.User.update(modification, {
+    const change = await models.User.update(upDated, {
       where: {
         id: id,
       },
