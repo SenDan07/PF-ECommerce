@@ -15,7 +15,7 @@ export default function NavAdmin() {
   const navigate = useNavigate();
 
   const LOGIN = useSelector((state) => state.login);
-  console.log(LOGIN);
+  // console.log(LOGIN);
 
   // const dispatch = useDispatch();
   // //   console.log(activeLogin);
@@ -42,7 +42,7 @@ export default function NavAdmin() {
   return (
     <div className="justify-self-center">
       <NavBar />
-      
+
       <div className="text-6xl flex justify-center mt-5">
         MENU ADMINISTRADOR
       </div>
@@ -50,9 +50,14 @@ export default function NavAdmin() {
       <div className="flex justify-center">
         <div className="text-xl">BIENVENID@ {USER.name.toUpperCase()}</div>
       </div>
-{/*https://storage.googleapis.com/librio-media/media/cache/content_section/95/8d/ad25ed4e50601bb5ab97690e69f1.png*/}
-      <Menu/>
-      <img src="https://storage.googleapis.com/librio-media/media/cache/content_section/95/8d/ad25ed4e50601bb5ab97690e69f1.png" style={{width:700}} className="mx-auto mt-8" alt="" />
+      {/*https://storage.googleapis.com/librio-media/media/cache/content_section/95/8d/ad25ed4e50601bb5ab97690e69f1.png*/}
+      <Menu />
+      <img
+        src="https://storage.googleapis.com/librio-media/media/cache/content_section/95/8d/ad25ed4e50601bb5ab97690e69f1.png"
+        style={{ width: 700 }}
+        className="mx-auto mt-8"
+        alt=""
+      />
     </div>
   );
 }

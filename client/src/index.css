@@ -9,6 +9,13 @@ html {
   background-image: url(https://cdn.businessinsider.es/sites/navi.axelspringer.es/public/styles/bi_1752/public/media/image/2022/03/libros-antiguos-2644117.jpg?itok=HS1bG2hG);
   
 }*/
+
+body {
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 250px;
+}
+
 .sombra {
   box-shadow: -8px 8px 3px #333;
 }
@@ -33,12 +40,14 @@ html {
 
 .footer {
   background-color: #223648;
-  height: 50px;
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
-  margin-top: 1rem;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 .grupo {
   margin-left: 4px;
