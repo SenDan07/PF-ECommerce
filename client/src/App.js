@@ -29,6 +29,7 @@ import RecordOrderSmart from "./components/RecordOrderSmart";
 import RecordDetailsSmart from "./components/RecordDetailsSmart";
 import Footer from "./components/Footer";
 import FormBookEdit from "./components/FormBookEdit";
+import FormUserEdit from "./components/FormUserEdit"
 import { ResetPassword } from "./components/ResetPassword";
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
           )}
           <Route exact path="/books/:id" element={<BookDetail />} />
           <Route exact path="/searchbar" element={<SearchBarSmart />} />
+          <Route exact path="/user/edit/:id" element={<FormUserEdit />} />
           <Route
             exact
             path="/categories/:category"

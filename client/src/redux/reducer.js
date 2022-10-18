@@ -21,6 +21,7 @@ import {
   DELETE_BOOKS,
   GET_USERS,
   DELETE_USER,
+  PUT_USER,
   DELETE_CATEGORY,
   RESET_USER,
   LOGIN_WITH_GOOGLE,
@@ -318,6 +319,14 @@ function rootReducer(state = initialState, action) {
         activeUsers: usersActive,
         inactiveUsers: usersInactive,
       };
+
+    case PUT_USER:
+      console.log("respuesta action",action.payload)
+      return{
+        ...state,
+        user: action.payload,
+        status:action.mesg
+      }
 
     case DELETE_CATEGORY:
       console.log(action.payload);
