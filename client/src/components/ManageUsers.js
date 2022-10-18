@@ -2,6 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteUser, resetUser, getUsers } from "../redux/actions";
+import NavBar from "./NavBar";
+import Menu from "./Menu";
+import OrderUsers from "./OrderUsers";
+import SearchUsers from "./SearchUsers";
+import ResetAllUsers from "./ResetAllUsers";
 
 export const ManageUsers = () => {
   const dispatch = useDispatch();
@@ -23,19 +28,28 @@ export const ManageUsers = () => {
 
   return (
     <div>
-      <div className="mt-5 ml-10 flex justify-start w-max">
+      <NavBar />
+      <Menu />
+      <div className="flex justify-center gap-5">
+        <OrderUsers />
+        <SearchUsers />
+        <ResetAllUsers />
+      </div>
+
+      {/* <div className="flex justify-start">
         <Link to="/admin">
-          <h3 className="border-1 border-rose-500 rounded px-5 py-2 bg-button text-black hover:text-white">
-            &#129044; Regresar
+          <h3 className="border-1 border-rose-500 bg-blueOscuro hover:bg-bluemasoscuro rounded mx-auto px-5 py-2 bg-button text-white hover:text-white mt-5 mx-10 transition-colors duration-200">
+            Agregar
           </h3>
         </Link>
-      </div>
+
+      </div> */}
       <div className="mb-40">
         <h1 className="text-center text-2xl font-bold mt-10">
           Registro usuarios activos:{" "}
           <span className="font-medium text-white">{activeUsers.length}</span>
         </h1>
-        <div className="flex border w-max m-auto mt-10 bg-[#333]">
+        <div className="flex border w-max m-auto mt-10 bg-[#333] rounded-t">
           <div className="border-black w-20 text-center text-white text-xl">
             <h3>Num</h3>
           </div>
@@ -82,7 +96,7 @@ export const ManageUsers = () => {
                   onClick={() => deleteUserId(user.id)}
                 >
                   <h3 className="flex justify-around">
-                    Eliminar{" "}
+                    Desactivar{" "}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -94,7 +108,7 @@ export const ManageUsers = () => {
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                        d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m6 4.125l2.25 2.25m0 0l2.25 2.25M12 13.875l2.25-2.25M12 13.875l-2.25 2.25M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
                       />
                     </svg>
                   </h3>

@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { isLogin } from "../redux/actions";
 import NavBar from "./NavBar";
+import Menu from "./Menu";
 
 export default function NavAdmin() {
   // const activeLogin = localStorage.getItem("LOGIN");
@@ -14,7 +15,7 @@ export default function NavAdmin() {
   const navigate = useNavigate();
 
   const LOGIN = useSelector((state) => state.login);
-  console.log(LOGIN);
+  // console.log(LOGIN);
 
   // const dispatch = useDispatch();
   // //   console.log(activeLogin);
@@ -37,76 +38,26 @@ export default function NavAdmin() {
   //     );
   //   };
   // }, [activeLogin, activeRole]);
-
+  //{USER.name[0].toUpperCase()}{USER.name.substring(1)} mayuscula la primera letra
   return (
     <div className="justify-self-center">
       <NavBar />
-
-      <div className="m-auto flex justify-start ">
-        <Link to="/">
-          <h3 className="border-1 border-rose-500 rounded px-5 py-2 bg-button text-black hover:text-white mt-5 mx-10">
-            &#129044; Regresar
-          </h3>
-        </Link>
-      </div>
 
       <div className="text-6xl flex justify-center mt-5">
         MENU ADMINISTRADOR
       </div>
 
       <div className="flex justify-center">
-        <div className="text-xl">BIENVENID@ {USER.name}</div>
+        <div className="text-xl">BIENVENID@ {USER.name.toUpperCase()}</div>
       </div>
-
-      <div className="text-4xl mt-20">
-        <div className="mb-10 flex justify-center">
-          <div className="cursor-pointer hover:text-white">
-            <Link to="/adminuser">Administrar Usuarios</Link>
-          </div>
-        </div>
-
-        <div className="mb-10 flex justify-center">
-          <div className="cursor-pointer hover:text-white">
-            <Link to="/admicategory">Administrar Categorias</Link>
-          </div>
-        </div>
-
-        <div className="mb-10 flex justify-center">
-          <Link to="/createbook">
-            <div className="cursor-pointer hover:text-white">Crear Libros</div>
-          </Link>
-        </div>
-
-        <div className="mb-10 flex justify-center">
-          <Link to="/createcategory">
-            <div className="cursor-pointer hover:text-white">
-              Crear Categorias
-            </div>
-          </Link>
-        </div>
-
-        <div className="mb-10 flex justify-center">
-          <Link>
-            <div className="cursor-pointer hover:text-white">
-              Editar Carrusel
-            </div>
-          </Link>
-        </div>
-
-        <div className="mb-10 flex justify-center">
-          <Link>
-            <div className="cursor-pointer hover:text-white">Editar Libros</div>
-          </Link>
-        </div>
-
-        <div className="mb-10 flex justify-center">
-          <Link to="/deletebook">
-            <div className="cursor-pointer hover:text-white ">
-              Eliminar Libros
-            </div>
-          </Link>
-        </div>
-      </div>
+      {/*https://storage.googleapis.com/librio-media/media/cache/content_section/95/8d/ad25ed4e50601bb5ab97690e69f1.png*/}
+      <Menu />
+      <img
+        src="https://storage.googleapis.com/librio-media/media/cache/content_section/95/8d/ad25ed4e50601bb5ab97690e69f1.png"
+        style={{ width: 700 }}
+        className="mx-auto mt-8"
+        alt=""
+      />
     </div>
   );
 }

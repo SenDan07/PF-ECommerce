@@ -32,29 +32,27 @@ export default function CategoriesBooks() {
 
   const booksFilter = useSelector((state) => state.booksByPrice);
 
-  // const booksFilter = useSelector((state) => state.books);
-  // console.log("booksFilter: ", booksFilter);
   return (
     <div className="bg-bgHome min-h-screen">
       <NavBar />
-      <FilterBar />
 
-      <div className="w-full mt-5">
-        <div className="flex justify-start mb-10">
+      <div className="w-full flex justify-between">
+        <div className="flex justify-start h-max pt-4 pl-4">
           <Link to="/categories">
-            <h3 className="border-1 border-rose-500 rounded mx-auto px-5 py-2 bg-button text-black hover:text-white mt-5 mx-10">
+            <h3 className="border-1 rounded px-5 py-2 bg-button text-black hover:text-white hover:bg-[#065841] transition-colors duration-500">
               &#129044; Regresar
             </h3>
           </Link>
         </div>
 
-        <div className="mb-20 font-bold text-5xl font-serif italic">
-          <h5 className="flex justify-center underline decoration-NavBar">
-            {category}
-          </h5>
-        </div>
+        <FilterBar />
       </div>
 
+      <div className="mb-16 mt-10 font-bold text-5xl font-serif italic">
+        <h5 className="flex justify-center underline decoration-NavBar">
+          {category}
+        </h5>
+      </div>
       <div className="flex flex-wrap justify-center gap-10">
         {booksFilter.length === 0 ? (
           <h4 className="text-5xl">NO HAY LIBROS EN ESTA CATEGORIA</h4>

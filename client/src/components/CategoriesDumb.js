@@ -3,17 +3,22 @@ import { Link } from "react-router-dom";
 
 export default function CategoryBook({ name, imageLinks, id }) {
   return (
-    <div className="m-5 hover:text-white">
-      <Link to={`/categories/${name}`} >
+    <div className="m-5 hover:text-[#1f1f4b]">
+      <Link to={`/categories/${name}`}>
         <div className="w-64 h-64">
-          <img src={imageLinks} alt="IMAGE NOT FOUND" className="object-fill h-64 w-full rounded-lg hover:opacity-50" />
+          <img
+            src={imageLinks}
+            alt="IMAGE NOT FOUND"
+            className="object-fill h-64 w-full rounded-t-lg hover:opacity-50"
+          />
         </div>
-        <h2 className="flex justify-center text-xl">{name}</h2>
+        <h2 className="flex justify-center text-xl font-bold rounded-b-lg bg-white">
+          {name.toUpperCase()}
+        </h2>
       </Link>
     </div>
   );
-};
-
+}
 
 /* 
       <h1 class="text-center text-5xl mt-10">Categorias</h1>

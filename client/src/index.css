@@ -5,7 +5,62 @@
 html {
   background-color: #71717a;
 }
+/*body{
+  background-image: url(https://cdn.businessinsider.es/sites/navi.axelspringer.es/public/styles/bi_1752/public/media/image/2022/03/libros-antiguos-2644117.jpg?itok=HS1bG2hG);
+  
+}*/
+
+body {
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 250px;
+}
 
 .sombra {
   box-shadow: -8px 8px 3px #333;
+}
+
+.scrollCustomStyle::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+.scrollCustomStyle::-webkit-scrollbar:vertical {
+  width: 9px;
+}
+
+.scrollCustomStyle::-webkit-scrollbar-thumb {
+  background-color: #5f6d79;
+  border-radius: 5px;
+  border: 1px solid #46701e;
+}
+
+.scrollCustomStyle::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.footer {
+  background-color: #223648;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.grupo {
+  margin-left: 4px;
+}
+
+.StripeElement {
+  background-color: rgb(255, 255, 255);
+  border-radius: 3px;
+  /* color: #fff; */
+  font-style: italic;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  /* transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; */
+  padding: 5px;
+  width: 500px;
 }

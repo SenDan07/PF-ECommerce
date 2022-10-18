@@ -6,6 +6,7 @@ const { generateToken } = require("../util/helpers/jwt-generator");
 const models = require("../db");
 const { User } = require("../db");
 const jwt_decode = require("jwt-decode");
+const axios = require("axios");
 
 const loginController = {
   registerUser: async (req, res, next) => {
@@ -16,13 +17,14 @@ const loginController = {
       return res.status(400).json(errors);
     }
     // tomo los datos desde el body
-    let name = req.body.name;
-    let isActive = req.body.isActive;
-    let email = req.body.email;
-    let role = req.body.role;
-    let lastName = req.body.lastName;
-    let password = bcrypt.hashSync(req.body.password, 10);
-    let picture = req.body.picture;
+    const name = req.body.name;
+    const isActive = req.body.isActive;
+    const email = req.body.email;
+    const role = req.body.role;
+    const lastName = req.body.lastName;
+    const password = bcrypt.hashSync(req.body.password, 10);
+    const picture = req.body.picture;
+    const secretWord = req.body.secretWord;
     //compruebo si el email ya existe
     try {
       const user = await thereIsEmail(email);
@@ -44,6 +46,7 @@ const loginController = {
           email,
           role,
           picture,
+          secretWord,
         });
 
         const data = {
@@ -56,6 +59,20 @@ const loginController = {
           picture: userCreated._previousDataValues.picture,
           //token: token
         };
+
+        if (userCreated) {
+          await axios.post("http://localhost:3001/alert/email", {
+            emails: email,
+            subject: "Registro exitoso",
+            content: `
+            <h3>Registro de usuario</h3>
+            <p>Sr. ${
+              name + " " + lastName
+            }, le informamos que su cuenta ha sido creada satisfactoriamente. Lo invitamos a que visite nuestra página y mire las opciones de libros que tenemos disponibles.</p>
+            <!-- <a href="http://frontend.pfecommerce.ddns.net/" target="blanck">Ir a la página</a> -->
+            `,
+          });
+        }
 
         return res.status(200).json({
           status: 1,
@@ -78,6 +95,21 @@ const loginController = {
       // funcion validadora de email
       const user = await thereIsEmail(req.body.email);
 
+      if (!user) {
+        return res.status(401).json({
+          status: 0,
+          message: "Usuario no existe!!",
+        });
+      }
+
+
+      if (user.isActive === false) {
+        return res.status(401).json({
+          status: 0,
+          message: "Usuario bloquedo comuníquese con el adminitrador",
+        });
+      }
+
       if (user) {
         if (bcrypt.compareSync(req.body.password, user.password)) {
           const token = await generateToken(user.id, user.name);
@@ -90,7 +122,7 @@ const loginController = {
             email: user.email,
             isGoogle: user.isGoogle,
             picture: user.picture,
-            iduser:user.id
+            iduser: user.id,
           };
           return res.status(200).json({
             status: 1,
@@ -137,7 +169,7 @@ const loginController = {
     if (!errors.isEmpty()) {
       return res.status(400).json(errors);
     }
-
+    req.body.password= bcrypt.hashSync(req.body.password, 10);
     const { id } = req.params; // saco el id
     const modification = req.body; // los cambios que voy a realizar
     const user = await thereIsEmail(req.body.email);
@@ -155,8 +187,12 @@ const loginController = {
     });
   },
   getAllUsers: async (req, res, next) => {
-    const p1 = models.User.findAndCountAll({ where: { isActive: true } });
-    const p2 = models.User.findAndCountAll({ where: { isActive: false } });
+    const p1 = models.User.findAndCountAll({
+      where: { isActive: true, role: "USER" },
+    });
+    const p2 = models.User.findAndCountAll({
+      where: { isActive: false, role: "USER" },
+    });
     const p3 = models.User.count();
 
     const [activeUser, inactiveUsers, quantity] = await Promise.all([
@@ -233,7 +269,7 @@ const loginController = {
           isGoogle,
           email,
           picture,
-          iduser:userCreated.id
+          iduser: userCreated.id,
         };
 
         return res.status(200).json({
@@ -265,7 +301,7 @@ const loginController = {
         email,
         isGoogle,
         picture,
-        iduser:user.id
+        iduser: user.id,
       };
 
       res.status(200).json({
@@ -310,6 +346,39 @@ const loginController = {
       }
       return next(error);
     }
+  },
+  resetPassword: async (req, res, next) => {
+    const { secretWord, email, newPassword } = req.body;
+
+    const found = await User.findOne({
+      where: {
+        email: email,
+        secretWord: secretWord,
+      },
+    });
+
+    if (!found) {
+      return res.status(404).json({
+        status: 0,
+        message: "Datos inválidos",
+      });
+    }
+    const password = bcrypt.hashSync(newPassword, 10);
+
+    const change = await User.update(
+      { password },
+      {
+        where: {
+          id: found.id,
+        },
+      }
+    );
+
+    return res.status(200).json({
+      status: 1,
+      message: "Contraseña reestablecida correctamente",
+      //data: password
+    });
   },
 };
 

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@headlessui/react": "^1.7.3",
     "@react-oauth/google": "^0.2.8",
     "@stripe/react-stripe-js": "^1.12.0",
     "@stripe/stripe-js": "^1.38.1",
@@ -21,6 +22,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
+    "sweetalert2": "^11.5.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

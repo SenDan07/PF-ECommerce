@@ -36,7 +36,7 @@ export default function Carousel() {
   }, [index]);
 
   return (
-    <div className="mb-10 pt-16">
+    <div className="mb-10">
       <div className="relative w-full">
         <div className="absolute left-0 text-2xl top-80 ">
           <button

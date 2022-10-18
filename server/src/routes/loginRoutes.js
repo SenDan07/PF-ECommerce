@@ -29,4 +29,11 @@ check('email','Formato de mail inválido').isEmail(),],loginController.googleSig
 router.get('/favorites/:id', loginController.getFavorites);
 //revalidar token 
 router.get('/renew',jwtValidator,loginController.tokenRevalidate);
+//restablecer contraseña
+
+router.put('/resetPassword/:id',loginController.resetPassword)
+
 module.exports = router;
+
+
+//crud de usaurios editar 
