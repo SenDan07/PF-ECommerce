@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login, putUser } from "../redux/actions";
 import Swal from "sweetalert2";
 import NavBar from "./NavBar";
@@ -54,13 +54,13 @@ export default function FormUserEdit() {
   // let loading = useSelector((state) => state.loading);
 
   const [input, setInput] = React.useState({
-    id:USER.iduser?USER.iduser:USER.id,
+    id: USER.iduser ? USER.iduser : USER.id,
     name: USER.name,
     lastName: USER.lastName,
     password: USER.password,
     role: USER.role,
     email: USER.email,
-    secretWord: USER.secretWord
+    secretWord: USER.secretWord,
   });
   const [errors, setErrors] = React.useState({});
 
@@ -69,8 +69,8 @@ export default function FormUserEdit() {
   const showAlertError = async () => {
     await Swal.fire({
       icon: "error",
-      title: "Oops, Hubo un Error en el Registro!!",
-      footer: "Intenta nuevamente con datos válidos o un correo distinto.",
+      title: "Oops, Hubo un Error al Actualizar!!",
+      footer: "Intenta nuevamente con datos válidos",
       color: "#fff",
       background: "#333",
       allowEscapeKey: false,
@@ -80,7 +80,7 @@ export default function FormUserEdit() {
 
   const showLoadingRegister = async () => {
     Swal.fire({
-      title: "Registrando Usuario",
+      title: "Actualizando tus Datos!",
       text: "Espere unos segundos",
       timer: 30000,
       background: "#333",
@@ -106,8 +106,8 @@ export default function FormUserEdit() {
     await Swal.fire({
       position: "center",
       icon: "success",
-      title: "Registro Exitoso!!",
-      text: "Te hemos enviado una notificación a tu correo.",
+      title: "Datos Actualizados con Éxito!!",
+      text: "Tu información se ha modificado.",
       background: "#333",
       color: "#fff",
       showConfirmButton: false,
@@ -124,10 +124,10 @@ export default function FormUserEdit() {
     showLoadingRegister();
 
     const valor = await dispatch(putUser(input));
-    console.log(valor)
+    console.log(valor);
     if (valor) {
       await showAlertSuccess();
-     // await dispatch(login({ email: input.email, password: input.password }));
+      // await dispatch(login({ email: input.email, password: input.password }));
 
       // setInput({
       //   name: "",
@@ -178,7 +178,7 @@ export default function FormUserEdit() {
         className="bg-[#14222e] text-white container mx-auto p-20 m-20 rounded-lg w-1/2"
       >
         <h2 className="text-center text-xl text-[30px] text-[#c0c077]">
-          INFORMACION DE USUARIO
+          EDITA TUS DATOS
         </h2>
         <br />
         <fieldset className="columns-2 text-[16px] m-2 flex flex-col">
@@ -274,7 +274,7 @@ export default function FormUserEdit() {
               </div>
             </div>
           </div>
-{/*
+          {/*
 <div className="w-3/4">
             <label className="block">PALABRA SECRETA: </label>
             <input
@@ -295,9 +295,7 @@ export default function FormUserEdit() {
               ) : null}
             </div>
           </div>
-*/
-}
-          
+*/}
 
           {/*<label className="block">IMAGEN: </label>
                 <input type='file' name='imageLinks' className="w-64" accept="image/png, image/jpeg" onChange={(e) => uploadImage(e)} />

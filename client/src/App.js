@@ -1,7 +1,7 @@
 import Home from "./components/Home";
 import FormBook from "./components/FormBook";
 import FormCategory from "./components/FormCategory";
-import Favorites from "./components/Favorites";
+// import Favorites from "./components/Favorites";
 import CategoryBooksSmart from "./components/CategoryBooksSmart";
 //import Categories from "./components/Categories";
 import CategoriesSmart from "./components/CategoriesSmart";
@@ -29,10 +29,10 @@ import RecordOrderSmart from "./components/RecordOrderSmart";
 import RecordDetailsSmart from "./components/RecordDetailsSmart";
 import Footer from "./components/Footer";
 import FormBookEdit from "./components/FormBookEdit";
-import FormUserEdit from "./components/FormUserEdit"
+import FormUserEdit from "./components/FormUserEdit";
 import { ResetPassword } from "./components/ResetPassword";
-import AllRecordSmart from "./components/AllRecordSmart"
-import AllRecordDetailsSmart from "./components/AllRecordDetailsSmart"
+import AllRecordSmart from "./components/AllRecordSmart";
+import AllRecordDetailsSmart from "./components/AllRecordDetailsSmart";
 
 function App() {
   // const dispatch = useDispatch();
@@ -58,11 +58,11 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
 
-          {LOGIN === 1 && ROLE === "USER" ? (
+          {/* {LOGIN === 1 && ROLE === "USER" ? (
             <Route exact path="/favorites" element={<Favorites />} />
           ) : (
             <Route exact path="/favorites" element={<ErrorNotFound />} />
-          )}
+          )} */}
           <Route exact path="/books/:id" element={<BookDetail />} />
           <Route exact path="/searchbar" element={<SearchBarSmart />} />
           <Route exact path="/user/edit/:id" element={<FormUserEdit />} />
@@ -140,22 +140,25 @@ function App() {
             <Route exact path="/createcategory" element={<FormCategory />} />
           ) : null}
 
-
           {LOGIN === 1 && ROLE === "ADMIN" ? (
             <Route exact path="/allorders" element={<AllRecordSmart />} />
           ) : null}
 
-
           {LOGIN === 1 && ROLE === "ADMIN" ? (
-            <Route exact path="/allorders/:idorder" element={<AllRecordDetailsSmart />} />
+            <Route
+              exact
+              path="/allorders/:idorder"
+              element={<AllRecordDetailsSmart />}
+            />
           ) : null}
-
 
           {LOGIN === 1 ? (
             <Route exact path="/reset-password" element={<ErrorNotFound />} />
           ) : (
             <Route exact path="/reset-password" element={<ResetPassword />} />
           )}
+
+          <Route path="/:otherRoutes" element={<ErrorNotFound />} />
         </Routes>
       </BrowserRouter>
       <Footer />

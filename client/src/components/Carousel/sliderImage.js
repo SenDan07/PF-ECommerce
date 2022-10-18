@@ -6,18 +6,17 @@ export const imagesSlider = [
   },
   {
     title: "Biblioteca Digital",
-    description: "Disfruta de una buena lectura",
+    description: "Todo tipo de libros al alcance de tu mano",
     urls: "https://res.cloudinary.com/dzcpdipdg/image/upload/v1665336735/samples/slider-images/slider-10_zusl0f.jpg",
   },
   {
-    title: "Compra Fácil y Rápido",
-    description:
-      "Selecciona los libros que desees y obtenlos con un par de clicks",
-    urls: "https://res.cloudinary.com/dzcpdipdg/image/upload/v1665337366/samples/slider-images/slider-11_ugnek5.jpg",
+    title: "Lectura Clásica y Moderna",
+    description: "Encuentra clásicos literarios y Betsellers actuales",
+    urls: "https://res.cloudinary.com/dzcpdipdg/image/upload/v1665336073/samples/slider-images/slider-9_dej5sd.jpg",
   },
   {
-    title: "Libros de toda Categoría",
-    description: "Selecciona la categoría de tu preferencia",
+    title: "Compra Fácil y Rápido",
+    description: "Selecciona libros de tu preferencia con tan solo unos clics",
     urls: "https://res.cloudinary.com/dzcpdipdg/image/upload/v1665335500/samples/slider-images/slider-5_as6his.jpg",
   },
 ];
