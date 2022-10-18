@@ -4,9 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser, addCart } from "../redux/actions";
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+// function classNames(...classes) {
+//   return classes.filter(Boolean).join(" ");
+// }
 
 export default function DropdownComponent() {
   const USER = useSelector((state) => state.user);
@@ -34,8 +34,6 @@ export default function DropdownComponent() {
     await dispatch(addCart([]));
     navigate("/");
   }
-
-  console.log(USER.picture[USER.picture.length - 1]);
 
   return (
     <Menu as="div" className="relative inline-block text-left">

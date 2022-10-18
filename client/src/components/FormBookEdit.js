@@ -3,6 +3,8 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategories, putEditBook, setStatus } from "../redux/actions";
 import Swal from "sweetalert2";
+import NavBar from "./NavBar";
+import Menu from "./Menu";
 
 let boton;
 
@@ -217,6 +219,8 @@ export default function FormBookEdit() {
 
   return (
     <div>
+      <NavBar />
+      <Menu />
       <form
         onSubmit={(e) => handleSubmit(e)}
         className="bg-[#14222e] text-white mx-auto p-20 py-10 m-20 my-10 rounded-lg w-3/4"
