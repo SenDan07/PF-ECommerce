@@ -77,6 +77,15 @@ export const Login = () => {
     // console.log("Debio llenar el estado Cart");
   }
 
+  function fill_cartGoogle(email) {
+    // let cart = JSON.parse(localStorage.getItem("bookDetail")) || [];
+    //Traemos lo que tiene guardado en su cuenta
+
+    dispatch(getCart(email));
+    //cart=[...cart,cart_User];
+    // console.log("Debio llenar el estado Cart");
+  }
+
   async function onSubmit(e) {
     e.preventDefault();
     if (!errors.email && !errors.password) {
@@ -99,7 +108,9 @@ export const Login = () => {
 
   async function loginGoogle(credentialResponse) {
     try {
-      await dispatch(loginWithGoogle(credentialResponse));
+      const res=await dispatch(loginWithGoogle(credentialResponse));
+      console.log("respuesta",res)
+      fill_cartGoogle(res.payload.user.email);
       // console.log(dataUser);
       navigate("/");
     } catch (error) {
@@ -259,7 +270,7 @@ export const Login = () => {
                 // console.log(credentialResponse);
                 loginGoogle(credentialResponse);
                 //LLeno el carrito
-                fill_cart();
+
                 // navigate("/");
               }}
               onError={() => {

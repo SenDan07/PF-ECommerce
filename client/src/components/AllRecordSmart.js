@@ -56,7 +56,7 @@ export default function RecordOrderSmart() {
 
             </div>
             <div className="mb-3 mx-32">
-                {allrecords.map((e) => {
+                {allrecords?.map((e) => {
                     return (
                         <AllRecordDumb
                             key={e.order.id}

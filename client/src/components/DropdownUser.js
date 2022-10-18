@@ -36,7 +36,7 @@ export default function DropdownComponent() {
   }
 
 
-  async function handleClick(e){
+  function handleClick(e){
     navigate(`/user/edit/${USER.id}`)
   }
 
