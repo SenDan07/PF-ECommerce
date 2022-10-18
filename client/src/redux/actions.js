@@ -43,6 +43,8 @@ import {
   SEARCH_USERS,
   GET_ALL_RECORD_ORDERS,
   RESET_PASSWORD,
+  GET_ORDER_DETAILS,
+  SEARCH_ORDERS,
 } from "./types.js";
 import axios from "axios";
 
@@ -279,13 +281,13 @@ export const getUsers = () => async (dispatch) => {
 
 export const deleteUser =
   (idUser, data = { isActive: "false" }) =>
-  async (dispatch) => {
-    let usersActive = await axios.put(`${direction}/users/${idUser}`, data);
-    return dispatch({
-      type: DELETE_USER,
-      payload: usersActive.data,
-    });
-  };
+    async (dispatch) => {
+      let usersActive = await axios.put(`${direction}/users/${idUser}`, data);
+      return dispatch({
+        type: DELETE_USER,
+        payload: usersActive.data,
+      });
+    };
 
 export function deleteCategory(idCategory) {
   return async (dispatch) => {
@@ -300,13 +302,13 @@ export function deleteCategory(idCategory) {
 
 export const resetUser =
   (idUser, data = { isActive: "true" }) =>
-  async (dispatch) => {
-    let users = await axios.put(`${direction}/users/${idUser}`, data);
-    return dispatch({
-      type: RESET_USER,
-      payload: users.data,
-    });
-  };
+    async (dispatch) => {
+      let users = await axios.put(`${direction}/users/${idUser}`, data);
+      return dispatch({
+        type: RESET_USER,
+        payload: users.data,
+      });
+    };
 
 export function loginWithGoogle(info) {
   return async (dispatch) => {
@@ -359,14 +361,14 @@ export function deleteCart(email) {
   };
 }
 
-export function getStockCart(title){
-  
+export function getStockCart(title) {
+
   return async (dispatch) => {
     let res = await axios.get(`${direction}/cart/cartBookStock?title=${title}`);
-   
+
     return dispatch({
       type: GET_STOCK_CART,
-      payload:res.data.stock
+      payload: res.data.stock
     });
   };
 }
@@ -439,13 +441,22 @@ export function searchUsers(search) {
 
 export function getAllRecordOrders() {
   return async (dispatch) => {
-    let res = await axios.get(`${direction}/allOrders`);
+    let res = await axios.get(`${direction}/admin/allOrders`);
     return dispatch({
       type: GET_ALL_RECORD_ORDERS,
       payload: res.data,
     });
   };
 }
+
+
+export function getOrderDetails(idorder) {
+  return {
+    type: GET_ORDER_DETAILS,
+    payload: idorder
+  }
+}
+
 
 export const resetPassword = (data) => async (dispatch) => {
   console.log(data.id);
@@ -462,3 +473,12 @@ export const resetPassword = (data) => async (dispatch) => {
     payload: response.data,
   });
 };
+
+
+/* export function searchOrder(search){
+  return{
+    type: SEARCH_ORDERS,
+    payload: search
+  }
+} */
+

@@ -1,16 +1,16 @@
-/* import { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import RecordOrderDumb from "./RecordOrderDumb"
+import AllRecordDumb from "./AllRecordDumb"
 import { getAllRecordOrders } from "../redux/actions"
 import NavBar from "./NavBar";
+import SearchOrders from "./SearchUsers"
 
 export default function RecordOrderSmart() {
     const dispatch = useDispatch();
-    //const idUser = useSelector((state) => state.user.iduser)
     useEffect(() => { dispatch(getAllRecordOrders()); }, []);
-    const records = useSelector((state) => state.recordOrders)
-
+    const allrecords = useSelector((state) => state.allRecordOrders.data)
+    console.log("allrecords: ", allrecords)
     return (
         <div>
             <NavBar />
@@ -21,6 +21,8 @@ export default function RecordOrderSmart() {
                     </h3>
                 </Link>
             </div>
+
+
 
             <div className="flex justify-center text-5xl mb-10">
                 <h5 className="">HISTORIAL DE VENTAS</h5>
@@ -49,26 +51,29 @@ export default function RecordOrderSmart() {
                 </div>
 
                 <div className="w-1/5">
-                    <h3 className="text-center text-2xl">Precio Total</h3>
+                    <h3 className="text-center text-2xl">Venta Total</h3>
                 </div>
 
             </div>
             <div className="mb-3 mx-32">
-                {records.map((e) => {
+                {allrecords.map((e) => {
                     return (
-                        <RecordOrderDumb
-                            direction={e.direccion}
-                            country={e.pais}
-                            price={e.total}
-                            key={e.id}
-                            name={e.name}
-                            date={e.fecha} 
-                            idOrder={e.id}
-                            email={e.email}
-                            />
+                        <AllRecordDumb
+                            key={e.order.id}
+                            username={e.user.name}
+                            userlastname={e.user.lastName}
+                            email={e.user.email}
+                            date={e.order.fecha}
+                            price={e.order.total}
+                            country={e.order.pais}
+                            direction={e.order.direccion}
+                            idorder={e.order.id}
+                        />
                     )
                 })}
             </div>
         </div>
     )
-} */
+}
+
+

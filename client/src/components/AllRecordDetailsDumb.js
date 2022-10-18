@@ -13,4 +13,4 @@ export default function RecordOrderDumb({ title, cantidad, subtotal, uprice }) {
             </div>
         </div>
     )
-} */
+}  */
