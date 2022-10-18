@@ -12,8 +12,8 @@ export function validate(input) {
   // let regexSecretWord = /[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü]/;
   let regexSecretWord = /^[0-9a-zA-Z]+$/;
 
-  let email =
-    /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+  // let email =
+  //   /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
   if (!input.name) {
     errors.name = "Nombre es requerido";
@@ -24,19 +24,6 @@ export function validate(input) {
     errors.lastName = "Apellido es requerido";
   } else if (!expLetras.test(input.lastName)) {
     errors.lastName = "Apellido es invalido";
-  }
-  if (!input.password) {
-    errors.password = "Password es requerido";
-  }
-  if (!input.role) {
-    errors.role = "Rol es requerido";
-  } else if (input.role !== "USER") {
-    errors.role = "Rol es invalido";
-  }
-  if (!input.email) {
-    errors.email = "Email es requerido";
-  } else if (!email.test(input.email)) {
-    errors.email = "Email es inválido";
   }
   if (input.secretWord.trim().length < 4) {
     errors.secretWord = "Palabra secreta es requerida (min 4 caracteres)";
@@ -57,10 +44,10 @@ export default function FormUserEdit() {
     id: USER.iduser ? USER.iduser : USER.id,
     name: USER.name,
     lastName: USER.lastName,
-    password: USER.password,
-    role: USER.role,
-    email: USER.email,
-    secretWord: USER.secretWord,
+    // password: USER.password,
+    // role: USER.role,
+    // email: USER.email,
+    secretWord: "",
   });
   const [errors, setErrors] = React.useState({});
 
@@ -229,7 +216,7 @@ export default function FormUserEdit() {
             </div>
 
             <div className="w-1/2">
-              <div className="flex flex-col">
+              {/* <div className="flex flex-col">
                 <label className="">PASSWORD: </label>
                 <input
                   type="password"
@@ -249,26 +236,26 @@ export default function FormUserEdit() {
                     <p className="text-[#dc2626]">{errors.password}</p>
                   ) : null}
                 </div>
-              </div>
+              </div> */}
 
               <div className="flex flex-col">
-                <label className="">EMAIL: </label>
+                <label className="">PALABRA SECRETA: </label>
                 <input
-                  type="email"
+                  type="text"
                   className={
-                    errors.email
+                    errors.secretWord
                       ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
                       : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
                   }
-                  name="email"
-                  value={input.email}
-                  placeholder="Correo"
+                  name="secretWord"
+                  value={input.secretWord}
+                  placeholder="Palabra Secreta"
                   onChange={(e) => handleChange(e)}
                 />
 
                 <div className="h-[30px]">
-                  {errors.email ? (
-                    <p className="text-[#dc2626]">{errors.email}</p>
+                  {errors.secretWord ? (
+                    <p className="text-[#dc2626]">{errors.secretWord}</p>
                   ) : null}
                 </div>
               </div>
