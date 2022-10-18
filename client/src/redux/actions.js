@@ -20,6 +20,7 @@ import {
   DELETE_BOOKS,
   GET_USERS,
   DELETE_USER,
+  PUT_USER,
   DELETE_CATEGORY,
   RESET_USER,
   LOGIN_WITH_GOOGLE,
@@ -209,7 +210,7 @@ export function searchDeleteBook(search) {
 }
 
 export function register(body) {
-  console.log(body);
+
   return async (dispatch) => {
     try {
       dispatch(setStatus("Guardando"));
@@ -219,6 +220,22 @@ export function register(body) {
         payload: res.data.status
           ? "Usuario se guardo correctamente"
           : res.data.messsage,
+      });
+    } catch (e) {
+      dispatch(setStatus("Datos no se guardaron correctamente"));
+    }
+  };
+}
+
+export function putUser(body){
+  return async (dispatch) => {
+    try {
+      dispatch(setStatus("Guardando"));
+      let res = await axios.put(`${direction}/users/${body.id}`, body);
+      console.log("action",res.data)
+      return dispatch({
+        type: PUT_USER,
+        payload: res.data.data,
       });
     } catch (e) {
       dispatch(setStatus("Datos no se guardaron correctamente"));

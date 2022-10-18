@@ -15,7 +15,6 @@ export default function DeleteBooksDumb({ title, activado, idBook, author }) {
   }
 
   async function handleCick() {
-    await dispatch(getDetailBook(idBook));
     navigate(`/edit/${idBook}`);
   }
   return (

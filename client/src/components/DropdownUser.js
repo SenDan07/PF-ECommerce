@@ -35,6 +35,13 @@ export default function DropdownComponent() {
     navigate("/");
   }
 
+
+  async function handleClick(e){
+    navigate(`/user/edit/${USER.id}`)
+  }
+
+  console.log(USER.picture[USER.picture.length - 1]);
+
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -73,7 +80,7 @@ export default function DropdownComponent() {
       >
         <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right bg-[#162531] rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
           <div className="py-1">
-            <div>
+            <div onClick={handleClick}>
               <Menu.Item>
                 <Link
                   to="#"
