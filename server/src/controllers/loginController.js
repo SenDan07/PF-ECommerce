@@ -169,7 +169,7 @@ const loginController = {
     if (!errors.isEmpty()) {
       return res.status(400).json(errors);
     }
-    //req.body.password= bcrypt.hashSync(req.body.password, 10);
+
     const { id } = req.params; // saco el id
 
     const { password,...info} = req.body; // los cambios que voy a realizar

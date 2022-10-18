@@ -18,7 +18,7 @@ export const Book = ({ name, image, price, id }) => {
       prueba.setAttribute("fill", "#ffffff");
     }
 
-/*     console.log(
+    /*     console.log(
       `Book ${id} Favorite: ${prueba.getAttribute("favorite")}, userId: ${
         USER.iduser
       }`
@@ -34,13 +34,15 @@ export const Book = ({ name, image, price, id }) => {
     <div>
       <div className="">
         <div>
-          <h2 className="font-medium text-center text-[22px]">
-            {name.length > 11 ? `${name.slice(0, 11)}...` : name}
+          <h2 className="font-medium text-center text-[22px] text-[#171e3b]">
+            {name.length > 11
+              ? `${name.slice(0, 11).toUpperCase()}...`
+              : name.toUpperCase()}
           </h2>
         </div>
       </div>
       <div className="mb-1 relative hover:rotate-1">
-        {LOGIN === 1 && ROLE === "USER" ? (
+        {/* {LOGIN === 1 && ROLE === "USER" ? (
           <div className="absolute right-0 bg-[#555] z-10 rounded-bl-xl rounded-tr-xl">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -64,18 +66,18 @@ export const Book = ({ name, image, price, id }) => {
               />
             </svg>
           </div>
-        ) : null}
+        ) : null} */}
         <Link to={`/books/${id}`}>
           <img
             src={image}
             alt={`img-${name}`}
-            className="w-[200px] h-[300px] rounded rounded-tr-xl sombra"
+            className="w-[200px] h-[300px] rounded rounded-tr-lg sombra"
           />
         </Link>
       </div>
       <div>
         <h3 className="text-center text-xl font-bold text-black">
-          <span className="font-medium text-white">Price: </span>$
+          <span className="font-medium text-[#171e3b]">Price: </span>$
           {price.toFixed(2)}
         </h3>
       </div>

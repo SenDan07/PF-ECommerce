@@ -21,10 +21,16 @@ export default function Cart() {
 
   console.log("carrito a renderizar",cart)
 
+  useEffect(()=>{
+    if(ROLE==="USER"){
+      dispatch(postCart({ email: User.email, cart }));
+    }
+    
+  },[cart1])
   async function handleClick() {
     if (LOGIN && cart.length) {
       console.log("carrito a guardar",cart)
-      await dispatch(postCart({ email: User.email, cart }));
+    //  await dispatch(postCart({ email: User.email, cart }));
     }
   }
 
