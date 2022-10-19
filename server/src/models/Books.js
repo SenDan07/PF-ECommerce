@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const Sequelize = require("sequelize");
+const sequelize = require("sequelize");
 
 module.exports = (sequelize) => {
   // defino el modelo
@@ -7,8 +7,8 @@ module.exports = (sequelize) => {
     "Books",
     {
       id: {
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
+        type: sequelize.UUID,
+        defaultValue: sequelize.UUIDV4,
         primaryKey: true,
       },
       title: {

@@ -1,18 +1,18 @@
 require("dotenv").config();
-const { Sequelize, Op } = require("sequelize");
+const { sequelize, Op } = require("sequelize");
 const fs = require("fs");
 const path = require("path"); 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
-const sequelize = new Sequelize(
+const seqInstance = new sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
   {
     logging: false, // set to console.log to see the raw SQL queries
-    native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+    native: false, // lets seqInstance know we can use pg-native for ~30% more speed
   }
 );
 // verificacion de la conexion
-sequelize
+seqInstance
   .authenticate()
   .then((response) => {
     console.log("Connection to database successfully");
@@ -35,25 +35,25 @@ fs.readdirSync(path.join(__dirname, "/models"))
     modelDefiners.push(require(path.join(__dirname, "/models", file)));
   });
 
-// Injectamos la conexion (sequelize) a todos los modelos
-modelDefiners.forEach((model) => model(sequelize));
+// Injectamos la conexion (seqInstance) a todos los modelos
+modelDefiners.forEach((model) => model(seqInstance));
 // console.log(modelDefiners)
-// Injectamos la conexion (sequelize) a todos los modelos
-// modelDefiners[1](sequelize);
+// Injectamos la conexion (seqInstance) a todos los modelos
+// modelDefiners[1](seqInstance);
 
 // Capitalizamos los nombres de los modelos ie: product => Product
-let entries = Object.entries(sequelize.models);
+let entries = Object.entries(seqInstance.models);
 let capsEntries = entries.map((entry) => [
   entry[0][0].toUpperCase() + entry[0].slice(1),
   entry[1],
 ]);
-sequelize.models = Object.fromEntries(capsEntries);
+seqInstance.models = Object.fromEntries(capsEntries);
 
-// En sequelize.models están todos los modelos importados como propiedades
+// En seqInstance.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 
 const { Books, Categories, Detalle, Order, Review, User, Favorite } =
-  sequelize.models;
+  seqInstance.models;
 
 Books.belongsToMany(Categories, {
   as: "categories",
@@ -82,7 +82,7 @@ Favorite.belongsToMany(User, { through: "User_Favorite" });
 
 
 module.exports = {
-  ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
-  conn: sequelize, // para importart la conexión { conn } = require('./db.js');
+  ...seqInstance.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
+  conn: seqInstance, // para importart la conexión { conn } = require('./db.js');
   Op,
 };

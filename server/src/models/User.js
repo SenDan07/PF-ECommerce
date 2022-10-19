@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const Sequelize = require("sequelize");
+const sequelize = require("sequelize");
 
 module.exports = (sequelize) => {
   // defino el modelo
@@ -8,8 +8,8 @@ module.exports = (sequelize) => {
     "User",
     {
       id: {
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
       isGoogle: {
