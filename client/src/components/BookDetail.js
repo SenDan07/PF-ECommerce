@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getBookReviews,
@@ -18,6 +18,7 @@ import Swal from "sweetalert2";
 const BookDetail = () => {
   const dispatch = useDispatch();
   const bookId = useParams().id;
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getDetailBook(bookId));
@@ -184,13 +185,12 @@ const BookDetail = () => {
     <div>
       <NavBar />
       <div className="bg-bgHome min-h-screen pb-20">
-        {/* <div className="w-max">
-          <Link to="/">
-            <h3 className="border-1 border-rose-500 rounded ml-10 mt-8 px-3 py-2 w-max bg-button text-white">
-              &#129044; Regresar
-            </h3>
-          </Link>
-        </div> */}
+        <div
+          className="w-max rounded ml-10 mt-8 px-3 py-2 bg-button text-white hover:bg-[#024b36] transition-colors duration-200 hover:cursor-pointer"
+          onClick={() => navigate(-1)}
+        >
+          <h3 className="w-max">&#129044; Regresar</h3>
+        </div>
         {bookDetail.imageLinks ? (
           <div>
             <div className="m-auto mt-10 border-t-2 w-[75%] rounded border-[#555555]">

@@ -71,7 +71,7 @@ const initialState = {
   recordOrders: [],
   allRecordOrders: [],
   recordDetails: [],
-  stock: 0
+  stock: 0,
 };
 
 function rootReducer(state = initialState, action) {
@@ -225,8 +225,8 @@ function rootReducer(state = initialState, action) {
       first === 0
         ? (filterPrice = [...filterAuxPrice])
         : first === 100
-          ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
-          : (filterPrice = filterAuxPrice.filter(
+        ? (filterPrice = filterAuxPrice.filter((e) => e.price > first))
+        : (filterPrice = filterAuxPrice.filter(
             (e) => e.price >= first && e.price <= last
           ));
       return {
@@ -256,6 +256,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         booksDeleteAdminFilter: [...auxResetDeleteBooks],
+        booksBySearch: [],
       };
 
     case SEARCH_BOOK:
@@ -324,12 +325,12 @@ function rootReducer(state = initialState, action) {
       };
 
     case PUT_USER:
-      console.log("respuesta action",action.payload)
-      return{
+      console.log("respuesta action", action.payload);
+      return {
         ...state,
         user: action.payload,
-        status:action.mesg
-      }
+        status: action.mesg,
+      };
 
     case DELETE_CATEGORY:
       console.log(action.payload);
@@ -396,11 +397,11 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_STOCK_CART:
-      console.log("stock", action.payload)
+      console.log("stock", action.payload);
       return {
         ...state,
-        stock: action.payload
-      }
+        stock: action.payload,
+      };
 
     case DELETE_CART:
       return {
@@ -532,22 +533,20 @@ function rootReducer(state = initialState, action) {
         ...state,
       };
 
-
     case GET_ORDER_DETAILS:
-      let auxrecordDetails = []
-      let allorders = state.allRecordOrders.data
-      allorders.forEach(e => {
+      let auxrecordDetails = [];
+      let allorders = state.allRecordOrders.data;
+      allorders.forEach((e) => {
         if (e.order.id == action.payload) {
-          auxrecordDetails.push(...e.order.detalle)
+          auxrecordDetails.push(...e.order.detalle);
         }
-      })
+      });
       return {
         ...state,
-        recordDetails: auxrecordDetails
-      }
+        recordDetails: auxrecordDetails,
+      };
 
-
-/*     case SEARCH_ORDERS:
+    /*     case SEARCH_ORDERS:
       let auxSearchOrders = [...state.allRecordOrders.data]
              let auxSearchOrdersID = auxSearchOrders.filter(order => order.order == action.payload)
             let auxSearchOrdersName = aux *

@@ -46,7 +46,7 @@ export default function FormUserEdit() {
     lastName: USER.lastName,
     // password: USER.password,
     // role: USER.role,
-    // email: USER.email,
+    email: USER.email,
     secretWord: "",
   });
   const [errors, setErrors] = React.useState({});
