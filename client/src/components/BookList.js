@@ -11,12 +11,12 @@ export default function BookList() {
     dispatch(getBooks());
   }, []);
 
-  let booksData = useSelector((state) => state.booksFilter.slice(26, 36));
+  let booksData = useSelector((state) => state.booksFilter.slice(46, 56));
 
   return (
     <div className="mt-40 contenedor">
       <h2 className="text-center text-4xl font-bold font-serif italic">
-        DESTACADOS
+        RECOMENDADOS
       </h2>
       <div className="flex flex-wrap justify-center gap-20 p-8">
         {booksData.length ? (

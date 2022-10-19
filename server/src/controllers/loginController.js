@@ -67,16 +67,16 @@ const loginController = {
             content: {
               body: `
               <h3>Registro de usuario</h3>
-              <p>Sr. ${
+              <p>Hola ${
                 name + " " + lastName
-              }, le informamos que su cuenta ha sido creada satisfactoriamente. Lo invitamos a que visite nuestra página y mire las opciones de libros que tenemos disponibles.</p>
+              }, le informamos que su cuenta ha sido creada satisfactoriamente. Le invitamos a que visite nuestra página y mire las opciones de libros que tenemos disponibles.</p>
               `,
               footer: `
               <a href="http://frontend.pfecommerce.ddns.net/" target="blanck">Ir a la página</a>
-              `
+              `,
             },
           });
-        },
+        }
 
         return res.status(200).json({
           status: 1,
@@ -174,7 +174,7 @@ const loginController = {
     }
 
     // req.body.password= bcrypt.hashSync(req.body.password, 10);
-    
+
     const { id } = req.params; // saco el id
     const modification = req.body; // los cambios que voy a realizar
     const user = await thereIsEmail(req.body.email);
@@ -192,16 +192,16 @@ const loginController = {
         content: {
           body: `
           <h3>Actualización de usuario</h3>
-          <p>Sr. ${
+          <p>Hola ${
             user.name + " " + user.lastName
-          }, le informamos que su cuenta fue actualizada correctamente. Lo invitamos a que se dirija a nuestra página para que continúe con el proceso de inicio de sesión y mire las opciones de libros que tenemos disponibles.</p>
+          }, le informamos que su cuenta fue actualizada correctamente. Le invitamos a que se dirija a nuestra página para que continúe con el proceso de inicio de sesión y mire las opciones de libros que tenemos disponibles.</p>
           `,
           footer: `
           <a href="http://frontend.pfecommerce.ddns.net/login" target="blanck">Iniciar sesión</a>
-          `
+          `,
         },
       });
-    };
+    }
 
     const data = await models.User.findByPk(id);
     return res.json({

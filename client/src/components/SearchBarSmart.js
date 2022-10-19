@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { resetDeleteBooks } from "../redux/actions";
+import NavBar from "./NavBar";
 
 export default function SearchBarSmart() {
   const busqueda = useSelector((state) => state.booksBySearch);
@@ -17,6 +18,7 @@ export default function SearchBarSmart() {
   }, []);
   return (
     <div>
+      <NavBar />
       <h1 className="text-center text-3xl pt-10">
         Resultados de la busqueda {/*deberia mostrar el cards*/}
       </h1>
