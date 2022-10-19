@@ -64,15 +64,19 @@ const loginController = {
           await axios.post("http://localhost:3001/alert/email", {
             emails: email,
             subject: "Registro exitoso",
-            content: `
-            <h3>Registro de usuario</h3>
-            <p>Sr. ${
-              name + " " + lastName
-            }, le informamos que su cuenta ha sido creada satisfactoriamente. Lo invitamos a que visite nuestra página y mire las opciones de libros que tenemos disponibles.</p>
-            <!-- <a href="http://frontend.pfecommerce.ddns.net/" target="blanck">Ir a la página</a> -->
-            `,
+            content: {
+              body: `
+              <h3>Registro de usuario</h3>
+              <p>Sr. ${
+                name + " " + lastName
+              }, le informamos que su cuenta ha sido creada satisfactoriamente. Lo invitamos a que visite nuestra página y mire las opciones de libros que tenemos disponibles.</p>
+              `,
+              footer: `
+              <a href="http://frontend.pfecommerce.ddns.net/" target="blanck">Ir a la página</a>
+              `
+            },
           });
-        }
+        },
 
         return res.status(200).json({
           status: 1,
@@ -179,6 +183,24 @@ const loginController = {
         id: id,
       },
     });
+
+    if (change) {
+      await axios.post("http://localhost:3001/alert/email", {
+        emails: user.email,
+        subject: "Actualización exitosa",
+        content: {
+          body: `
+          <h3>Actualización de usuario</h3>
+          <p>Sr. ${
+            user.name + " " + user.lastName
+          }, le informamos que su cuenta fue actualizada correctamente. Lo invitamos a que se dirija a nuestra página para que continúe con el proceso de inicio de sesión y mire las opciones de libros que tenemos disponibles.</p>
+          `,
+          footer: `
+          <a href="http://frontend.pfecommerce.ddns.net/login" target="blanck">Iniciar sesión</a>
+          `
+        },
+      });
+    };
 
     const data = await models.User.findByPk(id);
     return res.json({

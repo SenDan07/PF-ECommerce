@@ -37,11 +37,14 @@ const alertController = {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
+          img {
+            border-radius: 5px;
+          }
           h1, h3, h4 {
             font-family: Arial, Helvetica, sans-serif;
           }
           h4 {
-            color: #808080;
+            color: #999;
           }
           a {
             padding: 5px 10px;
@@ -64,8 +67,9 @@ const alertController = {
       </head>
       <body>
         <div>
-          <h1>Don Quijote</h1>
-          ${content}
+          <img src="https://res.cloudinary.com/dah19wrh1/image/upload/v1666150949/dev/assets/logo-don-quijote.png" alt="logo-don-quijote.png">
+          ${content.body}
+          ${content.footer ? content.footer : ""}
         </div>
       </body>
       </html>

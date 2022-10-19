@@ -111,13 +111,14 @@ const orderControllers = {
         await axios.post("http://localhost:3001/alert/email", {
           emails: email,
           subject: `Orden ID:${id} confirmada`,
-          content: `
-          <h4>ORDEN ID:${id}</h4>
-          <h3>Gracias por tu compra!</h3>
-          <p>Hola ${nombreCompleto}, estamos preparando su pedido para ser enviado. Le notificaremos cuando se haya despachado.</p>
-          `,
+          content: {
+            body: `
+            <h4>ORDEN ID:${id}</h4>
+            <h3>Gracias por tu compra!</h3>
+            <p>Hola ${nombreCompleto}, estamos preparando su pedido para ser enviado. Le notificaremos cuando se haya despachado.</p>
+          `},
         });
-      }
+      };
 
       res.status(200).json(true);
     } catch (error) {
