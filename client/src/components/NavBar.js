@@ -70,7 +70,7 @@ export default function NavBar() {
             to="/"
             className="mx-3 cursor-pointer hover:text-hoverMenu transition-colors duration-200"
           >
-            INICIO
+            HOME
           </Link>
 
           <Link
