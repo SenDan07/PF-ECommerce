@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
-import { searchAuthor } from "../redux/actions";
-import { searchBook } from "../redux/actions";
+//import { searchAuthor } from "../../../redux/actions";
+import { searchBook } from "../../../redux/actions";
 
 export default function SearchBar() {
   const navigate = useNavigate();

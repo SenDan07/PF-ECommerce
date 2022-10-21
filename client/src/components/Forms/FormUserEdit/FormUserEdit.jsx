@@ -1,19 +1,15 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { login, register } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { login, putUser } from "../../../redux/actions";
 import Swal from "sweetalert2";
-import NavBar from "./NavBar";
+import NavBar from "../../NavBar/NavBar";
 
 let boton;
 export function validate(input) {
   let errors = {};
   let expLetras = /^[A-Za-z]+[A-Za-z\s]*[A-Za-z]$/;
-  // let regexSecretWord = /[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü]/;
   let regexSecretWord = /^[0-9a-zA-Z]+$/;
-
-  let email =
-    /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
   if (!input.name) {
     errors.name = "Nombre es requerido";
@@ -25,19 +21,6 @@ export function validate(input) {
   } else if (!expLetras.test(input.lastName)) {
     errors.lastName = "Apellido es invalido";
   }
-  if (!input.password) {
-    errors.password = "Password es requerido";
-  }
-  if (!input.role) {
-    errors.role = "Rol es requerido";
-  } else if (input.role !== "USER") {
-    errors.role = "Rol es invalido";
-  }
-  if (!input.email) {
-    errors.email = "Email es requerido";
-  } else if (!email.test(input.email)) {
-    errors.email = "Email es inválido";
-  }
   if (input.secretWord.trim().length < 4) {
     errors.secretWord = "Palabra secreta es requerida (min 4 caracteres)";
   } else if (!regexSecretWord.test(input.secretWord)) {
@@ -48,61 +31,27 @@ export function validate(input) {
   return errors;
 }
 
-export default function FormUser() {
+export default function FormUserEdit() {
   const dispatch = useDispatch();
-
+  const USER = useSelector((state) => state.user);
   // let loading = useSelector((state) => state.loading);
 
   const [input, setInput] = React.useState({
-    name: "",
-    lastName: "",
-    password: "",
-    role: "USER",
-    email: "",
+    id: USER.iduser ? USER.iduser : USER.id,
+    name: USER.name,
+    lastName: USER.lastName,
+    email: USER.email,
     secretWord: "",
   });
   const [errors, setErrors] = React.useState({});
-
-  /*const uploadImage= async (e)=>{
-        
-     try{
-        const files=e.target.files
-        const data=new FormData()
-        data.append('file',files[0])
-        data.append('upload_preset',"BooksApi")
-        const res=await fetch("https://api.cloudinary.com/v1_1/dl7pi3qek/image/upload",
-            {
-            method:"POST",
-            body:data
-            }
-        )
-        const file=await res.json()
-        setInput({
-            ...input,
-            [e.target.name]:file.secure_url
-        })
-    }catch(e){
-        setErrors({
-            ...errors,
-            imageLinks:"Imagen no se pudo cargar"
-        })
-        }       
-    
-    }*/
-
-  // useEffect(() => {
-  //   // showLoadingRegister();
-  //   // showAlertSuccess();
-  //   // showAlertError();
-  // }, []);
 
   const navigate = useNavigate();
 
   const showAlertError = async () => {
     await Swal.fire({
       icon: "error",
-      title: "Oops, Hubo un Error en el Registro!!",
-      footer: "Intenta nuevamente con datos válidos o un correo distinto.",
+      title: "Oops, Hubo un Error al Actualizar!!",
+      footer: "Intenta nuevamente con datos válidos",
       color: "#fff",
       background: "#333",
       allowEscapeKey: false,
@@ -112,7 +61,7 @@ export default function FormUser() {
 
   const showLoadingRegister = async () => {
     Swal.fire({
-      title: "Registrando Usuario",
+      title: "Actualizando tus Datos!",
       text: "Espere unos segundos",
       timer: 30000,
       background: "#333",
@@ -124,11 +73,10 @@ export default function FormUser() {
       allowEscapeKey: false,
       allowOutsideClick: false,
     }).then(
-      function () {},
-      // handling the promise rejection
+      function () { },
+
       function (dismiss) {
         if (dismiss === "timer") {
-          //console.log('I was closed by the timer')
         }
       }
     );
@@ -138,8 +86,8 @@ export default function FormUser() {
     await Swal.fire({
       position: "center",
       icon: "success",
-      title: "Registro Exitoso!!",
-      text: "Te hemos enviado una notificación a tu correo.",
+      title: "Datos Actualizados con Éxito!!",
+      text: "Tu información se ha modificado.",
       background: "#333",
       color: "#fff",
       showConfirmButton: false,
@@ -155,32 +103,13 @@ export default function FormUser() {
     e.preventDefault();
     showLoadingRegister();
 
-    const valor = await dispatch(register(input));
-
+    const valor = await dispatch(putUser(input));
+    console.log(valor);
     if (valor) {
       await showAlertSuccess();
-      await dispatch(login({ email: input.email, password: input.password }));
-
-      // setInput({
-      //   name: "",
-      //   lastName: "",
-      //   password: "",
-      //   role: "USER",
-      //   email: "",
-      // });
-      // e.target.name.focus();
-      //  let boton= document.getElementById('enviar')
-      // boton.disabled = true;
-      // setTimeout(() => dispatch(setStatus("")), 5000);
-      // alert("Registro exitoso!!");
     } else {
       await showAlertError();
     }
-
-    //e.target.name.focus();
-    //let boton = document.getElementById("enviar");
-    //boton.disabled = true;
-    //setTimeout(() => dispatch(setStatus("")), 10000);
   }
 
   function handleChange(e) {
@@ -200,8 +129,6 @@ export default function FormUser() {
     boton = document.getElementById("enviar");
 
     //dispatch(getAllCategories())
-    boton.disabled = true;
-    boton.className = "bg-[#94a3b8] p-2 px-8 m-2 rounded text-xl";
   }, []);
   //let categories=useSelector(state=>state.categories)
   return (
@@ -212,7 +139,7 @@ export default function FormUser() {
         className="bg-[#14222e] text-white container mx-auto p-20 m-20 rounded-lg w-1/2"
       >
         <h2 className="text-center text-xl text-[30px] text-[#c0c077]">
-          REGISTRO DE USUARIOS
+          EDITA TUS DATOS
         </h2>
         <br />
         <fieldset className="columns-2 text-[16px] m-2 flex flex-col">
@@ -263,7 +190,7 @@ export default function FormUser() {
             </div>
 
             <div className="w-1/2">
-              <div className="flex flex-col">
+              {/* <div className="flex flex-col">
                 <label className="">PASSWORD: </label>
                 <input
                   type="password"
@@ -283,33 +210,33 @@ export default function FormUser() {
                     <p className="text-[#dc2626]">{errors.password}</p>
                   ) : null}
                 </div>
-              </div>
+              </div> */}
 
               <div className="flex flex-col">
-                <label className="">EMAIL: </label>
+                <label className="">PALABRA SECRETA: </label>
                 <input
-                  type="email"
+                  type="text"
                   className={
-                    errors.email
+                    errors.secretWord
                       ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
                       : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
                   }
-                  name="email"
-                  value={input.email}
-                  placeholder="Correo"
+                  name="secretWord"
+                  value={input.secretWord}
+                  placeholder="Palabra Secreta"
                   onChange={(e) => handleChange(e)}
                 />
 
                 <div className="h-[30px]">
-                  {errors.email ? (
-                    <p className="text-[#dc2626]">{errors.email}</p>
+                  {errors.secretWord ? (
+                    <p className="text-[#dc2626]">{errors.secretWord}</p>
                   ) : null}
                 </div>
               </div>
             </div>
           </div>
-
-          <div className="w-3/4">
+          {/*
+<div className="w-3/4">
             <label className="block">PALABRA SECRETA: </label>
             <input
               type="text"
@@ -329,6 +256,7 @@ export default function FormUser() {
               ) : null}
             </div>
           </div>
+*/}
 
           {/*<label className="block">IMAGEN: </label>
                 <input type='file' name='imageLinks' className="w-64" accept="image/png, image/jpeg" onChange={(e) => uploadImage(e)} />
@@ -344,11 +272,10 @@ export default function FormUser() {
           {/* {loading ? <p>{loading}</p> : null} */}
           <input
             type="submit"
-            className={`text-xl ${
-              Object.keys(errors).length
+            className={`text-xl ${Object.keys(errors).length
                 ? "bg-[#94a3b8] p-2 px-8 m-2 cursor-no-drop rounded"
                 : "bg-[#124d9a] p-2 px-8 m-2 rounded cursor-pointer transition-colors duration-200 hover:bg-[#0e3f7e]"
-            }`}
+              }`}
             id="enviar"
             disabled={Object.keys(errors).length ? true : false}
             value="Guardar"

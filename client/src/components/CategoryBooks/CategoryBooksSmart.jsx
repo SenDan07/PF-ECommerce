@@ -4,11 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   categoryBooks,
   getAllCategories,
-  // getBooks,
   resetCategoryBooks,
 } from "../../redux/actions";
 import CategoryBooksDumb from "./CategoryBooksDumb";
-import NavBar from "../NavBar";
+import NavBar from "../NavBar/NavBar";
 import FilterBar from "../FilterBar/FilterBar";
 
 export default function CategoriesBooks() {
@@ -22,7 +21,6 @@ export default function CategoriesBooks() {
   useEffect(() => {
     dispatch(getAllCategories());
   }, [dispatch]);
-  //useEffect(() => { dispatch(getBooks()) }, [])
 
   useEffect(() => {
     return () => {

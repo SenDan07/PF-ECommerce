@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteCategory, getAllCategories } from "../../redux/actions";
-import NavBar from "./NavBar";
-import Menu from "./Menu";
+import NavBar from "../NavBar/NavBar";
+import Menu from "../MenuAdmin/Menu";
 
 export const ManageCategories = () => {
   const dispatch = useDispatch();
@@ -17,17 +17,8 @@ export const ManageCategories = () => {
     await dispatch(getAllCategories());
   };
 
-  // let data = { isActive: "true" };
-
-  // const restablecerUser = (idUser) => {
-  //   dispatch(deleteUser(idUser, data));
-  // };
 
   let categories = useSelector((state) => state.categories);
-  // const activeCategories = categories.filter((category) => category.activado);
-  // const inactiveCategories = categories.filter(
-  //   (category) => !category.activado
-  // );
 
   const sortCategories = (x, y) => {
     if (x.name < y.name) return -1;
@@ -37,8 +28,6 @@ export const ManageCategories = () => {
   };
 
   categories = categories.sort(sortCategories);
-
-  //const inactiveUsers = useSelector((state) => state.inactiveUsers);
 
   return (
     <div>

@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategories } from "../../redux/actions";
 import CategoriesDumb from "./CategoriesDumb";
-import NavBar from "../NavBar";
+import NavBar from "../NavBar/NavBar";
 
 export default function CategoriesBooks() {
   const dispatch = useDispatch();
@@ -16,14 +15,6 @@ export default function CategoriesBooks() {
   return (
     <div className="bg-bgHome min-h-screen">
       <NavBar />
-
-      {/* <div className="m-auto flex justify-start pt-20">
-        <Link to="/">
-          <h3 className="border-1 border-rose-500 rounded px-5 py-2 bg-button text-black hover:text-white mt-5 mx-10">
-            &#129044; Regresar
-          </h3>
-        </Link>
-      </div> */}
 
       <div className="mb-20 text-7xl font-medium mt-10 text-[#14143a]">
         <h5 className="flex justify-center">CATEGORIAS</h5>
