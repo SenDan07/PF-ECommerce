@@ -1,7 +1,6 @@
-// import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { logoutUser, addCart } from "../redux/actions";
+import { logoutUser, addCart } from "../../redux/actions";
 import SearchBar from "./SearchBar";
 import donQuijote from "./img/gitbooks.png";
 import DropdownComponent from "./DropdownUser/DropdownUser";
@@ -13,27 +12,6 @@ export default function NavBar() {
   const ROLE = useSelector((state) => state.role);
   const USER = useSelector((state) => state.user);
 
-  // console.log(ROLE);
-
-  // if (LOGIN && ROLE.length) {
-  //   localStorage.setItem("LOGIN", LOGIN);
-  //   localStorage.setItem("ROLE", ROLE);
-  // }
-
-  // const activeLogin = localStorage.getItem("LOGIN");
-  // const activeRole = localStorage.getItem("ROLE");
-
-  // console.log(activeLogin);
-  // console.log(activeRole);
-
-  // useEffect(() => {
-  //   dispatch(
-  //     isLogin({
-  //       login: LOGIN,
-  //       role: ROLE,
-  //     })
-  //   );
-  // }, [LOGIN, ROLE]);
   let cart_User = useSelector((state) => state.cart);
 
   cart_User = JSON.parse(localStorage.getItem("bookDetail"))
@@ -41,7 +19,6 @@ export default function NavBar() {
       ? JSON.parse(localStorage.getItem("bookDetail"))
       : cart_User
     : [];
-  // console.log(cart_User);
 
   localStorage.setItem("bookDetail", JSON.stringify(cart_User));
 
@@ -116,10 +93,8 @@ export default function NavBar() {
       </div>
 
       <div className="flex items-center">
-        {LOGIN === 1 && ROLE === "USER" ? null : LOGIN === 1 && // </div> //   </Link> //     PEDIDOS //   > //     className="mr-10 cursor-pointer hover:text-hoverMenu transition-colors duration-200" //     to={`/historyorder/${USER.iduser}`} //   <Link //   </Link> //     FAVORITOS //   > //     className="mr-10 cursor-pointer hover:text-hoverMenu transition-colors duration-200" //     to="/favorites" //   <Link // <div className="flex gap-8">
-          ROLE === "ADMIN" ? (
-          <div className="mx-3 font-bold text-[#adad28]">ADMIN</div>
-        ) : null}
+        {LOGIN === 1 && ROLE === "USER" ? null : LOGIN === 1 && ROLE === "ADMIN" ?
+          (<div className="mx-3 font-bold text-[#adad28]">ADMIN</div>) : null}
 
         {(LOGIN === 0 || LOGIN.length === 0) && ROLE === "" ? (
           <div>
@@ -137,75 +112,8 @@ export default function NavBar() {
               </Link>
             </div>
           </div>
-        ) : (
-          // <div className="flex gap-5 items-center">
-          //   <div className="flex gap-3 items-center border border-[#444444] pl-2 pr-1 py-1 rounded">
-          //     <div>
-          //       <h3 className="font-mono text-xl">{USER.name}</h3>
-          //     </div>
-          //     <div>
-          //       <img
-          //         src={USER.picture}
-          //         alt={`${USER.name}-img`}
-          //         className="w-[40px] h-[40px] rounded"
-          //       />
-          //     </div>
-          //   </div>
-          //   <div
-          //     onClick={() => logout()}
-          //     className="flex items-center gap-1 border border-[#444444] bg-[#444444] text-xl rounded px-1 hover:cursor-pointer hover:bg-[#222222] duration-200"
-          //   >
-          //     <h4>Salir</h4>
-          //     <svg
-          //       xmlns="http://www.w3.org/2000/svg"
-          //       fill="none"
-          //       viewBox="0 0 24 24"
-          //       strokeWidth="1.5"
-          //       stroke="currentColor"
-          //       className="w-5 h-5"
-          //     >
-          //       <path
-          //         strokeLinecap="round"
-          //         strokeLinejoin="round"
-          //         d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
-          //       />
-          //     </svg>
-          //   </div>
-          // </div>
-          <DropdownComponent />
-        )}
+        ) : (<DropdownComponent />)}
       </div>
     </div>
   );
 }
-
-/*
-                <Link to="/favorites" className="mx-3 cursor-pointer hover:text-hoverMenu">
-                    FAVORITOS
-                </Link>
-
-
-                            <div >
-                <Link to="/auth" className="mx-3 cursor-pointer hover:text-hoverMenu">
-                    INICIAR SESIÃ“N
-                </Link>
-
-                <Link to="/basket" className="mx-3 cursor-pointer hover:text-hoverMenu">
-                    COMPRAS
-                </Link>
-            </div>
-*/
-
-/* 
-        {LOGIN === 1 && ROLE === "USER" ? (
-          <div>
-            <Link
-              to="/favorites"
-              className="mr-10 cursor-pointer hover:text-hoverMenu">
-              FAVORITOS
-            </Link>
-
-            <Link>v</Link>
-          </div>
-
-*/

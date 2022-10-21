@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { searchOrder } from "../redux/actions";
+import { searchUsers } from "../../../redux/actions";
 
 
-export default function SearchBar() {
+export default function SearchUsers() {
     const [search, setSearch] = useState("");
     let dispatch = useDispatch();
   
     function onSubmit(e) {
       e.preventDefault();
-      dispatch(searchOrder(search));
+      dispatch(searchUsers(search));
       setSearch("")
     }
     function onInputChange(e) {
@@ -25,12 +25,12 @@ export default function SearchBar() {
 
           <div>
             <input
-              className="text-xl py-1 rounded bg-bgSearch text-white outline-none pl-3 italic"
+              className="text-xl py-1 rounded bg-bgSearch text-white outline-none pl-5 italic w-64"
               type="text"
               onChange={onInputChange}
               name="search"
               value={search}
-              placeholder="Titulo o Autor"
+              placeholder="Nombre, Apellido o Email"
             />
           </div>
   

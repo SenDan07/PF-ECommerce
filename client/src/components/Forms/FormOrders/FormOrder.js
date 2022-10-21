@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-//import CartItem from "./CartItem"
 import { Link, useNavigate } from "react-router-dom";
-//import FormPayment from "./FormPayment";
 import { loadStripe } from "@stripe/stripe-js";
 import { addCart, deleteCart } from "../redux/actions";
 import {
@@ -15,9 +13,6 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const stripePromise = loadStripe(process.env.REACT_APP_CLAVE_PUBLICA_STRIPE);
-/* const stripePromise = loadStripe(
-  "pk_test_51LsWoOFrokjF5UMqf7U8cohybCbbQWRPY1EZPntmfC8r0O5prM1K2QCHxL6Ws0Gfon8eAf1uAyQcO97LhPDK6HgY00ACNEMSaz"
-); */
 
 export function validate(input) {
   let errors = {};
@@ -84,46 +79,6 @@ function CheckoutForm() {
     );
   }
 
-  // useEffect(() => {
-  //   // showLoadingPayment();
-  //   // showAlertSuccess();
-  //   // showAlertError();
-  // }, []);
-
-  // const showAlertConfirm = Swal.mixin({
-  //   customClass: {
-  //     confirmButton: "btn btn-success",
-  //     cancelButton: "btn btn-danger",
-  //   },
-  //   buttonsStyling: false,
-  // });
-
-  // showAlertConfirm.fire({
-  //   title: 'Are you sure?',
-  //   text: "You won't be able to revert this!",
-  //   icon: 'warning',
-  //   showCancelButton: true,
-  //   confirmButtonText: 'Yes, delete it!',
-  //   cancelButtonText: 'No, cancel!',
-  //   reverseButtons: true
-  // }).then((result) => {
-  //   if (result.isConfirmed) {
-  //     showAlertConfirm.fire(
-  //       'Deleted!',
-  //       'Your file has been deleted.',
-  //       'success'
-  //     )
-  //   } else if (
-  //     /* Read more about handling dismissals below */
-  //     result.dismiss === Swal.DismissReason.cancel
-  //   ) {
-  //     showAlertConfirm.fire(
-  //       'Cancelled',
-  //       'Your imaginary file is safe :)',
-  //       'error'
-  //     )
-  //   }
-  // })
 
   const showAlertError = async () => {
     await Swal.fire({

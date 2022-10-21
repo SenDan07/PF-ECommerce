@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import AllRecordDumb from "./AllRecordDumb";
 import { getAllRecordOrders } from "../../redux/actions";
-import NavBar from "../NavBar";
-// import SearchOrders from "../SearchUsers";
+import NavBar from "../NavBar/NavBar";
+
 
 export default function RecordOrderSmart() {
   const dispatch = useDispatch();

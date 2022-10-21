@@ -12,7 +12,7 @@ import {
   addCart,
 } from "../../redux/actions";
 import { useEffect } from "react";
-import NavBar from "../NavBar";
+import NavBar from "../NavBar/NavBar";
 import Swal from "sweetalert2";
 
 const BookDetail = () => {

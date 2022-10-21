@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import RecordDetailsDumb from "./RecordDetailsDumb"
-import { getRecordOrders } from "../redux/actions"
-import NavBar from "./NavBar";
+import { getRecordOrders } from "../../redux/actions"
+import NavBar from "../NavBar/NavBar";
 
 
 export default function RecordDetailsSmart() {

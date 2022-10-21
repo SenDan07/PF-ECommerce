@@ -1,13 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { getUsers } from "../redux/actions";
+import { resetDeleteBooks } from "../../redux/actions";
 
-export default function ResetAllUsers() {
+export default function ResetDeleteBooks() {
   let dispatch = useDispatch();
 
   function handleClick(e) {
     e.preventDefault();
-    dispatch(getUsers());
+    dispatch(resetDeleteBooks());
   }
   return (
     <div>
@@ -15,7 +15,7 @@ export default function ResetAllUsers() {
         className="hover:cursor-pointer bg-[#343434] text-white p-2 hover:bg-[#181717] transition-colors duration-200 text-xl rounded"
         onClick={handleClick}
       >
-        Todos los Usuarios
+        Todos los Libros
       </button>
     </div>
   );

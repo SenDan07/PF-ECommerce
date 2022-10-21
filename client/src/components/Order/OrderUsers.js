@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { orderUsers } from "../redux/actions";
+import { orderUsers } from "../../redux/actions";
 
 export default function OrderName() {
   const dispatch = useDispatch();
