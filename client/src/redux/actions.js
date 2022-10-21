@@ -48,7 +48,11 @@ import {
 } from "./types.js";
 import axios from "axios";
 
-const direction = "http://localhost:3001" || "http://api.pfecommerce.ddns.net";
+// const direction =
+//   "https://pf-ecommerce-production-3652.up.railway.app" ||
+//   "http://localhost:3001";
+
+const direction = "http://localhost:3001";
 
 export const getBooks = () => async (dispatch) => {
   let dataBooks = await axios(`${direction}/shop/books`);
@@ -210,7 +214,6 @@ export function searchDeleteBook(search) {
 }
 
 export function register(body) {
-
   return async (dispatch) => {
     try {
       dispatch(setStatus("Guardando"));
@@ -227,12 +230,12 @@ export function register(body) {
   };
 }
 
-export function putUser(body){
+export function putUser(body) {
   return async (dispatch) => {
     try {
       dispatch(setStatus("Guardando"));
       let res = await axios.put(`${direction}/users/${body.id}`, body);
-      console.log("action",res.data)
+      console.log("action", res.data);
       return dispatch({
         type: PUT_USER,
         payload: res.data.data,
@@ -280,14 +283,24 @@ export const getUsers = () => async (dispatch) => {
 };
 
 export const deleteUser =
-  (idUser, data = { isActive: "false" }) =>
-    async (dispatch) => {
-      let usersActive = await axios.put(`${direction}/users/${idUser}`, data);
+  (dataUser, data = { isActive: "false", email: dataUser.email }) =>
+  async (dispatch) => {
+    // console.log(idUser);
+    // console.log(data);
+    try {
+      let usersActive = await axios.put(
+        `${direction}/users/${dataUser.id}`,
+        data
+      );
+
       return dispatch({
         type: DELETE_USER,
         payload: usersActive.data,
       });
-    };
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 export function deleteCategory(idCategory) {
   return async (dispatch) => {
@@ -301,14 +314,14 @@ export function deleteCategory(idCategory) {
 // (idUser, data = { isActive: "false" }) =>
 
 export const resetUser =
-  (idUser, data = { isActive: "true" }) =>
-    async (dispatch) => {
-      let users = await axios.put(`${direction}/users/${idUser}`, data);
-      return dispatch({
-        type: RESET_USER,
-        payload: users.data,
-      });
-    };
+  (dataUser, data = { isActive: "true", email: dataUser.email }) =>
+  async (dispatch) => {
+    let users = await axios.put(`${direction}/users/${dataUser.id}`, data);
+    return dispatch({
+      type: RESET_USER,
+      payload: users.data,
+    });
+  };
 
 export function loginWithGoogle(info) {
   return async (dispatch) => {
@@ -362,13 +375,12 @@ export function deleteCart(email) {
 }
 
 export function getStockCart(title) {
-
   return async (dispatch) => {
     let res = await axios.get(`${direction}/cart/cartBookStock?title=${title}`);
 
     return dispatch({
       type: GET_STOCK_CART,
-      payload: res.data.stock
+      payload: res.data.stock,
     });
   };
 }
@@ -449,14 +461,12 @@ export function getAllRecordOrders() {
   };
 }
 
-
 export function getOrderDetails(idorder) {
   return {
     type: GET_ORDER_DETAILS,
-    payload: idorder
-  }
+    payload: idorder,
+  };
 }
-
 
 export const resetPassword = (data) => async (dispatch) => {
   console.log(data.id);
@@ -474,11 +484,9 @@ export const resetPassword = (data) => async (dispatch) => {
   });
 };
 
-
 /* export function searchOrder(search){
   return{
     type: SEARCH_ORDERS,
     payload: search
   }
 } */
-
