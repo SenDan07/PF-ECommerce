@@ -7,6 +7,7 @@ import Menu from "./Menu";
 import OrderUsers from "./OrderUsers";
 import SearchUsers from "./SearchUsers";
 import ResetAllUsers from "./ResetAllUsers";
+import Swal from "sweetalert2";
 
 export const ManageUsers = () => {
   const dispatch = useDispatch();
@@ -15,12 +16,90 @@ export const ManageUsers = () => {
     dispatch(getUsers());
   }, []);
 
-  const deleteUserId = (idUser) => {
-    dispatch(deleteUser(idUser));
+  const showAlertError = async () => {
+    await Swal.fire({
+      icon: "error",
+      title: "Oops, Hubo un Error!!",
+      footer: "Ocurrió un error al intentar cambiar el estado del usuario",
+      color: "#fff",
+      background: "#333",
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+    });
   };
 
-  const restablecerUser = (idUser) => {
-    dispatch(resetUser(idUser));
+  const showLoadingState = async () => {
+    Swal.fire({
+      title: "Cambiando Estado de Usuario",
+      text: "Espere unos segundos",
+      timer: 30000,
+      background: "#333",
+      color: "#fff",
+      imageUrl:
+        "https://res.cloudinary.com/dzcpdipdg/image/upload/v1665789748/samples/loaders/loader-spynner-2-1--unscreen_jrttzf.gif",
+      imageWidth: 90,
+      imageHeight: 85,
+      showCancelButton: false,
+      showConfirmButton: false,
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+    }).then(
+      function () {},
+      // handling the promise rejection
+      function (dismiss) {
+        if (dismiss === "timer") {
+          //console.log('I was closed by the timer')
+        }
+      }
+    );
+  };
+
+  const showAlertDesactive = async () => {
+    await Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Usuario Desactivado Exitosamente!!",
+      background: "#333",
+      color: "#fff",
+      showConfirmButton: false,
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      timer: 1800,
+    });
+  };
+
+  const showAlertReset = async () => {
+    await Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Usuario Reestablecido Exitosamente!!",
+      background: "#333",
+      color: "#fff",
+      showConfirmButton: false,
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      timer: 1800,
+    });
+  };
+
+  const deleteUserId = async (dataUser) => {
+    showLoadingState();
+    try {
+      await dispatch(deleteUser(dataUser));
+      showAlertDesactive();
+    } catch (error) {
+      showAlertError();
+    }
+  };
+
+  const restablecerUser = async (dataUser) => {
+    showLoadingState();
+    try {
+      await dispatch(resetUser(dataUser));
+      showAlertReset();
+    } catch (error) {
+      showAlertError();
+    }
   };
 
   const activeUsers = useSelector((state) => state.activeUsers);
@@ -93,7 +172,9 @@ export const ManageUsers = () => {
                 </div>
                 <div
                   className="border w-40 text-center text-xl font-medium hover:cursor-pointer hover:bg-[#222] hover:text-[#ff0000] hover:font-normal"
-                  onClick={() => deleteUserId(user.id)}
+                  onClick={() =>
+                    deleteUserId({ id: user.id, email: user.email })
+                  }
                 >
                   <h3 className="flex justify-around">
                     Desactivar{" "}
@@ -169,7 +250,9 @@ export const ManageUsers = () => {
                 </div>
                 <div
                   className="border w-40 text-center text-xl font-medium hover:cursor-pointer hover:bg-[#222] hover:text-white hover:font-normal"
-                  onClick={() => restablecerUser(user.id)}
+                  onClick={() =>
+                    restablecerUser({ id: user.id, email: user.email })
+                  }
                 >
                   <h3 className="flex justify-around">
                     Reestablecer
