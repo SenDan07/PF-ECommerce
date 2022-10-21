@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   categoryBooks,
   getAllCategories,
-  getBooks,
+  // getBooks,
   resetCategoryBooks,
-} from "../redux/actions";
+} from "../../redux/actions";
 import CategoryBooksDumb from "./CategoryBooksDumb";
-import NavBar from "./NavBar";
-import FilterBar from "./FilterBar";
+import NavBar from "../NavBar";
+import FilterBar from "../FilterBar/FilterBar";
 
 export default function CategoriesBooks() {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ export default function CategoriesBooks() {
 
   useEffect(() => {
     dispatch(categoryBooks(category));
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     dispatch(getAllCategories());

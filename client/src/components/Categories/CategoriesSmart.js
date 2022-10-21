@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCategories } from "../redux/actions";
+import { getAllCategories } from "../../redux/actions";
 import CategoriesDumb from "./CategoriesDumb";
-import NavBar from "./NavBar";
+import NavBar from "../NavBar";
 
 export default function CategoriesBooks() {
   const dispatch = useDispatch();

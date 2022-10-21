@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutUser, addCart } from "../redux/actions";
+import { logoutUser, addCart } from "../../redux/actions";
 
 // function classNames(...classes) {
 //   return classes.filter(Boolean).join(" ");

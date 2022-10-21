@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { filterPrice } from "../redux/actions";
+import { filterPrice } from "../../redux/actions";
 
 export default function FilterPrice() {
   const dispatch = useDispatch();
