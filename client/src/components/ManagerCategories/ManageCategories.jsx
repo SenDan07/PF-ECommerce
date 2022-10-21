@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteCategory, getAllCategories } from "../../redux/actions";
 import NavBar from "../NavBar/NavBar";
-import Menu from "../MenuAdmin/Menu";
+import Menu from "../Menu/Menu";
 
 export const ManageCategories = () => {
   const dispatch = useDispatch();
@@ -16,7 +16,6 @@ export const ManageCategories = () => {
     await dispatch(deleteCategory(idCategory));
     await dispatch(getAllCategories());
   };
-
 
   let categories = useSelector((state) => state.categories);
 

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { isLogin } from "../../redux/actions";
 import NavBar from "../NavBar/NavBar";
-import Menu from "./Menu";
+import Menu from "../Menu/Menu";
 
 export default function NavAdmin() {
   const activeLogin = useSelector((state) => state.login);

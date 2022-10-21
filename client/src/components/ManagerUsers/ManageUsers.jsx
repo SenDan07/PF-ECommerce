@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUser, resetUser, getUsers } from "../../redux/actions";
 import NavBar from "../NavBar/NavBar";
-import Menu from "../MenuAdmin/Menu";
+import Menu from "../Menu/Menu";
 import OrderUsers from "../Order/OrderUsers";
 import SearchUsers from "../Search/SearchUsers/SearchUsers";
 import ResetAllUsers from "../Reset/ResetAllUsers/ResetAllUsers";
