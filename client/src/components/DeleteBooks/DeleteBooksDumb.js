@@ -1,13 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { deleteBook, getBooks, getDetailBook } from "../redux/actions";
-import { Link, useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { deleteBook, getBooks, getDetailBook } from "../../redux/actions";
+import { useNavigate } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 export default function DeleteBooksDumb({ title, activado, idBook, author }) {
   let status = activado ? "disponible" : "eliminado";
   const dispatch = useDispatch();
-  const params = useParams();
+  // const params = useParams();
   const navigate = useNavigate();
   async function handleSubmit() {
     await dispatch(deleteBook(idBook));
@@ -17,7 +17,7 @@ export default function DeleteBooksDumb({ title, activado, idBook, author }) {
   async function handleCick() {
     await dispatch(getDetailBook(idBook));
     navigate(`/edit/${idBook}`);
-    console.log(idBook)
+    console.log(idBook);
   }
   return (
     <div className="hover:text-white hover:bgItems flex justify-between border text-xl bg-contTable">

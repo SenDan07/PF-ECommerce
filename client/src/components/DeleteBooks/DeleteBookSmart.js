@@ -1,15 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getBooks } from "../redux/actions";
+import { getBooks } from "../../redux/actions";
 import DeleteBooksDumb from "./DeleteBooksDumb";
-import OrderDeleteBooks from "./OrderDeleteBooks";
-import SearchDeleteBooks from "./SearchDeleteBooks";
-import ResetDeleteBooks from "./ResetDeleteBooks";
-import FilterDisponibility from "./FilterDisponibility";
+import OrderDeleteBooks from "../OrderDeleteBooks";
+import SearchDeleteBooks from "../SearchDeleteBooks";
+import ResetDeleteBooks from "../ResetDeleteBooks";
+import FilterDisponibility from "../FilterDisponibility/FilterDisponibility";
 
-import NavBar from "./NavBar";
-import Menu from "./Menu";
+import NavBar from "../NavBar";
+import Menu from "../Menu";
 
 export default function DeleteBooksSmart() {
   const dispatch = useDispatch();

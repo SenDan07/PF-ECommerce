@@ -1,8 +1,8 @@
 import Home from "./components/Home/Home";
 import FormBook from "./components/Forms/FormBook/FormBook";
 import FormCategory from "./components/Forms/FormCategories/FormCategory";
-import CategoryBooksSmart from "./components/CategoryBooksSmart";
-import CategoriesSmart from "./components/CategoriesSmart";
+import CategoryBooksSmart from "./components/CategoryBooks/CategoryBooksSmart";
+import CategoriesSmart from "./components/Categories/CategoriesSmart";
 import BookDetail from "./components/BookDetail/BookDetail";
 import SearchBarSmart from "./components/Search/SearchBar/SearchBarSmart";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
@@ -10,40 +10,25 @@ import MenuAdmin from "./components/MenuAdmin/MenuAdmin";
 import { Login } from "./components/Login/Login";
 import FormUser from "./components/Forms/FormUser/FormUser";
 import { useSelector } from "react-redux";
-import DeleteBooksSmart from "./components/DeleteBookSmart";
+import DeleteBooksSmart from "./components/DeleteBooks/DeleteBookSmart";
 import { ManageUsers } from "./components/ManagerUsers/ManageUsers";
 import { ManageCategories } from "./components/ManagerCategories/ManageCategories";
 import FormOrder from "./components/Forms/FormOrders/FormOrder";
 import FormPayment from "./components/Forms/FormPayment/FormPayment";
 import Cart from "./components/Cart/Cart";
-import { ErrorNotFound } from "./components/ErrorNotFound";
+import { ErrorNotFound } from "./components/ErrorNotFound/ErrorNotFound";
 import RecordOrderSmart from "./components/RecordOrders/RecordOrderSmart";
 import RecordDetailsSmart from "./components/RecordDetails/RecordDetailsSmart";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer/Footer";
 import FormBookEdit from "./components/Forms/FormBook/FormBook";
 import FormUserEdit from "./components/Forms/FormUserEdit/FormUserEdit";
 import { ResetPassword } from "./components/Reset/ResetPassword/ResetPassword";
 import AllRecordSmart from "./components/AllRecord/AllRecordSmart";
 import AllRecordDetailsSmart from "./components/AllRecordDetails/AllRecordDetailsSmart";
-import "boxicons";
-function App() {
-  // const dispatch = useDispatch();
 
+function App() {
   const LOGIN = useSelector((state) => state.login);
   const ROLE = useSelector((state) => state.role);
-
-  // const activeLogin = localStorage.getItem("LOGIN");
-  // const activeRole = localStorage.getItem("ROLE");
-
-  // useEffect(() => {
-  //   dispatch(
-  //     isLogin({
-  //       login: LOGIN,
-  //       role: ROLE,
-  //     })
-  //   );
-  // }, [LOGIN, ROLE]);
-
   return (
     <div className="App">
       <BrowserRouter>
@@ -160,6 +145,3 @@ function App() {
 
 export default App;
 
-/* 
-
-*/
