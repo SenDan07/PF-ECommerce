@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addCart, getStockCart } from "../redux/actions";
+import { addCart, getStockCart } from "../../redux/actions";
 import Swal from "sweetalert2";
 
 export default function CartItem({ book }) {
