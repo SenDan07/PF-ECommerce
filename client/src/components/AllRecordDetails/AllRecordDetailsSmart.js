@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import RecordDetailsDumb from "./AllRecordDetailsDumb";
 import { getOrderDetails } from "../../redux/actions";
-import NavBar from "../NavBar";
+import NavBar from "../NavBar/NavBar";
 
 export default function RecordDetailsSmart() {
   const dispatch = useDispatch();

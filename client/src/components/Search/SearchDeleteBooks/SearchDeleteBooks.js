@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { searchDeleteBook } from "../redux/actions";
+import { searchDeleteBook } from "../../redux/actions";
 
 
 export default function SearchBar() {

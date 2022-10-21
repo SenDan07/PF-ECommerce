@@ -3,7 +3,7 @@ import CartItem from "../CartItem/CartItem";
 import { Link } from "react-router-dom";
 import { postCart } from "../../redux/actions";
 import { useEffect } from "react";
-import NavBar from "../NavBar";
+import NavBar from "../NavBar/NavBar";
 
 export default function Cart() {
   //Mapeo de Productos Seleccionados

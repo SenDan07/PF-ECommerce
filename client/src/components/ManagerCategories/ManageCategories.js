@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteCategory, getAllCategories } from "../redux/actions";
+import { deleteCategory, getAllCategories } from "../../redux/actions";
 import NavBar from "./NavBar";
 import Menu from "./Menu";
 

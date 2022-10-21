@@ -17,19 +17,3 @@ export default Menu
 
 
 
-
-{/*<div className="mb-10 flex justify-center">
-          <Link to="/createbook">
-            <div className="cursor-pointer hover:text-white">Libros</div>
-          </Link>
-    </div>*/}
-
-{/*<div className="mb-10 flex justify-center">
-          <Link to="/createcategory">
-            <div className="cursor-pointer hover:text-white">
-              Crear Categorias
-            </div>
-          </Link>
-</div>*/}
-
-

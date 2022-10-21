@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login, putUser } from "../redux/actions";
+import { login, putUser } from "../../../redux/actions";
 import Swal from "sweetalert2";
 import NavBar from "./NavBar";
 
@@ -9,11 +9,7 @@ let boton;
 export function validate(input) {
   let errors = {};
   let expLetras = /^[A-Za-z]+[A-Za-z\s]*[A-Za-z]$/;
-  // let regexSecretWord = /[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü]/;
   let regexSecretWord = /^[0-9a-zA-Z]+$/;
-
-  // let email =
-  //   /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
   if (!input.name) {
     errors.name = "Nombre es requerido";
@@ -44,8 +40,6 @@ export default function FormUserEdit() {
     id: USER.iduser ? USER.iduser : USER.id,
     name: USER.name,
     lastName: USER.lastName,
-    // password: USER.password,
-    // role: USER.role,
     email: USER.email,
     secretWord: "",
   });
@@ -80,10 +74,9 @@ export default function FormUserEdit() {
       allowOutsideClick: false,
     }).then(
       function () {},
-      // handling the promise rejection
+
       function (dismiss) {
         if (dismiss === "timer") {
-          //console.log('I was closed by the timer')
         }
       }
     );

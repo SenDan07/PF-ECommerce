@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { login, resetPassword } from "../redux/actions";
+import { login, resetPassword } from "../../redux/actions";
 
-import NavBar from "./NavBar";
+import NavBar from "../NavBar";
 import Swal from "sweetalert2";
 
 export const ResetPassword = () => {
