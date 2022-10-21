@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { orderName, orderPrice } from "../redux/actions";
+import { orderName, orderPrice } from "../../redux/actions";
 
 export default function Order() {
   const dispatch = useDispatch();

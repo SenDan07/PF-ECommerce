@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
-import { addCart, deleteCart } from "../redux/actions";
+import { addCart, deleteCart } from "../../../redux/actions";
 import {
   Elements,
   CardElement,
@@ -50,12 +50,10 @@ export function validate(input) {
 function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const User = useSelector((state) => state.user);
   let cart = JSON.parse(localStorage.getItem("bookDetail"));
-
   const [user, setUser] = useState({
     name: User.name,
     lastName: User.lastName,
@@ -145,11 +143,9 @@ function CheckoutForm() {
     });
 
     if (!error) {
-      // console.log(paymentMethod);
       showLoadingPayment();
 
       const { id } = paymentMethod;
-      // console.log("user despues de stripe", user);
       try {
         let cart = JSON.parse(localStorage.getItem("bookDetail"));
         let cartNuevo = cart.map((el) => {
@@ -164,7 +160,6 @@ function CheckoutForm() {
             return ac + e.price * Number(e.quantity);
           }, 0)
           .toFixed(2);
-        //El monto se multiplica por 100
 
         const { data } = await axios.post(
           "http://localhost:3001/checkout/create",
@@ -182,7 +177,6 @@ function CheckoutForm() {
         );
 
         elements.getElement(CardElement).clear();
-        //console.log(data)
         if (data.error) {
           // alert("La Operación fallo!!");
           showAlertError();

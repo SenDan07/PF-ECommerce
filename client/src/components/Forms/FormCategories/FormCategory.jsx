@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { postCreateCategory, setStatus } from "../redux/actions";
-import NavBar from "./NavBar";
-import Menu from "./Menu";
+import { postCreateCategory, setStatus } from "../../../redux/actions";
+import NavBar from "../../NavBar/NavBar";
+import Menu from "../../MenuAdmin/Menu";
 import Swal from "sweetalert2";
 
 let boton;
@@ -87,16 +87,13 @@ export default function FormBook() {
     e.preventDefault();
     if (input.imageLinks && !errors.name) {
       dispatch(postCreateCategory(input));
-
       setInput({
         name: "",
         imageLinks: "",
       });
       e.target.name.focus();
       showAlertSuccess();
-      //  let boton= document.getElementById('enviar')
       boton.disabled = true;
-      // setTimeout(() => dispatch(setStatus("")), 5000);
     } else {
       showAlertError();
     }

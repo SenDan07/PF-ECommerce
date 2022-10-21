@@ -3,13 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getBooks } from "../../redux/actions";
 import DeleteBooksDumb from "./DeleteBooksDumb";
-import OrderDeleteBooks from "../OrderDeleteBooks";
-import SearchDeleteBooks from "../SearchDeleteBooks";
-import ResetDeleteBooks from "../ResetDeleteBooks";
+import OrderDeleteBooks from "../Order/OrderDeleteBooks";
+import SearchDeleteBooks from "../Search/SearchDeleteBooks/SearchDeleteBooks";
+import ResetDeleteBooks from "../Reset/ResetDeleteBooks/ResetDeleteBooks";
 import FilterDisponibility from "../FilterDisponibility/FilterDisponibility";
-
-import NavBar from "../NavBar";
-import Menu from "../Menu";
+import NavBar from "../NavBar/NavBar";
+import Menu from "../MenuAdmin/Menu";
 
 export default function DeleteBooksSmart() {
   const dispatch = useDispatch();

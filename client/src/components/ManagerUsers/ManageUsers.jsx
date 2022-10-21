@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { deleteUser, resetUser, getUsers } from "../../redux/actions";
-import NavBar from "./NavBar";
-import Menu from "./Menu";
-import OrderUsers from "./OrderUsers";
-import SearchUsers from "./SearchUsers";
-import ResetAllUsers from "./ResetAllUsers";
+import NavBar from "../NavBar/NavBar";
+import Menu from "../MenuAdmin/Menu";
+import OrderUsers from "../Order/OrderUsers";
+import SearchUsers from "../Search/SearchUsers/SearchUsers";
+import ResetAllUsers from "../Reset/ResetAllUsers/ResetAllUsers";
 import Swal from "sweetalert2";
 
 export const ManageUsers = () => {

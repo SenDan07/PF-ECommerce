@@ -1,5 +1,5 @@
 import FilterPrice from "../FilterPrice/FilterPrice";
-import Order from "../Order";
+import Order from "../Order/Order";
 
 export default function filterBar() {
   return (

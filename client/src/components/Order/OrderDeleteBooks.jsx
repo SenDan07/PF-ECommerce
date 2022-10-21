@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { OrderDeleteBook } from "../redux/actions";
+import { OrderDeleteBook } from "../../redux/actions";
 
 export default function OrderDeleteBooks() {
   const dispatch = useDispatch();

@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-import { Book } from "../Book/Book";
+import { Book } from "../../Book/Book";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { resetDeleteBooks } from "../../redux/actions";
-import NavBar from "../NavBar/NavBar";
+import { resetDeleteBooks } from "../../../redux/actions";
+import NavBar from "../../NavBar/NavBar";
 
 export default function SearchBarSmart() {
   const busqueda = useSelector((state) => state.booksBySearch);

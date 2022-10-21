@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { resetDeleteBooks } from "../../redux/actions";
+import { resetDeleteBooks } from "../../../redux/actions";
 
 export default function ResetDeleteBooks() {
   let dispatch = useDispatch();
