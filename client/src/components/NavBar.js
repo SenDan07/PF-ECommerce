@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { logoutUser, addCart } from "../redux/actions";
 import SearchBar from "./SearchBar";
 import donQuijote from "./img/gitbooks.png";
-import DropdownComponent from "./DropdownUser";
+import DropdownComponent from "./DropdownUser/DropdownUser";
 
 export default function NavBar() {
   const dispatch = useDispatch();
