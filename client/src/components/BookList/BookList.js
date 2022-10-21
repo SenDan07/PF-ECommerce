@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { Book } from "./Book";
-import { getBooks, getAllCategories } from "../redux/actions";
+import { Book } from "../Book/Book";
+import { getBooks, getAllCategories } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function BookList() {

@@ -5,7 +5,7 @@ import FormCategory from "./components/FormCategory";
 import CategoryBooksSmart from "./components/CategoryBooksSmart";
 //import Categories from "./components/Categories";
 import CategoriesSmart from "./components/CategoriesSmart";
-import BookDetail from "./components/BookDetail";
+import BookDetail from "./components/BookDetail/BookDetail";
 import SearchBarSmart from "./components/SearchBarSmart";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import MenuAdmin from "./components/MenuAdmin";
@@ -20,7 +20,7 @@ import { ManageCategories } from "./components/ManageCategories";
 // import { FormUserTwo } from "../src/components/FormUserTwo";
 import FormOrder from "./components/FormOrder";
 import FormPayment from "./components/FormPayment";
-import Cart from "./components/Cart";
+import Cart from "./components/Cart/Cart";
 import "boxicons";
 // import { FormUserTwo } from "../src/components/FormUserTwo";
 // import FormPayment from "./components/FormPayment";
@@ -31,8 +31,8 @@ import Footer from "./components/Footer";
 import FormBookEdit from "./components/FormBookEdit";
 import FormUserEdit from "./components/FormUserEdit";
 import { ResetPassword } from "./components/ResetPassword";
-import AllRecordSmart from "./components/AllRecordSmart";
-import AllRecordDetailsSmart from "./components/AllRecordDetailsSmart";
+import AllRecordSmart from "./components/AllRecord/AllRecordSmart";
+import AllRecordDetailsSmart from "./components/AllRecordDetails/AllRecordDetailsSmart";
 
 function App() {
   // const dispatch = useDispatch();

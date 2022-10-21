@@ -9,10 +9,10 @@ import {
   resetBookReviews,
   getUsersReviews,
   resetUsersReviews,
-} from "../redux/actions";
+  addCart,
+} from "../../redux/actions";
 import { useEffect } from "react";
-import { addCart } from "../redux/actions";
-import NavBar from "./NavBar";
+import NavBar from "../NavBar";
 import Swal from "sweetalert2";
 
 const BookDetail = () => {

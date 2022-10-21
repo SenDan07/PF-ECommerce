@@ -1,14 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
-import CartItem from "./CartItem";
+import CartItem from "../CartItem/CartItem";
 import { Link } from "react-router-dom";
-import { postCart } from "../redux/actions";
+import { postCart } from "../../redux/actions";
 import { useEffect } from "react";
-import NavBar from "./NavBar";
+import NavBar from "../NavBar";
 
 export default function Cart() {
   //Mapeo de Productos Seleccionados
   const dispatch = useDispatch();
-
 
   const LOGIN = useSelector((state) => state.login);
   const ROLE = useSelector((state) => state.role);
@@ -19,23 +18,22 @@ export default function Cart() {
   console.log(cart.length);
   //Si esta logueado guardas el carrito al id del usuario
 
-  console.log("carrito a renderizar",cart)
+  console.log("carrito a renderizar", cart);
 
-  useEffect(()=>{
-    if(ROLE==="USER"){
+  useEffect(() => {
+    if (ROLE === "USER") {
       dispatch(postCart({ email: User.email, cart }));
     }
-    
-  },[cart1])
+  }, [cart1]);
   async function handleClick() {
     if (LOGIN && cart.length) {
-      console.log("carrito a guardar",cart)
-    //  await dispatch(postCart({ email: User.email, cart }));
+      console.log("carrito a guardar", cart);
+      //  await dispatch(postCart({ email: User.email, cart }));
     }
   }
 
   return (
-     <div className="flex flex-col">
+    <div className="flex flex-col">
       <NavBar />
       <div className="w-max">
         <Link to="/">
@@ -96,6 +94,5 @@ export default function Cart() {
         </div>
       </div>
     </div>
-    
   );
 }
