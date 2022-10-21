@@ -8,7 +8,7 @@ import SearchDeleteBooks from "../Search/SearchDeleteBooks/SearchDeleteBooks";
 import ResetDeleteBooks from "../Reset/ResetDeleteBooks/ResetDeleteBooks";
 import FilterDisponibility from "../FilterDisponibility/FilterDisponibility";
 import NavBar from "../NavBar/NavBar";
-import Menu from "../MenuAdmin/Menu";
+import Menu from "../Menu/Menu";
 
 export default function DeleteBooksSmart() {
   const dispatch = useDispatch();

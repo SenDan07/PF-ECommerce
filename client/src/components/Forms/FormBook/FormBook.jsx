@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCategories, postCreateBook, setStatus } from "../../../redux/actions";
+import {
+  getAllCategories,
+  postCreateBook,
+  setStatus,
+} from "../../../redux/actions";
 import NavBar from "../../NavBar/NavBar";
-import Menu from "../../MenuAdmin/Menu";
+import Menu from "../../Menu/Menu";
 import Swal from "sweetalert2";
 
 let boton;
