@@ -21,6 +21,7 @@ const BookDetail = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(getDetailBook(bookId));
     dispatch(getBookReviews(bookId));
     dispatch(getUsersReviews());
@@ -186,24 +187,26 @@ const BookDetail = () => {
       <NavBar />
       <div className="bg-bgHome min-h-screen pb-20">
         <div
-          className="w-max rounded ml-10 mt-8 px-3 py-2 bg-button text-white hover:bg-[#024b36] transition-colors duration-200 hover:cursor-pointer"
+          className="flex justify-start h-max mt-4 ml-3 text-xs font-bold md:text-lg md:font-medium hover:cursor-pointer w-max"
           onClick={() => navigate(-1)}
         >
-          <h3 className="w-max">&#129044; Regresar</h3>
+          <h3 className="border-1 rounded px-3 py-3 md:py-2 bg-button  text-white hover:bg-[#065841] transition-colors duration-500">
+            &#129044; Regresar
+          </h3>
         </div>
         {bookDetail.imageLinks ? (
           <div>
             <div className="m-auto mt-10 border-t-2 w-[75%] rounded border-[#555555]">
-              <h2 className="text-center text-3xl font-bold uppercase font-serif text-[#19203a] pt-3">
+              <h2 className="text-center text-lg sm:text-xl md:text-3xl font-bold uppercase font-serif text-[#19203a] pt-3">
                 {bookDetail.title}
               </h2>
             </div>
-            <div className="w-[75%] m-auto flex pt-10">
-              <div className="w-3/4">
-                <div className="flex">
+            <div className="w-[85%] m-auto flex flex-col xl:flex-row pt-10">
+              <div className="xl:w-3/4">
+                <div className="flex flex-col md:flex-row">
                   <div>
                     <div>
-                      <h3 className="text-center text-3xl mb-1 font-bold text-[#1b1b47] border-b-2 w-4/5 m-auto">
+                      <h3 className="text-center text-2xl md:text-3xl font-bold text-[#1b1b47] border-b-2 w-max md:w-4/5 m-auto mb-2">
                         <span className="text-white font-normal">Precio: </span>
                         ${Number(bookDetail.price).toFixed(2)}
                       </h3>
@@ -212,17 +215,17 @@ const BookDetail = () => {
                       <img
                         src={bookDetail["imageLinks"]}
                         alt={`img-${bookDetail["title"]}`}
-                        className="h-96 w-96 sombra rounded"
+                        className="w-[210px] h-[305px] md:w-96 md:h-96 sombra rounded mx-auto md:mx-0"
                       />
                     </div>
                     {ROLE === "ADMIN" ? (
                       <div className="h-[30px]"></div>
                     ) : (
-                      <div className="flex mt-2">
+                      <div className="flex mt-2 text-xs md:text-lg">
                         <button
                           className={
                             bookDetail.stock
-                              ? `border-1 border-rose-500 rounded w-max mx-auto px-3 py-2 mt-1 bg-button text-white flex justify-center gap-2 hover:bg-[#025634] transition-colors duration-200`
+                              ? `border-1 border-rose-500 rounded w-max mx-auto px-3 py-2 mt-1 bg-button text-white items-center flex justify-center gap-2 hover:bg-[#025634] transition-colors duration-200`
                               : `border-1 border-rose-500 rounded w-max mx-auto px-3 py-2 mt-1 bg-[#888888] cursor-no-drop text-white flex justify-center gap-2`
                           }
                           onClick={bookDetail.stock ? handleClick : handleStock}
@@ -234,7 +237,7 @@ const BookDetail = () => {
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="currentColor"
-                            className="w-6 h-6"
+                            className="w-5 h-5 md:w-6 md:h-6"
                           >
                             <path
                               strokeLinecap="round"
@@ -248,41 +251,37 @@ const BookDetail = () => {
                   </div>
                   <div className="w-full">
                     <div className="flex justify-center h-full ml-5">
-                      <div className="text-2xl flex flex-col justify-center w-full pr-1">
-                        <div className="flex gap-5">
-                          <div className="w-1/4">
-                            <h3 className="mb-7 font-bold text-NavBar">
-                              AUTOR\ES
-                            </h3>
+                      <div className="text-lg sm:text-xl md:text-2xl flex flex-col justify-center w-full pr-1 sm:pl-10 lg:pl-0 mt-3 md:mt-0">
+                        <div className="flex flex-col items-center sm:flex-row justify-between md:flex-col lg:flex-row lg:gap-5 mb-3 lg:mb-7 lg:items-start">
+                          <div className="lg:w-1/4">
+                            <h3 className="font-bold text-NavBar">AUTOR\ES</h3>
                           </div>
-                          <div className="w-3/4">
-                            <h3 className="mb-7 pl-7 uppercase">
+                          <div className="lg:w-3/4">
+                            <h3 className="lg:pl-7 uppercase text-center md:text-start">
                               {Array(bookDetail.authors).join(", ")}
                             </h3>
                           </div>
                         </div>
 
-                        <div className="flex gap-5">
-                          <div className="w-1/4">
-                            <h3 className="mb-7 font-bold text-NavBar">
-                              EDITORIAL
-                            </h3>
+                        <div className="flex flex-col items-center sm:flex-row justify-between md:flex-col lg:flex-row lg:gap-5 mb-3 lg:mb-7 lg:items-start">
+                          <div className="lg:w-1/4">
+                            <h3 className="font-bold text-NavBar">EDITORIAL</h3>
                           </div>
-                          <div className="w-3/4">
-                            <h3 className="mb-7 pl-7 uppercase">
+                          <div className="lg:w-3/4">
+                            <h3 className="lg:pl-7 uppercase text-center md:text-start">
                               {bookDetail.publisher}
                             </h3>
                           </div>
                         </div>
 
-                        <div className="flex gap-5">
-                          <div className="w-1/4">
-                            <h3 className="mb-7 font-bold text-NavBar">
+                        <div className="flex flex-col items-center sm:flex-row justify-between md:flex-col lg:flex-row lg:gap-5 mb-3 lg:mb-7 lg:items-start">
+                          <div className="lg:w-1/4">
+                            <h3 className="font-bold text-NavBar">
                               CATEGORÍAS
                             </h3>
                           </div>
-                          <div className="w-3/4">
-                            <h3 className="mb-7 pl-7 uppercase">
+                          <div className="lg:w-3/4">
+                            <h3 className="lg:pl-7 uppercase text-center md:text-start">
                               {bookDetail.categories
                                 ?.map((e) => e.name)
                                 .join(", ")}
@@ -290,23 +289,23 @@ const BookDetail = () => {
                           </div>
                         </div>
 
-                        <div className="flex gap-5">
-                          <div className="w-1/4">
-                            <h3 className="mb-7 font-bold text-NavBar">ISBN</h3>
+                        <div className="flex flex-col items-center sm:flex-row justify-between md:flex-col lg:flex-row lg:gap-5 mb-3 lg:mb-7 lg:items-start">
+                          <div className="lg:w-1/4">
+                            <h3 className="font-bold text-NavBar">ISBN</h3>
                           </div>
-                          <div className="w-3/4">
-                            <h3 className="mb-7 pl-7">{bookDetail.ISBN}</h3>
+                          <div className="lg:w-3/4">
+                            <h3 className="lg:pl-7 text-center md:text-start">
+                              {bookDetail.ISBN}
+                            </h3>
                           </div>
                         </div>
 
-                        <div className="flex gap-5">
-                          <div className="w-1/4">
-                            <h3 className="mb-7 font-bold text-NavBar">
-                              STOCK
-                            </h3>
+                        <div className="flex flex-col items-center sm:flex-row justify-between md:flex-col lg:flex-row lg:gap-5 mb-3 lg:mb-7 lg:items-start">
+                          <div className="lg:w-1/4">
+                            <h3 className="font-bold text-NavBar">STOCK</h3>
                           </div>
-                          <div className="w-3/4">
-                            <h3 className="mb-7 pl-7 font-medium">
+                          <div className="lg:w-3/4">
+                            <h3 className="lg:pl-7 font-medium text-center md:text-start">
                               {bookDetail.stock ? bookDetail.stock : `AGOTADO!`}
                             </h3>
                           </div>
@@ -316,8 +315,10 @@ const BookDetail = () => {
                   </div>
                 </div>
                 <div className="mt-8">
-                  <h3 className="text-white text-2xl">Descripción</h3>
-                  <p className="font-medium italic text-xl mt-5 p-2 pr-10 bg-[#292828] rounded-lg mr-3 text-[#bbb] pb-10">
+                  <h3 className="text-white text-xl sm:text-2xl">
+                    Descripción
+                  </h3>
+                  <p className="font-medium italic text-lg sm:text-xl mt-5 p-2 pl-5 pr-10 bg-[#292828] rounded-lg text-[#bbb] pb-10 md:mr-3">
                     {bookDetail.description &&
                     bookDetail.description.length > 515
                       ? `${bookDetail.description.slice(0, 515)}...`
@@ -325,19 +326,19 @@ const BookDetail = () => {
                   </p>
                 </div>
               </div>
-              <div className="w-1/4 border border-[#153c57] rounded bg-[#0F172A]">
+              <div className="w-[100%] sm:w-[60%] sm:mx-auto mt-5 xl:mt-0 xl:w-1/4 border border-[#153c57] rounded bg-[#0F172A]">
                 <h3 className="text-center mt-3 text-white font-medium border-b-2 border-[#777777] w-[95%] m-auto">
                   RESEÑAS
                 </h3>
-                <div className="h-[525px]  overflow-y-auto scrollCustomStyle border border-[#555555] p-1 w-[95%] m-auto rounded mt-2 bg-[#030407]">
-                  {activeUsersReviews.length ? (
+                <div className="h-[525px] overflow-y-auto scrollCustomStyle border border-[#555555] p-1 w-[95%] m-auto rounded mt-2 bg-[#030407]">
+                  {activeUsersReviews?.length ? (
                     activeUsersReviews.map((review) => {
                       return (
                         <div className="w-[95%] m-auto rounded p-1 mb-1">
                           <div className="flex justify-between">
                             <div>
                               <h4 className="bg-[#808027] text-black font-medium italic px-2 rounded">
-                                {review.userName}
+                                {review.userName?.split(" ")[0]}
                               </h4>
                             </div>
                             <div>
@@ -381,7 +382,7 @@ const BookDetail = () => {
                 </div>
                 {LOGIN === 1 && ROLE === "USER" ? (
                   <div className="pb-5">
-                    <div className="w-[93%] m-auto mt-2">
+                    <div className="w-[93%] m-auto mt-2 mb-2">
                       <div className="">
                         <textarea
                           placeholder="Deja tu reseña...(max 100 char)"
@@ -423,7 +424,7 @@ const BookDetail = () => {
                         })}
                       </div>
                       <div
-                        className="flex px-1 rounded bg-[#19588b] hover:cursor-pointer hover:bg-[#10436d]"
+                        className="flex items-center gap-2 mx-2 sm:mr-3 px-2 xl:mr-1 xl:px-1 rounded bg-[#19588b] hover:cursor-pointer hover:bg-[#10436d]"
                         onClick={() => submitReview()}
                       >
                         <h4 className="text-white">Agregar</h4>
@@ -433,9 +434,7 @@ const BookDetail = () => {
                           viewBox="0 0 24 24"
                           strokeWidth={1}
                           stroke="currentColor"
-                          className=""
-                          width="25px"
-                          height="25px"
+                          className="w-[20px] h-[20px] sm:w-[25px] sm:h-[25px]"
                         >
                           <path
                             strokeLinecap="round"
@@ -447,7 +446,7 @@ const BookDetail = () => {
                     </div>
                   </div>
                 ) : (
-                  <div className="mt-5 text-[#cccccc] flex flex-col justify-center items-center text-lg">
+                  <div className="my-5 text-[#cccccc] flex flex-col justify-center items-center text-lg">
                     <div>
                       <h4>Para dejar tu reseña</h4>
                     </div>

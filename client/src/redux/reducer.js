@@ -8,7 +8,7 @@ import {
   ORDER_NAME,
   SEARCH_BOOK,
   GET_ALL_CATEGORIES,
-  SEARCH_AUTHOR,
+  // SEARCH_AUTHOR,
   ORDER_PRICE,
   CATEGORY_BOOKS,
   RESET_SEARCH_BOOK,
@@ -45,7 +45,7 @@ import {
   GET_ALL_RECORD_ORDERS,
   RESET_PASSWORD,
   GET_ORDER_DETAILS,
-  SEARCH_ORDERS,
+  // SEARCH_ORDERS,
 } from "./types";
 
 const initialState = {
@@ -99,7 +99,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case POST_CREATE_CATEGORY:
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         loading: action.payload,
@@ -282,7 +282,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case LOGIN:
-      console.log(action.payload.user);
+      // console.log(action.payload.user);
       return {
         ...state,
         login: action.payload.status,
@@ -291,7 +291,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case REGISTER:
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         loading: action.payload,
@@ -325,7 +325,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case PUT_USER:
-      console.log("respuesta action", action.payload);
+      // console.log("respuesta action", action.payload);
       return {
         ...state,
         user: action.payload,
@@ -333,7 +333,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case DELETE_CATEGORY:
-      console.log(action.payload);
+      // console.log(action.payload);
       // const idUserDelete = action.payload.data.id;
 
       // const usersActive = state.users.filter(
@@ -397,7 +397,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case GET_STOCK_CART:
-      console.log("stock", action.payload);
+      // console.log("stock", action.payload);
       return {
         ...state,
         stock: action.payload,

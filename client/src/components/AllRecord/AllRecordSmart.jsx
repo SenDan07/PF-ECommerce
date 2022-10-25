@@ -5,7 +5,6 @@ import AllRecordDumb from "./AllRecordDumb";
 import { getAllRecordOrders } from "../../redux/actions";
 import NavBar from "../NavBar/NavBar";
 
-
 export default function RecordOrderSmart() {
   const dispatch = useDispatch();
   useEffect(() => {

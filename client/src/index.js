@@ -12,8 +12,8 @@ import { PersistGate } from "redux-persist/integration/react";
 
 // require("dotenv").config();
 
-const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-console.log(CLIENT_ID);
+// const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
+// console.log(CLIENT_ID);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

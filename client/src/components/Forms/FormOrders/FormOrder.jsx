@@ -11,6 +11,7 @@ import {
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import Swal from "sweetalert2";
+import Footer from "../../Footer/Footer";
 
 const stripePromise = loadStripe(process.env.REACT_APP_CLAVE_PUBLICA_STRIPE);
 
@@ -76,7 +77,6 @@ function CheckoutForm() {
       })
     );
   }
-
 
   const showAlertError = async () => {
     await Swal.fire({
@@ -196,10 +196,14 @@ function CheckoutForm() {
     }
   }
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const cardNumberElementOptions = {
     style: {
       base: {
-        fontSize: "19px",
+        // fontSize: "19px",
         color: "#000",
         backgroundColor: "#fff",
         padding: "5px",
@@ -209,17 +213,17 @@ function CheckoutForm() {
 
   return (
     <div className="">
-      <div className="w-max">
+      <div className="flex justify-start h-max mt-4 ml-3 text-xs font-bold md:text-lg md:font-medium hover:cursor-pointer w-max">
         <Link to="/car">
-          <h3 className="border-1 border-rose-500 rounded ml-10 mt-5 px-3 py-2 w-max bg-button text-white">
+          <h3 className="border-1 rounded px-3 py-3 md:py-2 bg-button text-white hover:bg-[#065841] transition-colors duration-500">
             &#129044; Regresar
           </h3>
         </Link>
       </div>
-      <div className="m-5 rounded">
-        <form className="flex flex-row justify-center justify-items-center p-5 mx-20">
-          <div className="w-1/2">
-            <span className="font-bold text-center text-2xl w-full mx-auto flex justify-center items-center gap-5">
+      <div className="mt-5 mx-1 sm:m-5 rounded">
+        <form className="flex flex-col-reverse xl:flex-row justify-center justify-items-center p-0 sm:p-1 md:p-5 mx-auto md:mx-10 2xl:w-[75%] 2xl:mx-auto">
+          <div className="w-full md:w-[80%] mx-auto mt-5 xl:w-1/2 2xl:w-[650px] xl:mx-0">
+            <span className="font-bold text-center text-xl md:text-2xl w-full mx-auto flex justify-center items-center gap-5 mt-10 xl:mt-0">
               Listado de tu compra
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -227,7 +231,7 @@ function CheckoutForm() {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-8 h-8"
+                className="w-6 h-6 sm:w-8 sm:h-8"
               >
                 <path
                   strokeLinecap="round"
@@ -237,31 +241,31 @@ function CheckoutForm() {
               </svg>
             </span>
 
-            <div className="flex flex-col h-[600px]">
-              <div className="flex flex-col gap-2 overflow-y-auto scrollCustomStyle border-4 border-[#444] m-5 bg-black p-3 rounded h-4/5">
+            <div className="flex flex-col xl:h-[600px]">
+              <div className="flex flex-col gap-2 overflow-y-auto scrollCustomStyle border-4 border-[#444] m-1 bg-black p-1 sm:m-3 sm:p-3 rounded h-4/5">
                 {cart?.map((book) => {
                   return (
                     <div
                       key={book.id}
-                      className="flex justify-between h-[max-content] w-full p-1 bg-NavBar rounded pr-5"
+                      className="flex justify-between h-[max-content] w-full p-1 bg-NavBar rounded pr-5 items-center"
                     >
                       <div className="">
                         <img
                           src={book.imageLinks}
                           alt={`img-${book.title}`}
-                          className="w-[70px] h-[100px] rounded"
+                          className="w-[60px] h-[70px] sm:w-[70px] sm:h-[100px] rounded"
                         />
                       </div>
                       <div className="flex flex-col items-center justify-center">
-                        <h2 className="font-medium text-center text-[22px] italic text-[#b36ea7]">
+                        <h2 className="font-semibold text-center text-xs sm:text-base italic text-[#b36ea7]">
                           {book.title.length > 27
                             ? `${book.title.toUpperCase().slice(0, 26)}...`
                             : `${book.title.toUpperCase()}`}
                         </h2>
 
                         <div className="">
-                          <h3 className="text-center text-lg font-bold text-white">
-                            <span className="font-medium text-[#ccc]">
+                          <h3 className="text-center text-base sm:text-lg font-bold text-white">
+                            <span className="font-medium text-[#ccc] text-sm sm:text-lg">
                               Precio unitario:{" "}
                             </span>
                             ${Number.parseFloat(book.price).toFixed(2)}
@@ -269,11 +273,11 @@ function CheckoutForm() {
                         </div>
                       </div>
                       <div className="flex flex-col justify-center items-center">
-                        <h3 className="text-lg font-medium text-[#ccc]">
+                        <h3 className="font-medium text-[#ccc] text-sm sm:text-lg mb-1">
                           Cantidad:{" "}
                           <span className="text-white">{book.quantity}</span>
                         </h3>
-                        <h3 className="p-1 px-3 rounded bg-black text-white font-bold text-lg">
+                        <h3 className="p-1 px-3 rounded bg-black text-white font-bold text-base sm:text-lg">
                           ${(book.price * book.quantity).toFixed(2)}
                         </h3>
                       </div>
@@ -282,11 +286,11 @@ function CheckoutForm() {
                 })}
               </div>
               <div className="h-1/5 bg-[#000000] w-4/5 mx-auto flex items-center rounded">
-                <fieldset className="container mx-auto flex flex-col justify-center items-center">
-                  <h2 className="font-bold text-3xl text-white font-mono">
+                <fieldset className="container mx-auto flex flex-col justify-center items-center py-3">
+                  <h2 className="font-bold text-xl md:text-3xl text-white font-mono text-center ">
                     VALOR TOTAL DE TU COMPRA
                   </h2>
-                  <h3 className="font-bold text-4xl text-[#ff0] font-mono">
+                  <h3 className="font-bold text-3xl md:text-4xl text-[#ff0] font-mono">
                     $
                     {cart
                       .reduce((ac, e) => {
@@ -298,14 +302,16 @@ function CheckoutForm() {
               </div>
             </div>
           </div>
-          <fieldset className="rounded-lg bg-[#0E2715] text-white container mx-auto flex flex-col justify-center items-center p-5 w-1/2">
-            <label className="w-3/4">Nombre:</label>
+          <fieldset className="rounded bg-[#171e3b] text-white container mx-auto flex flex-col justify-center items-center px-4 py-8 sm:px-3 sm:py-5 w-[97%] sm:w-[75%] md:w-[65%] lg:w-[55%] xl:w-1/2 2xl:w-[650px] payForm md:pt-10">
+            <label className="w-full sm:w-4/5 md:w-3/4 text-[#bbb] mt-2">
+              Nombre:
+            </label>
             <input
               type="text"
               className={
                 errors.name
-                  ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
-                  : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                  ? "text-[#dc2626] rounded-sm h-[30px] sm:h-[35px] w-full sm:w-4/5 md:w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 italic"
+                  : "text-[#075985] rounded-sm h-[30px] sm:h-[35px] w-full sm:w-4/5 md:w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 italic"
               }
               name="name"
               value={user.name}
@@ -314,13 +320,15 @@ function CheckoutForm() {
             {errors.name ? (
               <p className="text-[#dc2626] w-3/4">{errors.name}</p>
             ) : null}
-            <label className="w-3/4 mt-2">Apellidos</label>
+            <label className="w-full sm:w-4/5 md:w-3/4 text-[#bbb] mt-2">
+              Apellidos:
+            </label>
             <input
               type="text"
               className={
-                errors.lastName
-                  ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
-                  : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                errors.name
+                  ? "text-[#dc2626] rounded-sm h-[30px] sm:h-[35px] w-full sm:w-4/5 md:w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 italic"
+                  : "text-[#075985] rounded-sm h-[30px] sm:h-[35px] w-full sm:w-4/5 md:w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 italic"
               }
               name="lastName"
               value={user.lastName}
@@ -329,13 +337,15 @@ function CheckoutForm() {
             {errors.lastName ? (
               <p className="text-[#dc2626] w-3/4">{errors.lastName}</p>
             ) : null}
-            <label className="w-3/4 mt-2">Direccion de correo:</label>
+            <label className="w-full sm:w-4/5 md:w-3/4 text-[#bbb] mt-2">
+              Correo Electrónico:
+            </label>
             <input
               type="text"
               className={
-                errors.email
-                  ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
-                  : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 "
+                errors.name
+                  ? "text-[#dc2626] rounded-sm h-[30px] sm:h-[35px] w-full sm:w-4/5 md:w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 italic"
+                  : "text-[#075985] rounded-sm h-[30px] sm:h-[35px] w-full sm:w-4/5 md:w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 italic"
               }
               name="email"
               value={user.email}
@@ -344,13 +354,15 @@ function CheckoutForm() {
             {errors.email ? (
               <p className="text-[#dc2626] w-3/4">{errors.email}</p>
             ) : null}
-            <label className="w-3/4 mt-2">Telefono:</label>
+            <label className="w-full sm:w-4/5 md:w-3/4 text-[#bbb] mt-2">
+              Teléfono:
+            </label>
             <input
               type="text"
               className={
-                errors.phone
-                  ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
-                  : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                errors.name
+                  ? "text-[#dc2626] rounded-sm h-[30px] sm:h-[35px] w-full sm:w-4/5 md:w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 italic"
+                  : "text-[#075985] rounded-sm h-[30px] sm:h-[35px] w-full sm:w-4/5 md:w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 italic"
               }
               name="phone"
               value={user.phone}
@@ -359,13 +371,15 @@ function CheckoutForm() {
             {errors.phone ? (
               <p className="text-[#dc2626] w-3/4">{errors.phone}</p>
             ) : null}
-            <label className="w-3/4 mt-2">Direccion de Envio:</label>
+            <label className="w-full sm:w-4/5 md:w-3/4 text-[#bbb] mt-2">
+              Dirección de Envío:
+            </label>
             <input
               type="text"
               className={
-                errors.address
-                  ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
-                  : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                errors.name
+                  ? "text-[#dc2626] rounded-sm h-[30px] sm:h-[35px] w-full sm:w-4/5 md:w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 italic"
+                  : "text-[#075985] rounded-sm h-[30px] sm:h-[35px] w-full sm:w-4/5 md:w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 italic"
               }
               name="address"
               value={user.address}
@@ -374,13 +388,15 @@ function CheckoutForm() {
             {errors.address ? (
               <p className="text-[#dc2626] w-3/4">{errors.address}</p>
             ) : null}
-            <label className="w-3/4 mt-2">Pais:</label>
+            <label className="w-full sm:w-4/5 md:w-3/4 text-[#bbb] mt-2">
+              País:
+            </label>
             <input
               type="text"
               className={
-                errors.country
-                  ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
-                  : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                errors.name
+                  ? "text-[#dc2626] rounded-sm h-[30px] sm:h-[35px] w-full sm:w-4/5 md:w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 italic"
+                  : "text-[#075985] rounded-sm h-[30px] sm:h-[35px] w-full sm:w-4/5 md:w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 italic"
               }
               name="country"
               value={user.country}
@@ -389,27 +405,35 @@ function CheckoutForm() {
             {errors.country ? (
               <p className="text-[#dc2626] w-3/4">{errors.country}</p>
             ) : null}
-            <br />
-            <span>Ingrese los datos de su tarjeta</span>
-            <div>
-              <br />
 
-              <div className="flex flex-col justify-left">
+            <span className="w-full sm:w-4/5 md:w-3/4 text-[#bbb] mt-7 mb-1 text-center">
+              Ingrese los datos de su tarjeta
+            </span>
+            <div>
+              <div className="flex flex-col">
                 <CardElement options={cardNumberElementOptions} />
-                <br />
+
                 <button
                   onClick={hanledSubmit}
-                  className="border-1 border-rose-500 rounded w-max mx-auto px-3 py-2 text-white bg-[#5050c5] hover:bg-[#383897] transition-colors duration-200 font-medium text-lg flex justify-center items-center gap-3"
+                  className="border-1 border-rose-500 rounded w-max mx-auto px-3 py-2 text-white bg-[#5050c5] hover:bg-[#383897] transition-colors duration-200 font-medium flex justify-center items-center gap-2 mt-7 md:mt-10 text-base sm:text-lg"
                   disabled={!stripe}
                 >
-                  Realizar Pago
+                  Pagar
+                  <span className="font-bold">
+                    $
+                    {cart
+                      .reduce((ac, e) => {
+                        return ac + e.price * e.quantity;
+                      }, 0)
+                      .toFixed(2)}
+                  </span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6"
+                    className="w-5 h-5 sm:w-6 sm:h-6 rotate-[-15deg]"
                   >
                     <path
                       strokeLinecap="round"
@@ -435,6 +459,7 @@ function CheckoutForm() {
           </fieldset> */}
         </form>
       </div>
+      <Footer />
     </div>
   );
 }

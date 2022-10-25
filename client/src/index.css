@@ -61,6 +61,49 @@ body {
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
   /* transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; */
-  padding: 5px;
-  width: 500px;
+  padding: 8px;
+  width: 275px;
+  font-size: 15px;
+  /* height: 30px; */
+}
+
+@media (min-width: 350px) {
+  .StripeElement {
+    width: 88vw;
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 640px) {
+  .StripeElement {
+    width: 55vw;
+    font-size: 19px;
+  }
+}
+
+@media (min-width: 768px) {
+  .StripeElement {
+    width: 40vw;
+    font-size: 19px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .StripeElement {
+    width: 450px;
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 1300px) {
+  .StripeElement {
+    width: 500px;
+    font-size: 24px;
+  }
+}
+
+.textWrap {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

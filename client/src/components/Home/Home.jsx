@@ -1,6 +1,6 @@
 import NavBar from "../NavBar/NavBar";
 import BookList from "../BookList/BookList";
-import Carousel from "../Carousel";
+// import Carousel from "../Carousel";
 import Slider from "../Carousel/Slider";
 
 export default function Home() {
