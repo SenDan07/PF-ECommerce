@@ -11,7 +11,7 @@ export default function CartItem({ book }) {
   for (let i = 1; i <= parseInt(book.stock); i++) {
     cantidad[i] = i;
   }
-  console.log("stock", book.stock);
+  // console.log("stock", book.stock);
 
   //   useEffect(() => {
   //     // showAlertBookDelete();
@@ -64,24 +64,24 @@ export default function CartItem({ book }) {
   }, []);
 
   return (
-    <div className="flex flex-row m-5 p-2 pl-4 rounded bg-[#b3c9d8]">
-      <div className="flex w-[60%]">
+    <div className="flex flex-col sm:flex-row justify-between m-5 p-2 pr-0 sm:pl-4 rounded bg-[#b3c9d8]">
+      <div className="flex flex-col-reverse sm:flex-row w-full sm:w-[50%] items-center">
         <div className="w-[180px] mb-2">
           <img
             src={book.imageLinks}
             alt={`img-${book.title}`}
-            className="w-[180px] h-[250px] rounded sombra"
+            className="w-[100px] h-[160px] md:w-[130px] md:h-[200px] lg:w-[180px] lg:h-[250px] rounded sombra mx-auto"
           />
         </div>
-        <div className="flex flex-col justify-center m-10 mb-5 w-1/2">
-          <h2 className="font-medium text-center text-2xl text-NavBar italic">
+        <div className="flex flex-col justify-center m-1 mb-5 w-full sm:w-1/2">
+          <h2 className="font-medium text-center text-base md:text-2xl text-NavBar italic">
             {book.title.length > 31
               ? `${book.title.toUpperCase().slice(0, 31)}...`
               : `${book.title.toUpperCase()}`}
           </h2>
 
           <div className="bg-[#333333] mt-2 pb-1 px-2 rounded w-max mx-auto">
-            <h3 className="text-center text-lg font-bold text-white">
+            <h3 className="text-center text-base md:text-lg font-bold text-white">
               <span className="font-medium text-[#dddddd]">
                 Precio unitario:
               </span>
@@ -90,7 +90,7 @@ export default function CartItem({ book }) {
           </div>
         </div>
       </div>
-      <div className="flex justify-center items-center w-1/2">
+      <div className="flex flex-col lg:flex-row justify-center items-center w-full sm:w-[50%] mt-2 sm:mt-0">
         <div>
           <div className="flex justify-center items-center gap-2">
             <span className="font-medium text-lg">Cantidad:</span>
@@ -108,8 +108,8 @@ export default function CartItem({ book }) {
               })}
             </select>
           </div>
-          <div className="rounded bg-[#111111] mt-3 py-1 px-3">
-            <h3 className="text-center text-xl font-medium text-white">
+          <div className="rounded bg-[#111111] mt-3 py-1 px-1 md:px-3">
+            <h3 className="text-center text-base md:text-xl font-medium text-white">
               Total:{" "}
               <span className="text-[#b8b82e]">
                 ${(book.price * book.quantity).toFixed(2)}
@@ -131,17 +131,17 @@ export default function CartItem({ book }) {
           </div>
         </div> */}
         <div
-          className="flex justify-center gap-1 mx-16 h-max p-1 px-2 rounded bg-[#af3a3a] text-white hover:cursor-pointer hover:bg-[#791f1f] transition-colors duration-200"
+          className="flex justify-center items-center gap-1 mt-5 lg:mt-0 lg:mx-16 mr-0 h-max p-1 px-2 sm:pr-0 rounded bg-[#af3a3a] text-white hover:cursor-pointer hover:bg-[#791f1f] transition-colors duration-200"
           onClick={handleClick}
         >
-          <h3 className="">Eliminar</h3>
+          <h3 className="text-sm md:text-base">Eliminar</h3>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1}
             stroke="currentColor"
-            className="w-6 h-6 hover:rotate-12"
+            className="w-4 h-4 md:w-6 md:h-6 hover:rotate-12"
           >
             <path
               strokeLinecap="round"

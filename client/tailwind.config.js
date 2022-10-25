@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,js}"],
+  content: ["./src/**/*.{html,js,jsx}"],
   theme: {
     colors: {
       NavBar: "#223648",
@@ -21,7 +21,7 @@ module.exports = {
       redNew: "#A81807",
       blueNew: "#143459",
       contTable: "#999999",
-      golden: "#9CA716"
+      golden: "#9CA716",
     },
     extend: {
       height: {

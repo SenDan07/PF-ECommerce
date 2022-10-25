@@ -15,6 +15,7 @@ export default function CategoriesBooks() {
   let { category } = useParams();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(categoryBooks(category));
   }, []);
 
@@ -34,27 +35,25 @@ export default function CategoriesBooks() {
     <div className="bg-bgHome min-h-screen">
       <NavBar />
 
-      <div className="w-full flex justify-between">
-        <div className="flex justify-start h-max pt-4 pl-4">
+      <div className="w-full flex justify-between flex-col-reverse sm:flex-row">
+        <div className="flex justify-start h-max mt-4 ml-3 text-xs font-bold md:text-lg md:font-medium hover:cursor-pointer w-max">
           <Link to="/categories">
-            <h3 className="border-1 rounded px-5 py-2 bg-button text-black hover:text-white hover:bg-[#065841] transition-colors duration-500">
+            <h3 className="border-1 rounded px-3 py-3 md:py-2 bg-button text-white hover:bg-[#065841] transition-colors duration-500">
               &#129044; Regresar
             </h3>
           </Link>
         </div>
 
-        <FilterBar />
+        <FilterBar className="items-end" />
       </div>
 
-      <div className="mb-16 mt-10 font-bold text-5xl font-serif italic">
-        <h5 className="flex justify-center underline decoration-NavBar">
+      <div className="mb-10 mt-10 font-bold font-serif italic">
+        <h5 className="flex justify-center underline decoration-NavBar text-center text-3xl sm:text-4xl md:text-5xl">
           {category}
         </h5>
       </div>
-      <div className="flex flex-wrap justify-center gap-10">
-        {booksFilter.length === 0 ? (
-          <h4 className="text-5xl">NO HAY LIBROS EN ESTA CATEGORIA</h4>
-        ) : (
+      <div className="flex flex-wrap justify-center sm:gap-10">
+        {booksFilter?.length ? (
           booksFilter.map((e) => {
             return (
               <CategoryBooksDumb
@@ -66,6 +65,18 @@ export default function CategoriesBooks() {
               />
             );
           })
+        ) : (
+          <div className="mt-16">
+            {/* <img
+              src="https://res.cloudinary.com/dzcpdipdg/image/upload/v1665771569/samples/loaders/normal-loader_yqhauz.gif"
+              alt="img-loading-books"
+              className="w-[50px]"
+            />
+            <h2 className="text-center">Loading...</h2> */}
+            <h4 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold md:font-medium mt-20">
+              NO SE ENCONTRARON LIBROS
+            </h4>
+          </div>
         )}
       </div>
     </div>

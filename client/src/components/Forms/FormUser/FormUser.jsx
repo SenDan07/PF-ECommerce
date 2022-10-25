@@ -87,7 +87,7 @@ export default function FormUser() {
       allowEscapeKey: false,
       allowOutsideClick: false,
     }).then(
-      function () { },
+      function () {},
       // handling the promise rejection
       function (dismiss) {
         if (dismiss === "timer") {
@@ -146,7 +146,8 @@ export default function FormUser() {
 
     //dispatch(getAllCategories())
     boton.disabled = true;
-    boton.className = "bg-[#94a3b8] p-2 px-8 m-2 rounded text-xl";
+    boton.className =
+      "bg-[#94a3b8] p-2 px-8 rounded text-xl w-3/4 sm:w-max mx-auto sm:mx-0 sm:m-2 sm:mt-0 mb-3 sm:mb-0";
   }, []);
   //let categories=useSelector(state=>state.categories)
   return (
@@ -154,23 +155,22 @@ export default function FormUser() {
       <NavBar />
       <form
         onSubmit={(e) => handleSubmit(e)}
-        className="bg-[#14222e] text-white container mx-auto p-20 m-20 rounded-lg w-1/2"
+        className="bg-[#14222e] text-white container mx-auto p-5 lg:p-10 xl:p-20 m-20 rounded md:rounded-lg w-[95%] sm:w-[80%] lg:w-1/2"
       >
-        <h2 className="text-center text-xl text-[30px] text-[#c0c077]">
+        <h2 className="text-center text-lg lg:text-2xl text-[#c0c077] mb-5 xl:mb-10">
           REGISTRO DE USUARIOS
         </h2>
-        <br />
-        <fieldset className="columns-2 text-[16px] m-2 flex flex-col">
-          <div className="flex">
-            <div className="w-1/2">
+        <fieldset className="columns-2 text-[16px] m-2 flex flex-col mx-auto">
+          <div className="flex flex-col xl:flex-row xl:gap-2">
+            <div className="w-[95%] xl:w-1/2 mx-auto">
               <div className="flex flex-col">
                 <label className="">NOMBRE: </label>
                 <input
                   type="text"
                   className={
                     errors.name
-                      ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
-                      : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                      ? "text-[#dc2626] rounded-sm h-[30px] italic pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 w-full xl:w-[90%]"
+                      : "text-[#075985] rounded-sm h-[30px] italic pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 w-full xl:w-[90%]"
                   }
                   name="name"
                   value={input.name}
@@ -190,8 +190,8 @@ export default function FormUser() {
                   type="text"
                   className={
                     errors.lastName
-                      ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
-                      : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                      ? "text-[#dc2626] rounded-sm h-[30px] italic pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 w-full xl:w-[90%]"
+                      : "text-[#075985] rounded-sm h-[30px] italic pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 w-full xl:w-[90%]"
                   }
                   name="lastName"
                   value={input.lastName}
@@ -207,15 +207,15 @@ export default function FormUser() {
               </div>
             </div>
 
-            <div className="w-1/2">
+            <div className="w-[95%] xl:w-1/2 mx-auto">
               <div className="flex flex-col">
                 <label className="">PASSWORD: </label>
                 <input
                   type="password"
                   className={
                     errors.password
-                      ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
-                      : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                      ? "text-[#dc2626] rounded-sm h-[30px] italic pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 w-full xl:w-[90%]"
+                      : "text-[#075985] rounded-sm h-[30px] italic pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 w-full xl:w-[90%]"
                   }
                   name="password"
                   value={input.password}
@@ -236,8 +236,8 @@ export default function FormUser() {
                   type="email"
                   className={
                     errors.email
-                      ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
-                      : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                      ? "text-[#dc2626] rounded-sm h-[30px] italic pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 w-full xl:w-[90%]"
+                      : "text-[#075985] rounded-sm h-[30px] italic pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 w-full xl:w-[90%]"
                   }
                   name="email"
                   value={input.email}
@@ -254,14 +254,14 @@ export default function FormUser() {
             </div>
           </div>
 
-          <div className="w-3/4">
+          <div className="w-[95%] mx-auto xl:mx-0">
             <label className="block">PALABRA SECRETA: </label>
             <input
               type="text"
               className={
                 errors.secretWord
-                  ? "text-[#dc2626] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
-                  : "text-[#075985] rounded h-[30px] italic w-3/4 pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40"
+                  ? "text-[#dc2626] rounded-sm h-[30px] italic pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 w-full xl:w-[90%]"
+                  : "text-[#075985] rounded-sm h-[30px] italic pl-1 focus:ring-[#f3f707] focus:outline-none focus:ring focus:ring-opacity-40 w-full xl:w-[90%]"
               }
               name="secretWord"
               value={input.secretWord}
@@ -285,14 +285,15 @@ export default function FormUser() {
             </select>*/}
           <br />
         </fieldset>
-        <fieldset className="text-center">
+        <fieldset className="text-center mt-10 flex flex-col sm:flex-row sm:items-center sm:justify-center">
           {/* {loading ? <p>{loading}</p> : null} */}
           <input
             type="submit"
-            className={`text-xl ${Object.keys(errors).length
-                ? "bg-[#94a3b8] p-2 px-8 m-2 cursor-no-drop rounded"
-                : "bg-[#124d9a] p-2 px-8 m-2 rounded cursor-pointer transition-colors duration-200 hover:bg-[#0e3f7e]"
-              }`}
+            className={`text-xl ${
+              Object.keys(errors).length
+                ? "bg-[#94a3b8] p-2 px-8 cursor-no-drop rounded w-3/4 sm:w-max mx-auto sm:mx-0 sm:m-2 sm:mt-0 mb-3 sm:mb-0"
+                : "bg-[#124d9a] p-2 px-8 rounded cursor-pointer transition-colors duration-200 hover:bg-[#0e3f7e] w-3/4 sm:w-max mx-auto sm:mx-0 sm:m-2 sm:mt-0 mb-3 sm:mb-0"
+            }`}
             id="enviar"
             disabled={Object.keys(errors).length ? true : false}
             value="Guardar"

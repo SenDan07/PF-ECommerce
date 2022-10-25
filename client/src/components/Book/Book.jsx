@@ -34,7 +34,7 @@ export const Book = ({ name, image, price, id }) => {
     <div>
       <div className="">
         <div>
-          <h2 className="font-medium text-center text-[22px] text-[#171e3b]">
+          <h2 className="font-bold text-center text-base sm:text-lg md:text-xl text-[#171e3b]">
             {name.length > 11
               ? `${name.slice(0, 11).toUpperCase()}...`
               : name.toUpperCase()}
@@ -71,7 +71,7 @@ export const Book = ({ name, image, price, id }) => {
           <img
             src={image}
             alt={`img-${name}`}
-            className="w-[200px] h-[300px] rounded rounded-tr-lg sombra"
+            className="w-[150px] h-[225px] md:w-[200px] md:h-[300px] rounded rounded-tr-lg sombra"
           />
         </Link>
       </div>

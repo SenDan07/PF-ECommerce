@@ -39,12 +39,12 @@ export default function DropdownComponent() {
     navigate(`/user/edit/${USER.id}`);
   }
 
-  console.log(USER.picture[USER.picture.length - 1]);
+  // console.log(USER.picture[USER.picture.length - 1]);
 
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-[#162531]  rounded shadow-sm hover:bg-gray-50 p-1 flex items-center gap-3">
+        <Menu.Button className="justify-center w-[140px] px-2 py-2 text-sm font-medium text-gray-700 bg-[#162531]  rounded shadow-sm hover:bg-gray-50 p-1 flex items-center gap-3 md:w-[150px] lg:w-max">
           <img
             src={
               USER.picture
@@ -52,12 +52,12 @@ export default function DropdownComponent() {
                 : `https://res.cloudinary.com/dzcpdipdg/image/upload/v1665265607/samples/icons/img-perfil-default_krpmpp.jpg`
             }
             alt="img-user"
-            className="w-10 h-10 rounded"
+            className="w-7 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-10 lg:h-10 rounded"
           />
-          {USER.name}
+          {USER.name.split(" ")[0]}
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="w-5 h-5 ml-2 -mr-1"
+            className="w-5 h-5 mr-1"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -139,55 +139,51 @@ export default function DropdownComponent() {
                   )}
                 </Menu.Item> */}
                 <Menu.Item>
-                  {({ active }) => (
-                    <Link
-                      to={`/historyorder/${USER.iduser}`}
-                      className="px-4 py-2 text-base hover:bg-[#555] transition-colors duration-200 flex justify-between"
+                  <Link
+                    to={`/historyorder/${USER.iduser}`}
+                    className="px-4 py-2 text-base hover:bg-[#555] transition-colors duration-200 flex justify-between"
+                  >
+                    Pedidos
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-6 h-6"
                     >
-                      Pedidos
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-6 h-6"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"
-                        />
-                      </svg>
-                    </Link>
-                  )}
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"
+                      />
+                    </svg>
+                  </Link>
                 </Menu.Item>
               </div>
             ) : (
               <div>
                 <Menu.Item>
-                  {({ active }) => (
-                    <Link
-                      to="/admin"
-                      className="px-4 py-2 text-base hover:bg-[#555] transition-colors duration-200 flex justify-between"
+                  <Link
+                    to="/admin"
+                    className="px-4 py-2 text-base hover:bg-[#555] transition-colors duration-200 flex justify-between"
+                  >
+                    ADMINISTRAR
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-6 h-6"
                     >
-                      ADMINISTRAR
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-6 h-6"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                        />
-                      </svg>
-                    </Link>
-                  )}
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                      />
+                    </svg>
+                  </Link>
                 </Menu.Item>
               </div>
             )}

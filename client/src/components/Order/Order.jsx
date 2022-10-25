@@ -17,7 +17,7 @@ export default function Order() {
     <select
       name="orderAZ"
       onChange={onSelectChange}
-      className="rounded bg-[#222222] text-white hover:cursor-pointer outline-none p-1 hover:bg-[#112211] transition-colors duration-200 text-lg"
+      className="rounded bg-[#222222] text-white hover:cursor-pointer outline-none p-1 hover:bg-[#112211] transition-colors duration-200 text-xs sm:text-sm md:text-lg"
     >
       <option className="p-1 pl-2" value={false}>
         ORDEN

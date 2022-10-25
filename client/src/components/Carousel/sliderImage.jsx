@@ -16,7 +16,7 @@ export const imagesSlider = [
   },
   {
     title: "Compra Fácil y Rápido",
-    description: "Selecciona libros de tu preferencia con tan solo unos clics",
+    description: "Escoge libros a tu gusto con tan solo unos clics",
     urls: "https://res.cloudinary.com/dzcpdipdg/image/upload/v1665335500/samples/slider-images/slider-5_as6his.jpg",
   },
 ];
